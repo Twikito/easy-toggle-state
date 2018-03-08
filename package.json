@@ -1,0 +1,26 @@
+{
+	"name": "Easy toggle state",
+	"version": "1.0.0",
+	"description": "Tiny JavaScript plugin to toggle the state of any element in any context.",
+	"main": "src/easy-toggle-state.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Twikito/easy-toggle-state.git"
+	},
+	"keywords": [
+		"event",
+		"toggle"
+	],
+	"author": "Matthieu Bué <https://twikito.com>",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/Twikito/easy-toggle-state/issues"
+	},
+	"homepage": "https://github.com/Twikito/easy-toggle-state#readme",
+	"devDependencies": {
+
+	}
+}
