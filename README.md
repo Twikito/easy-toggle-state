@@ -1,6 +1,6 @@
-# easy-toggle-state
+# Easy toggle state
 
-Tiny JavaScript plugin to toggle the state of any element in any context. Only set some HTML attributes, and let all the things to your CSS skills.
+Tiny JavaScript plugin to toggle the state of any HTML element in any context. Only set some HTML attributes, and let all the things to your CSS skills.
 
 ## How to use
 
