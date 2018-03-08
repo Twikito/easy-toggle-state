@@ -64,7 +64,7 @@ Add this attribute to toggle the class when trigger element was already triggere
 ```
 data-toggle-trigger-off
 ```
-Add this attribute on an element *inside a target element* (typically button or link) to enable this element to toggle off.
+Add this attribute on an element __inside a target element__ (typically button or link) to enable this element to toggle off.
 
 ### More
 
