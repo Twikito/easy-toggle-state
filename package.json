@@ -1,26 +1,38 @@
 {
-	"name": "Easy toggle state",
-	"version": "1.0.0",
-	"description": "Tiny JavaScript plugin to toggle the state of any element in any context.",
-	"main": "src/easy-toggle-state.js",
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/Twikito/easy-toggle-state.git"
-	},
-	"keywords": [
-		"event",
-		"toggle"
-	],
-	"author": "Matthieu Bué <https://twikito.com>",
-	"license": "MIT",
-	"bugs": {
-		"url": "https://github.com/Twikito/easy-toggle-state/issues"
-	},
-	"homepage": "https://github.com/Twikito/easy-toggle-state#readme",
-	"devDependencies": {
-
-	}
+  "name": "easy-toggle-state",
+  "version": "1.0.0",
+  "description": "A tiny JavaScript plugin to toggle the state of any HTML element in most of contexts with ease.",
+  "main": "dist/easy-toggle-state.es6.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Twikito/easy-toggle-state.git"
+  },
+  "keywords": [
+    "toggle",
+    "event",
+    "accessibility"
+  ],
+  "author": "Matthieu Bué <https://twikito.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Twikito/easy-toggle-state/issues"
+  },
+  "homepage": "https://github.com/Twikito/easy-toggle-state#readme",
+  "dependencies": {
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^7.0.1",
+    "gulp-clean": "^0.4.0",
+    "gulp-header": "^2.0.5",
+    "gulp-rename": "^1.2.2",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-uglify": "^3.0.0",
+    "run-sequence": "^2.2.1",
+    "uglify-es": "^3.3.9"
+  },
+  "devDependencies": {}
 }
