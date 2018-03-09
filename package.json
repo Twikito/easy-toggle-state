@@ -4,7 +4,8 @@
   "description": "A tiny JavaScript plugin to toggle the state of any HTML element in most of contexts with ease.",
   "main": "dist/easy-toggle-state.es6.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "gulp"
   },
   "repository": {
     "type": "git",
