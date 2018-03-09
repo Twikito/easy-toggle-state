@@ -1,9 +1,3 @@
-/*
- * Easy toggle state
- * Website: TODO
- * License MIT: https://github.com/Twikito/easy-toggle-state/blob/master/LICENSE
- */
-
 (document => {
 
 	const TOGGLE_CLASS_PREFIX = 'toggle-'; // Prefix should end by hyphen
