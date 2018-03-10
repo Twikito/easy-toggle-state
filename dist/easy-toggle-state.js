@@ -22,6 +22,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 	    ATTR_TARGET_PARENT = 'data-' + TOGGLE_CLASS_PREFIX + 'target-parent',
 	    ATTR_TARGET_SELF = 'data-' + TOGGLE_CLASS_PREFIX + 'target-self',
 	    ATTR_IS_ACTIVE = 'data-' + TOGGLE_CLASS_PREFIX + 'is-active',
+	    ATTR_GROUP = 'data-' + TOGGLE_CLASS_PREFIX + 'group',
 	    ATTR_EVENT = 'data-' + TOGGLE_CLASS_PREFIX + 'event',
 	    ATTR_OUTSIDE = 'data-' + TOGGLE_CLASS_PREFIX + 'outside',
 	    ATTR_TARGET_ONLY = 'data-' + TOGGLE_CLASS_PREFIX + 'target-only',
@@ -38,13 +39,22 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 		return [];
 	};
 
+	// Retrieve all active trigger of a group
+	var retrieveGroupState = function retrieveGroupState(group) {
+		var activeGroupElements = [];
+		[].concat(_toConsumableArray(document.querySelectorAll('[' + ATTR_CLASS + '][' + ATTR_GROUP + '="' + group + '"]'))).forEach(function (groupElement) {
+			if (groupElement.isToggleActive) activeGroupElements.push(groupElement);
+		});
+		return activeGroupElements;
+	};
+
 	// Toggle off all 'toggle-outside' elements when reproducing specified or click event outside trigger or target elements
 	var documentEventHandler = function documentEventHandler(event) {
 		var target = event.target;
 
 		if (!target.closest('[' + ATTR_TARGET_STATE + '="true"]')) {
 			[].concat(_toConsumableArray(document.querySelectorAll('[' + ATTR_CLASS + '][' + ATTR_OUTSIDE + ']'))).forEach(function (element) {
-				if (element != target && element.isToggleActive) manageToggle(element);
+				if (element != target && element.isToggleActive) if (element.hasAttribute(ATTR_GROUP)) manageGroup(element);else manageToggle(element);
 			});
 			if (target.hasAttribute(ATTR_OUTSIDE) && target.isToggleActive) document.addEventListener(target.getAttribute(ATTR_EVENT) || 'click', documentEventHandler, false);
 		}
@@ -58,7 +68,9 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 	// Manage event ouside trigger or target elements
 	var manageTriggerOutside = function manageTriggerOutside(element) {
 		if (element.hasAttribute(ATTR_OUTSIDE)) {
-			if (element.isToggleActive) document.addEventListener(element.getAttribute(ATTR_EVENT) || 'click', documentEventHandler, false);else document.removeEventListener(element.getAttribute(ATTR_EVENT) || 'click', documentEventHandler, false);
+			if (element.hasAttribute(ATTR_GROUP)) console.error("You can't use '" + ATTR_OUTSIDE + "' on a grouped trigger");else {
+				if (element.isToggleActive) document.addEventListener(element.getAttribute(ATTR_EVENT) || 'click', documentEventHandler, false);else document.removeEventListener(element.getAttribute(ATTR_EVENT) || 'click', documentEventHandler, false);
+			}
 		}
 	};
 
@@ -78,6 +90,22 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 					triggerOff.removeEventListener('click', triggerOffHandler, false);
 				});
 			}
+		}
+	};
+
+	// Toggle elements of a same group
+	var manageGroup = function manageGroup(element) {
+		var activeGroupElements = retrieveGroupState(element.getAttribute(ATTR_GROUP));
+
+		if (activeGroupElements.length > 0) {
+			if (activeGroupElements.indexOf(element) === -1) {
+				activeGroupElements.forEach(function (groupElement) {
+					manageToggle(groupElement);
+				});
+				manageToggle(element);
+			}
+		} else {
+			manageToggle(element);
 		}
 	};
 
@@ -102,34 +130,43 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 		manageTriggerOutside(element);
 	};
 
+	var manageActiveByDefault = function manageActiveByDefault(element) {
+		element.isToggleActive = true;
+		var className = element.getAttribute(ATTR_CLASS);
+
+		if (!element.hasAttribute(ATTR_TARGET_ONLY) && !element.classList.contains(className)) element.classList.add(className);
+
+		if (element.hasAttribute(ATTR_EXPANDED) && element.getAttribute(ATTR_EXPANDED)) element.setAttribute(ATTR_EXPANDED, true);
+
+		if (element.hasAttribute(ATTR_SELECTED) && !element.getAttribute(ATTR_SELECTED)) element.setAttribute(ATTR_SELECTED, true);
+
+		var targetElements = retrieveTargets(element);
+		for (var i = 0; i < targetElements.length; i++) {
+			if (!targetElements[i].classList.contains(element.getAttribute(ATTR_CLASS))) targetElements[i].classList.add(className);
+			manageTarget(targetElements[i], element);
+		}
+
+		manageTriggerOutside(element);
+	};
+
 	// Initialization
 	var init = function init() {
 
 		// Active by default management
 		[].concat(_toConsumableArray(document.querySelectorAll('[' + ATTR_CLASS + '][' + ATTR_IS_ACTIVE + ']'))).forEach(function (trigger) {
-			trigger.isToggleActive = true;
-			var className = trigger.getAttribute(ATTR_CLASS);
-
-			if (!trigger.hasAttribute(ATTR_TARGET_ONLY) && !trigger.classList.contains(className)) trigger.classList.add(className);
-
-			if (trigger.hasAttribute(ATTR_EXPANDED) && trigger.getAttribute(ATTR_EXPANDED)) trigger.setAttribute(ATTR_EXPANDED, true);
-
-			if (trigger.hasAttribute(ATTR_SELECTED) && !trigger.getAttribute(ATTR_SELECTED)) trigger.setAttribute(ATTR_SELECTED, true);
-
-			var targetElements = retrieveTargets(trigger);
-			for (var i = 0; i < targetElements.length; i++) {
-				if (!targetElements[i].classList.contains(trigger.getAttribute(ATTR_CLASS))) targetElements[i].classList.add(className);
-				manageTarget(targetElements[i], trigger);
+			if (trigger.hasAttribute(ATTR_GROUP)) {
+				var group = trigger.getAttribute(ATTR_GROUP);
+				if (retrieveGroupState(group).length > 0) console.error("Toggle group '" + group + "' must not have more than one trigger with '" + ATTR_IS_ACTIVE + "'");else manageActiveByDefault(trigger);
+			} else {
+				manageActiveByDefault(trigger);
 			}
-
-			manageTriggerOutside(trigger);
 		});
 
 		// Set specified or click event on each trigger element
 		[].concat(_toConsumableArray(document.querySelectorAll('[' + ATTR_CLASS + ']'))).forEach(function (trigger) {
 			trigger.addEventListener(trigger.getAttribute(ATTR_EVENT) || 'click', function (event) {
 				event.preventDefault();
-				manageToggle(trigger);
+				if (trigger.hasAttribute(ATTR_GROUP)) manageGroup(trigger);else manageToggle(trigger);
 			}, false);
 		});
 
@@ -144,7 +181,9 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 				if (isEscape) {
 					triggerEscElements.forEach(function (trigger) {
-						if (trigger.isToggleActive) manageToggle(trigger);
+						if (trigger.isToggleActive) {
+							if (trigger.hasAttribute(ATTR_GROUP)) console.error("You can't use '" + ATTR_ESCAPE + "' on a grouped trigger");else manageToggle(trigger);
+						}
 					});
 				}
 			}, false);

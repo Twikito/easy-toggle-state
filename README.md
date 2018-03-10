@@ -1,10 +1,12 @@
 # Easy toggle state
 
-Tiny JavaScript plugin to toggle the state of any HTML element in any context. Only set some HTML attributes, and code the rest with your CSS skills.
+A tiny JavaScript plugin to toggle the state of any HTML element in most of contexts with ease.
+
+Only set some HTML attributes, and code the rest with your CSS skills.
 
 ## Why?
 
-In many situation in front-end developer's life, he must code scripts for dropdown, burger navigation, tooltip, expandable panel, lightbox, tabs, or else.
+In many situation in front-end developer’s life, he must code scripts for dropdown, burger navigation, tooltip, expandable panel, lightbox, tabs, or else.
 
 In facts, all this componants are based on the same behavior: a trigger element that toggle the state of one or several target elements, and some CSS to make it nice to use, depending on the look and feel of its context.
 
@@ -29,7 +31,7 @@ Add this attribute to toggle the class on the trigger element and all selected t
 ```
 data-toggle-target-parent="selector"
 ```
-Add this attribute to toggle the class on the trigger element and all selected targets in trigger's parent element.
+Add this attribute to toggle the class on the trigger element and all selected targets in trigger’s parent element.
 
 ```
 data-toggle-target-self="selector"
@@ -40,6 +42,12 @@ Add this attribute to toggle the class on the trigger element and all the select
 data-toggle-is-active
 ```
 Add this attribute to specify if a trigger element and its targets has to be toggled by default (onLoad). You should add the specified class name on each element.
+
+```
+data-toggle-group="groupName"
+```
+Add this attribute to specify if a trigger is a part of a group. Only one trigger of a group can be active at a time. It just behave like radio buttons or tabs component.
+Note that a grouped trigger can’t have a ``data-toggle-outside`` or a ``data-toggle-escape`` behaviour.
 
 ```
 data-toggle-event="event"
@@ -64,7 +72,7 @@ Add this attribute to toggle the class when trigger element was already triggere
 ```
 data-toggle-trigger-off
 ```
-Add this attribute on an element __inside a target element__ (typically button or link) to enable this element to toggle off.
+Add this attribute on an element __inside a target element__ – typically button or link – to enable this element to toggle off.
 
 ### More
 
