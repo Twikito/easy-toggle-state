@@ -30,7 +30,6 @@
     "gulp-clean": "^0.4.0",
     "gulp-header": "^2.0.5",
     "gulp-rename": "^1.2.2",
-    "gulp-sourcemaps": "^2.6.4",
     "gulp-uglify": "^3.0.0",
     "run-sequence": "^2.2.1",
     "uglify-es": "^3.3.9"

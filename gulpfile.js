@@ -4,7 +4,6 @@ const
 	header     = require('gulp-header'),
 	rename     = require('gulp-rename'),
 	babel      = require('gulp-babel'),
-	sourcemaps = require('gulp-sourcemaps'),
 	uglifyes   = require('uglify-es'),
 	composer   = require('gulp-uglify/composer'),
 	uglify     = composer(uglifyes, console),
@@ -50,9 +49,7 @@ gulp.task('es6', () => {
 		.pipe( rename({ suffix: '.es6' }) )
 		.pipe( gulp.dest(DIR_DIST) )
 		.pipe( rename({ suffix: '.min' }) )
-		.pipe( sourcemaps.init() )
 		.pipe( uglify() )
-		.pipe( sourcemaps.write('.') )
 		.pipe( gulp.dest(DIR_DIST) );
 });
 
@@ -63,9 +60,7 @@ gulp.task('es5', () => {
 		.pipe( header(banner, {pkg : package}) )
 		.pipe( gulp.dest(DIR_DIST) )
 		.pipe( rename({ suffix: '.min' }) )
-		.pipe( sourcemaps.init() )
 		.pipe( uglify() )
-		.pipe( sourcemaps.write('.') )
 		.pipe( gulp.dest(DIR_DIST) );
 });
 

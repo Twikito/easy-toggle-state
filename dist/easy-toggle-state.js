@@ -3,7 +3,7 @@
 	easy-toggle-state
 	A tiny JavaScript plugin to toggle the state of any HTML element in most of contexts with ease.
 
-	@version v1.0.0
+	@version v1.1.0
 	@link https://github.com/Twikito/easy-toggle-state#readme
 	@license MIT : https://github.com/Twikito/easy-toggle-state/blob/master/LICENSE
 	-------------------------------------------------------------------
