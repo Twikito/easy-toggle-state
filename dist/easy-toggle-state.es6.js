@@ -74,7 +74,7 @@
 	const manageTriggerOutside = element => {
 		if(element.hasAttribute(ATTR_OUTSIDE)) {
 			if(element.hasAttribute(ATTR_GROUP))
-				console.error("You can't use '"+ATTR_OUTSIDE+"' on a grouped trigger");
+				console.warn("You can't use '"+ATTR_OUTSIDE+"' on a grouped trigger");
 			else {
 				if(element.isToggleActive)
 					document.addEventListener(element.getAttribute(ATTR_EVENT) || 'click', documentEventHandler, false);
@@ -175,7 +175,7 @@
 			if(trigger.hasAttribute(ATTR_GROUP)) {
 				let group = trigger.getAttribute(ATTR_GROUP);
 				if(retrieveGroupState(group).length > 0)
-					console.error("Toggle group '"+group+"' must not have more than one trigger with '"+ATTR_IS_ACTIVE+"'");
+					console.warn("Toggle group '"+group+"' must not have more than one trigger with '"+ATTR_IS_ACTIVE+"'");
 				else
 					manageActiveByDefault(trigger);
 			} else {
@@ -208,7 +208,7 @@
 					triggerEscElements.forEach((trigger) => {
 						if(trigger.isToggleActive) {
 							if(trigger.hasAttribute(ATTR_GROUP))
-								console.error("You can't use '"+ATTR_ESCAPE+"' on a grouped trigger");
+								console.warn("You can't use '"+ATTR_ESCAPE+"' on a grouped trigger");
 							else manageToggle(trigger);
 						}
 					});

@@ -68,7 +68,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 	// Manage event ouside trigger or target elements
 	var manageTriggerOutside = function manageTriggerOutside(element) {
 		if (element.hasAttribute(ATTR_OUTSIDE)) {
-			if (element.hasAttribute(ATTR_GROUP)) console.error("You can't use '" + ATTR_OUTSIDE + "' on a grouped trigger");else {
+			if (element.hasAttribute(ATTR_GROUP)) console.warn("You can't use '" + ATTR_OUTSIDE + "' on a grouped trigger");else {
 				if (element.isToggleActive) document.addEventListener(element.getAttribute(ATTR_EVENT) || 'click', documentEventHandler, false);else document.removeEventListener(element.getAttribute(ATTR_EVENT) || 'click', documentEventHandler, false);
 			}
 		}
@@ -156,7 +156,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 		[].concat(_toConsumableArray(document.querySelectorAll('[' + ATTR_CLASS + '][' + ATTR_IS_ACTIVE + ']'))).forEach(function (trigger) {
 			if (trigger.hasAttribute(ATTR_GROUP)) {
 				var group = trigger.getAttribute(ATTR_GROUP);
-				if (retrieveGroupState(group).length > 0) console.error("Toggle group '" + group + "' must not have more than one trigger with '" + ATTR_IS_ACTIVE + "'");else manageActiveByDefault(trigger);
+				if (retrieveGroupState(group).length > 0) console.warn("Toggle group '" + group + "' must not have more than one trigger with '" + ATTR_IS_ACTIVE + "'");else manageActiveByDefault(trigger);
 			} else {
 				manageActiveByDefault(trigger);
 			}
@@ -182,7 +182,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 				if (isEscape) {
 					triggerEscElements.forEach(function (trigger) {
 						if (trigger.isToggleActive) {
-							if (trigger.hasAttribute(ATTR_GROUP)) console.error("You can't use '" + ATTR_ESCAPE + "' on a grouped trigger");else manageToggle(trigger);
+							if (trigger.hasAttribute(ATTR_GROUP)) console.warn("You can't use '" + ATTR_ESCAPE + "' on a grouped trigger");else manageToggle(trigger);
 						}
 					});
 				}
