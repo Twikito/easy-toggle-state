@@ -82,6 +82,10 @@ You can also specify another prefix ``TOGGLE_CLASS_PREFIX`` value to avoid any c
 
 For single page application, You can call ``window.initEasyToggleState()`` when You need it.
 
+### DEV
+
+`$ npm run build`
+
 ## License
 
 MIT. Copyright (c) [Matthieu Bué](https://twikito.com)
