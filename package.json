@@ -5,7 +5,7 @@
   "main": "dist/easy-toggle-state.es6.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "gulp"
+    "build": "rollup -c"
   },
   "repository": {
     "type": "git",
@@ -34,5 +34,12 @@
     "gulp-uglify": "^3.0.0",
     "run-sequence": "^2.2.1",
     "uglify-es": "^3.3.9"
+  },
+  "devDependencies": {
+    "rollup": "^0.56.5",
+    "rollup-plugin-babel": "^3.0.3",
+    "rollup-plugin-commonjs": "^9.1.0",
+    "rollup-plugin-node-resolve": "^3.2.0",
+    "rollup-plugin-uglify": "^3.0.0"
   }
 }
