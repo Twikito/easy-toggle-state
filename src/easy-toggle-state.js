@@ -1,39 +1,41 @@
 (document => {
 
-	const TOGGLE_CLASS_PREFIX = 'toggle-'; // Prefix should end by hyphen
+	const PREFIX = 'toggle';
 
-	const ATTR_CLASS = 'data-'+TOGGLE_CLASS_PREFIX+'class',
-	      ATTR_TARGET_ALL = 'data-'+TOGGLE_CLASS_PREFIX+'target-all',
-	      ATTR_TARGET_PARENT = 'data-'+TOGGLE_CLASS_PREFIX+'target-parent',
-	      ATTR_TARGET_SELF = 'data-'+TOGGLE_CLASS_PREFIX+'target-self',
-	      ATTR_IS_ACTIVE = 'data-'+TOGGLE_CLASS_PREFIX+'is-active',
-	      ATTR_GROUP = 'data-'+TOGGLE_CLASS_PREFIX+'group',
-	      ATTR_EVENT = 'data-'+TOGGLE_CLASS_PREFIX+'event',
-	      ATTR_OUTSIDE = 'data-'+TOGGLE_CLASS_PREFIX+'outside',
-	      ATTR_TARGET_ONLY = 'data-'+TOGGLE_CLASS_PREFIX+'target-only',
-	      ATTR_ESCAPE = 'data-'+TOGGLE_CLASS_PREFIX+'escape',
-	      ATTR_TRIGGER_OFF = 'data-'+TOGGLE_CLASS_PREFIX+'trigger-off',
-	      ATTR_TARGET_STATE = 'data-'+TOGGLE_CLASS_PREFIX+'state';
-
-	const ATTR_EXPANDED = 'aria-expanded',
-	      ATTR_SELECTED = 'aria-selected';
+	const dataset = key => 'data-' + PREFIX + ( PREFIX != '' ? '-' : '' ) + key;
+	const ATTR = {
+		CLASS         : dataset('class'),
+		TARGET_ALL    : dataset('target-all'),
+		TARGET_PARENT : dataset('target-parent'),
+		TARGET_SELF   : dataset('target-self'),
+		IS_ACTIVE     : dataset('is-active'),
+		GROUP         : dataset('group'),
+		EVENT         : dataset('event'),
+		OUTSIDE       : dataset('outside'),
+		TARGET_ONLY   : dataset('target-only'),
+		ESCAPE        : dataset('escape'),
+		TRIGGER_OFF   : dataset('trigger-off'),
+		TARGET_STATE  : dataset('state'),
+		EXPANDED      : 'aria-expanded',
+		SELECTED      : 'aria-selected'
+	};
 
 
 	// Retrieve all targets of a trigger element
 	const retrieveTargets = element => {
-		if(element.hasAttribute(ATTR_TARGET_ALL))
-			return document.querySelectorAll(element.getAttribute(ATTR_TARGET_ALL));
-		else if(element.hasAttribute(ATTR_TARGET_PARENT))
-			return element.parentElement.querySelectorAll(element.getAttribute(ATTR_TARGET_PARENT));
-		else if(element.hasAttribute(ATTR_TARGET_SELF))
-			return element.querySelectorAll(element.getAttribute(ATTR_TARGET_SELF));
+		if(element.hasAttribute(ATTR.TARGET_ALL))
+			return document.querySelectorAll(element.getAttribute(ATTR.TARGET_ALL));
+		else if(element.hasAttribute(ATTR.TARGET_PARENT))
+			return element.parentElement.querySelectorAll(element.getAttribute(ATTR.TARGET_PARENT));
+		else if(element.hasAttribute(ATTR.TARGET_SELF))
+			return element.querySelectorAll(element.getAttribute(ATTR.TARGET_SELF));
 		return [];
 	}
 
 	// Retrieve all active trigger of a group
 	const retrieveGroupState = group => {
 		let activeGroupElements = [];
-		[...document.querySelectorAll('['+ATTR_CLASS+']['+ATTR_GROUP+'="'+group+'"]')].forEach((groupElement) => {
+		[...document.querySelectorAll('['+ATTR.CLASS+']['+ATTR.GROUP+'="'+group+'"]')].forEach((groupElement) => {
 			if(groupElement.isToggleActive)	activeGroupElements.push(groupElement);
 		});
 		return activeGroupElements;
@@ -43,14 +45,14 @@
 	const documentEventHandler = event => {
 		let target = event.target;
 
-		if (!target.closest('['+ATTR_TARGET_STATE+'="true"]')) {
-			[...document.querySelectorAll('['+ATTR_CLASS+']['+ATTR_OUTSIDE+']')].forEach((element) => {
+		if (!target.closest('['+ATTR.TARGET_STATE+'="true"]')) {
+			[...document.querySelectorAll('['+ATTR.CLASS+']['+ATTR.OUTSIDE+']')].forEach((element) => {
 				if(element != target && element.isToggleActive)
-					if(element.hasAttribute(ATTR_GROUP)) manageGroup(element);
+					if(element.hasAttribute(ATTR.GROUP)) manageGroup(element);
 					else manageToggle(element);
 			});
-			if(target.hasAttribute(ATTR_OUTSIDE) && target.isToggleActive)
-				document.addEventListener(target.getAttribute(ATTR_EVENT) || 'click', documentEventHandler, false);
+			if(target.hasAttribute(ATTR.OUTSIDE) && target.isToggleActive)
+				document.addEventListener(target.getAttribute(ATTR.EVENT) || 'click', documentEventHandler, false);
 		}
 	}
 
@@ -61,24 +63,24 @@
 
 	// Manage event ouside trigger or target elements
 	const manageTriggerOutside = element => {
-		if(element.hasAttribute(ATTR_OUTSIDE)) {
-			if(element.hasAttribute(ATTR_GROUP))
-				console.warn("You can't use '"+ATTR_OUTSIDE+"' on a grouped trigger");
+		if(element.hasAttribute(ATTR.OUTSIDE)) {
+			if(element.hasAttribute(ATTR.GROUP))
+				console.warn("You can't use '"+ATTR.OUTSIDE+"' on a grouped trigger");
 			else {
 				if(element.isToggleActive)
-					document.addEventListener(element.getAttribute(ATTR_EVENT) || 'click', documentEventHandler, false);
+					document.addEventListener(element.getAttribute(ATTR.EVENT) || 'click', documentEventHandler, false);
 				else
-					document.removeEventListener(element.getAttribute(ATTR_EVENT) || 'click', documentEventHandler, false);
+					document.removeEventListener(element.getAttribute(ATTR.EVENT) || 'click', documentEventHandler, false);
 			}
 		}
 	}
 
 	// Manage attributes and events of target elements
 	const manageTarget = (targetElement, triggerElement) => {
-		if(triggerElement.hasAttribute(ATTR_OUTSIDE))
-			targetElement.setAttribute(ATTR_TARGET_STATE, triggerElement.isToggleActive);
+		if(triggerElement.hasAttribute(ATTR.OUTSIDE))
+			targetElement.setAttribute(ATTR.TARGET_STATE, triggerElement.isToggleActive);
 
-		let triggerOffList = targetElement.querySelectorAll('['+ATTR_TRIGGER_OFF+']');
+		let triggerOffList = targetElement.querySelectorAll('['+ATTR.TRIGGER_OFF+']');
 		if(triggerOffList.length > 0) {
 			if(triggerElement.isToggleActive) {
 				triggerOffList.forEach(triggerOff => {
@@ -95,7 +97,7 @@
 
 	// Toggle elements of a same group
 	const manageGroup = element => {
-		let activeGroupElements = retrieveGroupState(element.getAttribute(ATTR_GROUP));
+		let activeGroupElements = retrieveGroupState(element.getAttribute(ATTR.GROUP));
 
 		if(activeGroupElements.length > 0){
 			if(activeGroupElements.indexOf(element) === -1) {
@@ -111,18 +113,18 @@
 
 	// Toggle class and aria on trigger and target elements
 	const manageToggle = element => {
-		let className = element.getAttribute(ATTR_CLASS);
+		let className = element.getAttribute(ATTR.CLASS);
 		element.isToggleActive = !element.isToggleActive;
 		//console.log("toggle to "+element.isToggleActive);
 
-		if(!element.hasAttribute(ATTR_TARGET_ONLY))
+		if(!element.hasAttribute(ATTR.TARGET_ONLY))
 			element.classList.toggle(className);
 
-		if(element.hasAttribute(ATTR_EXPANDED))
-			element.setAttribute(ATTR_EXPANDED, element.isToggleActive);
+		if(element.hasAttribute(ATTR.EXPANDED))
+			element.setAttribute(ATTR.EXPANDED, element.isToggleActive);
 
-		if(element.hasAttribute(ATTR_SELECTED))
-			element.setAttribute(ATTR_SELECTED, element.isToggleActive);
+		if(element.hasAttribute(ATTR.SELECTED))
+			element.setAttribute(ATTR.SELECTED, element.isToggleActive);
 
 		let targetElements = retrieveTargets(element);
 		for(var i=0;i<targetElements.length;i++) {
@@ -135,20 +137,20 @@
 
 	const manageActiveByDefault = element => {
 		element.isToggleActive = true;
-		let className = element.getAttribute(ATTR_CLASS);
+		let className = element.getAttribute(ATTR.CLASS);
 
-		if(!element.hasAttribute(ATTR_TARGET_ONLY) && !element.classList.contains(className))
+		if(!element.hasAttribute(ATTR.TARGET_ONLY) && !element.classList.contains(className))
 			element.classList.add(className);
 
-		if(element.hasAttribute(ATTR_EXPANDED) && element.getAttribute(ATTR_EXPANDED))
-			element.setAttribute(ATTR_EXPANDED, true);
+		if(element.hasAttribute(ATTR.EXPANDED) && element.getAttribute(ATTR.EXPANDED))
+			element.setAttribute(ATTR.EXPANDED, true);
 
-		if(element.hasAttribute(ATTR_SELECTED) && !element.getAttribute(ATTR_SELECTED))
-			element.setAttribute(ATTR_SELECTED, true);
+		if(element.hasAttribute(ATTR.SELECTED) && !element.getAttribute(ATTR.SELECTED))
+			element.setAttribute(ATTR.SELECTED, true);
 
 		let targetElements = retrieveTargets(element);
 		for(var i=0;i<targetElements.length;i++) {
-			if(!targetElements[i].classList.contains(element.getAttribute(ATTR_CLASS)))
+			if(!targetElements[i].classList.contains(element.getAttribute(ATTR.CLASS)))
 				targetElements[i].classList.add(className);
 			manageTarget(targetElements[i], element);
 		}
@@ -160,11 +162,11 @@
 	const init = () => {
 
 		// Active by default management
-		[...document.querySelectorAll('['+ATTR_CLASS+']['+ATTR_IS_ACTIVE+']')].forEach((trigger) => {
-			if(trigger.hasAttribute(ATTR_GROUP)) {
-				let group = trigger.getAttribute(ATTR_GROUP);
+		[...document.querySelectorAll('['+ATTR.CLASS+']['+ATTR.IS_ACTIVE+']')].forEach((trigger) => {
+			if(trigger.hasAttribute(ATTR.GROUP)) {
+				let group = trigger.getAttribute(ATTR.GROUP);
 				if(retrieveGroupState(group).length > 0)
-					console.warn("Toggle group '"+group+"' must not have more than one trigger with '"+ATTR_IS_ACTIVE+"'");
+					console.warn("Toggle group '"+group+"' must not have more than one trigger with '"+ATTR.IS_ACTIVE+"'");
 				else
 					manageActiveByDefault(trigger);
 			} else {
@@ -173,16 +175,16 @@
 		});
 
 		// Set specified or click event on each trigger element
-		[...document.querySelectorAll('['+ATTR_CLASS+']')].forEach((trigger) => {
-			trigger.addEventListener(trigger.getAttribute(ATTR_EVENT) || 'click', (event) => {
+		[...document.querySelectorAll('['+ATTR.CLASS+']')].forEach((trigger) => {
+			trigger.addEventListener(trigger.getAttribute(ATTR.EVENT) || 'click', (event) => {
 				event.preventDefault();
-				if(trigger.hasAttribute(ATTR_GROUP)) manageGroup(trigger);
+				if(trigger.hasAttribute(ATTR.GROUP)) manageGroup(trigger);
 				else manageToggle(trigger);
 			}, false);
 		});
 
 		// Escape key management
-		let triggerEscElements = [...document.querySelectorAll('['+ATTR_CLASS+']['+ATTR_ESCAPE+']')];
+		let triggerEscElements = [...document.querySelectorAll('['+ATTR.CLASS+']['+ATTR.ESCAPE+']')];
 		if(triggerEscElements.length > 0) {
 			document.addEventListener('keyup', (event) => {
 				event = event || window.event;
@@ -196,8 +198,8 @@
 				if(isEscape) {
 					triggerEscElements.forEach((trigger) => {
 						if(trigger.isToggleActive) {
-							if(trigger.hasAttribute(ATTR_GROUP))
-								console.warn("You can't use '"+ATTR_ESCAPE+"' on a grouped trigger");
+							if(trigger.hasAttribute(ATTR.GROUP))
+								console.warn("You can't use '"+ATTR.ESCAPE+"' on a grouped trigger");
 							else manageToggle(trigger);
 						}
 					});

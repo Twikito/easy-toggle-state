@@ -78,7 +78,7 @@ Add this attribute on an element __inside a target element__ – typically butto
 
 If ``aria-expanded`` or ``aria-selected`` attribute is set on the trigger element, its value will also be changed.
 
-You can also specify another prefix ``TOGGLE_CLASS_PREFIX`` value to avoid any conflict with other JavaScript feature. This prefix will be set to all attributes like ``data-[prefix]class``.
+You can also specify another prefix ``PREFIX`` value to avoid any conflict with other JavaScript feature. This prefix will be set to all attributes like ``data-[PREFIX]-class``.
 
 For single page application, You can call ``window.initEasyToggleState()`` when You need it.
 
