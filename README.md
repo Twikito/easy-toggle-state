@@ -1,16 +1,16 @@
 # Easy toggle state
 
-A tiny JavaScript plugin to toggle the state of any HTML element in most of contexts with ease.
+A tiny JavaScript library to toggle the state of any HTML element in most of contexts with ease.
 
 Only set some HTML attributes, and code the rest with your CSS skills.
 
 ## Why?
 
-In many situation in front-end developer’s life, he must code scripts for dropdown, burger navigation, tooltip, expandable panel, lightbox, tabs, or else.
+A front-end developer often has to code scripts for dropdown, burger navigation, tooltip, expandable panel, lightbox, tabs, or other.
 
-In facts, all this componants are based on the same behavior: a trigger element that toggle the state of one or several target elements, and some CSS to make it nice to use, depending on the look and feel of its context.
+All these components are based on the same behavior: a trigger element toggles the state of one or more target elements.
 
-Here is the solution I propose: one script to toggle a trigger element and its targets, that can adapt to most of contexts, just by adding the rights HTML attributes, and adjust the rest with CSS.
+Here is the solution I propose: one script to associata a trigger element and its targets, that can adapt to most of contexts, just by adding the rights HTML attributes, and adjust the rest with CSS.
 
 ## How to use
 
@@ -41,12 +41,12 @@ Add this attribute to toggle the class on the trigger element and all the select
 ```
 data-toggle-is-active
 ```
-Add this attribute to specify if a trigger element and its targets has to be toggled by default (onLoad). You should add the specified class name on each element.
+Add this attribute to specify if a trigger element and its targets has to be toggled by default (during the onload event). You should add the specified class name on each element.
 
 ```
 data-toggle-group="groupName"
 ```
-Add this attribute to specify if a trigger is a part of a group. Only one trigger of a group can be active at a time. It just behave like radio buttons or tabs component.
+Add this attribute to specify if a trigger is a part of a group. Only one trigger of a group can be active at a time. It just behave like radio buttons or tabs component.  
 Note that a grouped trigger can’t have a ``data-toggle-outside`` or a ``data-toggle-escape`` behaviour.
 
 ```
@@ -76,11 +76,11 @@ Add this attribute on an element __inside a target element__ – typically butto
 
 ### More
 
-If ``aria-expanded`` or ``aria-selected`` attribute is set on the trigger element, its value will also be changed.
+If ``aria-expanded`` or ``aria-selected`` attribute are set on the trigger element, their values will also be changed.
 
-You can also specify another prefix ``PREFIX`` value to avoid any conflict with other JavaScript feature. This prefix will be set to all attributes like ``data-[PREFIX]-class``.
+You can also specify another prefix ``PREFIX`` value to avoid any conflict with another JavaScript library. This prefix will be set to all attributes like ``data-[PREFIX]-class``.
 
-For single page application, You can call ``window.initEasyToggleState()`` when You need it.
+For single page applications, you can call ``window.initEasyToggleState()`` when you need it.
 
 ## License
 
