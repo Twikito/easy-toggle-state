@@ -22,7 +22,8 @@
     "url": "https://github.com/Twikito/easy-toggle-state/issues"
   },
   "homepage": "https://github.com/Twikito/easy-toggle-state#readme",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "gulp": "^3.9.1",
@@ -33,6 +34,5 @@
     "gulp-uglify": "^3.0.0",
     "run-sequence": "^2.2.1",
     "uglify-es": "^3.3.9"
-  },
-  "devDependencies": {}
+  }
 }
