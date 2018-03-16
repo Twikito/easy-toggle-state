@@ -10,7 +10,7 @@ A front-end developer often has to code scripts for dropdown, burger navigation,
 
 All these components are based on the same behavior: a trigger element toggles the state of one or more target elements.
 
-Here is the solution I propose: one script to associata a trigger element and its targets, that can adapt to most of contexts, just by adding the rights HTML attributes, and adjust the rest with CSS.
+Here is the solution I propose: one script to associate a trigger element and its targets, that can adapt to most of contexts, just by adding the rights HTML attributes, and adjust the rest with CSS.
 
 ## How to use
 
@@ -46,7 +46,7 @@ Add this attribute to specify if a trigger element and its targets has to be tog
 ```
 data-toggle-group="groupName"
 ```
-Add this attribute to specify if a trigger is a part of a group. Only one trigger of a group can be active at a time. It just behave like radio buttons or tabs component.  
+Add this attribute to specify if a trigger is a part of a group. Only one trigger of a group can be active at a time. It just behave like radio buttons or tabs component.
 Note that a grouped trigger can’t have a ``data-toggle-outside`` or a ``data-toggle-escape`` behaviour.
 
 ```
