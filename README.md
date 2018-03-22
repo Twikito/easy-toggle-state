@@ -93,13 +93,10 @@ You can also change prefix ``PREFIX`` value to prevent conflict with another JS 
 Finally, for asynchronous needs, You can call ``window.initEasyToggleState()``.
 
 
-### DEV
+### Development
 
 `$ npm run build`
 
-### DEV
-
-`$ npm run build`
 
 ## License
 

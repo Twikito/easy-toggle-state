@@ -1,19 +1,37 @@
-const commonjs = require('rollup-plugin-commonjs');
-const nodeResolve = require('rollup-plugin-node-resolve');
-const babel = require('rollup-plugin-babel');
-const uglify = require('rollup-plugin-uglify');
+const
+	commonjs    = require('rollup-plugin-commonjs'),
+	nodeResolve = require('rollup-plugin-node-resolve'),
+	babel       = require('rollup-plugin-babel'),
+	uglify      = require('rollup-plugin-uglify');
 
-module.exports =  {
+const getConfig = () => {
+	if (process.env.NODE_ENV === 'es5') {
+		return {
+			fileName: 'easyToggleState.js',
+			babelConfig: {}
+		};
+	}
+	if (process.env.NODE_ENV === 'es6') {
+		return {
+			fileName: 'easyToggleState.es6.js',
+			babelConfig: {}
+		};
+	}
+};
+
+const { fileName, babelConfig = {}} = getConfig();
+
+module.exports = {
 	input: 'src/index.js',
 	output: {
-		file: 'dist/bundle.js',
+		file: 'dist/${fileName}',
 		format: 'iife',
-		name: 'easyStateToggle'
+		name: 'easyToggleState'
 	},
 	plugins: [
 		nodeResolve(),
-		babel(),
-		commonjs(),
-		uglify()
+		babel(babelConfig),
+		commonjs()
+		//uglify()
 	]
 };

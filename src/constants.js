@@ -1,24 +1,21 @@
-const PREFIX = 'toggle-'; // Prefix should end by hyphen
-const dataset = (key) => `data-${PREFIX}-${key}`;
+const PREFIX = 'toggle';
 
-const DATA = {
-	CLASS: dataset('class'),
-	GROUP: dataset('group'),
-	EVENT: dataset('event'),
-	ESCAPE: dataset('escape'),
-	OUTSIDE: dataset('outside'),
-	IS_ACTIVE: dataset('is-active'),
-	TARGET_ALL: dataset('target-all'),
-	TARGET_ONLY: dataset('target-only'),
-	TRIGGER_OFF: dataset('trigger-off'),
-	TARGET_SELF: dataset('target-self'),
-	TARGET_STATE: dataset('state'),
-	TARGET_PARENT: dataset('target-parent')
+const dataset = key => 'data-' + PREFIX + ( PREFIX != '' ? '-' : '' ) + key;
+const ATTR = {
+	CLASS         : dataset('class'),
+	TARGET_ALL    : dataset('target-all'),
+	TARGET_PARENT : dataset('target-parent'),
+	TARGET_SELF   : dataset('target-self'),
+	IS_ACTIVE     : dataset('is-active'),
+	GROUP         : dataset('group'),
+	EVENT         : dataset('event'),
+	OUTSIDE       : dataset('outside'),
+	TARGET_ONLY   : dataset('target-only'),
+	ESCAPE        : dataset('escape'),
+	TRIGGER_OFF   : dataset('trigger-off'),
+	TARGET_STATE  : dataset('state'),
+	EXPANDED      : 'aria-expanded',
+	SELECTED      : 'aria-selected'
 };
 
-const ARIA = {
-	EXPANDED : 'aria-expanded',
-	SELECTED : 'aria-selected'
-};
-
-module.exports = { ARIA, DATA };
+module.exports = ATTR;

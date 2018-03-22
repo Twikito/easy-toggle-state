@@ -5,7 +5,10 @@
   "main": "dist/easy-toggle-state.es6.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rollup -c"
+    "clean": "del /F /Q dist",
+    "build:es6": "cross-env NODE_ENV=es6 && rollup -c",
+    "build:es5": "cross-env NODE_ENV=es5 && rollup -c",
+    "build": "npm run clean && npm run build:es6 && npm run build:es5"
   },
   "repository": {
     "type": "git",
@@ -25,17 +28,7 @@
   "dependencies": {},
   "devDependencies": {
     "babel-core": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
-    "gulp": "^3.9.1",
-    "gulp-babel": "^7.0.1",
-    "gulp-clean": "^0.4.0",
-    "gulp-header": "^2.0.5",
-    "gulp-rename": "^1.2.2",
-    "gulp-uglify": "^3.0.0",
-    "run-sequence": "^2.2.1",
-    "uglify-es": "^3.3.9"
-  },
-  "devDependencies": {
+    "cross-env": "^5.1.4",
     "rollup": "^0.56.5",
     "rollup-plugin-babel": "^3.0.3",
     "rollup-plugin-commonjs": "^9.1.0",
