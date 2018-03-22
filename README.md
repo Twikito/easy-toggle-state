@@ -55,7 +55,7 @@ Specify a trigger element and its targets toggled as default (set during the onl
 ```
 data-toggle-group="groupName"
 ```
-Add this attribute to specify if a trigger is a part of a group. Only one trigger of a group can be active at a time. It will actually behave like radio buttons or tabs component.
+Specify if a trigger is a part of a group. Only one trigger of a group can be active at a time. It will actually behave like radio buttons or tabs component.
 Note that a grouped trigger can’t have ``data-toggle-outside`` or ``data-toggle-escape`` behaviour.
 
 ```
