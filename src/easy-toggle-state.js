@@ -113,7 +113,7 @@
 
 	// Toggle class and aria on trigger and target elements
 	const manageToggle = element => {
-		let className = element.getAttribute(ATTR.CLASS);
+		let className = element.getAttribute(ATTR.CLASS) || 'is-active';
 		element.isToggleActive = !element.isToggleActive;
 		//console.log("toggle to "+element.isToggleActive);
 
@@ -137,7 +137,7 @@
 
 	const manageActiveByDefault = element => {
 		element.isToggleActive = true;
-		let className = element.getAttribute(ATTR.CLASS);
+		let className = element.getAttribute(ATTR.CLASS) || 'is-active';
 
 		if(!element.hasAttribute(ATTR.TARGET_ONLY) && !element.classList.contains(className))
 			element.classList.add(className);
@@ -150,7 +150,7 @@
 
 		let targetElements = retrieveTargets(element);
 		for(var i=0;i<targetElements.length;i++) {
-			if(!targetElements[i].classList.contains(element.getAttribute(ATTR.CLASS)))
+			if(!targetElements[i].classList.contains(className))
 				targetElements[i].classList.add(className);
 			manageTarget(targetElements[i], element);
 		}

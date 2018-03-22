@@ -27,7 +27,7 @@ It is not a restriction, but I recommend to set only buttons or links as trigger
 ```html
 <foo data-toggle-class="class-to-toggle">
 ```
-A CSS class to toggle when click on this trigger element.
+A CSS class to toggle when click on this trigger element. If empty, ``is-active`` as default.
 
 ```
 data-toggle-target-all="selector"
