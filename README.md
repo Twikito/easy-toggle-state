@@ -97,6 +97,10 @@ Finally, for asynchronous needs, You can call ``window.initEasyToggleState()``.
 
 `$ npm run build`
 
+### DEV
+
+`$ npm run build`
+
 ## License
 
 MIT. Copyright (c) [Matthieu Bué](https://twikito.com)
