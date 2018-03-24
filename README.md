@@ -1,17 +1,17 @@
 # Easy toggle state
 
-A tiny JavaScript library to toggle the state of any HTML element in most of contexts with ease. Only set some HTML attributes, and code the rest with your CSS skills.
+A tiny JavaScript plugin to toggle the state of any HTML element in any contexts with ease. Only set some HTML attributes, and code the rest with your CSS skills.
 
 
 ## Why?
 
-A front-end developer often has to code scripts for interface componants. Componants like dropdowns, navigation buttons, tooltips, expandable panels, lightboxes, tabs, or others.
+A front-end developer often has to __code scripts for interface componants__. Componants like dropdowns, navigation buttons, tooltips, expandable panels, lightboxes, tabs, or others.
 
-Well… Most of these components have the same behavior: a trigger element toggles the state of one or more target elements. So why don't code this behavior only once for all?
+Well… Most of these components have the __same behavior__: a trigger element toggles the state of one or more target elements. So why don't code this behavior only once for all?
 
-So here is the solution I propose: a simple script to toggle the state of a trigger element with a CSS class. Then, You can associate this element to another one, or several: the targets. By adding the right HTML attributes, it can adapt to most of contexts and behave like a chosen component.
+So here is the solution I propose: __a simple script to toggle the state of a trigger element__ with a CSS class. Then, You can __associate this element__ to another one, or several: the targets. By adding the right HTML attributes, it can __adapt to any contexts__ and behave like a component of you choice.
 
-Finally, only focus yourself on adjusting the rest with CSS and all Your creativity.
+Finally, __only focus yourself on adjusting the rest with CSS__ and all Your creativity.
 
 
 ## Recommendation
