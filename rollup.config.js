@@ -8,13 +8,22 @@ const getConfig = () => {
 	if (process.env.NODE_ENV === 'es5') {
 		return {
 			fileName: 'easyToggleState.js',
-			babelConfig: {}
+			babelConfig: {
+				"presets": [
+				    [
+				      "env",
+				      {
+				        "modules": false
+				      }
+				    ]
+				],
+				"plugins": ["external-helpers"]
+			}
 		};
 	}
 	if (process.env.NODE_ENV === 'es6') {
 		return {
-			fileName: 'easyToggleState.es6.js',
-			babelConfig: {}
+			fileName: 'easyToggleState.es6.js'
 		};
 	}
 };
@@ -24,14 +33,14 @@ const { fileName, babelConfig = {}} = getConfig();
 module.exports = {
 	input: 'src/index.js',
 	output: {
-		file: 'dist/${fileName}',
+		file: `dist/${fileName}`,
 		format: 'iife',
 		name: 'easyToggleState'
 	},
 	plugins: [
 		nodeResolve(),
-		babel(babelConfig),
-		commonjs()
+		commonjs(),
+		babel(babelConfig)
 		//uglify()
 	]
 };

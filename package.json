@@ -5,9 +5,9 @@
   "main": "dist/easy-toggle-state.es6.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "clean": "del /F /Q dist",
-    "build:es6": "cross-env NODE_ENV=es6 && rollup -c",
-    "build:es5": "cross-env NODE_ENV=es5 && rollup -c",
+    "clean": "del dist",
+    "build:es6": "cross-env NODE_ENV=es6 rollup -c",
+    "build:es5": "cross-env NODE_ENV=es5 rollup -c",
     "build": "npm run clean && npm run build:es6 && npm run build:es5"
   },
   "repository": {
@@ -28,7 +28,10 @@
   "dependencies": {},
   "devDependencies": {
     "babel-core": "^6.26.0",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-preset-env": "^1.6.1",
     "cross-env": "^5.1.4",
+    "del-cli": "^1.1.0",
     "rollup": "^0.56.5",
     "rollup-plugin-babel": "^3.0.3",
     "rollup-plugin-commonjs": "^9.1.0",
