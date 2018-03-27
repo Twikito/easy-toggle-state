@@ -4,13 +4,13 @@ A tiny JavaScript library to easily toggle the state of any HTML element. Only s
 
 ## Why?
 
-A front-end developer often has to code scripts for interface components. Components such as drop-downs, navigation buttons, tooltips, expandable panels, lightboxes, tabs, etc.
+A front-end developer often has to __code scripts for interface components__. Components such as drop-downs, navigation buttons, tooltips, expandable panels, lightboxes, tabs, etc.
 
-This thing is… Most of these components expose a recurrent behavior: a trigger element toggles the state of one or more target elements. So why not code this behavior once and for all?
+The thing is… Most of these components expose a __recurrent behavior__: a trigger element toggles the state of one or more target elements. So why not code this behavior once and for all?
 
-So here is a solution: a simple script to toggle the state of a trigger element with a CSS class. You can then associate this element with one or more others: let's call them targets. By adding the right HTML attributes, it can adapt to most contexts and behave like a chosen component.
+So here is a solution: __a simple script to toggle the state of a trigger element__ with a CSS class. You can then __associate this element__ with one or more others: let's call them targets. By adding the right HTML attributes, it can __adapt to any contexts__ and behave like a chosen component.
 
-Only focus on adjusting the rest with your CSS creativity.
+__Only focus on adjusting the rest with your CSS creativity__.
 
 ## Recommendation
 
@@ -28,17 +28,17 @@ A CSS class to toggle each time a click is triggered on this element. If empty, 
 ```
 data-toggle-target-all="selector"
 ```
-Toggle the class on the trigger element and all the target elements (defined by the selector) in the page.
+Toggle the class on the trigger element and all the target elements — defined by the selector — in the page.
 
 ```
 data-toggle-target-parent="selector"
 ```
-Toggle the class on the trigger element and all the target elements (defined by the selector) belonging to its parent container.
+Toggle the class on the trigger element and all the target elements — defined by the selector — belonging to its parent container.
 
 ```
 data-toggle-target-self="selector"
 ```
-Toggle the class on the trigger element and all the target elements (defined by the selector) within it.
+Toggle the class on the trigger element and all the target elements — defined by the selector — within it.
 
 
 ###    Advanced
@@ -46,12 +46,12 @@ Toggle the class on the trigger element and all the target elements (defined by 
 ```
 data-toggle-is-active
 ```
-Specify a trigger element and its targets toggled as default (set during the `onload` event). In this case, you should add the specified class name on each element.
+Specify a trigger element and its targets toggled as default — set during the `onload` event. In this case, you should add the specified class name on each element.
 
 ```
 data-toggle-group="groupName"
 ```
-Specify if a trigger is a part of a group. Only one trigger inside a group can be active at a time. It will actually behave like radio buttons or tabs component.
+Specify if a trigger is a part of a group. Only one trigger of a group can be active at a time. It will actually behave like radio buttons or tabs component.
 Note that a grouped trigger can’t have `data-toggle-outside` or `data-toggle-escape` behavior.
 
 ```
@@ -81,7 +81,7 @@ Add this attribute to an element __inside a target__ to enable this element to t
 
 ### More
 
-If a trigger element has the `aria-expanded` or `aria-selected` attributes, its value will also change.
+If a trigger element has the `aria-expanded` or `aria-selected` attribute, its value will also change.
 
 You can also change the `PREFIX` value to prevent conflict with another JS library. This prefix will be set to all attributes like `data-[PREFIX]-class`, `toggle` as default.
 
