@@ -1,72 +1,68 @@
 # Easy toggle state
 
-A tiny JavaScript plugin to toggle the state of any HTML element in any contexts with ease. Only set some HTML attributes, and code the rest with your CSS skills.
-
+A tiny JavaScript library to easily toggle the state of any HTML element. Only set a few HTML attributes, and code the rest with your CSS skills.
 
 ## Why?
 
-A front-end developer often has to __code scripts for interface componants__. Componants like dropdowns, navigation buttons, tooltips, expandable panels, lightboxes, tabs, or others.
+A front-end developer often has to code scripts for interface components. Components such as drop-downs, navigation buttons, tooltips, expandable panels, lightboxes, tabs, etc.
 
-Well… Most of these components have the __same behavior__: a trigger element toggles the state of one or more target elements. So why don't code this behavior only once for all?
+This thing is… Most of these components expose a recurrent behavior: a trigger element toggles the state of one or more target elements. So why not code this behavior once and for all?
 
-So here is the solution I propose: __a simple script to toggle the state of a trigger element__ with a CSS class. Then, You can __associate this element__ to another one, or several: the targets. By adding the right HTML attributes, it can __adapt to any contexts__ and behave like a component of you choice.
+So here is a solution: a simple script to toggle the state of a trigger element with a CSS class. You can then associate this element with one or more others: let's call them targets. By adding the right HTML attributes, it can adapt to most contexts and behave like a chosen component.
 
-Finally, __only focus yourself on adjusting the rest with CSS__ and all Your creativity.
-
+Only focus on adjusting the rest with your CSS creativity.
 
 ## Recommendation
 
-It is not a restriction, but I recommend to set only buttons or links as trigger elements. If You prevent the default behaviour of a link, don't forget to add ``role="button"`` attribute.
-
+Although it is conceivable, I recommend using only buttons or links as trigger elements. If You prevent the default behavior of a link, don't forget to add the `role="button"` attribute.
 
 ## How to use
-
 
 ### Basics
 
 ```html
 <foo data-toggle-class="class-to-toggle">
 ```
-A CSS class to toggle when click on this trigger element. If empty, ``is-active`` as default.
+A CSS class to toggle each time a click is triggered on this element. If empty, the `is-active` class is used.
 
 ```
 data-toggle-target-all="selector"
 ```
-Toggle the class on the trigger element and all selected targets in the whole page.
+Toggle the class on the trigger element and all the target elements (defined by the selector) in the page.
 
 ```
 data-toggle-target-parent="selector"
 ```
-Toggle the class on the trigger element and all selected targets in its parent element.
+Toggle the class on the trigger element and all the target elements (defined by the selector) belonging to its parent container.
 
 ```
 data-toggle-target-self="selector"
 ```
-Toggle the class on the trigger element and all selected targets inside itself.
+Toggle the class on the trigger element and all the target elements (defined by the selector) within it.
 
 
-###	Advanced
+###    Advanced
 
 ```
 data-toggle-is-active
 ```
-Specify a trigger element and its targets toggled as default (set during the onload event). In this case, You should add the specified class name on each element.
+Specify a trigger element and its targets toggled as default (set during the `onload` event). In this case, you should add the specified class name on each element.
 
 ```
 data-toggle-group="groupName"
 ```
-Specify if a trigger is a part of a group. Only one trigger of a group can be active at a time. It will actually behave like radio buttons or tabs component.
-Note that a grouped trigger can’t have ``data-toggle-outside`` or ``data-toggle-escape`` behaviour.
+Specify if a trigger is a part of a group. Only one trigger inside a group can be active at a time. It will actually behave like radio buttons or tabs component.
+Note that a grouped trigger can’t have `data-toggle-outside` or `data-toggle-escape` behavior.
 
 ```
 data-toggle-event="event"
 ```
-Specify another event to toggle the class, ``mouseover`` for example. ``click`` as default if not specified.
+Specify the event that will toggle the class, `mouseover` for example. `click` by default if not specified.
 
 ```
 data-toggle-outside
 ```
-Toggle off the class when reproducing the event outside the trigger element.
+Toggle off the class when the event is triggered again outside the trigger element.
 
 ```
 data-toggle-target-only
@@ -76,22 +72,20 @@ Toggle the class only on the target elements.
 ```
 data-toggle-escape
 ```
-Toggle the class when trigger element is active and when releasing <kbd>escape</kbd> key.
+Toggle the class when the trigger element is active and when the <kbd>escape</kbd> key is released.
 
 ```
 data-toggle-trigger-off
 ```
-Add this attribute on an element __inside a target__ to enable this element to toggle off. For example, a close button in a popin box.
-
+Add this attribute to an element __inside a target__ to enable this element to toggle the behavior. For example, a close button in a modal.
 
 ### More
 
-If trigger element has ``aria-expanded`` or ``aria-selected`` attribute, its value will also change.
+If a trigger element has the `aria-expanded` or `aria-selected` attributes, its value will also change.
 
-You can also change prefix ``PREFIX`` value to prevent conflict with another JS library. This prefix will be set to all attributes like ``data-[PREFIX]-class``, ``toggle`` as default.
+You can also change the `PREFIX` value to prevent conflict with another JS library. This prefix will be set to all attributes like `data-[PREFIX]-class`, `toggle` as default.
 
-Finally, for asynchronous needs, You can call ``window.initEasyToggleState()``.
-
+Finally, for asynchronous needs, you can call `window.initEasyToggleState()`.
 
 ## License
 
