@@ -5,10 +5,12 @@
   "main": "dist/easy-toggle-state.es6.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "clean": "del dist",
+    "clean": "del-cli --force dist",
     "build:es6": "cross-env NODE_ENV=es6 rollup -c",
+    "build:es6:min": "cross-env NODE_ENV=es6 OUT_STYLE=min rollup -c",
     "build:es5": "cross-env NODE_ENV=es5 rollup -c",
-    "build": "npm run clean && npm run build:es6 && npm run build:es5"
+    "build:es5:min": "cross-env NODE_ENV=es5 OUT_STYLE=min rollup -c",
+    "build": "npm run clean && npm run build:es6 && npm run build:es6:min && npm run build:es5 && npm run build:es5:min"
   },
   "repository": {
     "type": "git",
@@ -36,6 +38,7 @@
     "rollup-plugin-babel": "^3.0.3",
     "rollup-plugin-commonjs": "^9.1.0",
     "rollup-plugin-node-resolve": "^3.2.0",
+    "rollup-plugin-license": "^0.6.0",
     "rollup-plugin-uglify": "^3.0.0"
   }
 }
