@@ -18,4 +18,4 @@ const ATTR = {
 	SELECTED      : 'aria-selected'
 };
 
-module.exports = ATTR;
+export default ATTR;

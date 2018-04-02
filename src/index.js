@@ -1,4 +1,4 @@
-const ATTR = require('./constants');
+import ATTR from './constants';
 
 // Retrieve all targets of a trigger element
 const retrieveTargets = element => {

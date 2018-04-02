@@ -5,21 +5,29 @@ const
 	babel       = require('rollup-plugin-babel'),
 	uglify      = require('rollup-plugin-uglify');
 
-const getConfig = () => {
+const banner = [
+	' -------------------------------------------------------------------',
+	' <%= pkg.name %>',
+	' <%= pkg.description %>',
+	'',
+	' @version v<%= pkg.version %>',
+	' @link <%= pkg.homepage %>',
+	' @license <%= pkg.license %> : https://github.com/Twikito/easy-toggle-state/blob/master/LICENSE',
+	' -------------------------------------------------------------------'
+].join('\n');
 
-	const
-		header = [
-			'	-------------------------------------------------------------------',
-			'	<%= pkg.name %>',
-			'	<%= pkg.description %>',
-			'',
-			'	@version v<%= pkg.version %>',
-			'	@link <%= pkg.homepage %>',
-			'	@license <%= pkg.license %> : https://github.com/Twikito/easy-toggle-state/blob/master/LICENSE',
-			'	-------------------------------------------------------------------'
-		].join('\n'),
+const getFileName = (version = 'es5', isMin = false) => {
+	const base = 'easy-toggle-state';
+	const ext = isMin ? '.min.js' : '.js';
+	if (version === 'es6') {
+		return `${base}.es6${ext}`;
+	}
+	return `${base}${ext}`;
+};
 
-		babelConfig = {
+const getBabelConfig = (version = 'es5') => {
+	if (version === 'es5') {
+		return {
 			'presets': [
 				[
 					'env',
@@ -30,62 +38,37 @@ const getConfig = () => {
 			],
 			'plugins': ['external-helpers']
 		};
-
-	if (process.env.NODE_ENV === 'es5') {
-		if (process.env.OUT_STYLE === 'min') {
-			return {
-				fileName: 'easy-toggle-state.min.js',
-				plugins: [
-					nodeResolve(),
-					commonjs(),
-					babel(babelConfig),
-					uglify()
-				]
-			};
-		} else {
-			return {
-				fileName: 'easy-toggle-state.js',
-				plugins: [
-					nodeResolve(),
-					commonjs(),
-					babel(babelConfig),
-					license({ banner: header })
-				]
-			};
-		}
 	}
-
-	if (process.env.NODE_ENV === 'es6') {
-		if (process.env.OUT_STYLE === 'min') {
-			return {
-				fileName: 'easy-toggle-state.es6.min.js',
-				plugins: [
-					nodeResolve(),
-					commonjs(),
-					uglify()
-				]
-			};
-		} else {
-			return {
-				fileName: 'easy-toggle-state.es6.js',
-				plugins: [
-					nodeResolve(),
-					commonjs(),
-					license({ banner: header })
-				]
-			};
-		}
-	}
+	return {};
 };
 
-const { fileName, plugins = {}} = getConfig();
+const getPlugins = (version = 'es5', isMin = false) => {
+	const babelConfig = getBabelConfig(version);
+	const list = [
+		nodeResolve(),
+		commonjs(),
+		babel(babelConfig)
+	];
+	isMin ? list.push(uglify()) : list.push(license({ banner }));
+	return list;
+};
 
-module.exports = {
+
+const getConfig = () => {
+	const isMinify = process.env.OUT_STYLE === 'min';
+	const plugins = getPlugins(process.env.NODE_ENV, isMinify);
+	const fileName = getFileName(process.env.NODE_ENV, isMinify);
+	return { fileName, plugins };
+};
+
+const { fileName, plugins } = getConfig();
+
+export default {
 	input: 'src/index.js',
 	output: {
 		file: `dist/${fileName}`,
 		format: 'iife',
 		name: 'easyToggleState'
 	},
-	plugins: plugins
+	plugins
 };
