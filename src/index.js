@@ -1,5 +1,5 @@
 import { init }
-	from './_initializer';
+	from './initializer/initializer';
 
 const onLoad = () => {
 	init();

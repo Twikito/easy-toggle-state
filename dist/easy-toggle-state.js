@@ -12,6 +12,11 @@
 (function () {
 'use strict';
 
+/**
+ * You can change this PREFIX value to prevent conflict with another JS library.
+ * This prefix will be set to all attributes like data-[PREFIX]-class.
+ */
+
 var PREFIX = 'toggle';
 
 var dataset = function dataset(key) {
@@ -45,12 +50,6 @@ var toConsumableArray = function (arr) {
   }
 };
 
-// Retrieve all targets of a trigger element
-var retrieveTargets = function retrieveTargets(element) {
-	if (element.hasAttribute(ATTR.TARGET_ALL)) return document.querySelectorAll(element.getAttribute(ATTR.TARGET_ALL));else if (element.hasAttribute(ATTR.TARGET_PARENT)) return element.parentElement.querySelectorAll(element.getAttribute(ATTR.TARGET_PARENT));else if (element.hasAttribute(ATTR.TARGET_SELF)) return element.querySelectorAll(element.getAttribute(ATTR.TARGET_SELF));
-	return [];
-};
-
 // Retrieve all active trigger of a group
 var retrieveGroupState = function retrieveGroupState(group) {
 	var activeGroupElements = [];
@@ -60,49 +59,10 @@ var retrieveGroupState = function retrieveGroupState(group) {
 	return activeGroupElements;
 };
 
-// Toggle off all 'toggle-outside' elements when reproducing specified or click event outside trigger or target elements
-var documentEventHandler = function documentEventHandler(event) {
-	var target = event.target;
-
-	if (!target.closest('[' + ATTR.TARGET_STATE + '="true"]')) {
-		[].concat(toConsumableArray(document.querySelectorAll('[' + ATTR.CLASS + '][' + ATTR.OUTSIDE + ']'))).forEach(function (element) {
-			if (element != target && element.isToggleActive) if (element.hasAttribute(ATTR.GROUP)) manageGroup(element);else manageToggle(element);
-		});
-		if (target.hasAttribute(ATTR.OUTSIDE) && target.isToggleActive) document.addEventListener(target.getAttribute(ATTR.EVENT) || 'click', documentEventHandler, false);
-	}
-};
-
-// Manage click on 'trigger-off' elements
-var triggerOffHandler = function triggerOffHandler(event) {
-	manageToggle(event.target.targetElement);
-};
-
-// Manage event ouside trigger or target elements
-var manageTriggerOutside = function manageTriggerOutside(element) {
-	if (element.hasAttribute(ATTR.OUTSIDE)) {
-		if (element.hasAttribute(ATTR.GROUP)) console.warn("You can't use '" + ATTR.OUTSIDE + "' on a grouped trigger");else {
-			if (element.isToggleActive) document.addEventListener(element.getAttribute(ATTR.EVENT) || 'click', documentEventHandler, false);else document.removeEventListener(element.getAttribute(ATTR.EVENT) || 'click', documentEventHandler, false);
-		}
-	}
-};
-
-// Manage attributes and events of target elements
-var manageTarget = function manageTarget(targetElement, triggerElement) {
-	if (triggerElement.hasAttribute(ATTR.OUTSIDE)) targetElement.setAttribute(ATTR.TARGET_STATE, triggerElement.isToggleActive);
-
-	var triggerOffList = targetElement.querySelectorAll('[' + ATTR.TRIGGER_OFF + ']');
-	if (triggerOffList.length > 0) {
-		if (triggerElement.isToggleActive) {
-			triggerOffList.forEach(function (triggerOff) {
-				triggerOff.targetElement = triggerElement;
-				triggerOff.addEventListener('click', triggerOffHandler, false);
-			});
-		} else {
-			triggerOffList.forEach(function (triggerOff) {
-				triggerOff.removeEventListener('click', triggerOffHandler, false);
-			});
-		}
-	}
+// Retrieve all targets of a trigger element
+var retrieveTargets = function retrieveTargets(element) {
+	if (element.hasAttribute(ATTR.TARGET_ALL)) return document.querySelectorAll(element.getAttribute(ATTR.TARGET_ALL));else if (element.hasAttribute(ATTR.TARGET_PARENT)) return element.parentElement.querySelectorAll(element.getAttribute(ATTR.TARGET_PARENT));else if (element.hasAttribute(ATTR.TARGET_SELF)) return element.querySelectorAll(element.getAttribute(ATTR.TARGET_SELF));
+	return [];
 };
 
 // Toggle elements of a same group
@@ -118,6 +78,27 @@ var manageGroup = function manageGroup(element) {
 		}
 	} else {
 		manageToggle(element);
+	}
+};
+
+// Toggle off all 'toggle-outside' elements when reproducing specified or click event outside trigger or target elements
+var documentEventHandler = function documentEventHandler(event) {
+	var target = event.target;
+
+	if (!target.closest('[' + ATTR.TARGET_STATE + '="true"]')) {
+		[].concat(toConsumableArray(document.querySelectorAll('[' + ATTR.CLASS + '][' + ATTR.OUTSIDE + ']'))).forEach(function (element) {
+			if (element != target && element.isToggleActive) if (element.hasAttribute(ATTR.GROUP)) manageGroup(element);else manageToggle(element);
+		});
+		if (target.hasAttribute(ATTR.OUTSIDE) && target.isToggleActive) document.addEventListener(target.getAttribute(ATTR.EVENT) || 'click', documentEventHandler, false);
+	}
+};
+
+// Manage event ouside trigger or target elements
+var manageTriggerOutside = function manageTriggerOutside(element) {
+	if (element.hasAttribute(ATTR.OUTSIDE)) {
+		if (element.hasAttribute(ATTR.GROUP)) console.warn("You can't use '" + ATTR.OUTSIDE + "' on a grouped trigger");else {
+			if (element.isToggleActive) document.addEventListener(element.getAttribute(ATTR.EVENT) || 'click', documentEventHandler, false);else document.removeEventListener(element.getAttribute(ATTR.EVENT) || 'click', documentEventHandler, false);
+		}
 	}
 };
 
@@ -140,6 +121,30 @@ var manageToggle = function manageToggle(element) {
 	}
 
 	manageTriggerOutside(element);
+};
+
+// Manage click on 'trigger-off' elements
+var triggerOffHandler = function triggerOffHandler(event) {
+	manageToggle(event.target.targetElement);
+};
+
+// Manage attributes and events of target elements
+var manageTarget = function manageTarget(targetElement, triggerElement) {
+	if (triggerElement.hasAttribute(ATTR.OUTSIDE)) targetElement.setAttribute(ATTR.TARGET_STATE, triggerElement.isToggleActive);
+
+	var triggerOffList = targetElement.querySelectorAll('[' + ATTR.TRIGGER_OFF + ']');
+	if (triggerOffList.length > 0) {
+		if (triggerElement.isToggleActive) {
+			triggerOffList.forEach(function (triggerOff) {
+				triggerOff.targetElement = triggerElement;
+				triggerOff.addEventListener('click', triggerOffHandler, false);
+			});
+		} else {
+			triggerOffList.forEach(function (triggerOff) {
+				triggerOff.removeEventListener('click', triggerOffHandler, false);
+			});
+		}
+	}
 };
 
 var manageActiveByDefault = function manageActiveByDefault(element) {

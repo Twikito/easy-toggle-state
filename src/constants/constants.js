@@ -1,4 +1,4 @@
-const PREFIX = 'toggle';
+import { PREFIX } from './PREFIX';
 
 const dataset = key => 'data-' + PREFIX + ( PREFIX != '' ? '-' : '' ) + key;
 

@@ -1,11 +1,19 @@
 import { ATTR }
-	from './_constants';
+	from '../constants/constants';
 
 import { retrieveGroupState }
-	from './_helpers';
+	from '../helpers/retrieveGroupState';
 
-import { manageGroup, manageToggle, manageActiveByDefault }
-	from './_managers';
+import { manageActiveByDefault }
+	from '../managers/manageActiveByDefault';
+
+import { manageGroup }
+	from '../managers/manageGroup';
+
+import { manageToggle }
+	from '../managers/manageToggle';
+
+
 
 // Initialization
 export const init = () => {

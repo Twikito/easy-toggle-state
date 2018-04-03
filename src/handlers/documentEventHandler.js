@@ -1,8 +1,12 @@
 import { ATTR }
-	from './_constants';
+	from '../constants/constants';
 
-import { manageGroup, manageToggle }
-	from './_managers';
+import { manageGroup }
+	from '../managers/manageGroup';
+
+import { manageToggle }
+	from '../managers/manageToggle';
+
 
 // Toggle off all 'toggle-outside' elements when reproducing specified or click event outside trigger or target elements
 export const documentEventHandler = event => {
@@ -17,9 +21,4 @@ export const documentEventHandler = event => {
 		if(target.hasAttribute(ATTR.OUTSIDE) && target.isToggleActive)
 			document.addEventListener(target.getAttribute(ATTR.EVENT) || 'click', documentEventHandler, false);
 	}
-}
-
-// Manage click on 'trigger-off' elements
-export const triggerOffHandler = event => {
-	manageToggle(event.target.targetElement);
 }
