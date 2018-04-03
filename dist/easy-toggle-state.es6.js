@@ -38,6 +38,12 @@ const ATTR = {
 	SELECTED: 'aria-selected'
 };
 
+// Retrieve all targets of a trigger element
+const retrieveTargets = element => {
+	if (element.hasAttribute(ATTR.TARGET_ALL)) return document.querySelectorAll(element.getAttribute(ATTR.TARGET_ALL));else if (element.hasAttribute(ATTR.TARGET_PARENT)) return element.parentElement.querySelectorAll(element.getAttribute(ATTR.TARGET_PARENT));else if (element.hasAttribute(ATTR.TARGET_SELF)) return element.querySelectorAll(element.getAttribute(ATTR.TARGET_SELF));
+	return [];
+};
+
 // Retrieve all active trigger of a group
 const retrieveGroupState = group => {
 	let activeGroupElements = [];
@@ -45,28 +51,6 @@ const retrieveGroupState = group => {
 		if (groupElement.isToggleActive) activeGroupElements.push(groupElement);
 	});
 	return activeGroupElements;
-};
-
-// Retrieve all targets of a trigger element
-const retrieveTargets = element => {
-	if (element.hasAttribute(ATTR.TARGET_ALL)) return document.querySelectorAll(element.getAttribute(ATTR.TARGET_ALL));else if (element.hasAttribute(ATTR.TARGET_PARENT)) return element.parentElement.querySelectorAll(element.getAttribute(ATTR.TARGET_PARENT));else if (element.hasAttribute(ATTR.TARGET_SELF)) return element.querySelectorAll(element.getAttribute(ATTR.TARGET_SELF));
-	return [];
-};
-
-// Toggle elements of a same group
-const manageGroup = element => {
-	let activeGroupElements = retrieveGroupState(element.getAttribute(ATTR.GROUP));
-
-	if (activeGroupElements.length > 0) {
-		if (activeGroupElements.indexOf(element) === -1) {
-			activeGroupElements.forEach(groupElement => {
-				manageToggle(groupElement);
-			});
-			manageToggle(element);
-		}
-	} else {
-		manageToggle(element);
-	}
 };
 
 // Toggle off all 'toggle-outside' elements when reproducing specified or click event outside trigger or target elements
@@ -81,6 +65,11 @@ const documentEventHandler = event => {
 	}
 };
 
+// Manage click on 'trigger-off' elements
+const triggerOffHandler = event => {
+	manageToggle(event.target.targetElement);
+};
+
 // Manage event ouside trigger or target elements
 const manageTriggerOutside = element => {
 	if (element.hasAttribute(ATTR.OUTSIDE)) {
@@ -88,32 +77,6 @@ const manageTriggerOutside = element => {
 			if (element.isToggleActive) document.addEventListener(element.getAttribute(ATTR.EVENT) || 'click', documentEventHandler, false);else document.removeEventListener(element.getAttribute(ATTR.EVENT) || 'click', documentEventHandler, false);
 		}
 	}
-};
-
-// Toggle class and aria on trigger and target elements
-const manageToggle = element => {
-	let className = element.getAttribute(ATTR.CLASS);
-	element.isToggleActive = !element.isToggleActive;
-	//console.log("toggle to "+element.isToggleActive);
-
-	if (!element.hasAttribute(ATTR.TARGET_ONLY)) element.classList.toggle(className);
-
-	if (element.hasAttribute(ARIA.EXPANDED)) element.setAttribute(ARIA.EXPANDED, element.isToggleActive);
-
-	if (element.hasAttribute(ARIA.SELECTED)) element.setAttribute(ARIA.SELECTED, element.isToggleActive);
-
-	let targetElements = retrieveTargets(element);
-	for (var i = 0; i < targetElements.length; i++) {
-		targetElements[i].classList.toggle(className);
-		manageTarget(targetElements[i], element);
-	}
-
-	manageTriggerOutside(element);
-};
-
-// Manage click on 'trigger-off' elements
-const triggerOffHandler = event => {
-	manageToggle(event.target.targetElement);
 };
 
 // Manage attributes and events of target elements
@@ -135,19 +98,56 @@ const manageTarget = (targetElement, triggerElement) => {
 	}
 };
 
-const manageActiveByDefault = element => {
-	element.isToggleActive = true;
-	let className = element.getAttribute(ATTR.CLASS);
+// Toggle elements of a same group
+const manageGroup = element => {
+	let activeGroupElements = retrieveGroupState(element.getAttribute(ATTR.GROUP));
 
-	if (!element.hasAttribute(ATTR.TARGET_ONLY) && !element.classList.contains(className)) element.classList.add(className);
+	if (activeGroupElements.length > 0) {
+		if (activeGroupElements.indexOf(element) === -1) {
+			activeGroupElements.forEach(groupElement => {
+				manageToggle(groupElement);
+			});
+			manageToggle(element);
+		}
+	} else {
+		manageToggle(element);
+	}
+};
 
-	if (element.hasAttribute(ARIA.EXPANDED) && element.getAttribute(ARIA.EXPANDED)) element.setAttribute(ARIA.EXPANDED, true);
+// Toggle class and aria on trigger and target elements
+const manageToggle = element => {
+	let className = element.getAttribute(ATTR.CLASS) || 'is-active';
+	element.isToggleActive = !element.isToggleActive;
+	//console.log("toggle to "+element.isToggleActive);
 
-	if (element.hasAttribute(ARIA.SELECTED) && !element.getAttribute(ARIA.SELECTED)) element.setAttribute(ARIA.SELECTED, true);
+	if (!element.hasAttribute(ATTR.TARGET_ONLY)) element.classList.toggle(className);
+
+	if (element.hasAttribute(ATTR.EXPANDED)) element.setAttribute(ATTR.EXPANDED, element.isToggleActive);
+
+	if (element.hasAttribute(ATTR.SELECTED)) element.setAttribute(ATTR.SELECTED, element.isToggleActive);
 
 	let targetElements = retrieveTargets(element);
 	for (var i = 0; i < targetElements.length; i++) {
-		if (!targetElements[i].classList.contains(element.getAttribute(ATTR.CLASS))) targetElements[i].classList.add(className);
+		targetElements[i].classList.toggle(className);
+		manageTarget(targetElements[i], element);
+	}
+
+	manageTriggerOutside(element);
+};
+
+const manageActiveByDefault = element => {
+	element.isToggleActive = true;
+	let className = element.getAttribute(ATTR.CLASS) || 'is-active';
+
+	if (!element.hasAttribute(ATTR.TARGET_ONLY) && !element.classList.contains(className)) element.classList.add(className);
+
+	if (element.hasAttribute(ATTR.EXPANDED) && element.getAttribute(ATTR.EXPANDED)) element.setAttribute(ATTR.EXPANDED, true);
+
+	if (element.hasAttribute(ATTR.SELECTED) && !element.getAttribute(ATTR.SELECTED)) element.setAttribute(ATTR.SELECTED, true);
+
+	let targetElements = retrieveTargets(element);
+	for (var i = 0; i < targetElements.length; i++) {
+		if (!targetElements[i].classList.contains(className)) targetElements[i].classList.add(className);
 		manageTarget(targetElements[i], element);
 	}
 
