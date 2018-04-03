@@ -15,6 +15,7 @@
 const PREFIX = 'toggle';
 
 const dataset = key => 'data-' + PREFIX + (PREFIX != '' ? '-' : '') + key;
+
 const ATTR = {
 	CLASS: dataset('class'),
 	TARGET_ALL: dataset('target-all'),

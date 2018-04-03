@@ -1,7 +1,8 @@
 const PREFIX = 'toggle';
 
 const dataset = key => 'data-' + PREFIX + ( PREFIX != '' ? '-' : '' ) + key;
-const ATTR = {
+
+export const ATTR = {
 	CLASS         : dataset('class'),
 	TARGET_ALL    : dataset('target-all'),
 	TARGET_PARENT : dataset('target-parent'),
@@ -17,5 +18,3 @@ const ATTR = {
 	EXPANDED      : 'aria-expanded',
 	SELECTED      : 'aria-selected'
 };
-
-export default ATTR;

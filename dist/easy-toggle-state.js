@@ -17,6 +17,7 @@ var PREFIX = 'toggle';
 var dataset = function dataset(key) {
 	return 'data-' + PREFIX + (PREFIX != '' ? '-' : '') + key;
 };
+
 var ATTR = {
 	CLASS: dataset('class'),
 	TARGET_ALL: dataset('target-all'),

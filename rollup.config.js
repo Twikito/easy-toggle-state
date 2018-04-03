@@ -1,9 +1,7 @@
 const
-	license     = require('rollup-plugin-license'),
-	commonjs    = require('rollup-plugin-commonjs'),
-	nodeResolve = require('rollup-plugin-node-resolve'),
-	babel       = require('rollup-plugin-babel'),
-	uglify      = require('rollup-plugin-uglify');
+	babel   = require('rollup-plugin-babel'),
+	uglify  = require('rollup-plugin-uglify'),
+	license = require('rollup-plugin-license');
 
 const banner = [
 	' -------------------------------------------------------------------',
@@ -45,8 +43,6 @@ const getBabelConfig = (version = 'es5') => {
 const getPlugins = (version = 'es5', isMin = false) => {
 	const babelConfig = getBabelConfig(version);
 	const list = [
-		nodeResolve(),
-		commonjs(),
 		babel(babelConfig)
 	];
 	isMin ? list.push(uglify()) : list.push(license({ banner }));

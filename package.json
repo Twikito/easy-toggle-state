@@ -36,8 +36,6 @@
     "del-cli": "^1.1.0",
     "rollup": "^0.56.5",
     "rollup-plugin-babel": "^3.0.3",
-    "rollup-plugin-commonjs": "^9.1.0",
-    "rollup-plugin-node-resolve": "^3.2.0",
     "rollup-plugin-license": "^0.6.0",
     "rollup-plugin-uglify": "^3.0.0"
   }
