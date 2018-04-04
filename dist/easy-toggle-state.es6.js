@@ -38,15 +38,7 @@ const ATTR = {
 	SELECTED: 'aria-selected'
 };
 
-/** Retrieve all targets of a trigger element. */
-const retrieveTargets = element => {
-	if (element.hasAttribute(ATTR.TARGET_ALL)) return document.querySelectorAll(element.getAttribute(ATTR.TARGET_ALL));
-	if (element.hasAttribute(ATTR.TARGET_PARENT)) return element.parentElement.querySelectorAll(element.getAttribute(ATTR.TARGET_PARENT));
-	if (element.hasAttribute(ATTR.TARGET_SELF)) return element.querySelectorAll(element.getAttribute(ATTR.TARGET_SELF));
-	return [];
-};
-
-/** Retrieve all active trigger of a group. */
+/* Retrieve all active trigger of a group. */
 const retrieveGroupState = group => {
 	let activeGroupElements = [];
 	[...document.querySelectorAll('[' + ATTR.CLASS + '][' + ATTR.GROUP + '="' + group + '"]')].forEach(groupElement => {
@@ -55,7 +47,15 @@ const retrieveGroupState = group => {
 	return activeGroupElements;
 };
 
-/** Toggle off all 'toggle-outside' elements when reproducing specified or click event outside trigger or target elements. */
+/* Retrieve all targets of a trigger element. */
+const retrieveTargets = element => {
+	if (element.hasAttribute(ATTR.TARGET_ALL)) return document.querySelectorAll(element.getAttribute(ATTR.TARGET_ALL));
+	if (element.hasAttribute(ATTR.TARGET_PARENT)) return element.parentElement.querySelectorAll(element.getAttribute(ATTR.TARGET_PARENT));
+	if (element.hasAttribute(ATTR.TARGET_SELF)) return element.querySelectorAll(element.getAttribute(ATTR.TARGET_SELF));
+	return [];
+};
+
+/* Toggle off all 'toggle-outside' elements when reproducing specified or click event outside trigger or target elements. */
 const documentEventHandler = event => {
 	let target = event.target;
 
@@ -67,12 +67,12 @@ const documentEventHandler = event => {
 	}
 };
 
-/** Manage click on 'trigger-off' elements. */
+/* Manage click on 'trigger-off' elements. */
 const triggerOffHandler = event => {
 	manageToggle(event.target.targetElement);
 };
 
-/** Manage attributes and events of target elements. */
+/* Manage attributes and events of target elements. */
 const manageTarget = (targetElement, triggerElement) => {
 	if (triggerElement.hasAttribute(ATTR.OUTSIDE)) targetElement.setAttribute(ATTR.TARGET_STATE, triggerElement.isToggleActive);
 
@@ -91,7 +91,7 @@ const manageTarget = (targetElement, triggerElement) => {
 	}
 };
 
-/** Toggle class and aria on trigger and target elements. */
+/* Toggle class and aria on trigger and target elements. */
 const manageToggle = element => {
 	let className = element.getAttribute(ATTR.CLASS) || 'is-active';
 	element.isToggleActive = !element.isToggleActive;
@@ -112,7 +112,7 @@ const manageToggle = element => {
 	manageTriggerOutside(element);
 };
 
-/** Manage event ouside trigger or target elements. */
+/* Manage event ouside trigger or target elements. */
 const manageTriggerOutside = element => {
 	if (element.hasAttribute(ATTR.OUTSIDE)) {
 		if (element.hasAttribute(ATTR.GROUP)) console.warn("You can't use '" + ATTR.OUTSIDE + "' on a grouped trigger");else {
@@ -121,7 +121,7 @@ const manageTriggerOutside = element => {
 	}
 };
 
-/** Toggle elements of a same group. */
+/* Toggle elements of a same group. */
 const manageGroup = element => {
 	let activeGroupElements = retrieveGroupState(element.getAttribute(ATTR.GROUP));
 
@@ -137,7 +137,7 @@ const manageGroup = element => {
 	}
 };
 
-/** Toggle elements set to be active by default. */
+/* Toggle elements set to be active by default. */
 const manageActiveByDefault = element => {
 	element.isToggleActive = true;
 	let className = element.getAttribute(ATTR.CLASS) || 'is-active';
@@ -157,10 +157,10 @@ const manageActiveByDefault = element => {
 	manageTriggerOutside(element);
 };
 
-/** Initialization. */
+/* Initialization. */
 const init = () => {
 
-	/** Active by default management. */
+	/* Active by default management. */
 	[...document.querySelectorAll('[' + ATTR.CLASS + '][' + ATTR.IS_ACTIVE + ']')].forEach(trigger => {
 		if (trigger.hasAttribute(ATTR.GROUP)) {
 			let group = trigger.getAttribute(ATTR.GROUP);
@@ -170,7 +170,7 @@ const init = () => {
 		}
 	});
 
-	/** Set specified or click event on each trigger element. */
+	/* Set specified or click event on each trigger element. */
 	[...document.querySelectorAll('[' + ATTR.CLASS + ']')].forEach(trigger => {
 		trigger.addEventListener(trigger.getAttribute(ATTR.EVENT) || 'click', event => {
 			event.preventDefault();
@@ -178,7 +178,7 @@ const init = () => {
 		}, false);
 	});
 
-	/** Escape key management. */
+	/* Escape key management. */
 	let triggerEscElements = [...document.querySelectorAll('[' + ATTR.CLASS + '][' + ATTR.ESCAPE + ']')];
 	if (triggerEscElements.length > 0) {
 		document.addEventListener('keyup', event => {
