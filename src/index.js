@@ -1,5 +1,6 @@
 import { init }
-	from './initializer/initializer';
+	from './main/main';
+
 
 const onLoad = () => {
 	init();

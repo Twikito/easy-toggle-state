@@ -8,7 +8,7 @@ import { retrieveGroupState }
 	from '../helpers/retrieveGroupState';
 
 
-// Toggle off all 'toggle-outside' elements when reproducing specified or click event outside trigger or target elements
+/** Toggle off all 'toggle-outside' elements when reproducing specified or click event outside trigger or target elements. */
 const documentEventHandler = event => {
 	let target = event.target;
 
@@ -21,28 +21,16 @@ const documentEventHandler = event => {
 		if(target.hasAttribute(ATTR.OUTSIDE) && target.isToggleActive)
 			document.addEventListener(target.getAttribute(ATTR.EVENT) || 'click', documentEventHandler, false);
 	}
-}
+};
 
-// Manage click on 'trigger-off' elements
+
+/** Manage click on 'trigger-off' elements. */
 const triggerOffHandler = event => {
 	manageToggle(event.target.targetElement);
-}
+};
 
-// Manage event ouside trigger or target elements
-const manageTriggerOutside = element => {
-	if(element.hasAttribute(ATTR.OUTSIDE)) {
-		if(element.hasAttribute(ATTR.GROUP))
-			console.warn("You can't use '"+ATTR.OUTSIDE+"' on a grouped trigger");
-		else {
-			if(element.isToggleActive)
-				document.addEventListener(element.getAttribute(ATTR.EVENT) || 'click', documentEventHandler, false);
-			else
-				document.removeEventListener(element.getAttribute(ATTR.EVENT) || 'click', documentEventHandler, false);
-		}
-	}
-}
 
-// Manage attributes and events of target elements
+/** Manage attributes and events of target elements. */
 const manageTarget = (targetElement, triggerElement) => {
 	if(triggerElement.hasAttribute(ATTR.OUTSIDE))
 		targetElement.setAttribute(ATTR.TARGET_STATE, triggerElement.isToggleActive);
@@ -60,25 +48,10 @@ const manageTarget = (targetElement, triggerElement) => {
 			});
 		}
 	}
-}
+};
 
-// Toggle elements of a same group
-const manageGroup = element => {
-	let activeGroupElements = retrieveGroupState(element.getAttribute(ATTR.GROUP));
 
-	if(activeGroupElements.length > 0){
-		if(activeGroupElements.indexOf(element) === -1) {
-			activeGroupElements.forEach(groupElement => {
-				manageToggle(groupElement);
-			});
-			manageToggle(element);
-		}
-	}else{
-		manageToggle(element);
-	}
-}
-
-// Toggle class and aria on trigger and target elements
+/** Toggle class and aria on trigger and target elements. */
 const manageToggle = element => {
 	let className = element.getAttribute(ATTR.CLASS) || 'is-active';
 	element.isToggleActive = !element.isToggleActive;
@@ -100,8 +73,42 @@ const manageToggle = element => {
 	}
 
 	manageTriggerOutside(element);
-}
+};
 
+
+/** Manage event ouside trigger or target elements. */
+const manageTriggerOutside = element => {
+	if(element.hasAttribute(ATTR.OUTSIDE)) {
+		if(element.hasAttribute(ATTR.GROUP))
+			console.warn("You can't use '"+ATTR.OUTSIDE+"' on a grouped trigger");
+		else {
+			if(element.isToggleActive)
+				document.addEventListener(element.getAttribute(ATTR.EVENT) || 'click', documentEventHandler, false);
+			else
+				document.removeEventListener(element.getAttribute(ATTR.EVENT) || 'click', documentEventHandler, false);
+		}
+	}
+};
+
+
+/** Toggle elements of a same group. */
+const manageGroup = element => {
+	let activeGroupElements = retrieveGroupState(element.getAttribute(ATTR.GROUP));
+
+	if(activeGroupElements.length > 0){
+		if(activeGroupElements.indexOf(element) === -1) {
+			activeGroupElements.forEach(groupElement => {
+				manageToggle(groupElement);
+			});
+			manageToggle(element);
+		}
+	}else{
+		manageToggle(element);
+	}
+};
+
+
+/** Toggle elements set to be active by default. */
 const manageActiveByDefault = element => {
 	element.isToggleActive = true;
 	let className = element.getAttribute(ATTR.CLASS) || 'is-active';
@@ -123,12 +130,13 @@ const manageActiveByDefault = element => {
 	}
 
 	manageTriggerOutside(element);
-}
+};
 
-// Initialization
+
+/** Initialization. */
 export const init = () => {
 
-	// Active by default management
+	/** Active by default management. */
 	[...document.querySelectorAll('['+ATTR.CLASS+']['+ATTR.IS_ACTIVE+']')].forEach((trigger) => {
 		if(trigger.hasAttribute(ATTR.GROUP)) {
 			let group = trigger.getAttribute(ATTR.GROUP);
@@ -141,7 +149,8 @@ export const init = () => {
 		}
 	});
 
-	// Set specified or click event on each trigger element
+
+	/** Set specified or click event on each trigger element. */
 	[...document.querySelectorAll('['+ATTR.CLASS+']')].forEach((trigger) => {
 		trigger.addEventListener(trigger.getAttribute(ATTR.EVENT) || 'click', (event) => {
 			event.preventDefault();
@@ -150,7 +159,8 @@ export const init = () => {
 		}, false);
 	});
 
-	// Escape key management
+
+	/** Escape key management. */
 	let triggerEscElements = [...document.querySelectorAll('['+ATTR.CLASS+']['+ATTR.ESCAPE+']')];
 	if(triggerEscElements.length > 0) {
 		document.addEventListener('keyup', (event) => {
@@ -173,4 +183,4 @@ export const init = () => {
 			}
 		}, false);
 	}
-}
+};

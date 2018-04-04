@@ -40,9 +40,11 @@ var ATTR = {
 	SELECTED: 'aria-selected'
 };
 
-// Retrieve all targets of a trigger element
+/** Retrieve all targets of a trigger element. */
 var retrieveTargets = function retrieveTargets(element) {
-	if (element.hasAttribute(ATTR.TARGET_ALL)) return document.querySelectorAll(element.getAttribute(ATTR.TARGET_ALL));else if (element.hasAttribute(ATTR.TARGET_PARENT)) return element.parentElement.querySelectorAll(element.getAttribute(ATTR.TARGET_PARENT));else if (element.hasAttribute(ATTR.TARGET_SELF)) return element.querySelectorAll(element.getAttribute(ATTR.TARGET_SELF));
+	if (element.hasAttribute(ATTR.TARGET_ALL)) return document.querySelectorAll(element.getAttribute(ATTR.TARGET_ALL));
+	if (element.hasAttribute(ATTR.TARGET_PARENT)) return element.parentElement.querySelectorAll(element.getAttribute(ATTR.TARGET_PARENT));
+	if (element.hasAttribute(ATTR.TARGET_SELF)) return element.querySelectorAll(element.getAttribute(ATTR.TARGET_SELF));
 	return [];
 };
 
@@ -56,7 +58,7 @@ var toConsumableArray = function (arr) {
   }
 };
 
-// Retrieve all active trigger of a group
+/** Retrieve all active trigger of a group. */
 var retrieveGroupState = function retrieveGroupState(group) {
 	var activeGroupElements = [];
 	[].concat(toConsumableArray(document.querySelectorAll('[' + ATTR.CLASS + '][' + ATTR.GROUP + '="' + group + '"]'))).forEach(function (groupElement) {
@@ -65,7 +67,7 @@ var retrieveGroupState = function retrieveGroupState(group) {
 	return activeGroupElements;
 };
 
-// Toggle off all 'toggle-outside' elements when reproducing specified or click event outside trigger or target elements
+/** Toggle off all 'toggle-outside' elements when reproducing specified or click event outside trigger or target elements. */
 var documentEventHandler = function documentEventHandler(event) {
 	var target = event.target;
 
@@ -77,21 +79,12 @@ var documentEventHandler = function documentEventHandler(event) {
 	}
 };
 
-// Manage click on 'trigger-off' elements
+/** Manage click on 'trigger-off' elements. */
 var triggerOffHandler = function triggerOffHandler(event) {
 	manageToggle(event.target.targetElement);
 };
 
-// Manage event ouside trigger or target elements
-var manageTriggerOutside = function manageTriggerOutside(element) {
-	if (element.hasAttribute(ATTR.OUTSIDE)) {
-		if (element.hasAttribute(ATTR.GROUP)) console.warn("You can't use '" + ATTR.OUTSIDE + "' on a grouped trigger");else {
-			if (element.isToggleActive) document.addEventListener(element.getAttribute(ATTR.EVENT) || 'click', documentEventHandler, false);else document.removeEventListener(element.getAttribute(ATTR.EVENT) || 'click', documentEventHandler, false);
-		}
-	}
-};
-
-// Manage attributes and events of target elements
+/** Manage attributes and events of target elements. */
 var manageTarget = function manageTarget(targetElement, triggerElement) {
 	if (triggerElement.hasAttribute(ATTR.OUTSIDE)) targetElement.setAttribute(ATTR.TARGET_STATE, triggerElement.isToggleActive);
 
@@ -110,23 +103,7 @@ var manageTarget = function manageTarget(targetElement, triggerElement) {
 	}
 };
 
-// Toggle elements of a same group
-var manageGroup = function manageGroup(element) {
-	var activeGroupElements = retrieveGroupState(element.getAttribute(ATTR.GROUP));
-
-	if (activeGroupElements.length > 0) {
-		if (activeGroupElements.indexOf(element) === -1) {
-			activeGroupElements.forEach(function (groupElement) {
-				manageToggle(groupElement);
-			});
-			manageToggle(element);
-		}
-	} else {
-		manageToggle(element);
-	}
-};
-
-// Toggle class and aria on trigger and target elements
+/** Toggle class and aria on trigger and target elements. */
 var manageToggle = function manageToggle(element) {
 	var className = element.getAttribute(ATTR.CLASS) || 'is-active';
 	element.isToggleActive = !element.isToggleActive;
@@ -147,6 +124,32 @@ var manageToggle = function manageToggle(element) {
 	manageTriggerOutside(element);
 };
 
+/** Manage event ouside trigger or target elements. */
+var manageTriggerOutside = function manageTriggerOutside(element) {
+	if (element.hasAttribute(ATTR.OUTSIDE)) {
+		if (element.hasAttribute(ATTR.GROUP)) console.warn("You can't use '" + ATTR.OUTSIDE + "' on a grouped trigger");else {
+			if (element.isToggleActive) document.addEventListener(element.getAttribute(ATTR.EVENT) || 'click', documentEventHandler, false);else document.removeEventListener(element.getAttribute(ATTR.EVENT) || 'click', documentEventHandler, false);
+		}
+	}
+};
+
+/** Toggle elements of a same group. */
+var manageGroup = function manageGroup(element) {
+	var activeGroupElements = retrieveGroupState(element.getAttribute(ATTR.GROUP));
+
+	if (activeGroupElements.length > 0) {
+		if (activeGroupElements.indexOf(element) === -1) {
+			activeGroupElements.forEach(function (groupElement) {
+				manageToggle(groupElement);
+			});
+			manageToggle(element);
+		}
+	} else {
+		manageToggle(element);
+	}
+};
+
+/** Toggle elements set to be active by default. */
 var manageActiveByDefault = function manageActiveByDefault(element) {
 	element.isToggleActive = true;
 	var className = element.getAttribute(ATTR.CLASS) || 'is-active';
@@ -166,10 +169,10 @@ var manageActiveByDefault = function manageActiveByDefault(element) {
 	manageTriggerOutside(element);
 };
 
-// Initialization
+/** Initialization. */
 var init = function init() {
 
-	// Active by default management
+	/** Active by default management. */
 	[].concat(toConsumableArray(document.querySelectorAll('[' + ATTR.CLASS + '][' + ATTR.IS_ACTIVE + ']'))).forEach(function (trigger) {
 		if (trigger.hasAttribute(ATTR.GROUP)) {
 			var group = trigger.getAttribute(ATTR.GROUP);
@@ -179,7 +182,7 @@ var init = function init() {
 		}
 	});
 
-	// Set specified or click event on each trigger element
+	/** Set specified or click event on each trigger element. */
 	[].concat(toConsumableArray(document.querySelectorAll('[' + ATTR.CLASS + ']'))).forEach(function (trigger) {
 		trigger.addEventListener(trigger.getAttribute(ATTR.EVENT) || 'click', function (event) {
 			event.preventDefault();
@@ -187,7 +190,7 @@ var init = function init() {
 		}, false);
 	});
 
-	// Escape key management
+	/** Escape key management. */
 	var triggerEscElements = [].concat(toConsumableArray(document.querySelectorAll('[' + ATTR.CLASS + '][' + ATTR.ESCAPE + ']')));
 	if (triggerEscElements.length > 0) {
 		document.addEventListener('keyup', function (event) {
