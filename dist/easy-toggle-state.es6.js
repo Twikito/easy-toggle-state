@@ -17,30 +17,30 @@
  * This prefix will be set to all attributes like data-[PREFIX]-class.
  */
 
-const PREFIX = 'toggle';
+const PREFIX = "toggle";
 
-const dataset = key => 'data-' + PREFIX + (PREFIX != '' ? '-' : '') + key;
+const dataset = key => "data-" + PREFIX + (PREFIX != "" ? "-" : "") + key;
 
 const ATTR = {
-	CLASS: dataset('class'),
-	TARGET_ALL: dataset('target-all'),
-	TARGET_PARENT: dataset('target-parent'),
-	TARGET_SELF: dataset('target-self'),
-	IS_ACTIVE: dataset('is-active'),
-	GROUP: dataset('group'),
-	EVENT: dataset('event'),
-	OUTSIDE: dataset('outside'),
-	TARGET_ONLY: dataset('target-only'),
-	ESCAPE: dataset('escape'),
-	TRIGGER_OFF: dataset('trigger-off'),
-	TARGET_STATE: dataset('state'),
-	EXPANDED: 'aria-expanded',
-	SELECTED: 'aria-selected'
+	CLASS: dataset("class"),
+	TARGET_ALL: dataset("target-all"),
+	TARGET_PARENT: dataset("target-parent"),
+	TARGET_SELF: dataset("target-self"),
+	IS_ACTIVE: dataset("is-active"),
+	GROUP: dataset("group"),
+	EVENT: dataset("event"),
+	OUTSIDE: dataset("outside"),
+	TARGET_ONLY: dataset("target-only"),
+	ESCAPE: dataset("escape"),
+	TRIGGER_OFF: dataset("trigger-off"),
+	TARGET_STATE: dataset("state"),
+	EXPANDED: "aria-expanded",
+	SELECTED: "aria-selected"
 };
 
 /* Retrieve all triggers with a specific attribute */
 const $$ = selector => {
-	const scope = selector ? `[${selector}]` : '';
+	const scope = selector ? `[${selector}]` : "";
 	return [...document.querySelectorAll(`[${ATTR.CLASS}]${scope}`.trim())];
 };
 
@@ -57,7 +57,6 @@ const retrieveGroupState = group => {
 
 /* Retrieve all targets of a trigger element. */
 const retrieveTargets = element => {
-
 	if (element.hasAttribute(ATTR.TARGET_ALL)) {
 		return document.querySelectorAll(element.getAttribute(ATTR.TARGET_ALL));
 	}
@@ -76,15 +75,14 @@ const retrieveTargets = element => {
 /* Toggle off all 'toggle-outside' elements when reproducing specified or click event outside trigger or target elements. */
 const documentEventHandler = event => {
 	let target = event.target;
-	if (!target.closest('[' + ATTR.TARGET_STATE + '="true"]')) {
+	if (!target.closest("[" + ATTR.TARGET_STATE + '="true"]')) {
 		$$(ATTR.OUTSIDE).forEach(element => {
 			if (element != target && element.isToggleActive) {
-				const actionToCall = element.hasAttribute(ATTR.GROUP) ? manageGroup : manageToggle;
-				actionToCall(element);
+				(element.hasAttribute(ATTR.GROUP) ? manageGroup : manageToggle)(element);
 			}
 		});
 		if (target.hasAttribute(ATTR.OUTSIDE) && target.isToggleActive) {
-			document.addEventListener(target.getAttribute(ATTR.EVENT) || 'click', documentEventHandler, false);
+			document.addEventListener(target.getAttribute(ATTR.EVENT) || "click", documentEventHandler, false);
 		}
 	}
 };
@@ -100,16 +98,16 @@ const manageTarget = (targetElement, triggerElement) => {
 		targetElement.setAttribute(ATTR.TARGET_STATE, triggerElement.isToggleActive);
 	}
 
-	let triggerOffList = targetElement.querySelectorAll('[' + ATTR.TRIGGER_OFF + ']');
+	let triggerOffList = targetElement.querySelectorAll("[" + ATTR.TRIGGER_OFF + "]");
 	if (triggerOffList.length > 0) {
 		if (triggerElement.isToggleActive) {
 			triggerOffList.forEach(triggerOff => {
 				triggerOff.targetElement = triggerElement;
-				triggerOff.addEventListener('click', triggerOffHandler, false);
+				triggerOff.addEventListener("click", triggerOffHandler, false);
 			});
 		} else {
 			triggerOffList.forEach(triggerOff => {
-				triggerOff.removeEventListener('click', triggerOffHandler, false);
+				triggerOff.removeEventListener("click", triggerOffHandler, false);
 			});
 		}
 	}
@@ -117,7 +115,7 @@ const manageTarget = (targetElement, triggerElement) => {
 
 /* Toggle class and aria on trigger and target elements. */
 const manageToggle = element => {
-	let className = element.getAttribute(ATTR.CLASS) || 'is-active';
+	let className = element.getAttribute(ATTR.CLASS) || "is-active";
 	element.isToggleActive = !element.isToggleActive;
 	//console.log("toggle to "+element.isToggleActive);
 
@@ -149,9 +147,9 @@ const manageTriggerOutside = element => {
 			console.warn(`You can't use '${ATTR.OUTSIDE}' on a grouped trigger`);
 		} else {
 			if (element.isToggleActive) {
-				document.addEventListener(element.getAttribute(ATTR.EVENT) || 'click', documentEventHandler, false);
+				document.addEventListener(element.getAttribute(ATTR.EVENT) || "click", documentEventHandler, false);
 			} else {
-				document.removeEventListener(element.getAttribute(ATTR.EVENT) || 'click', documentEventHandler, false);
+				document.removeEventListener(element.getAttribute(ATTR.EVENT) || "click", documentEventHandler, false);
 			}
 		}
 	}
@@ -176,7 +174,7 @@ const manageGroup = element => {
 /* Toggle elements set to be active by default. */
 const manageActiveByDefault = element => {
 	element.isToggleActive = true;
-	let className = element.getAttribute(ATTR.CLASS) || 'is-active';
+	let className = element.getAttribute(ATTR.CLASS) || "is-active";
 
 	if (!element.hasAttribute(ATTR.TARGET_ONLY) && !element.classList.contains(className)) {
 		element.classList.add(className);
@@ -220,7 +218,7 @@ const init = () => {
 
 	/* Set specified or click event on each trigger element. */
 	$$().forEach(trigger => {
-		trigger.addEventListener(trigger.getAttribute(ATTR.EVENT) || 'click', event => {
+		trigger.addEventListener(trigger.getAttribute(ATTR.EVENT) || "click", event => {
 			event.preventDefault();
 			(trigger.hasAttribute(ATTR.GROUP) ? manageGroup : manageToggle)(trigger);
 		}, false);
@@ -229,12 +227,12 @@ const init = () => {
 	/* Escape key management. */
 	let triggerEscElements = $$(ATTR.ESCAPE);
 	if (triggerEscElements.length > 0) {
-		document.addEventListener('keyup', event => {
+		document.addEventListener("keyup", event => {
 			event = event || window.event;
 			let isEscape = false;
 
-			if ('key' in event) {
-				isEscape = event.key === 'Escape' || event.key === 'Esc';
+			if ("key" in event) {
+				isEscape = event.key === "Escape" || event.key === "Esc";
 			} else {
 				isEscape = event.keyCode === 27;
 			}
@@ -256,10 +254,10 @@ const init = () => {
 
 const onLoad = () => {
 	init();
-	document.removeEventListener('DOMContentLoaded', onLoad);
+	document.removeEventListener("DOMContentLoaded", onLoad);
 };
 
-document.addEventListener('DOMContentLoaded', onLoad);
+document.addEventListener("DOMContentLoaded", onLoad);
 window.initEasyToggleState = init;
 
 }());

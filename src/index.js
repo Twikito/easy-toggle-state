@@ -1,11 +1,9 @@
-import { init }
-	from './main/main';
-
+import { init } from "./main/main";
 
 const onLoad = () => {
 	init();
-	document.removeEventListener('DOMContentLoaded', onLoad);
-}
+	document.removeEventListener("DOMContentLoaded", onLoad);
+};
 
-document.addEventListener('DOMContentLoaded', onLoad);
+document.addEventListener("DOMContentLoaded", onLoad);
 window.initEasyToggleState = init;

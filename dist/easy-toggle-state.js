@@ -17,27 +17,27 @@
  * This prefix will be set to all attributes like data-[PREFIX]-class.
  */
 
-var PREFIX = 'toggle';
+var PREFIX = "toggle";
 
 var dataset = function dataset(key) {
-	return 'data-' + PREFIX + (PREFIX != '' ? '-' : '') + key;
+	return "data-" + PREFIX + (PREFIX != "" ? "-" : "") + key;
 };
 
 var ATTR = {
-	CLASS: dataset('class'),
-	TARGET_ALL: dataset('target-all'),
-	TARGET_PARENT: dataset('target-parent'),
-	TARGET_SELF: dataset('target-self'),
-	IS_ACTIVE: dataset('is-active'),
-	GROUP: dataset('group'),
-	EVENT: dataset('event'),
-	OUTSIDE: dataset('outside'),
-	TARGET_ONLY: dataset('target-only'),
-	ESCAPE: dataset('escape'),
-	TRIGGER_OFF: dataset('trigger-off'),
-	TARGET_STATE: dataset('state'),
-	EXPANDED: 'aria-expanded',
-	SELECTED: 'aria-selected'
+	CLASS: dataset("class"),
+	TARGET_ALL: dataset("target-all"),
+	TARGET_PARENT: dataset("target-parent"),
+	TARGET_SELF: dataset("target-self"),
+	IS_ACTIVE: dataset("is-active"),
+	GROUP: dataset("group"),
+	EVENT: dataset("event"),
+	OUTSIDE: dataset("outside"),
+	TARGET_ONLY: dataset("target-only"),
+	ESCAPE: dataset("escape"),
+	TRIGGER_OFF: dataset("trigger-off"),
+	TARGET_STATE: dataset("state"),
+	EXPANDED: "aria-expanded",
+	SELECTED: "aria-selected"
 };
 
 var toConsumableArray = function (arr) {
@@ -52,14 +52,14 @@ var toConsumableArray = function (arr) {
 
 /* Retrieve all triggers with a specific attribute */
 var $$ = function $$(selector) {
-	var scope = selector ? '[' + selector + ']' : '';
-	return [].concat(toConsumableArray(document.querySelectorAll(('[' + ATTR.CLASS + ']' + scope).trim())));
+	var scope = selector ? "[" + selector + "]" : "";
+	return [].concat(toConsumableArray(document.querySelectorAll(("[" + ATTR.CLASS + "]" + scope).trim())));
 };
 
 /* Retrieve all active trigger of a group. */
 var retrieveGroupState = function retrieveGroupState(group) {
 	var activeGroupElements = [];
-	$$(ATTR.GROUP + '="' + group + '"').forEach(function (groupElement) {
+	$$(ATTR.GROUP + "=\"" + group + "\"").forEach(function (groupElement) {
 		if (groupElement.isToggleActive) {
 			activeGroupElements.push(groupElement);
 		}
@@ -69,7 +69,6 @@ var retrieveGroupState = function retrieveGroupState(group) {
 
 /* Retrieve all targets of a trigger element. */
 var retrieveTargets = function retrieveTargets(element) {
-
 	if (element.hasAttribute(ATTR.TARGET_ALL)) {
 		return document.querySelectorAll(element.getAttribute(ATTR.TARGET_ALL));
 	}
@@ -88,15 +87,14 @@ var retrieveTargets = function retrieveTargets(element) {
 /* Toggle off all 'toggle-outside' elements when reproducing specified or click event outside trigger or target elements. */
 var documentEventHandler = function documentEventHandler(event) {
 	var target = event.target;
-	if (!target.closest('[' + ATTR.TARGET_STATE + '="true"]')) {
+	if (!target.closest("[" + ATTR.TARGET_STATE + '="true"]')) {
 		$$(ATTR.OUTSIDE).forEach(function (element) {
 			if (element != target && element.isToggleActive) {
-				var actionToCall = element.hasAttribute(ATTR.GROUP) ? manageGroup : manageToggle;
-				actionToCall(element);
+				(element.hasAttribute(ATTR.GROUP) ? manageGroup : manageToggle)(element);
 			}
 		});
 		if (target.hasAttribute(ATTR.OUTSIDE) && target.isToggleActive) {
-			document.addEventListener(target.getAttribute(ATTR.EVENT) || 'click', documentEventHandler, false);
+			document.addEventListener(target.getAttribute(ATTR.EVENT) || "click", documentEventHandler, false);
 		}
 	}
 };
@@ -112,16 +110,16 @@ var manageTarget = function manageTarget(targetElement, triggerElement) {
 		targetElement.setAttribute(ATTR.TARGET_STATE, triggerElement.isToggleActive);
 	}
 
-	var triggerOffList = targetElement.querySelectorAll('[' + ATTR.TRIGGER_OFF + ']');
+	var triggerOffList = targetElement.querySelectorAll("[" + ATTR.TRIGGER_OFF + "]");
 	if (triggerOffList.length > 0) {
 		if (triggerElement.isToggleActive) {
 			triggerOffList.forEach(function (triggerOff) {
 				triggerOff.targetElement = triggerElement;
-				triggerOff.addEventListener('click', triggerOffHandler, false);
+				triggerOff.addEventListener("click", triggerOffHandler, false);
 			});
 		} else {
 			triggerOffList.forEach(function (triggerOff) {
-				triggerOff.removeEventListener('click', triggerOffHandler, false);
+				triggerOff.removeEventListener("click", triggerOffHandler, false);
 			});
 		}
 	}
@@ -129,7 +127,7 @@ var manageTarget = function manageTarget(targetElement, triggerElement) {
 
 /* Toggle class and aria on trigger and target elements. */
 var manageToggle = function manageToggle(element) {
-	var className = element.getAttribute(ATTR.CLASS) || 'is-active';
+	var className = element.getAttribute(ATTR.CLASS) || "is-active";
 	element.isToggleActive = !element.isToggleActive;
 	//console.log("toggle to "+element.isToggleActive);
 
@@ -158,12 +156,12 @@ var manageToggle = function manageToggle(element) {
 var manageTriggerOutside = function manageTriggerOutside(element) {
 	if (element.hasAttribute(ATTR.OUTSIDE)) {
 		if (element.hasAttribute(ATTR.GROUP)) {
-			console.warn('You can\'t use \'' + ATTR.OUTSIDE + '\' on a grouped trigger');
+			console.warn("You can't use '" + ATTR.OUTSIDE + "' on a grouped trigger");
 		} else {
 			if (element.isToggleActive) {
-				document.addEventListener(element.getAttribute(ATTR.EVENT) || 'click', documentEventHandler, false);
+				document.addEventListener(element.getAttribute(ATTR.EVENT) || "click", documentEventHandler, false);
 			} else {
-				document.removeEventListener(element.getAttribute(ATTR.EVENT) || 'click', documentEventHandler, false);
+				document.removeEventListener(element.getAttribute(ATTR.EVENT) || "click", documentEventHandler, false);
 			}
 		}
 	}
@@ -188,7 +186,7 @@ var manageGroup = function manageGroup(element) {
 /* Toggle elements set to be active by default. */
 var manageActiveByDefault = function manageActiveByDefault(element) {
 	element.isToggleActive = true;
-	var className = element.getAttribute(ATTR.CLASS) || 'is-active';
+	var className = element.getAttribute(ATTR.CLASS) || "is-active";
 
 	if (!element.hasAttribute(ATTR.TARGET_ONLY) && !element.classList.contains(className)) {
 		element.classList.add(className);
@@ -221,7 +219,7 @@ var init = function init() {
 		if (trigger.hasAttribute(ATTR.GROUP)) {
 			var group = trigger.getAttribute(ATTR.GROUP);
 			if (retrieveGroupState(group).length > 0) {
-				console.warn('Toggle group \'' + group + '\' must not have more than one trigger with \'' + ATTR.IS_ACTIVE + '\'');
+				console.warn("Toggle group '" + group + "' must not have more than one trigger with '" + ATTR.IS_ACTIVE + "'");
 			} else {
 				manageActiveByDefault(trigger);
 			}
@@ -232,7 +230,7 @@ var init = function init() {
 
 	/* Set specified or click event on each trigger element. */
 	$$().forEach(function (trigger) {
-		trigger.addEventListener(trigger.getAttribute(ATTR.EVENT) || 'click', function (event) {
+		trigger.addEventListener(trigger.getAttribute(ATTR.EVENT) || "click", function (event) {
 			event.preventDefault();
 			(trigger.hasAttribute(ATTR.GROUP) ? manageGroup : manageToggle)(trigger);
 		}, false);
@@ -241,12 +239,12 @@ var init = function init() {
 	/* Escape key management. */
 	var triggerEscElements = $$(ATTR.ESCAPE);
 	if (triggerEscElements.length > 0) {
-		document.addEventListener('keyup', function (event) {
+		document.addEventListener("keyup", function (event) {
 			event = event || window.event;
 			var isEscape = false;
 
-			if ('key' in event) {
-				isEscape = event.key === 'Escape' || event.key === 'Esc';
+			if ("key" in event) {
+				isEscape = event.key === "Escape" || event.key === "Esc";
 			} else {
 				isEscape = event.keyCode === 27;
 			}
@@ -255,7 +253,7 @@ var init = function init() {
 				triggerEscElements.forEach(function (trigger) {
 					if (trigger.isToggleActive) {
 						if (trigger.hasAttribute(ATTR.GROUP)) {
-							console.warn('You can\'t use \'' + ATTR.ESCAPE + '\' on a grouped trigger');
+							console.warn("You can't use '" + ATTR.ESCAPE + "' on a grouped trigger");
 						} else {
 							manageToggle(trigger);
 						}
@@ -268,10 +266,10 @@ var init = function init() {
 
 var onLoad = function onLoad() {
 	init();
-	document.removeEventListener('DOMContentLoaded', onLoad);
+	document.removeEventListener("DOMContentLoaded", onLoad);
 };
 
-document.addEventListener('DOMContentLoaded', onLoad);
+document.addEventListener("DOMContentLoaded", onLoad);
 window.initEasyToggleState = init;
 
 }());

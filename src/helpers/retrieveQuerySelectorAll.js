@@ -1,9 +1,7 @@
-import { ATTR }
-	from '../constants/constants';
-
+import { ATTR } from "../constants/constants";
 
 /* Retrieve all triggers with a specific attribute */
-export const $$ = (selector) => {
-	const scope = selector ? `[${selector}]` : '';
+export const $$ = selector => {
+	const scope = selector ? `[${selector}]` : "";
 	return [...document.querySelectorAll(`[${ATTR.CLASS}]${scope}`.trim())];
-}
+};

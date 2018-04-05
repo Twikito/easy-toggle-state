@@ -1,10 +1,7 @@
-import { ATTR }
-	from '../constants/constants';
-
+import { ATTR } from "../constants/constants";
 
 /* Retrieve all targets of a trigger element. */
-export const retrieveTargets = (element) => {
-
+export const retrieveTargets = element => {
 	if (element.hasAttribute(ATTR.TARGET_ALL)) {
 		return document.querySelectorAll(element.getAttribute(ATTR.TARGET_ALL));
 	}
@@ -18,4 +15,4 @@ export const retrieveTargets = (element) => {
 	}
 
 	return [];
-}
+};

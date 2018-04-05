@@ -3,4 +3,4 @@
  * This prefix will be set to all attributes like data-[PREFIX]-class.
  */
 
-export const PREFIX = 'toggle';
+export const PREFIX = "toggle";
