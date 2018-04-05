@@ -7,6 +7,7 @@ charset = utf-8
 indent_size = 4
 indent_style = tab
 insert_final_newline = true
+end_of_line = cr
 trim_trailing_whitespace = true
 
 [*.md]
