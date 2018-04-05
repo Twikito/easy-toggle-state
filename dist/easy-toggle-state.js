@@ -50,32 +50,54 @@ var toConsumableArray = function (arr) {
   }
 };
 
+/* Retrieve all triggers with a specific attribute */
+var $$ = function $$(selector) {
+	var scope = selector ? '[' + selector + ']' : '';
+	return [].concat(toConsumableArray(document.querySelectorAll(('[' + ATTR.CLASS + ']' + scope).trim())));
+};
+
 /* Retrieve all active trigger of a group. */
 var retrieveGroupState = function retrieveGroupState(group) {
 	var activeGroupElements = [];
-	[].concat(toConsumableArray(document.querySelectorAll('[' + ATTR.CLASS + '][' + ATTR.GROUP + '="' + group + '"]'))).forEach(function (groupElement) {
-		if (groupElement.isToggleActive) activeGroupElements.push(groupElement);
+	$$(ATTR.GROUP + '="' + group + '"').forEach(function (groupElement) {
+		if (groupElement.isToggleActive) {
+			activeGroupElements.push(groupElement);
+		}
 	});
 	return activeGroupElements;
 };
 
 /* Retrieve all targets of a trigger element. */
 var retrieveTargets = function retrieveTargets(element) {
-	if (element.hasAttribute(ATTR.TARGET_ALL)) return document.querySelectorAll(element.getAttribute(ATTR.TARGET_ALL));
-	if (element.hasAttribute(ATTR.TARGET_PARENT)) return element.parentElement.querySelectorAll(element.getAttribute(ATTR.TARGET_PARENT));
-	if (element.hasAttribute(ATTR.TARGET_SELF)) return element.querySelectorAll(element.getAttribute(ATTR.TARGET_SELF));
+
+	if (element.hasAttribute(ATTR.TARGET_ALL)) {
+		return document.querySelectorAll(element.getAttribute(ATTR.TARGET_ALL));
+	}
+
+	if (element.hasAttribute(ATTR.TARGET_PARENT)) {
+		return element.parentElement.querySelectorAll(element.getAttribute(ATTR.TARGET_PARENT));
+	}
+
+	if (element.hasAttribute(ATTR.TARGET_SELF)) {
+		return element.querySelectorAll(element.getAttribute(ATTR.TARGET_SELF));
+	}
+
 	return [];
 };
 
 /* Toggle off all 'toggle-outside' elements when reproducing specified or click event outside trigger or target elements. */
 var documentEventHandler = function documentEventHandler(event) {
 	var target = event.target;
-
 	if (!target.closest('[' + ATTR.TARGET_STATE + '="true"]')) {
-		[].concat(toConsumableArray(document.querySelectorAll('[' + ATTR.CLASS + '][' + ATTR.OUTSIDE + ']'))).forEach(function (element) {
-			if (element != target && element.isToggleActive) if (element.hasAttribute(ATTR.GROUP)) manageGroup(element);else manageToggle(element);
+		$$(ATTR.OUTSIDE).forEach(function (element) {
+			if (element != target && element.isToggleActive) {
+				var actionToCall = element.hasAttribute(ATTR.GROUP) ? manageGroup : manageToggle;
+				actionToCall(element);
+			}
 		});
-		if (target.hasAttribute(ATTR.OUTSIDE) && target.isToggleActive) document.addEventListener(target.getAttribute(ATTR.EVENT) || 'click', documentEventHandler, false);
+		if (target.hasAttribute(ATTR.OUTSIDE) && target.isToggleActive) {
+			document.addEventListener(target.getAttribute(ATTR.EVENT) || 'click', documentEventHandler, false);
+		}
 	}
 };
 
@@ -86,7 +108,9 @@ var triggerOffHandler = function triggerOffHandler(event) {
 
 /* Manage attributes and events of target elements. */
 var manageTarget = function manageTarget(targetElement, triggerElement) {
-	if (triggerElement.hasAttribute(ATTR.OUTSIDE)) targetElement.setAttribute(ATTR.TARGET_STATE, triggerElement.isToggleActive);
+	if (triggerElement.hasAttribute(ATTR.OUTSIDE)) {
+		targetElement.setAttribute(ATTR.TARGET_STATE, triggerElement.isToggleActive);
+	}
 
 	var triggerOffList = targetElement.querySelectorAll('[' + ATTR.TRIGGER_OFF + ']');
 	if (triggerOffList.length > 0) {
@@ -109,11 +133,17 @@ var manageToggle = function manageToggle(element) {
 	element.isToggleActive = !element.isToggleActive;
 	//console.log("toggle to "+element.isToggleActive);
 
-	if (!element.hasAttribute(ATTR.TARGET_ONLY)) element.classList.toggle(className);
+	if (!element.hasAttribute(ATTR.TARGET_ONLY)) {
+		element.classList.toggle(className);
+	}
 
-	if (element.hasAttribute(ATTR.EXPANDED)) element.setAttribute(ATTR.EXPANDED, element.isToggleActive);
+	if (element.hasAttribute(ATTR.EXPANDED)) {
+		element.setAttribute(ATTR.EXPANDED, element.isToggleActive);
+	}
 
-	if (element.hasAttribute(ATTR.SELECTED)) element.setAttribute(ATTR.SELECTED, element.isToggleActive);
+	if (element.hasAttribute(ATTR.SELECTED)) {
+		element.setAttribute(ATTR.SELECTED, element.isToggleActive);
+	}
 
 	var targetElements = retrieveTargets(element);
 	for (var i = 0; i < targetElements.length; i++) {
@@ -127,8 +157,14 @@ var manageToggle = function manageToggle(element) {
 /* Manage event ouside trigger or target elements. */
 var manageTriggerOutside = function manageTriggerOutside(element) {
 	if (element.hasAttribute(ATTR.OUTSIDE)) {
-		if (element.hasAttribute(ATTR.GROUP)) console.warn("You can't use '" + ATTR.OUTSIDE + "' on a grouped trigger");else {
-			if (element.isToggleActive) document.addEventListener(element.getAttribute(ATTR.EVENT) || 'click', documentEventHandler, false);else document.removeEventListener(element.getAttribute(ATTR.EVENT) || 'click', documentEventHandler, false);
+		if (element.hasAttribute(ATTR.GROUP)) {
+			console.warn('You can\'t use \'' + ATTR.OUTSIDE + '\' on a grouped trigger');
+		} else {
+			if (element.isToggleActive) {
+				document.addEventListener(element.getAttribute(ATTR.EVENT) || 'click', documentEventHandler, false);
+			} else {
+				document.removeEventListener(element.getAttribute(ATTR.EVENT) || 'click', documentEventHandler, false);
+			}
 		}
 	}
 };
@@ -154,15 +190,23 @@ var manageActiveByDefault = function manageActiveByDefault(element) {
 	element.isToggleActive = true;
 	var className = element.getAttribute(ATTR.CLASS) || 'is-active';
 
-	if (!element.hasAttribute(ATTR.TARGET_ONLY) && !element.classList.contains(className)) element.classList.add(className);
+	if (!element.hasAttribute(ATTR.TARGET_ONLY) && !element.classList.contains(className)) {
+		element.classList.add(className);
+	}
 
-	if (element.hasAttribute(ATTR.EXPANDED) && element.getAttribute(ATTR.EXPANDED)) element.setAttribute(ATTR.EXPANDED, true);
+	if (element.hasAttribute(ATTR.EXPANDED) && element.getAttribute(ATTR.EXPANDED)) {
+		element.setAttribute(ATTR.EXPANDED, true);
+	}
 
-	if (element.hasAttribute(ATTR.SELECTED) && !element.getAttribute(ATTR.SELECTED)) element.setAttribute(ATTR.SELECTED, true);
+	if (element.hasAttribute(ATTR.SELECTED) && !element.getAttribute(ATTR.SELECTED)) {
+		element.setAttribute(ATTR.SELECTED, true);
+	}
 
 	var targetElements = retrieveTargets(element);
 	for (var i = 0; i < targetElements.length; i++) {
-		if (!targetElements[i].classList.contains(className)) targetElements[i].classList.add(className);
+		if (!targetElements[i].classList.contains(className)) {
+			targetElements[i].classList.add(className);
+		}
 		manageTarget(targetElements[i], element);
 	}
 
@@ -173,36 +217,48 @@ var manageActiveByDefault = function manageActiveByDefault(element) {
 var init = function init() {
 
 	/* Active by default management. */
-	[].concat(toConsumableArray(document.querySelectorAll('[' + ATTR.CLASS + '][' + ATTR.IS_ACTIVE + ']'))).forEach(function (trigger) {
+	$$(ATTR.IS_ACTIVE).forEach(function (trigger) {
 		if (trigger.hasAttribute(ATTR.GROUP)) {
 			var group = trigger.getAttribute(ATTR.GROUP);
-			if (retrieveGroupState(group).length > 0) console.warn("Toggle group '" + group + "' must not have more than one trigger with '" + ATTR.IS_ACTIVE + "'");else manageActiveByDefault(trigger);
+			if (retrieveGroupState(group).length > 0) {
+				console.warn('Toggle group \'' + group + '\' must not have more than one trigger with \'' + ATTR.IS_ACTIVE + '\'');
+			} else {
+				manageActiveByDefault(trigger);
+			}
 		} else {
 			manageActiveByDefault(trigger);
 		}
 	});
 
 	/* Set specified or click event on each trigger element. */
-	[].concat(toConsumableArray(document.querySelectorAll('[' + ATTR.CLASS + ']'))).forEach(function (trigger) {
+	$$().forEach(function (trigger) {
 		trigger.addEventListener(trigger.getAttribute(ATTR.EVENT) || 'click', function (event) {
 			event.preventDefault();
-			if (trigger.hasAttribute(ATTR.GROUP)) manageGroup(trigger);else manageToggle(trigger);
+			(trigger.hasAttribute(ATTR.GROUP) ? manageGroup : manageToggle)(trigger);
 		}, false);
 	});
 
 	/* Escape key management. */
-	var triggerEscElements = [].concat(toConsumableArray(document.querySelectorAll('[' + ATTR.CLASS + '][' + ATTR.ESCAPE + ']')));
+	var triggerEscElements = $$(ATTR.ESCAPE);
 	if (triggerEscElements.length > 0) {
 		document.addEventListener('keyup', function (event) {
 			event = event || window.event;
 			var isEscape = false;
 
-			if ('key' in event) isEscape = event.key === 'Escape' || event.key === 'Esc';else isEscape = event.keyCode === 27;
+			if ('key' in event) {
+				isEscape = event.key === 'Escape' || event.key === 'Esc';
+			} else {
+				isEscape = event.keyCode === 27;
+			}
 
 			if (isEscape) {
 				triggerEscElements.forEach(function (trigger) {
 					if (trigger.isToggleActive) {
-						if (trigger.hasAttribute(ATTR.GROUP)) console.warn("You can't use '" + ATTR.ESCAPE + "' on a grouped trigger");else manageToggle(trigger);
+						if (trigger.hasAttribute(ATTR.GROUP)) {
+							console.warn('You can\'t use \'' + ATTR.ESCAPE + '\' on a grouped trigger');
+						} else {
+							manageToggle(trigger);
+						}
 					}
 				});
 			}
