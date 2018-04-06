@@ -1,4 +1,4 @@
-import { $$ } from "../helpers/retrieveQuerySelectorAll.js";
+import { $$ } from "./retrieveQuerySelectorAll";
 import { ATTR } from "../constants/constants";
 
 /* Retrieve all active trigger of a group. */
