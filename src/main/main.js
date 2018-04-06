@@ -132,7 +132,6 @@ const manageActiveByDefault = element => {
 
 /* Initialization. */
 export const init = () => {
-
 	/* Active by default management. */
 	$$(ATTR.IS_ACTIVE).forEach(trigger => {
 		if (trigger.hasAttribute(ATTR.GROUP)) {

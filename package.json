@@ -1,1 +1,54 @@
-{  "name": "easy-toggle-state",  "version": "1.1.1",  "description": "A tiny JavaScript plugin to toggle the state of any HTML element in most of contexts with ease.",  "main": "dist/easy-toggle-state.es6.js",  "scripts": {  	"prettier": "prettier --write src/*/*",  	"lint": "eslint --fix src",    "test": "npm run prettier && npm run lint",    "clean": "del-cli --force dist",    "build:es6": "cross-env NODE_ENV=es6 rollup -c",    "build:es6:min": "cross-env NODE_ENV=es6 OUT_STYLE=min rollup -c",    "build:es5": "cross-env NODE_ENV=es5 rollup -c",    "build:es5:min": "cross-env NODE_ENV=es5 OUT_STYLE=min rollup -c",    "build": "npm run test && npm run clean && npm run build:es6 && npm run build:es6:min && npm run build:es5 && npm run build:es5:min"  },  "repository": {    "type": "git",    "url": "git+https://github.com/Twikito/easy-toggle-state.git"  },  "keywords": [    "toggle",    "event",    "accessibility"  ],  "author": "Matthieu Bué <https://twikito.com>",  "license": "MIT",  "bugs": {    "url": "https://github.com/Twikito/easy-toggle-state/issues"  },  "homepage": "https://github.com/Twikito/easy-toggle-state#readme",  "dependencies": {},  "devDependencies": {    "babel-core": "^6.26.0",    "babel-plugin-external-helpers": "^6.22.0",    "babel-preset-env": "^1.6.1",    "cross-env": "^5.1.4",    "del-cli": "^1.1.0",    "eslint": "^4.19.1",    "prettier": "^1.11.1",    "rollup": "^0.56.5",    "rollup-plugin-babel": "^3.0.3",    "rollup-plugin-license": "^0.6.0",    "rollup-plugin-uglify": "^3.0.0"  }}
+{
+  "name": "easy-toggle-state",
+  "version": "1.1.1",
+  "description": "A tiny JavaScript plugin to toggle the state of any HTML element in most of contexts with ease.",
+  "main": "dist/easy-toggle-state.es6.js",
+  "scripts": {
+    "precommit": "lint-staged",
+    "lint": "eslint --fix src",
+    "test": "npm run lint",
+    "clean": "del-cli --force dist",
+    "build:es6": "cross-env NODE_ENV=es6 rollup -c",
+    "build:es6:min": "cross-env NODE_ENV=es6 OUT_STYLE=min rollup -c",
+    "build:es5": "cross-env NODE_ENV=es5 rollup -c",
+    "build:es5:min": "cross-env NODE_ENV=es5 OUT_STYLE=min rollup -c",
+    "build": "npm run test && npm run clean && npm run build:es6 && npm run build:es6:min && npm run build:es5 && npm run build:es5:min"
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Twikito/easy-toggle-state.git"
+  },
+  "keywords": [
+    "toggle",
+    "event",
+    "accessibility"
+  ],
+  "author": "Matthieu Bué <https://twikito.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Twikito/easy-toggle-state/issues"
+  },
+  "homepage": "https://github.com/Twikito/easy-toggle-state#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-preset-env": "^1.6.1",
+    "cross-env": "^5.1.4",
+    "del-cli": "^1.1.0",
+    "eslint": "^4.19.1",
+    "husky": "^0.14.3",
+    "lint-staged": "^7.0.4",
+    "prettier": "^1.11.1",
+    "rollup": "^0.56.5",
+    "rollup-plugin-babel": "^3.0.3",
+    "rollup-plugin-license": "^0.6.0",
+    "rollup-plugin-uglify": "^3.0.0"
+  }
+}
