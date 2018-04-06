@@ -5,9 +5,8 @@
   "main": "dist/easy-toggle-state.es6.js",
   "scripts": {
     "precommit": "lint-staged",
-    "prettier":"prettier --write src/*/*",
-    "lint": "eslint --fix src",
-    "test": "npm run prettier && npm run lint",
+    "lint": "eslint src",
+    "test": "npm run lint",
     "clean": "del-cli --force dist",
     "build:es6": "cross-env NODE_ENV=es6 rollup -c",
     "build:es6:min": "cross-env NODE_ENV=es6 OUT_STYLE=min rollup -c",
