@@ -49,15 +49,17 @@ const getPlugins = (version = 'es5', isMin = false) => {
 	return list;
 };
 
+const getPreferConst = (version = 'es5') => version === 'es6' ? true : false;
 
 const getConfig = () => {
 	const isMinify = process.env.OUT_STYLE === 'min';
 	const plugins = getPlugins(process.env.NODE_ENV, isMinify);
 	const fileName = getFileName(process.env.NODE_ENV, isMinify);
-	return { fileName, plugins };
+	const preferConst = getPreferConst(process.env.NODE_ENV);
+	return { fileName, preferConst, plugins };
 };
 
-const { fileName, plugins } = getConfig();
+const { fileName, preferConst, plugins } = getConfig();
 
 export default {
 	input: 'src/index.js',
@@ -66,5 +68,6 @@ export default {
 		format: 'iife',
 		name: 'easyToggleState'
 	},
-	plugins
+	plugins,
+	preferConst
 };
