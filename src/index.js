@@ -1,4 +1,4 @@
-import { init } from "./main/main";
+import init from "./main/main";
 
 const onLoad = () => {
 	init();

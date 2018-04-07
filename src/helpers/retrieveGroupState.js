@@ -1,10 +1,10 @@
-import { $$ } from "./retrieveQuerySelectorAll";
-import { ATTR } from "../constants/constants";
+import $$ from "./retrieveQuerySelectorAll";
+import { GROUP } from "../constants/constants";
 
 /* Retrieve all active trigger of a group. */
-export const retrieveGroupState = group => {
+export default group => {
 	let activeGroupElements = [];
-	$$(`${ATTR.GROUP}="${group}"`).forEach(groupElement => {
+	$$(`${GROUP}="${group}"`).forEach(groupElement => {
 		if (groupElement.isToggleActive) {
 			activeGroupElements.push(groupElement);
 		}

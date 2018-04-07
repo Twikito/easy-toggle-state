@@ -15,7 +15,7 @@
     "build": "npm run test && npm run clean && npm run build:es6 && npm run build:es6:min && npm run build:es5 && npm run build:es5:min"
   },
   "lint-staged": {
-    "*.js": [
+    "src/**/*.js": [
       "prettier --write",
       "eslint --fix",
       "git add"
