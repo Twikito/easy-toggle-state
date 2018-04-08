@@ -199,7 +199,7 @@ const manageActiveByDefault = element => {
 };
 
 /* Initialization. */
-const init = () => {
+const init = (() => {
 
 	/* Active by default management. */
 	$$(IS_ACTIVE).forEach(trigger => {
@@ -249,7 +249,7 @@ const init = () => {
 			}
 		}, false);
 	}
-};
+});
 
 const onLoad = () => {
 	init();

@@ -143,7 +143,7 @@ const manageActiveByDefault = element => {
 };
 
 /* Initialization. */
-const init = () => {
+export default () => {
 
 	/* Active by default management. */
 	$$(IS_ACTIVE).forEach(trigger => {
@@ -202,5 +202,3 @@ const init = () => {
 		);
 	}
 };
-
-export default init;

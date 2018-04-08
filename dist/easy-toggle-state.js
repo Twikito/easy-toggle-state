@@ -211,7 +211,7 @@ var manageActiveByDefault = function manageActiveByDefault(element) {
 };
 
 /* Initialization. */
-var init = function init() {
+var init = (function () {
 
 	/* Active by default management. */
 	$$(IS_ACTIVE).forEach(function (trigger) {
@@ -261,7 +261,7 @@ var init = function init() {
 			}
 		}, false);
 	}
-};
+});
 
 var onLoad = function onLoad() {
 	init();
