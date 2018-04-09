@@ -93,6 +93,11 @@ You can also change the `PREFIX` value to prevent conflict with another JS libra
 
 Finally, for asynchronous needs, you can call `window.initEasyToggleState()`.
 
+### Development
+
+`$ npm run build`
+
+
 ## License
 
 MIT. Copyright (c) [Matthieu Bué](https://twikito.com)
