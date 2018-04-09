@@ -44,15 +44,7 @@ const $$ = (selector => {
 });
 
 /* Retrieve all active trigger of a group. */
-const retrieveGroupState = (group => {
-	let activeGroupElements = [];
-	$$(`${GROUP}="${group}"`).forEach(groupElement => {
-		if (groupElement.isToggleActive) {
-			activeGroupElements.push(groupElement);
-		}
-	});
-	return activeGroupElements;
-});
+const retrieveGroupState = (group => $$(`${GROUP}="${group}"`).filter(groupElement => groupElement.isToggleActive));
 
 /* Retrieve all targets of a trigger element. */
 const retrieveTargets = (element => {

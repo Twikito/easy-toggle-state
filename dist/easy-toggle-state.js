@@ -57,13 +57,9 @@ var $$ = (function (selector) {
 
 /* Retrieve all active trigger of a group. */
 var retrieveGroupState = (function (group) {
-	var activeGroupElements = [];
-	$$(GROUP + "=\"" + group + "\"").forEach(function (groupElement) {
-		if (groupElement.isToggleActive) {
-			activeGroupElements.push(groupElement);
-		}
-	});
-	return activeGroupElements;
+  return $$(GROUP + "=\"" + group + "\"").filter(function (groupElement) {
+    return groupElement.isToggleActive;
+  });
 });
 
 /* Retrieve all targets of a trigger element. */
