@@ -49,7 +49,7 @@ const getPlugins = (version = 'es5', isMin = false) => {
 	return list;
 };
 
-const getPreferConst = (version = 'es5') => version === 'es6' ? true : false;
+const getPreferConst = (version = 'es5') => version === 'es6';
 
 const getConfig = () => {
 	const isMinify = process.env.OUT_STYLE === 'min';
