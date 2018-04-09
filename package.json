@@ -6,6 +6,7 @@
   "scripts": {
     "precommit": "lint-staged",
     "lint": "eslint src",
+    "lint:fix": "eslint --fix src",
     "test": "npm run lint",
     "clean": "del-cli --force dist",
     "build:es6": "cross-env NODE_ENV=es6 rollup -c",
