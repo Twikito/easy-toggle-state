@@ -93,10 +93,25 @@ You can also change the `PREFIX` value to prevent conflict with another JS libra
 
 Finally, for asynchronous needs, you can call `window.initEasyToggleState()`.
 
-### Development
+### Installation
 
-`$ npm run build`
+You can [direct download](https://rawgit.com/Twikito/easy-toggle-state/master/dist/easy-toggle-state.es6.js) the script – [ES5 and ES6 available, minified or not](https://github.com/Twikito/easy-toggle-state/tree/master/dist) –, or use NPM command:
+```
+$ npm install easy-toggle-state
+```
+Add the script in your page, and it's done.
 
+## Contribution
+
+Install dependencies:
+```
+$ npm install
+```
+
+Development:
+```
+$ npm run build
+```
 
 ## License
 
