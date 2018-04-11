@@ -1,0 +1,87 @@
+:root {
+	--theme: #00d084;
+}
+html.is-active {
+	--theme: #0084d0;
+}
+
+html {
+	font-size: 62.5%;
+}
+
+body {
+	margin: 0;
+	font: 300 2em / 1.5 'Roboto', sans-serif; color: #555;
+}
+
+header {
+	padding: 5% 0;
+	background: var(--theme) linear-gradient(to bottom, transparent 0%, rgba(0,0,0,.1) 100%);
+	color: white;
+	transition: background-color .3s ease-in-out;
+}
+
+h1 {
+	margin: 0;
+	font-size: 3em; font-weight: normal; line-height: 1.1; text-align: center;
+}
+
+h2 {
+	color: var(--theme);
+	transition: color .3s ease-in-out;
+}
+
+section {
+	margin: 10% 0;
+}
+
+dd {
+	margin-left: 1em; margin-bottom: 5%;
+}
+
+kbd {
+	display: inline-block; padding: 0 .25em;
+	background: #fcfcfc;
+	border: solid 1px #ccc; border-bottom-color: #bbb; border-radius: 3px; box-shadow: inset 0 -1px 0 #bbb;
+	font-family: monospace, monospace;
+}
+
+strong {
+	font-weight: 500;
+}
+
+button {
+	cursor: pointer;
+}
+
+.wrapper {
+	max-width: 60em; margin: 0 auto;
+}
+
+.logo {
+
+}
+.logo-switch {
+	position: relative;
+	display: inline-block; width: 1em; height: 2.5em; margin: 0 .25em 0 0; padding: .125em; box-sizing: content-box;
+	border: 0; outline: 0; border-radius: 1em;
+	background-color: white;
+	font-size: 1.25em;
+	vertical-align: middle;
+}
+.logo-switch-bullet {
+	position: absolute; top: .125em; left: .125em;
+	display: block; width: 1em; height: 1em;
+	transform: translateY(1.5em);
+	border-radius: 50%;
+	background-color: var(--theme);
+	transition: transform .15s ease-out;
+}
+.logo-switch.is-active .logo-switch-bullet {
+	transform: translateY(0);
+}
+.logo-text {
+	display: inline-block;
+	text-align: left;
+	vertical-align: middle;
+}

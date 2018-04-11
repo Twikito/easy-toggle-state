@@ -6,10 +6,172 @@
 	<title>Easy Toggle State</title>
 	<meta name="description" content="A tiny JavaScript library to easily toggle the state of any HTML element in any contexts">
 	<link rel="author" href="//github.com/Twikito">
+	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Raleway:600|Roboto:300,500">
+	<link rel="stylesheet" href="assets/css/prism.css">
+	<link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
-	<p>
-		WIP
-	</p>
+	<header id="header">
+		<h1>
+			<div class="logo">
+				<button type="button" class="logo-switch" title="Toggle that logo!" data-toggle-class data-toggle-target-all="html">
+					<span class="logo-switch-bullet"></span>
+				</button>
+				<span class="logo-text">
+					Easy<br>
+					Toggle<br>
+					State
+				</span>
+			</div>
+		</h1>
+	</header>
+	<article class="wrapper">
+
+		<p>A tiny JavaScript library to easily toggle the state of any HTML elementand its targets. Only set a few HTML attributes, and code the rest with your CSS skills.</p>
+
+		<section>
+			<h2>Why?</h2>
+			<p>A front-end developer often has to <strong>code scripts for interface components</strong>. Components such as drop-downs, navigation buttons, tooltips, expandable panels, lightboxes, tabs, etc.</p>
+			<p>The thing is… Most of these components expose a <strong>recurrent behavior</strong>: a trigger element toggles the state of one or more target elements. So why not code this behavior once and for all?</p>
+			<p>So here is a solution: <strong>a simple script to toggle the state of a trigger element</strong> with a CSS class. You can then <strong>associate this element</strong> with one or more others: let's call them targets. By adding the right HTML attributes, it can <strong>adapt to any contexts</strong> and behave like a chosen component.</p>
+			<p><strong>Only focus on adjusting the rest with your CSS creativity</strong>.</p>
+		</section>
+
+		<section>
+			<h2>Recommendation</h2>
+			<p>Although it is conceivable, I recommend using only buttons or links as trigger elements. If You prevent the default behavior of a link, don't forget to add the <code class="language-html">role="button"</code> attribute.</p>
+		</section>
+
+		<section>
+			<h2>How to use</h2>
+			<section class="language-html">
+				<h3>Basics</h3>
+				<dl>
+					<dt>
+						<pre><code>&lt;foo data-toggle-class="class-to-toggle"&gt;</code></pre>
+					</dt>
+					<dd>
+						<p>A CSS class to toggle each time a click is triggered on this element. If empty, the <code>is-active</code> class is used.</p>
+					</dd>
+
+					<dt>
+						<pre><code>data-toggle-target-all="selector"</code></pre>
+					</dt>
+					<dd>
+						<p>Toggle the class on the trigger element and all the target elements — defined by the selector — in the page.</p>
+					</dd>
+
+					<dt>
+						<pre><code>data-toggle-target-parent="selector"</code></pre>
+					</dt>
+					<dd>
+						<p>Toggle the class on the trigger element and all the target elements — defined by the selector — belonging to its parent container.</p>
+					</dd>
+
+					<dt>
+						<pre><code>data-toggle-target-self="selector"</code></pre>
+					</dt>
+					<dd>
+						<p>Toggle the class on the trigger element and all the target elements — defined by the selector — within it.</p>
+					</dd>
+				</dl>
+			</section>
+
+			<section class="language-html">
+				<h3>Advanced</h3>
+				<dl>
+					<dt>
+						<pre><code>data-toggle-is-active</code></pre>
+					</dt>
+					<dd>
+						<p>Specify a trigger element and its targets toggled as default — set during the <code class="language-js">onload</code> event. In this case, you should add the specified class name on each element.</p>
+					</dd>
+
+					<dt>
+						<pre><code>data-toggle-group="groupName"</code></pre>
+					</dt>
+					<dd>
+						<p>Specify if a trigger is a part of a group. Only one trigger of a group can be active at a time. It will actually behave like radio buttons or tabs component. Note that a grouped trigger can’t have <code>data-toggle-outside</code> or <code>data-toggle-escape</code> behavior.</p>
+					</dd>
+
+					<dt>
+						<pre><code>data-toggle-event="event"</code></pre>
+					</dt>
+					<dd>
+						<p>Specify the event that will toggle the class, <code>mouseover</code> for example. <code>click</code> by default if not specified.</p>
+					</dd>
+
+					<dt>
+						<pre><code>data-toggle-outside</code></pre>
+					</dt>
+					<dd>
+						<p>Toggle off the class when the event is triggered again outside the trigger element.</p>
+					</dd>
+
+					<dt>
+						<pre><code>data-toggle-target-only</code></pre>
+					</dt>
+					<dd>
+						<p>Toggle the class only on the target elements.</p>
+					</dd>
+
+					<dt>
+						<pre><code>data-toggle-escape</code></pre>
+					</dt>
+					<dd>
+						<p>Toggle the class when the trigger element is active and when the <kbd>escape</kbd> key is released.</p>
+					</dd>
+
+					<dt>
+						<pre><code>data-toggle-trigger-off</code></pre>
+					</dt>
+					<dd>
+						<p>Add this attribute to an element <strong>inside a target</strong> to enable this element to toggle the behavior. For example, a close button in a modal.</p>
+					</dd>
+				</dl>
+			</section>
+
+			<section class="language-html">
+				<h3>More</h3>
+				<p>If a trigger element has the <code>aria-expanded</code> or <code>aria-selected</code> attribute, its value will also change.</p>
+				<p>You can also change the <code>PREFIX</code> value to prevent conflict with another JS library. This prefix will be set to all attributes like <code>data-[PREFIX]-class</code>, <code>toggle</code> as default.</p>
+				<p>Finally, for asynchronous needs, you can call <code class="language-js">window.initEasyToggleState()</code>.</p>
+			</section>
+
+			<section class="language-bash">
+				<h3>Installation</h3>
+				<p>You can <a href="https://rawgit.com/Twikito/easy-toggle-state/master/dist/easy-toggle-state.es6.js" rel="nofollow">direct download</a> the script – <a href="https://github.com/Twikito/easy-toggle-state/tree/master/dist">ES5 and ES6 available, minified or not</a> –, or use NPM command:</p>
+				<pre><code>$ npm install easy-toggle-state</code></pre>
+				<p>Add the script in your page, and it's done.</p>
+			</section>
+		</section>
+
+		<section class="language-bash">
+			<h2>Contribution</h2>
+			<dl>
+				<dd>
+					<p>Install dependencies:</p>
+				</dd>
+				<dt>
+					<pre><code>$ npm install</code></pre>
+				</dt>
+
+				<dd>
+					<p>Development:</p>
+				</dd>
+				<dt>
+					<pre><code>$ npm run build</code></pre>
+				</dt>
+			</dl>
+		</section>
+
+		<section>
+			<h2>License</h2>
+			<p>MIT. Copyright (c) <a href="https://twikito.com" rel="nofollow">Matthieu Bué</a></p>
+		</section>
+	</article>
+
+	<script src="../dist/easy-toggle-state.es6.min.js"></script>
+	<script src="assets/js/prism.js"></script>
 </body>
 </html>
