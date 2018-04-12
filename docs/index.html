@@ -6,7 +6,7 @@
 	<title>Easy Toggle State</title>
 	<meta name="description" content="A tiny JavaScript library to easily toggle the state of any HTML element in any contexts">
 	<link rel="author" href="//github.com/Twikito">
-	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Raleway:600|Roboto:300,500">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:600|Roboto:300,500">
 	<link rel="stylesheet" href="assets/css/prism.css">
 	<link rel="stylesheet" href="assets/css/main.css">
 </head>
@@ -48,28 +48,28 @@
 				<h3>Basics</h3>
 				<dl>
 					<dt>
-						<pre><code>&lt;foo data-toggle-class="class-to-toggle"&gt;</code></pre>
+						<pre><code>&lt;foo data-toggle-class="class-name"&gt;</code></pre>
 					</dt>
 					<dd>
 						<p>A CSS class to toggle each time a click is triggered on this element. If empty, the <code>is-active</code> class is used.</p>
 					</dd>
 
 					<dt>
-						<pre><code>data-toggle-target-all="selector"</code></pre>
+						<pre><code>&lt;foo data-toggle-class="class-name" data-toggle-target="selector"&gt;</code></pre>
 					</dt>
 					<dd>
-						<p>Toggle the class on the trigger element and all the target elements — defined by the selector — in the page.</p>
+						<p>Toggle the class on the trigger element and all the target elements — defined by the selector — in the page. This attribute has <code>data-toggle-target-all</code> as alias.</p>
 					</dd>
 
 					<dt>
-						<pre><code>data-toggle-target-parent="selector"</code></pre>
+						<pre><code>&lt;foo data-toggle-class="class-name" data-toggle-target-parent="selector"&gt;</code></pre>
 					</dt>
 					<dd>
 						<p>Toggle the class on the trigger element and all the target elements — defined by the selector — belonging to its parent container.</p>
 					</dd>
 
 					<dt>
-						<pre><code>data-toggle-target-self="selector"</code></pre>
+						<pre><code>&lt;foo data-toggle-class="class-name" data-toggle-target-self="selector"&gt;</code></pre>
 					</dt>
 					<dd>
 						<p>Toggle the class on the trigger element and all the target elements — defined by the selector — within it.</p>
@@ -91,7 +91,8 @@
 						<pre><code>data-toggle-group="groupName"</code></pre>
 					</dt>
 					<dd>
-						<p>Specify if a trigger is a part of a group. Only one trigger of a group can be active at a time. It will actually behave like radio buttons or tabs component. Note that a grouped trigger can’t have <code>data-toggle-outside</code> or <code>data-toggle-escape</code> behavior.</p>
+						<p>Specify if a trigger is a part of a group. Only one trigger of a group can be active at a time. It will actually behave like radio buttons or tabs component.</p>
+						<p>Note that a grouped trigger can’t have <code>data-toggle-outside</code> or <code>data-toggle-escape</code> behavior.</p>
 					</dd>
 
 					<dt>
@@ -171,7 +172,7 @@
 		</section>
 	</article>
 
-	<script src="//rawgit.com/Twikito/easy-toggle-state/master/dist/easy-toggle-state.es6.min.js"></script>
+	<script src="https://rawgit.com/Twikito/easy-toggle-state/master/dist/easy-toggle-state.es6.min.js"></script>
 	<script src="assets/js/prism.js"></script>
 </body>
 </html>
