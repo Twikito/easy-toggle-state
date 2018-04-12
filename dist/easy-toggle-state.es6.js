@@ -30,6 +30,7 @@
 	      IS_ACTIVE = dataset("is-active"),
 	      OUTSIDE = dataset("outside"),
 	      SELECTED = "aria-selected",
+	      TARGET = dataset("target"),
 	      TARGET_ALL = dataset("target-all"),
 	      TARGET_ONLY = dataset("target-only"),
 	      TARGET_PARENT = dataset("target-parent"),
@@ -48,8 +49,8 @@
 
 	/* Retrieve all targets of a trigger element. */
 	const retrieveTargets = (element => {
-		if (element.hasAttribute(TARGET_ALL)) {
-			return document.querySelectorAll(element.getAttribute(TARGET_ALL));
+		if (element.hasAttribute(TARGET) || element.hasAttribute(TARGET_ALL)) {
+			return document.querySelectorAll(element.getAttribute(TARGET) || element.getAttribute(TARGET_ALL));
 		}
 
 		if (element.hasAttribute(TARGET_PARENT)) {

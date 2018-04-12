@@ -1,9 +1,9 @@
-import { TARGET_ALL, TARGET_PARENT, TARGET_SELF } from "../constants/constants";
+import { TARGET, TARGET_ALL, TARGET_PARENT, TARGET_SELF } from "../constants/constants";
 
 /* Retrieve all targets of a trigger element. */
 export default element => {
-	if (element.hasAttribute(TARGET_ALL)) {
-		return document.querySelectorAll(element.getAttribute(TARGET_ALL));
+	if (element.hasAttribute(TARGET) || element.hasAttribute(TARGET_ALL)) {
+		return document.querySelectorAll(element.getAttribute(TARGET) || element.getAttribute(TARGET_ALL));
 	}
 
 	if (element.hasAttribute(TARGET_PARENT)) {
