@@ -1,7 +1,7 @@
 :root {
 	--theme: #00b074;
 }
-html.is-active {
+html.🤘😝 {
 	--theme: #b00074;
 }
 
@@ -11,13 +11,23 @@ html {
 
 body {
 	margin: 0;
-	font: 300 1.8em / 1.5 'Roboto', sans-serif; color: #555;
+	font: 300 1.8em / 1.5 'Roboto', sans-serif; color: #556;
 }
 
 @media (max-width: 500px) {
 	body {
 		font-size: 1.6em;
 	}
+}
+
+a,
+button,
+.baseline {
+	transition: .25s ease-out;
+}
+
+button {
+	cursor: pointer;
 }
 
 header {
@@ -33,12 +43,36 @@ h1 {
 }
 
 h2 {
-	font-weight: normal; color: var(--theme);
-	transition: color .3s ease-in-out;
+	font-weight: normal;
+}
+
+h2 a {
+	color: var(--theme);
 }
 
 h3 {
 	font-weight: normal;
+}
+
+h2 a,
+h3 a {
+	position: relative;
+	display: inline-block;
+	text-decoration: none;
+}
+
+h2 a::before,
+h3 a::before {
+	position: absolute; right: 100%;
+	display: inline-block; margin-left: -100%;
+	content: '#'; opacity: 0; visibility: hidden;
+}
+
+h2 a:hover::before,
+h2 a:focus::before,
+h3 a:hover::before,
+h3 a:focus::before {
+	opacity: 1; visibility: visible;
 }
 
 a {
@@ -65,11 +99,14 @@ kbd {
 }
 
 strong {
-	font-weight: 500;
+	font-weight: 400;
 }
 
-button {
-	cursor: pointer;
+pre[class*="language-"] {
+	background: #f6f8fa;
+}
+:not(pre) > code[class*="language-"] {
+	background: rgba(27,31,35,0.05);
 }
 
 .wrapper {
@@ -93,13 +130,21 @@ button {
 	transform: translateY(1.5em);
 	border-radius: 50%;
 	background-color: var(--theme);
-	transition: transform .15s ease-out;
+	transition-duration: .15s;
 }
-.logo-switch.is-active .logo-switch-bullet {
+.logo-switch.🤘😝 .logo-switch-bullet {
 	transform: translateY(0);
 }
 .logo-text {
 	display: inline-block;
 	text-align: left;
 	vertical-align: middle;
+}
+
+.color-theme {
+	color: var(--theme);
+}
+
+.text-lg {
+	font-size: 1.5em;
 }
