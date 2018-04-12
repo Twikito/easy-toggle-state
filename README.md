@@ -31,17 +31,17 @@ Although it is conceivable, I recommend using only buttons or links as trigger e
 ```
 A CSS class to toggle each time a click is triggered on this element. If empty, the `is-active` class is used.
 
-```
+```html
 <foo data-toggle-class="class-name" data-toggle-target="selector">
 ```
 Toggle the class on the trigger element and all the target elements — defined by the selector — in the page. This attribute has `data-toggle-target-all` as alias.
 
-```
+```html
 <foo data-toggle-class="class-name" data-toggle-target-parent="selector">
 ```
 Toggle the class on the trigger element and all the target elements — defined by the selector — belonging to its parent container.
 
-```
+```html
 <foo data-toggle-class="class-name" data-toggle-target-self="selector">
 ```
 Toggle the class on the trigger element and all the target elements — defined by the selector — within it.
