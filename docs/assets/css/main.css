@@ -1,8 +1,8 @@
 :root {
-	--theme: #00d084;
+	--theme: #00b074;
 }
 html.is-active {
-	--theme: #0084d0;
+	--theme: #b00074;
 }
 
 html {
@@ -42,11 +42,11 @@ h3 {
 }
 
 a {
-	text-decoration: none; font-weight: 500; color: var(--theme);
+	color: var(--theme);
 }
 a:hover,
 a:focus {
-	text-decoration: underline;
+	text-decoration: none;
 }
 
 section {
