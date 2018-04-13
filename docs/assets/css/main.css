@@ -11,7 +11,7 @@ html {
 
 body {
 	margin: 0;
-	font: 300 1.8em / 1.5 'Roboto', sans-serif; color: #556;
+	font: 400 1.8em / 1.5 'Open Sans', sans-serif; color: #556;
 }
 
 @media (max-width: 500px) {
@@ -23,7 +23,7 @@ body {
 a,
 button,
 .baseline {
-	transition: .25s ease-out;
+	transition: .15s ease-out;
 }
 
 button {
@@ -37,28 +37,39 @@ header {
 	transition: background-color .3s ease-in-out;
 }
 
+nav {
+	margin: 10% 0; overflow: auto;
+	background-color: whitesmoke;
+}
+
+nav ul {
+	list-style: none;
+}
+
+h1, h2, h3 {
+	margin: .5em 0;
+	font-family: 'Roboto Slab'; font-weight: 500;
+}
+
 h1 {
-	margin: 0;
-	font-size: 3em; font-weight: normal; line-height: 1.1; text-align: center;
+	font-size: 3em; line-height: 1.1; text-align: center;
 }
 
 h2 {
-	font-weight: normal;
-}
-
-h2 a {
-	color: var(--theme);
+	font-size: 2em; color: var(--theme);
 }
 
 h3 {
-	font-weight: normal;
+	display: inline-block; padding: 0 .25em 0 2em;
+	background-color: var(--theme);
+	color: white;
 }
 
 h2 a,
 h3 a {
 	position: relative;
 	display: inline-block;
-	text-decoration: none;
+	text-decoration: none; color: inherit;
 }
 
 h2 a::before,
@@ -84,7 +95,7 @@ a:focus {
 }
 
 section {
-	margin: 10% 0;
+	margin: 0 0 10%;
 }
 
 dd {
@@ -99,7 +110,7 @@ kbd {
 }
 
 strong {
-	font-weight: 400;
+	font-weight: 600;
 }
 
 pre[class*="language-"] {
@@ -118,7 +129,7 @@ pre[class*="language-"] {
 }
 .logo-switch {
 	position: relative;
-	display: inline-block; width: 1em; height: 2.5em; margin: 0 .25em 0 0; padding: .125em; box-sizing: content-box;
+	display: inline-block; width: 1em; height: 2.5em; margin: 0; padding: .125em; box-sizing: content-box;
 	border: 0; outline: 0; border-radius: 1em;
 	background-color: white;
 	font-size: 1.25em;
@@ -147,4 +158,27 @@ pre[class*="language-"] {
 
 .text-lg {
 	font-size: 1.5em;
+}
+
+.button {
+	display: inline-block; padding: .25em .5em; margin: .5em 0;
+	border: .125em solid rgba(0,0,0,.25);
+	background-color: var(--theme);
+	font-size: 1em; color: white; text-decoration: none;
+}
+.button:hover,
+.button:focus {
+	background-color: whitesmoke;
+	color: inherit;
+}
+
+.button--grey {
+	background-color: whitesmoke;
+	color: var(--theme);
+}
+
+.download {
+	display: flex; max-width: 15em; margin: 5% auto;
+	flex-flow: column nowrap; justify-content: flex-start; align-items: stretch;
+	text-align: center;
 }

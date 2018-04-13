@@ -5,8 +5,19 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Easy Toggle State</title>
 	<meta name="description" content="A tiny JavaScript library to easily toggle the state of any HTML element in any contexts">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="assets/favicons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="assets/favicons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="assets/favicons/favicon-16x16.png">
+	<link rel="manifest" href="assets/favicons/site.webmanifest">
+	<link rel="mask-icon" href="assets/favicons/safari-pinned-tab.svg" color="#009d64">
+	<link rel="shortcut icon" href="assets/favicons/favicon.ico">
+	<meta name="msapplication-TileColor" content="#009d64">
+	<meta name="msapplication-config" content="assets/favicons/browserconfig.xml">
+	<meta name="theme-color" content="#009d64">
+
 	<link rel="author" href="//github.com/Twikito">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:600|Roboto:300,400">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:500|Open+Sans:400,600">
 	<link rel="stylesheet" href="assets/css/prism.css">
 	<link rel="stylesheet" href="assets/css/main.css">
 </head>
@@ -14,7 +25,7 @@
 	<header id="header">
 		<h1>
 			<div class="logo">
-				<button type="button" class="logo-switch" title="Toggle that logo!" data-toggle-class="🤘😝" data-toggle-target-all="html">
+				<button type="button" class="logo-switch" title="Toggle that logo!" data-toggle-class="🤘😝" data-toggle-target="html">
 					<span class="logo-switch-bullet"></span>
 				</button>
 				<span class="logo-text">
@@ -35,8 +46,52 @@
 		</p>
 
 		<div class="download">
-
+			<a class="button" href="//raw.githubusercontent.com/Twikito/easy-toggle-state/master/dist/easy-toggle-state.min.es6.js" title="Download Easy Toggle State compressed, production version">
+				<big><strong>Download</strong> &ndash; 2,82ko</big><br>
+				<small>Compressed, for production</small>
+			</a>
+			<a class="button" href="//raw.githubusercontent.com/Twikito/easy-toggle-state/master/dist/easy-toggle-state.es6.js" title="Download Easy Toggle State uncompressed, development version">
+				<big><strong>Download</strong> &ndash; 7,82ko</big><br>
+				<small>Uncompressed, for development</small>
+			</a>
+			<a class="button button--grey" href="//github.com/Twikito/easy-toggle-state" title="View Easy Toggle State on GitHub">
+				View on GitHub
+			</a>
 		</div>
+
+		<nav>
+			<ul>
+				<li>
+					<a href="#why">Why?</a>
+				</li>
+				<li>
+					<a href="#recommandation">Recommandation</a>
+				</li>
+				<li>
+					<a href="#how-to-use">How to use</a>
+					<ul>
+						<li>
+							<a href="#basics">Basics</a>
+						</li>
+						<li>
+							<a href="#advanced">Advanced</a>
+						</li>
+						<li>
+							<a href="#more">More</a>
+						</li>
+						<li>
+							<a href="#installation">Installation</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="#contribution">Contribution</a>
+				</li>
+				<li>
+					<a href="#license">License</a>
+				</li>
+			</ul>
+		</nav>
 
 		<section>
 			<h2 id="why">
