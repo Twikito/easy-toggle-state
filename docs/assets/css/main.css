@@ -177,7 +177,7 @@ pre[class*="language-"] {
 	color: var(--theme);
 }
 
-.download {
+[id='download'] {
 	display: flex; max-width: 15em; margin: 5% auto;
 	flex-flow: column nowrap; justify-content: flex-start; align-items: stretch;
 	text-align: center;
