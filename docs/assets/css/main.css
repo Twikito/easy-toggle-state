@@ -65,6 +65,10 @@ h3 {
 	color: white;
 }
 
+h4 {
+	margin: 0;
+}
+
 h2 a,
 h3 a {
 	position: relative;
@@ -97,6 +101,9 @@ a:focus {
 section {
 	margin: 0 0 10%;
 }
+section section section {
+	margin: 0;
+}
 
 dd {
 	margin-left: 1em; margin-bottom: 5%;
@@ -113,11 +120,16 @@ strong {
 	font-weight: 600;
 }
 
-pre[class*="language-"] {
+pre[class*="language-"],
+.demo {
 	background: #f6f8fa;
 }
 :not(pre) > code[class*="language-"] {
 	background: rgba(27,31,35,0.05);
+}
+
+.demo {
+	padding: 1em; margin: .5em 0;
 }
 
 .wrapper {
@@ -160,6 +172,10 @@ pre[class*="language-"] {
 	font-size: 1.5em;
 }
 
+.text-right {
+	text-align: right;
+}
+
 .button {
 	display: inline-block; padding: .25em .5em; margin: .5em 0;
 	border: .125em solid rgba(0,0,0,.25);
@@ -178,7 +194,21 @@ pre[class*="language-"] {
 }
 
 [id='download'] {
-	display: flex; max-width: 15em; margin: 5% auto;
-	flex-flow: column nowrap; justify-content: flex-start; align-items: stretch;
+	display: flex; margin: 10% 0;
+	flex-flow: row wrap; justify-content: center; align-items: center;
 	text-align: center;
+}
+[id='download'] > * {
+	margin: .5em;
+	flex: 0 1 15em;
+}
+
+footer {
+	overflow: auto;
+	background-color: var(--theme);
+	color: white; text-align: center;
+}
+
+footer a {
+	color: inherit;
 }

@@ -20,6 +20,7 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:500|Open+Sans:400,600">
 	<link rel="stylesheet" href="assets/css/prism.css">
 	<link rel="stylesheet" href="assets/css/main.css">
+	<link rel="stylesheet" href="assets/css/tooltip.css">
 </head>
 <body>
 	<header id="header">
@@ -87,10 +88,14 @@
 					</ul>
 				</li>
 				<li>
-					<a href="#contribution">Contribution</a>
-				</li>
+					<a href="#examples">Examples</a>
+					<ul>
+						<li>
+							<a href="#tooltip">Tooltip</a>
+						</li>
+					</ul>
 				<li>
-					<a href="#license">License</a>
+					<a href="#contribution">Contribution</a>
 				</li>
 			</ul>
 		</nav>
@@ -221,30 +226,71 @@
 				<h3 id="installation">
 					<a href="#installation">Installation</a>
 				</h3>
-				<p>You can <a href="#download">direct download</a> the script – <a href="https://github.com/Twikito/easy-toggle-state/tree/master/dist">ES5 and ES6 available, compressed and uncompressed</a> –, or use NPM command:</p>
+				<p>You can <a href="#download">direct download</a> the script – <a href="//github.com/Twikito/easy-toggle-state/tree/master/dist">ES5 and ES6 available, compressed and uncompressed</a> –, or use NPM command:</p>
 				<pre><code>$ npm install easy-toggle-state</code></pre>
-				<p>Then, add the script to your page, and it's done.</p>
+				<p>Then, <strong>add the script to your page</strong>, and it's done.</p>
 			</section>
 		</section>
 
-		<section class="language-bash">
-			<h2 id="contribution">
-				<a href="#contribution">Contribution</a>
+		<section>
+			<h2 id="examples">
+				<a href="#examples">Examples</a>
 			</h2>
-			<p>First, <a href="https://github.com/Twikito/easy-toggle-state/fork">fork repository on GitHub</a>.</p>
-			<p>Install dependencies:</p>
-			<pre><code>$ npm install</code></pre>
-			<p>Development:</p>
-			<pre><code>$ npm run build</code></pre>
+			<section>
+				<h3 id="tooltip">
+					<a href="#tooltip">Tooltip</a>
+				</h3>
+				<section>
+					<h4>HTML</h4>
+<pre><code class="language-html">&lt;span class="example-tooltip"
+	data-toggle-class="is-visible"
+	data-toggle-target-self=".tooltip"
+	data-toggle-target-only
+	data-toggle-event="mouseover"
+	data-toggle-outside&gt;
+	Hover me
+	&lt;span class="tooltip"&gt;Awesome tooltip&lt;/span&gt;
+&lt;/span&gt;</code></pre>
+					<div class="text-right">
+						<a href="assets/css/tooltip.css" title="Download this tooltip demo stylesheet">download CSS</a>
+					</div>
+				</section>
+				<section>
+					<h4>Result</h4>
+					<div class="demo">
+						<span class="example-tooltip" data-toggle-class="is-visible" data-toggle-target-self=".tooltip" data-toggle-target-only data-toggle-event="mouseover" data-toggle-outside>
+							Hover me
+							<span class="tooltip">Awesome tooltip</span>
+						</span>
+					</div>
+				</section>
+			</section>
 		</section>
 
 		<section>
-			<h2 id="license">
-				<a href="#license">License</a>
+			<h2 id="contribution">
+				<a href="#contribution">Contribution</a>
 			</h2>
-			<p>MIT. Copyright (c) <a href="https://twikito.com" rel="nofollow">Matthieu Bué</a></p>
+			<ul>
+				<li><a href="//github.com/Twikito/easy-toggle-state/fork">Fork repository on GitHub</a></li>
+				<li><a href="//github.com/Twikito/easy-toggle-state/issues">Report a bug</a></li>
+				<li><a href="//github.com/Twikito/easy-toggle-state/issues">Suggest a feature</a></li>
+				<li>Development: <code class="language-bash">$ npm run build</code></li>
+			</ul>
 		</section>
+
 	</article>
+
+	<footer>
+		<div class="wrapper">
+			<p>
+				Proudly made
+				under <a href="//github.com/Twikito/easy-toggle-state/blob/master/LICENSE">MIT license</a>
+				on <a href="//github.com/Twikito/easy-toggle-state" title="View Easy Toggle State on GitHub">GitHub</a>
+				by <a href="//twikito.com" rel="nofollow">Matthieu Bué</a>.
+			</p>
+		</div>
+	</footer>
 
 	<script src="https://rawgit.com/Twikito/easy-toggle-state/master/dist/easy-toggle-state.es6.min.js"></script>
 	<script src="assets/js/prism.js"></script>
