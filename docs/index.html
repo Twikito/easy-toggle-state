@@ -21,6 +21,8 @@
 	<link rel="stylesheet" href="assets/css/prism.css">
 	<link rel="stylesheet" href="assets/css/main.css">
 	<link rel="stylesheet" href="assets/css/tooltip.css">
+	<link rel="stylesheet" href="assets/css/checkbox.css">
+	<link rel="stylesheet" href="assets/css/radio.css">
 </head>
 <body>
 	<header id="header">
@@ -91,6 +93,12 @@
 					<a href="#examples">Examples</a>
 					<ul>
 						<li>
+							<a href="#checkbox">Checkbox</a>
+						</li>
+						<li>
+							<a href="#radio">Radio buttons</a>
+						</li>
+						<li>
 							<a href="#tooltip">Tooltip</a>
 						</li>
 					</ul>
@@ -137,21 +145,21 @@
 						<pre><code>&lt;foo data-toggle-class="class-name" data-toggle-target="selector"&gt;</code></pre>
 					</dt>
 					<dd>
-						<p>Toggle the class on the trigger element and all the target elements — defined by the selector — in the page. This attribute has <code>data-toggle-target-all</code> as alias.</p>
+						<p>Toggle the class on the trigger element and all the target elements, defined by the selector, in the page. This attribute has <code>data-toggle-target-all</code> as alias.</p>
 					</dd>
 
 					<dt>
 						<pre><code>&lt;foo data-toggle-class="class-name" data-toggle-target-parent="selector"&gt;</code></pre>
 					</dt>
 					<dd>
-						<p>Toggle the class on the trigger element and all the target elements — defined by the selector — belonging to its parent container.</p>
+						<p>Toggle the class on the trigger element and all the target elements, defined by the selector, belonging to its parent container.</p>
 					</dd>
 
 					<dt>
 						<pre><code>&lt;foo data-toggle-class="class-name" data-toggle-target-self="selector"&gt;</code></pre>
 					</dt>
 					<dd>
-						<p>Toggle the class on the trigger element and all the target elements — defined by the selector — within it.</p>
+						<p>Toggle the class on the trigger element and all the target elements, defined by the selector, within it.</p>
 					</dd>
 				</dl>
 			</section>
@@ -165,7 +173,7 @@
 						<pre><code>data-toggle-is-active</code></pre>
 					</dt>
 					<dd>
-						<p>Specify a trigger element and its targets toggled as default — set during the <code class="language-js">onload</code> event. In this case, you should add the specified class name on each element.</p>
+						<p>Specify a trigger element and its targets toggled as default, set during the <code class="language-js">onload</code> event. In this case, you should add the specified class name on each element.</p>
 					</dd>
 
 					<dt>
@@ -217,7 +225,7 @@
 				<h3 id="more">
 					<a href="#more">More</a>
 				</h3>
-				<p>If a trigger element has the <code>aria-expanded</code> or <code>aria-selected</code> attribute, its value will also change.</p>
+				<p>If a trigger element has the <code>aria-expanded</code>, <code>aria-selected</code> or <code>aria-checked</code> attribute, its value will also change.</p>
 				<p>You can also change the <code>PREFIX</code> value to prevent conflict with another JS library. This prefix will be set to all attributes like <code>data-[PREFIX]-class</code>, <code>toggle</code> as default.</p>
 				<p>Finally, for asynchronous needs, you can call <code class="language-js">window.initEasyToggleState()</code>.</p>
 			</section>
@@ -237,12 +245,169 @@
 				<a href="#examples">Examples</a>
 			</h2>
 			<section>
+				<h3 id="checkbox">
+					<a href="#checkbox">Checkbox</a>
+				</h3>
+				<p>
+					You want to display a checkbox, i.e. a box with a checkmark that appears on click on this box.
+					Even if you should use the <code class="language-html">&lt;input type="checkbox"&gt;</code> native componant, in some case, you can’t.
+				</p>
+				<section>
+					<h4 id="simple-checkbox">
+						<a href="#simple-checkbox">Simple checkbox</a>
+					</h4>
+<pre><code class="language-html line-numbers">&lt;span class="example-checkbox"
+	data-toggle-class="is-checked"&gt;
+&lt;/span&gt;</code></pre>
+					<div class="demo">
+						<span class="example-checkbox" data-toggle-class="is-checked"></span>
+					</div>
+					<div class="text-right">
+						<a href="assets/css/checkbox.css" title="Download this checkbox demo stylesheet">download CSS</a>
+					</div>
+				</section>
+				<section>
+					<h4 id="checkbox-with-aria">
+						<a href="#checkbox-with-aria">Checkbox with ARIA attributes for accessibility</a>
+					</h4>
+<pre><code class="language-html line-numbers">&lt;span class="example-checkbox"
+	data-toggle-class="is-checked"
+	role="checkbox"
+	aria-checked="false"&gt;
+&lt;/span&gt;</code></pre>
+					<div class="demo">
+						<span class="example-checkbox" data-toggle-class="is-checked" role="checkbox" aria-checked="false"></span>
+					</div>
+					<div class="text-right">
+						<a href="assets/css/checkbox.css" title="Download this checkbox demo stylesheet">download CSS</a>
+					</div>
+				</section>
+				<section>
+					<h4 id="checkbox-with-label">
+						<a href="#checkbox-with-label">Checkbox with outside label</a>
+					</h4>
+<pre><code class="language-html line-numbers">&lt;span class="example-checkbox"
+	data-toggle-class="is-checked"
+	id="checkbox_1"
+	role="checkbox"
+	aria-checked="false"&gt;
+&lt;/span&gt;
+&lt;label for="checkbox_1"
+	data-toggle-class="is-checked"
+	data-toggle-target-parent="#checkbox_1"
+	data-toggle-target-only&gt;
+	Awesome checkbox
+&lt;/label&gt;</code></pre>
+					<div class="demo">
+						<span class="example-checkbox" data-toggle-class="is-checked" id="checkbox_1" role="checkbox" aria-checked="false"></span>
+						<label for="checkbox_1" data-toggle-class="is-checked" data-toggle-target-parent="#checkbox_1" data-toggle-target-only>Awesome checkbox</label>
+					</div>
+					<div class="text-right">
+						<a href="assets/css/checkbox.css" title="Download this checkbox demo stylesheet">download CSS</a>
+					</div>
+				</section>
+				<section>
+					<h4 id="checkbox-explaination">
+						<a href="#checkbox-explaination">Explaination</a>
+					</h4>
+					<p>
+						Toggle <code class="language-css">.is-checked</code> class on click on the box. As <code class="language-html">aria-checked</code> attribute is set, its value change too. The label is another trigger that as the box as a target, and toggle the same class.
+					</p>
+				</section>
+			</section>
+			<section>
+				<h3 id="radio">
+					<a href="#radio">Radio buttons</a>
+				</h3>
+				<p>
+					You want to display some radio buttons, i.e. somes boxes with a checkmark that appears on click on these boxes, only one at a time.
+					Even if you should use the <code class="language-html">&lt;input type="radio"&gt;</code> native componant, in some case, you can’t.
+				</p>
+				<section>
+					<h4 id="simple-radio">
+						<a href="#simple-radio">Simple radio buttons</a>
+					</h4>
+<pre><code class="language-html line-numbers">&lt;span class="example-radio"
+	data-toggle-class="is-checked"
+	data-toggle-group="radioGroup"&gt;
+	Option 1
+&lt;/span&gt;
+&lt;span class="example-radio"
+	data-toggle-class="is-checked"
+	data-toggle-group="radioGroup"&gt;
+	Option 2
+&lt;/span&gt;
+&lt;span class="example-radio"
+	data-toggle-class="is-checked"
+	data-toggle-group="radioGroup"&gt;
+	Option 3
+&lt;/span&gt;</code></pre>
+					<div class="demo">
+						<span class="example-radio" data-toggle-class="is-checked" data-toggle-group="radioGroup1">Option 1</span><br>
+						<span class="example-radio" data-toggle-class="is-checked" data-toggle-group="radioGroup1">Option 2</span><br>
+						<span class="example-radio" data-toggle-class="is-checked" data-toggle-group="radioGroup1">Option 3</span>
+					</div>
+					<div class="text-right">
+						<a href="assets/css/radio.css" title="Download this radio demo stylesheet">download CSS</a>
+					</div>
+				</section>
+				<section>
+					<h4 id="radio-with-aria">
+						<a href="#radio-with-aria">Radio buttons with ARIA attributes for accessibility</a>
+					</h4>
+<pre><code class="language-html line-numbers">&lt;div role="radiogroup"&gt;
+	&lt;span class="example-radio"
+		data-toggle-class="is-checked"
+		data-toggle-group="radioGroup"
+		role="radio"
+		aria-checked="false"&gt;
+		Option 1
+	&lt;/span&gt;
+	&lt;span class="example-radio"
+		data-toggle-class="is-checked"
+		data-toggle-group="radioGroup"
+		role="radio"
+		aria-checked="false"&gt;
+		Option 2
+	&lt;/span&gt;
+	&lt;span class="example-radio"
+		data-toggle-class="is-checked"
+		data-toggle-group="radioGroup"
+		role="radio"
+		aria-checked="false"&gt;
+		Option 3
+	&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+					<div class="demo">
+						<div role="radiogroup">
+							<span class="example-radio" data-toggle-class="is-checked" data-toggle-group="radioGroup2" role="radio" aria-checked="false">Option 1</span><br>
+							<span class="example-radio" data-toggle-class="is-checked" data-toggle-group="radioGroup2" role="radio" aria-checked="false">Option 2</span><br>
+							<span class="example-radio" data-toggle-class="is-checked" data-toggle-group="radioGroup2" role="radio" aria-checked="false">Option 3</span>
+						</div>
+					</div>
+					<div class="text-right">
+						<a href="assets/css/radio.css" title="Download this radio demo stylesheet">download CSS</a>
+					</div>
+				</section>
+				<section>
+					<h4 id="radio-explaination">
+						<a href="#radio-explaination">Explaination</a>
+					</h4>
+					<p>
+						Toggle <code class="language-css">.is-checked</code> class on click on this element, but only one of the <code class="language-html">radioGroup</code> group at a time. As <code class="language-html">aria-checked</code> attribute is set, its value change too.
+					</p>
+				</section>
+			</section>
+			<section>
 				<h3 id="tooltip">
 					<a href="#tooltip">Tooltip</a>
 				</h3>
+				<p>You want to put a tooltip on a text, i.e. show an element when hovering this text, and hide it when the cursor leaves this text.</p>
 				<section>
-					<h4>HTML</h4>
-<pre><code class="language-html">&lt;span class="example-tooltip"
+					<h4 id="simple-tooltip">
+						<a href="#simple-tooltip">Simple tooltip</a>
+					</h4>
+<pre><code class="language-html line-numbers">&lt;span class="example-tooltip"
 	data-toggle-class="is-visible"
 	data-toggle-target-self=".tooltip"
 	data-toggle-target-only
@@ -251,18 +416,23 @@
 	Hover me
 	&lt;span class="tooltip"&gt;Awesome tooltip&lt;/span&gt;
 &lt;/span&gt;</code></pre>
-					<div class="text-right">
-						<a href="assets/css/tooltip.css" title="Download this tooltip demo stylesheet">download CSS</a>
-					</div>
-				</section>
-				<section>
-					<h4>Result</h4>
 					<div class="demo">
 						<span class="example-tooltip" data-toggle-class="is-visible" data-toggle-target-self=".tooltip" data-toggle-target-only data-toggle-event="mouseover" data-toggle-outside>
 							Hover me
 							<span class="tooltip">Awesome tooltip</span>
 						</span>
 					</div>
+					<div class="text-right">
+						<a href="assets/css/tooltip.css" title="Download this tooltip demo stylesheet">download CSS</a>
+					</div>
+				</section>
+				<section>
+					<h4 id="tooltip-explaination">
+						<a href="#tooltip-explaination">Explaination</a>
+					</h4>
+					<p>
+						Toggle <code class="language-css">.is-visible</code> class only on the target <code class="language-css">.tooltip</code> located inside this trigger, on <code class="language-js">mouseover</code> event, and toggle again when <code class="language-js">mouseover</code> is triggered outside this trigger.
+					</p>
 				</section>
 			</section>
 		</section>

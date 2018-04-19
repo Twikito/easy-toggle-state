@@ -66,18 +66,20 @@ h3 {
 }
 
 h4 {
-	margin: 0;
+	margin: 1em 0;
 }
 
 h2 a,
-h3 a {
+h3 a,
+h4 a {
 	position: relative;
 	display: inline-block;
 	text-decoration: none; color: inherit;
 }
 
 h2 a::before,
-h3 a::before {
+h3 a::before,
+h4 a::before {
 	position: absolute; right: 100%;
 	display: inline-block; margin-left: -100%;
 	content: '#'; opacity: 0; visibility: hidden;
@@ -86,7 +88,9 @@ h3 a::before {
 h2 a:hover::before,
 h2 a:focus::before,
 h3 a:hover::before,
-h3 a:focus::before {
+h3 a:focus::before,
+h4 a:hover::before,
+h4 a:focus::before {
 	opacity: 1; visibility: visible;
 }
 
@@ -129,6 +133,7 @@ pre[class*="language-"],
 }
 
 .demo {
+	position: relative;
 	padding: 1em; margin: .5em 0;
 }
 

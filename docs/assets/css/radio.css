@@ -1,0 +1,21 @@
+.example-radio::before {
+	display: inline-block;
+	width: 1em;
+	height: 1em;
+	margin-right: .25em;
+	border: 2px solid darkgrey;
+	border-radius: 50%;
+	background: radial-gradient(ellipse at center, white 0%, white 100%);
+	vertical-align: middle;
+	cursor: pointer;
+	content: "";
+	transition: .15s ease-out;
+}
+.example-radio:hover::before,
+.example-radio:focus::before {
+	border-color: var(--theme); /* You probably need to change this! */
+	box-shadow: 0 0 .25em var(--theme); /* You probably need to change this too! */
+}
+.example-radio.is-checked::before {
+	background: radial-gradient(ellipse at center, var(--theme) 0%, var(--theme) 40%, white 41%, white 100%); /* You probably need to change this! */
+}

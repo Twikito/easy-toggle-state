@@ -1,0 +1,27 @@
+.example-checkbox {
+	display: inline-block;
+	width: 1em;
+	height: 1em;
+	border: 2px solid darkgrey;
+	border-radius: .25em;
+	background-color: white;
+	text-align: center;
+	line-height: 1;
+	cursor: pointer;
+	transition: .15s ease-out;
+}
+.example-checkbox:hover,
+.example-checkbox:focus {
+	border-color: var(--theme); /* You probably need to change this! */
+	box-shadow: 0 0 .25em var(--theme); /* You probably need to change this too! */
+}
+.example-checkbox::before {
+	display: block;
+	color: var(--theme);
+	opacity: 0;
+	content: "✔";
+	transition: opacity .15s ease-out;
+}
+.example-checkbox.is-checked::before {
+	opacity: 1;
+}
