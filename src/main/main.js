@@ -1,4 +1,5 @@
 import {
+	CHECKED,
 	CLASS,
 	ESCAPE,
 	EVENT,
@@ -35,8 +36,26 @@ const triggerOffHandler = event => {
 	manageToggle(event.target.targetElement);
 };
 
+/* Manage ARIA attributes */
+const manageAria = element => {
+	if (element.hasAttribute(CHECKED)) {
+		element.setAttribute(CHECKED, element.isToggleActive);
+	}
+
+	if (element.hasAttribute(EXPANDED)) {
+		element.setAttribute(EXPANDED, element.isToggleActive);
+	}
+
+	if (element.hasAttribute(SELECTED)) {
+		element.setAttribute(SELECTED, element.isToggleActive);
+	}
+};
+
 /* Manage attributes and events of target elements. */
 const manageTarget = (targetElement, triggerElement) => {
+	targetElement.isToggleActive = !targetElement.isToggleActive;
+	manageAria(targetElement);
+
 	if (triggerElement.hasAttribute(OUTSIDE)) {
 		targetElement.setAttribute(TARGET_STATE, triggerElement.isToggleActive);
 	}
@@ -60,18 +79,11 @@ const manageTarget = (targetElement, triggerElement) => {
 const manageToggle = element => {
 	let className = element.getAttribute(CLASS) || "is-active";
 	element.isToggleActive = !element.isToggleActive;
+	manageAria(element);
 	//console.log("toggle to "+element.isToggleActive);
 
 	if (!element.hasAttribute(TARGET_ONLY)) {
 		element.classList.toggle(className);
-	}
-
-	if (element.hasAttribute(EXPANDED)) {
-		element.setAttribute(EXPANDED, element.isToggleActive);
-	}
-
-	if (element.hasAttribute(SELECTED)) {
-		element.setAttribute(SELECTED, element.isToggleActive);
 	}
 
 	let targetElements = retrieveTargets(element);
@@ -121,6 +133,10 @@ const manageActiveByDefault = element => {
 
 	if (!element.hasAttribute(TARGET_ONLY) && !element.classList.contains(className)) {
 		element.classList.add(className);
+	}
+
+	if (element.hasAttribute(CHECKED) && element.getAttribute(CHECKED)) {
+		element.setAttribute(CHECKED, true);
 	}
 
 	if (element.hasAttribute(EXPANDED) && element.getAttribute(EXPANDED)) {

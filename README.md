@@ -87,7 +87,7 @@ Add this attribute to an element __inside a target__ to enable this element to t
 
 ### More
 
-If a trigger element has the `aria-expanded` or `aria-selected` attribute, its value will also change.
+If a trigger element has the `aria-expanded`, `aria-selected` or `aria-checked` attribute, its value will also change.
 
 You can also change the `PREFIX` value to prevent conflict with another JS library. This prefix will be set to all attributes like `data-[PREFIX]-class`, `toggle` as default.
 
