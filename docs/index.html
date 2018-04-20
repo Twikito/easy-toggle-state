@@ -244,6 +244,7 @@
 			<h2 id="examples">
 				<a href="#examples">Examples</a>
 			</h2>
+			<p>Here are some demos to show you how this is powerful. Of course, these examples can be made in other ways.</p>
 			<section>
 				<h3 id="checkbox">
 					<a href="#checkbox">Checkbox</a>
@@ -283,8 +284,29 @@
 					</div>
 				</section>
 				<section>
-					<h4 id="checkbox-with-label">
-						<a href="#checkbox-with-label">Checkbox with outside label</a>
+					<h4 id="checkbox-with-internal-label">
+						<a href="#checkbox-with-internal-label">Checkbox with internal label</a>
+					</h4>
+<pre><code class="language-html line-numbers">&lt;span data-toggle-class="is-checked"
+	data-toggle-target-self=".example-checkbox"
+	role="checkbox"
+	aria-checked="false"&gt;
+	&lt;span class="example-checkbox"&gt;&lt;/span&gt;
+	Awesome checkbox
+&lt;/span&gt;</code></pre>
+					<div class="demo">
+						<span data-toggle-class="is-checked" data-toggle-target-self=".example-checkbox" role="checkbox" aria-checked="false">
+							<span class="example-checkbox"></span>
+							Awesome checkbox
+						</span>
+					</div>
+					<div class="text-right">
+						<a href="assets/css/checkbox.css" title="Download this checkbox demo stylesheet">download CSS</a>
+					</div>
+				</section>
+				<section>
+					<h4 id="checkbox-with-external-label">
+						<a href="#checkbox-with-external-label">Checkbox with external label</a>
 					</h4>
 <pre><code class="language-html line-numbers">&lt;span class="example-checkbox"
 	data-toggle-class="is-checked"
@@ -327,25 +349,37 @@
 					<h4 id="simple-radio">
 						<a href="#simple-radio">Simple radio buttons</a>
 					</h4>
-<pre><code class="language-html line-numbers">&lt;span class="example-radio"
-	data-toggle-class="is-checked"
+<pre><code class="language-html line-numbers">&lt;span data-toggle-class="is-checked"
+	data-toggle-target-self=".example-radio"
 	data-toggle-group="radioGroup"&gt;
+	&lt;span class="example-radio"&gt;&lt;/span&gt;
 	Option 1
-&lt;/span&gt;
-&lt;span class="example-radio"
-	data-toggle-class="is-checked"
+&lt;/span&gt;&lt;br&gt;
+&lt;span data-toggle-class="is-checked"
+	data-toggle-target-self=".example-radio"
 	data-toggle-group="radioGroup"&gt;
+	&lt;span class="example-radio"&gt;&lt;/span&gt;
 	Option 2
-&lt;/span&gt;
-&lt;span class="example-radio"
-	data-toggle-class="is-checked"
+&lt;/span&gt;&lt;br&gt;
+&lt;span data-toggle-class="is-checked"
+	data-toggle-target-self=".example-radio"
 	data-toggle-group="radioGroup"&gt;
+	&lt;span class="example-radio"&gt;&lt;/span&gt;
 	Option 3
 &lt;/span&gt;</code></pre>
 					<div class="demo">
-						<span class="example-radio" data-toggle-class="is-checked" data-toggle-group="radioGroup1">Option 1</span><br>
-						<span class="example-radio" data-toggle-class="is-checked" data-toggle-group="radioGroup1">Option 2</span><br>
-						<span class="example-radio" data-toggle-class="is-checked" data-toggle-group="radioGroup1">Option 3</span>
+						<span data-toggle-class="is-checked" data-toggle-target-self=".example-radio" data-toggle-group="radioGroup1">
+							<span class="example-radio"></span>
+							Option 1
+						</span><br>
+						<span data-toggle-class="is-checked" data-toggle-target-self=".example-radio" data-toggle-group="radioGroup1">
+							<span class="example-radio"></span>
+							Option 2
+						</span><br>
+						<span data-toggle-class="is-checked" data-toggle-target-self=".example-radio" data-toggle-group="radioGroup1">
+							<span class="example-radio"></span>
+							Option 3
+						</span>
 					</div>
 					<div class="text-right">
 						<a href="assets/css/radio.css" title="Download this radio demo stylesheet">download CSS</a>
@@ -356,33 +390,45 @@
 						<a href="#radio-with-aria">Radio buttons with ARIA attributes for accessibility</a>
 					</h4>
 <pre><code class="language-html line-numbers">&lt;div role="radiogroup"&gt;
-	&lt;span class="example-radio"
-		data-toggle-class="is-checked"
+	&lt;span data-toggle-class="is-checked"
+		data-toggle-target-self=".example-radio"
 		data-toggle-group="radioGroup"
 		role="radio"
 		aria-checked="false"&gt;
+		&lt;span class="example-radio"&gt;&lt;/span&gt;
 		Option 1
-	&lt;/span&gt;
-	&lt;span class="example-radio"
-		data-toggle-class="is-checked"
+	&lt;/span&gt;&lt;br&gt;
+	&lt;span data-toggle-class="is-checked"
+		data-toggle-target-self=".example-radio"
 		data-toggle-group="radioGroup"
 		role="radio"
 		aria-checked="false"&gt;
+		&lt;span class="example-radio"&gt;&lt;/span&gt;
 		Option 2
-	&lt;/span&gt;
-	&lt;span class="example-radio"
-		data-toggle-class="is-checked"
+	&lt;/span&gt;&lt;br&gt;
+	&lt;span data-toggle-class="is-checked"
+		data-toggle-target-self=".example-radio"
 		data-toggle-group="radioGroup"
 		role="radio"
 		aria-checked="false"&gt;
+		&lt;span class="example-radio"&gt;&lt;/span&gt;
 		Option 3
 	&lt;/span&gt;
 &lt;/div&gt;</code></pre>
 					<div class="demo">
 						<div role="radiogroup">
-							<span class="example-radio" data-toggle-class="is-checked" data-toggle-group="radioGroup2" role="radio" aria-checked="false">Option 1</span><br>
-							<span class="example-radio" data-toggle-class="is-checked" data-toggle-group="radioGroup2" role="radio" aria-checked="false">Option 2</span><br>
-							<span class="example-radio" data-toggle-class="is-checked" data-toggle-group="radioGroup2" role="radio" aria-checked="false">Option 3</span>
+							<span data-toggle-class="is-checked" data-toggle-target-self=".example-radio" data-toggle-group="radioGroup2" role="radio" aria-checked="false">
+								<span class="example-radio"></span>
+								Option 1
+							</span><br>
+							<span data-toggle-class="is-checked" data-toggle-target-self=".example-radio" data-toggle-group="radioGroup2" role="radio" aria-checked="false">
+								<span class="example-radio"></span>
+								Option 2
+							</span><br>
+							<span data-toggle-class="is-checked" data-toggle-target-self=".example-radio" data-toggle-group="radioGroup2" role="radio" aria-checked="false">
+								<span class="example-radio"></span>
+								Option 3
+							</span>
 						</div>
 					</div>
 					<div class="text-right">
@@ -394,7 +440,7 @@
 						<a href="#radio-explaination">Explaination</a>
 					</h4>
 					<p>
-						Toggle <code class="language-css">.is-checked</code> class on click on this element, but only one of the <code class="language-html">radioGroup</code> group at a time. As <code class="language-html">aria-checked</code> attribute is set, its value change too.
+						Toggle <code class="language-css">.is-checked</code> class on click on this element, but only one of the <code class="language-html">radioGroup</code> group at a time. Toggle the same class on the target element <code class="language-html">.example-radio</code> inside itself at the same time. As <code class="language-html">aria-checked</code> attribute is set, its value change too.
 					</p>
 				</section>
 			</section>
