@@ -17,7 +17,7 @@
 }
 .example-checkbox::before {
 	display: block;
-	color: var(--theme);
+	color: var(--theme); /* You probably need to change this! */
 	opacity: 0;
 	content: "✔";
 	transition: opacity .15s ease-out;

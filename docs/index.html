@@ -20,9 +20,10 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:500|Open+Sans:400,600">
 	<link rel="stylesheet" href="assets/css/prism.css">
 	<link rel="stylesheet" href="assets/css/main.css">
-	<link rel="stylesheet" href="assets/css/tooltip.css">
 	<link rel="stylesheet" href="assets/css/checkbox.css">
 	<link rel="stylesheet" href="assets/css/radio.css">
+	<link rel="stylesheet" href="assets/css/tooltip.css">
+	<link rel="stylesheet" href="assets/css/collapsible-panel.css">
 </head>
 <body>
 	<header id="header">
@@ -43,7 +44,7 @@
 			<strong>A tiny JavaScript library to easily toggle the state of any HTML element and its targets.</strong>
 		</p>
 		<p>
-			Dropdown, navigation button, tooltip, expandable panel, lightbox, tabs, switch like above&hellip;<br>
+			Dropdown, navigation button, tooltip, collapsible panel, lightbox, tabs, switch like above&hellip;<br>
 			UI components made in minutes without worried about JavaScript. Only set a few HTML attributes, and code the rest with your CSS skills.
 		</p>
 
@@ -70,11 +71,14 @@
 					<a href="#why">Why?</a>
 				</li>
 				<li>
-					<a href="#recommandation">Recommandation</a>
+					<a href="#installation">Installation</a>
 				</li>
 				<li>
 					<a href="#how-to-use">How to use</a>
 					<ul>
+						<li>
+							<a href="#recommandation">Recommandation</a>
+						</li>
 						<li>
 							<a href="#basics">Basics</a>
 						</li>
@@ -83,9 +87,6 @@
 						</li>
 						<li>
 							<a href="#more">More</a>
-						</li>
-						<li>
-							<a href="#installation">Installation</a>
 						</li>
 					</ul>
 				</li>
@@ -100,6 +101,9 @@
 						</li>
 						<li>
 							<a href="#tooltip">Tooltip</a>
+						</li>
+						<li>
+							<a href="#collapsible-panel">Collapsible panel / accordion</a>
 						</li>
 					</ul>
 				<li>
@@ -118,17 +122,25 @@
 			<p><strong>Only focus on adjusting the rest with your CSS creativity</strong>.</p>
 		</section>
 
-		<section>
-			<h2 id="recommandation">
-				<a href="#recommandation">Recommendation</a>
+		<section class="language-bash">
+			<h2 id="installation">
+				<a href="#installation">Installation</a>
 			</h2>
-			<p>Although it is conceivable, I recommend using only buttons or links as trigger elements. If You prevent the default behavior of a link, don't forget to add the <code class="language-html">role="button"</code> attribute.</p>
+			<p>You can <a href="#download">direct download</a> the script – <a href="//github.com/Twikito/easy-toggle-state/tree/master/dist">ES5 and ES6 available, compressed and uncompressed</a> –, or use NPM command:</p>
+			<pre><code>$ npm install easy-toggle-state</code></pre>
+			<p>Then, <strong>add the script to your page</strong>, and it's done.</p>
 		</section>
 
 		<section>
 			<h2 id="how-to-use">
 				<a href="#how-to-use">How to use</a>
 			</h2>
+			<section>
+				<h3 id="recommandation">
+					<a href="#recommandation">Recommendation</a>
+				</h3>
+				<p>Although it is conceivable, I recommend using only buttons or links as trigger elements. If You prevent the default behavior of a link, don't forget to add the <code class="language-html">role="button"</code> attribute.</p>
+			</section>
 			<section class="language-html">
 				<h3 id="basics">
 					<a href="#basics">Basics</a>
@@ -230,21 +242,13 @@
 				<p>Finally, for asynchronous needs, you can call <code class="language-js">window.initEasyToggleState()</code>.</p>
 			</section>
 
-			<section class="language-bash">
-				<h3 id="installation">
-					<a href="#installation">Installation</a>
-				</h3>
-				<p>You can <a href="#download">direct download</a> the script – <a href="//github.com/Twikito/easy-toggle-state/tree/master/dist">ES5 and ES6 available, compressed and uncompressed</a> –, or use NPM command:</p>
-				<pre><code>$ npm install easy-toggle-state</code></pre>
-				<p>Then, <strong>add the script to your page</strong>, and it's done.</p>
-			</section>
 		</section>
 
 		<section>
 			<h2 id="examples">
 				<a href="#examples">Examples</a>
 			</h2>
-			<p>Here are some demos to show you how this is powerful. Of course, these examples can be made in other ways.</p>
+			<p>Here are some demos to show you how this is powerful. Of course, <strong>these examples can be made in other ways</strong>.</p>
 			<section>
 				<h3 id="checkbox">
 					<a href="#checkbox">Checkbox</a>
@@ -310,13 +314,13 @@
 					</h4>
 <pre><code class="language-html line-numbers">&lt;span class="example-checkbox"
 	data-toggle-class="is-checked"
-	id="checkbox_1"
+	id="checkbox"
 	role="checkbox"
 	aria-checked="false"&gt;
 &lt;/span&gt;
-&lt;label for="checkbox_1"
+&lt;label for="checkbox"
 	data-toggle-class="is-checked"
-	data-toggle-target-parent="#checkbox_1"
+	data-toggle-target-parent="#checkbox"
 	data-toggle-target-only&gt;
 	Awesome checkbox
 &lt;/label&gt;</code></pre>
@@ -478,6 +482,166 @@
 					</h4>
 					<p>
 						Toggle <code class="language-css">.is-visible</code> class only on the target <code class="language-css">.tooltip</code> located inside this trigger, on <code class="language-js">mouseover</code> event, and toggle again when <code class="language-js">mouseover</code> is triggered outside this trigger.
+					</p>
+				</section>
+			</section>
+			<section>
+				<h3 id="collapsible-panel">
+					<a href="#collapsible-panel">Collapsible panel / accordion</a>
+				</h3>
+				<p>
+					You want to create a collapsible panel, i.e. a frame, with some content, that can be collapsed on click on a button.
+					Even if you should use <code class="language-html">&lt;details&gt;</code> and <code class="language-html">&lt;summary&gt;</code> HTML elements, in some case, you can’t.
+				</p>
+				<section>
+					<h4 id="simple-collapsible-panel">
+						<a href="#simple-collapsible-panel">Simple collapsible panel</a>
+					</h4>
+<pre><code class="language-html line-numbers">&lt;button type="button"
+	class="example-collapsible-button"
+	data-toggle-class="is-open"
+	data-toggle-target-parent=".example-collapsible-panel"&gt;
+	Click here
+&lt;/button&gt;
+&lt;div class="example-collapsible-panel"&gt;
+	&lt;div class="example-collapsible-panel-content"&gt;
+		Lorem ipsum dolor sit amet&hellip;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+					<div class="demo">
+						<button type="button" class="example-collapsible-button" data-toggle-class="is-open" data-toggle-target-parent=".example-collapsible-panel">
+							Click here
+						</button>
+						<div class="example-collapsible-panel">
+							<div class="example-collapsible-panel-content">
+								Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+							</div>
+						</div>
+					</div>
+					<div class="text-right">
+						<a href="assets/css/collapsible-panel.css" title="Download this collapsible panel demo stylesheet">download CSS</a>
+					</div>
+				</section>
+				<section>
+					<h4 id="collapsible-panel-with-aria">
+						<a href="#simple-collapsible-panel-with-aria">Collapsible panel with ARIA attributes for accessibility</a>
+					</h4>
+<pre><code class="language-html line-numbers">&lt;button type="button"
+	class="example-collapsible-button"
+	data-toggle-class="is-open"
+	data-toggle-target-parent="#panel"
+	aria-controls="panel"
+	aria-expanded="false"&gt;
+	Click here
+&lt;/button&gt;
+&lt;div class="example-collapsible-panel" id="panel" role="region"&gt;
+	&lt;div class="example-collapsible-panel-content"&gt;
+		Lorem ipsum dolor sit amet&hellip;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+					<div class="demo">
+						<button type="button" class="example-collapsible-button" data-toggle-class="is-open" data-toggle-target-parent="#panel" aria-controls="panel" aria-expanded="false">
+							Click here
+						</button>
+						<div class="example-collapsible-panel" id="panel" role="region">
+							<div class="example-collapsible-panel-content">
+								Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+							</div>
+						</div>
+					</div>
+					<div class="text-right">
+						<a href="assets/css/collapsible-panel.css" title="Download this collapsible panel demo stylesheet">download CSS</a>
+					</div>
+				</section>
+				<section>
+					<h4 id="accordion">
+						<a href="#accordion">Accordion</a>
+					</h4>
+<pre><code class="language-html line-numbers">&lt;button type="button"
+	class="example-collapsible-button"
+	data-toggle-class="is-open"
+	data-toggle-target-parent="#panel_1"
+	data-toggle-group="accordion"
+	data-toggle-is-active
+	aria-controls="panel_1"
+	aria-expanded="false"&gt;
+	Click here
+&lt;/button&gt;
+&lt;div class="example-collapsible-panel" id="panel_1" role="region"&gt;
+	&lt;div class="example-collapsible-panel-content"&gt;
+		Lorem ipsum dolor sit amet&hellip;
+	&lt;/div&gt;
+&lt;/div&gt;
+&lt;button type="button"
+	class="example-collapsible-button"
+	data-toggle-class="is-open"
+	data-toggle-target-parent="#panel_2"
+	data-toggle-group="accordion"
+	aria-controls="panel_2"
+	aria-expanded="false"&gt;
+	Click here
+&lt;/button&gt;
+&lt;div class="example-collapsible-panel" id="panel_2" role="region"&gt;
+	&lt;div class="example-collapsible-panel-content"&gt;
+		In in erat blandit ante mollis tincidunt&hellip;
+	&lt;/div&gt;
+&lt;/div&gt;
+&lt;button type="button"
+	class="example-collapsible-button"
+	data-toggle-class="is-open"
+	data-toggle-target-parent="#panel_3"
+	data-toggle-group="accordion"
+	aria-controls="panel_3"
+	aria-expanded="false"&gt;
+	Click here
+&lt;/button&gt;
+&lt;div class="example-collapsible-panel" id="panel_3" role="region"&gt;
+	&lt;div class="example-collapsible-panel-content"&gt;
+		Nam posuere tortor a augue vulputate&hellip;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+					<div class="demo">
+						<button type="button" class="example-collapsible-button" data-toggle-class="is-open" data-toggle-target-parent="#panel_1" data-toggle-group="accordion" data-toggle-is-active aria-controls="panel_1" aria-expanded="false">
+							Click here
+						</button>
+						<div class="example-collapsible-panel" id="panel_1" role="region">
+							<div class="example-collapsible-panel-content">
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam semper faucibus odio, vitae faucibus dui tempor in. Duis vitae luctus mi. Phasellus ultrices rhoncus lectus, non vehicula tortor sodales id.
+							</div>
+						</div>
+						<button type="button" class="example-collapsible-button" data-toggle-class="is-open" data-toggle-target-parent="#panel_2" data-toggle-group="accordion" aria-controls="panel_2" aria-expanded="false">
+							Click here
+						</button>
+						<div class="example-collapsible-panel" id="panel_2" role="region">
+							<div class="example-collapsible-panel-content">
+								In in erat blandit ante mollis tincidunt. Quisque ac tempus nisi, a ultricies metus. Suspendisse et quam nec mauris feugiat luctus. Curabitur porta sem vitae nulla congue malesuada.
+							</div>
+						</div>
+						<button type="button" class="example-collapsible-button" data-toggle-class="is-open" data-toggle-target-parent="#panel_3" data-toggle-group="accordion" aria-controls="panel_3" aria-expanded="false">
+							Click here
+						</button>
+						<div class="example-collapsible-panel" id="panel_3" role="region">
+							<div class="example-collapsible-panel-content">
+								Nam posuere tortor a augue vulputate, at blandit ipsum tincidunt. Donec dictum eros ligula, id congue justo porta eget. Aliquam vel erat venenatis, ornare nisi vel, convallis libero.
+							</div>
+						</div>
+					</div>
+					<div class="text-right">
+						<a href="assets/css/collapsible-panel.css" title="Download this collapsible panel demo stylesheet">download CSS</a>
+					</div>
+				</section>
+				<section>
+					<h4 id="tooltip-explaination">
+						<a href="#tooltip-explaination">Explaination</a>
+					</h4>
+					<p>
+						The button toggles <code class="language-css">.is-open</code> class on itself and its target located inside its parent container. If there’s more than one button / panel, be careful to target a unique ID.
+					</p>
+					<p>
+						For an accordion, each trigger must be linked to the same group, here <code class="language-html">accordion</code>. This way, only one of this group can be opened at a time. The first panel is opened by default with <code class="language-html">data-toggle-is-active</code>.
+					</p>
+					<p>
+						As <code class="language-html">aria-expanded</code> attribute is set, its value change too.
 					</p>
 				</section>
 			</section>

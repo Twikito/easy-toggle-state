@@ -27,6 +27,7 @@ button,
 }
 
 button {
+	font: inherit;
 	cursor: pointer;
 }
 
