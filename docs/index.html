@@ -523,6 +523,36 @@
 					</div>
 				</section>
 				<section>
+					<h4 id="collapsible-panel-with-escape">
+						<a href="#collapsible-panel-with-escape">Collapsible panel with escape key support</a>
+					</h4>
+<pre><code class="language-html line-numbers">&lt;button type="button"
+	class="example-collapsible-button"
+	data-toggle-class="is-open"
+	data-toggle-target-parent=".example-collapsible-panel"
+	data-toggle-escape&gt;
+	Click here
+&lt;/button&gt;
+&lt;div class="example-collapsible-panel"&gt;
+	&lt;div class="example-collapsible-panel-content"&gt;
+		Lorem ipsum dolor sit amet&hellip;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+					<div class="demo">
+						<button type="button" class="example-collapsible-button" data-toggle-class="is-open" data-toggle-target-parent=".example-collapsible-panel" data-toggle-escape>
+							Click here
+						</button>
+						<div class="example-collapsible-panel">
+							<div class="example-collapsible-panel-content">
+								Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+							</div>
+						</div>
+					</div>
+					<div class="text-right">
+						<a href="assets/css/collapsible-panel.css" title="Download this collapsible panel demo stylesheet">download CSS</a>
+					</div>
+				</section>
+				<section>
 					<h4 id="collapsible-panel-with-aria">
 						<a href="#simple-collapsible-panel-with-aria">Collapsible panel with ARIA attributes for accessibility</a>
 					</h4>
@@ -530,6 +560,7 @@
 	class="example-collapsible-button"
 	data-toggle-class="is-open"
 	data-toggle-target-parent="#panel"
+	data-toggle-escape
 	aria-controls="panel"
 	aria-expanded="false"&gt;
 	Click here
@@ -540,7 +571,7 @@
 	&lt;/div&gt;
 &lt;/div&gt;</code></pre>
 					<div class="demo">
-						<button type="button" class="example-collapsible-button" data-toggle-class="is-open" data-toggle-target-parent="#panel" aria-controls="panel" aria-expanded="false">
+						<button type="button" class="example-collapsible-button" data-toggle-class="is-open" data-toggle-target-parent="#panel" data-toggle-escape aria-controls="panel" aria-expanded="false">
 							Click here
 						</button>
 						<div class="example-collapsible-panel" id="panel" role="region">
@@ -557,7 +588,8 @@
 					<h4 id="accordion">
 						<a href="#accordion">Accordion</a>
 					</h4>
-<pre><code class="language-html line-numbers">&lt;button type="button"
+<pre><code class="language-html line-numbers">&lt;!-- First panel, opened by default --&gt;
+&lt;button type="button"
 	class="example-collapsible-button"
 	data-toggle-class="is-open"
 	data-toggle-target-parent="#panel_1"
@@ -572,6 +604,8 @@
 		Lorem ipsum dolor sit amet&hellip;
 	&lt;/div&gt;
 &lt;/div&gt;
+
+&lt;!-- Second panel --&gt;
 &lt;button type="button"
 	class="example-collapsible-button"
 	data-toggle-class="is-open"
@@ -586,6 +620,8 @@
 		In in erat blandit ante mollis tincidunt&hellip;
 	&lt;/div&gt;
 &lt;/div&gt;
+
+&lt;!-- Third panel --&gt;
 &lt;button type="button"
 	class="example-collapsible-button"
 	data-toggle-class="is-open"
