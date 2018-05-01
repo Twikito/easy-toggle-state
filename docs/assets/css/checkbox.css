@@ -2,7 +2,10 @@
 	display: inline-block;
 	width: 1em;
 	height: 1em;
+	padding: 0;
+	box-sizing: content-box;
 	border: 2px solid darkgrey;
+	outline: none;
 	border-radius: .25em;
 	background-color: white;
 	text-align: center;
@@ -24,4 +27,12 @@
 }
 .example-checkbox.is-checked::before {
 	opacity: 1;
+}
+
+/* For internal label */
+.example-checkbox-container {
+	padding: 0;
+	border: none;
+	outline: none;
+	background: none;
 }

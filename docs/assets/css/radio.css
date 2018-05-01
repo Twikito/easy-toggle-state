@@ -2,10 +2,12 @@
 	display: inline-block;
 	width: 1em;
 	height: 1em;
-	margin-right: .25em;
+	padding: 0;
+	box-sizing: content-box;
 	border: 2px solid darkgrey;
+	outline: none;
 	border-radius: 50%;
-	background: radial-gradient(ellipse at center, white 0%, white 100%);
+	background: white radial-gradient(ellipse at center, transparent 0%, transparent 40%, white 41%, white 100%);
 	vertical-align: middle;
 	cursor: pointer;
 	content: "";
@@ -17,5 +19,5 @@
 	box-shadow: 0 0 .25em var(--theme); /* You probably need to change this too! */
 }
 .example-radio.is-checked {
-	background: radial-gradient(ellipse at center, var(--theme) 0%, var(--theme) 40%, white 41%, white 100%); /* You probably need to change this! */
+	background-color: var(--theme); /* You probably need to change this! */
 }
