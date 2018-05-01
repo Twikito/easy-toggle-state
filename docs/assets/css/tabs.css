@@ -1,0 +1,22 @@
+.example-tabs button {
+	padding: .25em .5em;
+	border: none;
+	background-color: white;
+}
+.example-tabs button:hover,
+.example-tabs button:focus {
+	text-decoration: underline;
+}
+.example-tabs button.is-active {
+	background-color: var(--theme);  /* You probably need to change this! */
+	color: white;
+}
+.example-tab-panel {
+	display: none;
+	z-index: 1;
+	padding: .5em;
+	background-color: white;
+}
+.example-tab-panel.is-active {
+	display: block;
+}

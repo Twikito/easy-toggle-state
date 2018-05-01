@@ -24,6 +24,8 @@
 	<link rel="stylesheet" href="assets/css/radio.css">
 	<link rel="stylesheet" href="assets/css/tooltip.css">
 	<link rel="stylesheet" href="assets/css/collapsible-panel.css">
+	<link rel="stylesheet" href="assets/css/tabs.css">
+	<link rel="stylesheet" href="assets/css/dropdown.css">
 </head>
 <body>
 	<header id="header">
@@ -104,6 +106,21 @@
 						</li>
 						<li>
 							<a href="#collapsible-panel">Collapsible panel / accordion</a>
+						</li>
+						<li>
+							<a href="#tabs">Tabs</a>
+						</li>
+						<li>
+							<a href="#dropdown">Dropdown</a>
+						</li>
+						<li>
+							<a href="#popin">Popin</a>
+						</li>
+						<li>
+							<a href="#lightbox">Lightbox</a>
+						</li>
+						<li>
+							<a href="#burger-icon">Burger icon</a>
 						</li>
 					</ul>
 				<li>
@@ -486,6 +503,7 @@
 					</p>
 				</section>
 			</section>
+
 			<section>
 				<h3 id="collapsible-panel">
 					<a href="#collapsible-panel">Collapsible panel / accordion</a>
@@ -559,6 +577,7 @@
 					</h4>
 <pre><code class="language-html line-numbers">&lt;button type="button"
 	class="example-collapsible-button"
+	id="buttonForPanel"
 	data-toggle-class="is-open"
 	data-toggle-target-parent="#panel"
 	data-toggle-escape
@@ -566,16 +585,19 @@
 	aria-expanded="false"&gt;
 	Click here
 &lt;/button&gt;
-&lt;div class="example-collapsible-panel" id="panel" role="region"&gt;
+&lt;div class="example-collapsible-panel"
+	id="panel"
+	role="region"
+	aria-labelledby="buttonForPanel"&gt;
 	&lt;div class="example-collapsible-panel-content"&gt;
 		Lorem ipsum dolor sit amet&hellip;
 	&lt;/div&gt;
 &lt;/div&gt;</code></pre>
 					<div class="demo">
-						<button type="button" class="example-collapsible-button" data-toggle-class="is-open" data-toggle-target-parent="#panel" data-toggle-escape aria-controls="panel" aria-expanded="false">
+						<button type="button" class="example-collapsible-button" id="buttonForPanel" data-toggle-class="is-open" data-toggle-target-parent="#panel" data-toggle-escape aria-controls="panel" aria-expanded="false">
 							Click here
 						</button>
-						<div class="example-collapsible-panel" id="panel" role="region">
+						<div class="example-collapsible-panel" id="panel" role="region" aria-labelledby="buttonForPanel">
 							<div class="example-collapsible-panel-content">
 								Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 							</div>
@@ -592,6 +614,7 @@
 <pre><code class="language-html line-numbers">&lt;!-- First panel, opened by default --&gt;
 &lt;button type="button"
 	class="example-collapsible-button"
+	id="buttonForPanel_1"
 	data-toggle-class="is-open"
 	data-toggle-target-parent="#panel_1"
 	data-toggle-group="accordion"
@@ -600,7 +623,10 @@
 	aria-expanded="false"&gt;
 	Click here
 &lt;/button&gt;
-&lt;div class="example-collapsible-panel" id="panel_1" role="region"&gt;
+&lt;div class="example-collapsible-panel"
+	id="panel_1"
+	role="region"
+	aria-labelledby="buttonForPanel_1"&gt;
 	&lt;div class="example-collapsible-panel-content"&gt;
 		Lorem ipsum dolor sit amet&hellip;
 	&lt;/div&gt;
@@ -609,6 +635,7 @@
 &lt;!-- Second panel --&gt;
 &lt;button type="button"
 	class="example-collapsible-button"
+	id="buttonForPanel_2"
 	data-toggle-class="is-open"
 	data-toggle-target-parent="#panel_2"
 	data-toggle-group="accordion"
@@ -616,7 +643,10 @@
 	aria-expanded="false"&gt;
 	Click here
 &lt;/button&gt;
-&lt;div class="example-collapsible-panel" id="panel_2" role="region"&gt;
+&lt;div class="example-collapsible-panel"
+	id="panel_2"
+	role="region"
+	aria-labelledby="buttonForPanel_2"&gt;
 	&lt;div class="example-collapsible-panel-content"&gt;
 		In in erat blandit ante mollis tincidunt&hellip;
 	&lt;/div&gt;
@@ -625,6 +655,7 @@
 &lt;!-- Third panel --&gt;
 &lt;button type="button"
 	class="example-collapsible-button"
+	id="buttonForPanel_3"
 	data-toggle-class="is-open"
 	data-toggle-target-parent="#panel_3"
 	data-toggle-group="accordion"
@@ -632,39 +663,42 @@
 	aria-expanded="false"&gt;
 	Click here
 &lt;/button&gt;
-&lt;div class="example-collapsible-panel" id="panel_3" role="region"&gt;
+&lt;div class="example-collapsible-panel"
+	id="panel_3"
+	role="region"
+	aria-labelledby="buttonForPanel_3"&gt;
 	&lt;div class="example-collapsible-panel-content"&gt;
 		Nam posuere tortor a augue vulputate&hellip;
 	&lt;/div&gt;
 &lt;/div&gt;</code></pre>
 					<div class="demo">
-						<button type="button" class="example-collapsible-button" data-toggle-class="is-open" data-toggle-target-parent="#panel_1" data-toggle-group="accordion" data-toggle-is-active aria-controls="panel_1" aria-expanded="false">
+						<button type="button" class="example-collapsible-button" id="buttonForPanel_1" data-toggle-class="is-open" data-toggle-target-parent="#panel_1" data-toggle-group="accordion" data-toggle-is-active aria-controls="panel_1" aria-expanded="false">
 							Click here
 						</button>
-						<div class="example-collapsible-panel" id="panel_1" role="region">
+						<div class="example-collapsible-panel" id="panel_1" role="region" aria-labelledby="buttonForPanel_1">
 							<div class="example-collapsible-panel-content">
 								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam semper faucibus odio, vitae faucibus dui tempor in. Duis vitae luctus mi. Phasellus ultrices rhoncus lectus, non vehicula tortor sodales id.
 							</div>
 						</div>
-						<button type="button" class="example-collapsible-button" data-toggle-class="is-open" data-toggle-target-parent="#panel_2" data-toggle-group="accordion" aria-controls="panel_2" aria-expanded="false">
+						<button type="button" class="example-collapsible-button" id="buttonForPanel_2" data-toggle-class="is-open" data-toggle-target-parent="#panel_2" data-toggle-group="accordion" aria-controls="panel_2" aria-expanded="false">
 							Click here
 						</button>
-						<div class="example-collapsible-panel" id="panel_2" role="region">
+						<div class="example-collapsible-panel" id="panel_2" role="region" aria-labelledby="buttonForPanel_2">
 							<div class="example-collapsible-panel-content">
 								In in erat blandit ante mollis tincidunt. Quisque ac tempus nisi, a ultricies metus. Suspendisse et quam nec mauris feugiat luctus. Curabitur porta sem vitae nulla congue malesuada.
 							</div>
 						</div>
-						<button type="button" class="example-collapsible-button" data-toggle-class="is-open" data-toggle-target-parent="#panel_3" data-toggle-group="accordion" aria-controls="panel_3" aria-expanded="false">
+						<button type="button" class="example-collapsible-button" id="buttonForPanel_3" data-toggle-class="is-open" data-toggle-target-parent="#panel_3" data-toggle-group="accordion" aria-controls="panel_3" aria-expanded="false">
 							Click here
 						</button>
-						<div class="example-collapsible-panel" id="panel_3" role="region">
+						<div class="example-collapsible-panel" id="panel_3" role="region" aria-labelledby="buttonForPanel_3">
 							<div class="example-collapsible-panel-content">
 								Nam posuere tortor a augue vulputate, at blandit ipsum tincidunt. Donec dictum eros ligula, id congue justo porta eget. Aliquam vel erat venenatis, ornare nisi vel, convallis libero.
 							</div>
 						</div>
 					</div>
 					<div class="text-right">
-						<a href="assets/css/collapsible-panel.css" title="Download this collapsible panel demo stylesheet">download CSS</a>
+						<a href="assets/css/collapsible-panel.css" title="Download this accordion demo stylesheet">download CSS</a>
 					</div>
 				</section>
 				<section>
@@ -682,6 +716,253 @@
 					</p>
 				</section>
 			</section>
+
+			<section>
+				<h3 id="tabs">
+					<a href="#tabs">Tabs</a>
+				</h3>
+				<p>You want to create some tabs, i.e. some panels visualisable by clicking on their associated button.</p>
+				<section>
+					<h4 id="simple-tabs">
+						<a href="#simple-tabs">Simple tabs</a>
+					</h4>
+<pre><code class="language-html line-numbers">&lt;div class="example-tabs"&gt;
+	&lt;button type="button"
+		data-toggle-class
+		data-toggle-target="#tabPanel_1"
+		data-toggle-group="tabsGroup"
+		data-toggle-is-active&gt;
+		tab 1
+	&lt;/button&gt;
+	&lt;button type="button"
+		data-toggle-class
+		data-toggle-target="#tabPanel_2"
+		data-toggle-group="tabsGroup"&gt;
+		tab 2
+	&lt;/button&gt;
+	&lt;button type="button"
+		data-toggle-class
+		data-toggle-target="#tabPanel_3"
+		data-toggle-group="tabsGroup"&gt;
+		tab 3
+	&lt;/button&gt;
+&lt;/div&gt;
+&lt;div class="example-tab-panel" id="tabPanel_1"&gt;
+	Panel 1&lt;br&gt;
+	Lorem ipsum dolor sit amet&hellip;
+&lt;/div&gt;
+&lt;div class="example-tab-panel" id="tabPanel_2"&gt;
+	Panel 2&lt;br&gt;
+	In in erat blandit ante mollis tincidunt&hellip;
+&lt;/div&gt;
+&lt;div class="example-tab-panel" id="tabPanel_3"&gt;
+	Panel 3&lt;br&gt;
+	Nam posuere tortor a augue vulputate&hellip;
+&lt;/div&gt;</code></pre>
+					<div class="demo">
+						<div class="example-tabs">
+							<button type="button" data-toggle-class data-toggle-target="#tabPanel_1" data-toggle-group="tabsGroup_1" data-toggle-is-active>tab 1</button>
+							<button type="button" data-toggle-class data-toggle-target="#tabPanel_2" data-toggle-group="tabsGroup_1">tab 2</button>
+							<button type="button" data-toggle-class data-toggle-target="#tabPanel_3" data-toggle-group="tabsGroup_1">tab 3</button>
+						</div>
+						<div class="example-tab-panel" id="tabPanel_1">
+							Panel 1<br>
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam semper faucibus odio, vitae faucibus dui tempor in. Duis vitae luctus mi. Phasellus ultrices rhoncus lectus, non vehicula tortor sodales id.
+						</div>
+						<div class="example-tab-panel" id="tabPanel_2">
+							Panel 2<br>
+							In in erat blandit ante mollis tincidunt. Quisque ac tempus nisi, a ultricies metus. Suspendisse et quam nec mauris feugiat luctus. Curabitur porta sem vitae nulla congue malesuada.
+						</div>
+						<div class="example-tab-panel" id="tabPanel_3">
+							Panel 3<br>
+							Nam posuere tortor a augue vulputate, at blandit ipsum tincidunt. Donec dictum eros ligula, id congue justo porta eget. Aliquam vel erat venenatis, ornare nisi vel, convallis libero.
+						</div>
+					</div>
+					<div class="text-right">
+						<a href="assets/css/tabs.css" title="Download this tabs demo stylesheet">download CSS</a>
+					</div>
+				</section>
+				<section>
+					<h4 id="tabs-with-aria">
+						<a href="#tabs-with-aria">Tabs with ARIA attributes for accessibility</a>
+					</h4>
+<pre><code class="language-html line-numbers">&lt;div class="example-tabs" role="tablist"&gt;
+	&lt;button type="button"
+		id="tab_1"
+		data-toggle-class
+		data-toggle-target="#tabPanel_1"
+		data-toggle-group="tabsGroup"
+		data-toggle-is-active
+		role="tab"
+		aria-selected="true"
+		aria-controls="tabPanel_1"&gt;
+		tab 1
+	&lt;/button&gt;
+	&lt;button type="button"
+		id="tab_2"
+		data-toggle-class
+		data-toggle-target="#tabPanel_2"
+		data-toggle-group="tabsGroup"
+		role="tab"
+		aria-selected="false"
+		aria-controls="tabPanel_2"&gt;
+		tab 2
+	&lt;/button&gt;
+	&lt;button type="button"
+		id="tab_3"
+		data-toggle-class
+		data-toggle-target="#tabPanel_3"
+		data-toggle-group="tabsGroup"
+		role="tab"
+		aria-selected="false"
+		aria-controls="tabPanel_3"&gt;
+		tab 3
+	&lt;/button&gt;
+&lt;/div&gt;
+&lt;div class="example-tab-panel"
+	id="tabPanel_1"
+	role="tabpanel"
+	aria-labelledby="tab_1"&gt;
+	Panel 1&lt;br&gt;
+	Lorem ipsum dolor sit amet&hellip;
+&lt;/div&gt;
+&lt;div class="example-tab-panel"
+	id="tabPanel_2"
+	role="tabpanel"
+	aria-labelledby="tab_2"&gt;
+	Panel 2&lt;br&gt;
+	In in erat blandit ante mollis tincidunt&hellip;
+&lt;/div&gt;
+&lt;div class="example-tab-panel"
+	id="tabPanel_3"
+	role="tabpanel"
+	aria-labelledby="tab_3"&gt;
+	Panel 3&lt;br&gt;
+	Nam posuere tortor a augue vulputate&hellip;
+&lt;/div&gt;</code></pre>
+					<div class="demo">
+						<div class="example-tabs">
+							<button type="button" id="tab_4" data-toggle-class data-toggle-target="#tabPanel_4" data-toggle-group="tabsGroup_2" data-toggle-is-active role="tab" aria-selected="true" aria-controls="tabPanel_4">tab 1</button>
+							<button type="button" id="tab_5" data-toggle-class data-toggle-target="#tabPanel_5" data-toggle-group="tabsGroup_2" role="tab" aria-selected="false" aria-controls="tabPanel_5">tab 2</button>
+							<button type="button" id="tab_6" data-toggle-class data-toggle-target="#tabPanel_6" data-toggle-group="tabsGroup_2" role="tab" aria-selected="false" aria-controls="tabPanel_6">tab 3</button>
+						</div>
+						<div class="example-tab-panel" id="tabPanel_4" role="tabpanel" aria-labelledby="tab_4">
+							Panel 1<br>
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam semper faucibus odio, vitae faucibus dui tempor in. Duis vitae luctus mi. Phasellus ultrices rhoncus lectus, non vehicula tortor sodales id.
+						</div>
+						<div class="example-tab-panel" id="tabPanel_5" role="tabpanel" aria-labelledby="tab_5">
+							Panel 2<br>
+							In in erat blandit ante mollis tincidunt. Quisque ac tempus nisi, a ultricies metus. Suspendisse et quam nec mauris feugiat luctus. Curabitur porta sem vitae nulla congue malesuada.
+						</div>
+						<div class="example-tab-panel" id="tabPanel_6" role="tabpanel" aria-labelledby="tab_6">
+							Panel 3<br>
+							Nam posuere tortor a augue vulputate, at blandit ipsum tincidunt. Donec dictum eros ligula, id congue justo porta eget. Aliquam vel erat venenatis, ornare nisi vel, convallis libero.
+						</div>
+					</div>
+					<div class="text-right">
+						<a href="assets/css/tabs.css" title="Download this tabs demo stylesheet">download CSS</a>
+					</div>
+				</section>
+				<section>
+					<h4 id="tooltip-explaination">
+						<a href="#tooltip-explaination">Explaination</a>
+					</h4>
+					<p>
+						Toggle <code class="language-css">.is-active</code> class – by default – on click on this element, but only one of the <code class="language-html">tabsGroup</code> group at a time. Toggle the same class on the target element. As there’s more than one button / panel, be careful to target a unique ID.
+					</p>
+					<p>
+						Each trigger must be linked to the same group, here <code class="language-html">tabsGroup</code>. This way, only one of this group can be opened at a time. The first panel is opened by default with <code class="language-html">data-toggle-is-active</code>.
+					</p>
+					<p>
+						As <code class="language-html">aria-selected</code> attribute is set, its value change too.
+					</p>
+				</section>
+			</section>
+
+			<section>
+				<h3 id="dropdown">
+					<a href="#dropdown">Dropdown</a>
+				</h3>
+				<p>You want to create a dropdown, i.e. .</p>
+				<section>
+					<h4 id="simple-dropdown">
+						<a href="#simple-dropdown">Simple dropdown</a>
+					</h4>
+<pre><code class="language-html line-numbers">
+
+</code></pre>
+					<div class="demo">
+
+					</div>
+					<div class="text-right">
+						<a href="assets/css/dropdown.css" title="Download this dropdown demo stylesheet">download CSS</a>
+					</div>
+				</section>
+			</section>
+
+			<section>
+				<h3 id="popin">
+					<a href="#popin">Popin</a>
+				</h3>
+				<p>You want to create a popin, i.e. .</p>
+				<section>
+					<h4 id="simple-popin">
+						<a href="#simple-popin">Simple popin</a>
+					</h4>
+<pre><code class="language-html line-numbers">
+
+</code></pre>
+					<div class="demo">
+
+					</div>
+					<div class="text-right">
+						<a href="assets/css/popin.css" title="Download this popin demo stylesheet">download CSS</a>
+					</div>
+				</section>
+			</section>
+
+			<section>
+				<h3 id="lightbox">
+					<a href="#lightbox">Lightbox</a>
+				</h3>
+				<p>You want to create a lightbox, i.e. .</p>
+				<section>
+					<h4 id="simple-lightbox">
+						<a href="#simple-lightbox">Simple lightbox</a>
+					</h4>
+<pre><code class="language-html line-numbers">
+
+</code></pre>
+					<div class="demo">
+
+					</div>
+					<div class="text-right">
+						<a href="assets/css/lightbox.css" title="Download this lightbox demo stylesheet">download CSS</a>
+					</div>
+				</section>
+			</section>
+
+			<section>
+				<h3 id="burger-icon">
+					<a href="#burger-icon">Burger icon</a>
+				</h3>
+				<p>You want to create a burger icon, i.e. .</p>
+				<section>
+					<h4 id="simple-burger-icon">
+						<a href="#simple-burger-icon">Simple burger icon</a>
+					</h4>
+<pre><code class="language-html line-numbers">
+
+</code></pre>
+					<div class="demo">
+
+					</div>
+					<div class="text-right">
+						<a href="assets/css/burger-icon.css" title="Download this burger icon demo stylesheet">download CSS</a>
+					</div>
+				</section>
+			</section>
+
 		</section>
 
 		<section>
