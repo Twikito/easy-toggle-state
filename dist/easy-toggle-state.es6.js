@@ -33,8 +33,10 @@
 	      SELECTED = "aria-selected",
 	      TARGET = dataset("target"),
 	      TARGET_ALL = dataset("target-all"),
+	      TARGET_NEXT = dataset("target-next"),
 	      TARGET_ONLY = dataset("target-only"),
 	      TARGET_PARENT = dataset("target-parent"),
+	      TARGET_PREVIOUS = dataset("target-previous"),
 	      TARGET_SELF = dataset("target-self"),
 	      TARGET_STATE = dataset("state"),
 	      TRIGGER_OFF = dataset("trigger-off");
@@ -48,18 +50,45 @@
 	/* Retrieve all active trigger of a group. */
 	const retrieveGroupState = (group => $$(`${GROUP}="${group}"`).filter(groupElement => groupElement.isToggleActive));
 
+	/* Test if there's more than one target for an ID selector */
+	const testTargets = ((selector, targetList) => {
+		const regEx = /^#|^\[id=/g;
+
+		if (targetList.length === 0) {
+			console.warn(`There's no match for the selector '${selector}' for this trigger`);
+		}
+
+		if (targetList.length > 1 && regEx.exec(selector) != -1) {
+			console.warn(`There's more than one target for the selector '${selector}' for this trigger`);
+		}
+
+		return targetList;
+	});
+
 	/* Retrieve all targets of a trigger element. */
 	const retrieveTargets = (element => {
+
 		if (element.hasAttribute(TARGET) || element.hasAttribute(TARGET_ALL)) {
-			return document.querySelectorAll(element.getAttribute(TARGET) || element.getAttribute(TARGET_ALL));
+			let selector = element.getAttribute(TARGET) || element.getAttribute(TARGET_ALL);
+			return testTargets(selector, document.querySelectorAll(selector));
 		}
 
 		if (element.hasAttribute(TARGET_PARENT)) {
-			return element.parentElement.querySelectorAll(element.getAttribute(TARGET_PARENT));
+			let selector = element.getAttribute(TARGET_PARENT);
+			return testTargets(selector, element.parentElement.querySelectorAll(selector));
 		}
 
 		if (element.hasAttribute(TARGET_SELF)) {
-			return element.querySelectorAll(element.getAttribute(TARGET_SELF));
+			let selector = element.getAttribute(TARGET_SELF);
+			return testTargets(selector, element.querySelectorAll(selector));
+		}
+
+		if (element.hasAttribute(TARGET_PREVIOUS)) {
+			return testTargets("previous", [element.previousElementSibling].filter(Boolean));
+		}
+
+		if (element.hasAttribute(TARGET_NEXT)) {
+			return testTargets("next", [element.nextElementSibling].filter(Boolean));
 		}
 
 		return [];
