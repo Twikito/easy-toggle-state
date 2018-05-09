@@ -1,0 +1,70 @@
+.example-dialog-trigger {
+	display: inline-block;
+	padding: 0;
+	overflow: hidden;
+	border: none;
+	background: none;
+	color: var(--theme); /* You probably need to change this! */
+	text-decoration: underline;
+}
+.example-dialog-trigger:hover,
+.example-dialog-trigger:focus {
+	text-decoration: none;
+}
+.example-dialog {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 10;
+	display: flex;
+	padding: 1em;
+	background-color: rgba(0,0,0,.75);
+	visibility: hidden;
+	opacity: 0;
+	pointer-events: none;
+	transition: .25s ease-out;
+}
+.example-dialog.is-active {
+	visibility: visible;
+	opacity: 1;
+	pointer-events: auto;
+}
+.example-dialog-container {
+	width: 100%;
+	max-width: 30em;
+	margin: auto;
+	transform: translateY(-1em);
+	background-color: white;
+	transition: transform .25s ease-out;
+}
+.example-dialog.is-active .example-dialog-container {
+	transform: translateY(0);
+}
+.example-dialog-header,
+.example-dialog-content,
+.example-dialog-footer {
+	padding: .5em 1em;
+}
+.example-dialog-header {
+	background-color: var(--theme);
+	color: white;
+	font-weight: bold;
+}
+.example-dialog-footer {
+	background-color: whitesmoke;
+	text-align: right;
+}
+.example-dialog-footer button {
+	display: inline-block;
+	padding: .25em .5em;
+	border: none;
+	background-color: var(--theme);
+	color: white;
+}
+.example-dialog-footer button:hover,
+.example-dialog-footer button:focus {
+	background-color: white ;
+	color: var(--theme);
+}

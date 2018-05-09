@@ -1,0 +1,29 @@
+.example-tabs {
+
+	button {
+		padding: .25em .5em;
+		border: none;
+		background-color: white;
+
+		&:hover,
+		&:focus {
+			text-decoration: underline;
+		}
+
+		&.is-active {
+			background-color: var(--theme);  /* You probably need to change this! */
+			color: white;
+		}
+	}
+
+	&-panel {
+		display: none;
+		z-index: 1;
+		padding: .5em;
+		background-color: white;
+
+		.is-active {
+			display: block;
+		}
+	}
+}

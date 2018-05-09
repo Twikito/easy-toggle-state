@@ -1,5 +1,5 @@
 .example-radio {
-	display: inline-block;
+	display: inline-flex;
 	width: 1em;
 	height: 1em;
 	padding: 0;
@@ -7,7 +7,7 @@
 	border: 2px solid darkgrey;
 	outline: none;
 	border-radius: 50%;
-	background: white radial-gradient(ellipse at center, transparent 0%, transparent 40%, white 41%, white 100%);
+	background-color: white;
 	vertical-align: middle;
 	cursor: pointer;
 	content: "";
@@ -18,6 +18,16 @@
 	border-color: var(--theme); /* You probably need to change this! */
 	box-shadow: 0 0 .25em var(--theme); /* You probably need to change this too! */
 }
-.example-radio.is-checked {
+.example-radio::before {
+	width: 66.7%;
+	padding-bottom: 66.7%;
+	margin: auto;
+	transform: scale(0);
+	border-radius: 50%;
+	content: '';
+	transition: .15s ease-out;
+}
+.example-radio.is-checked::before {
+	transform: scale(1);
 	background-color: var(--theme); /* You probably need to change this! */
 }

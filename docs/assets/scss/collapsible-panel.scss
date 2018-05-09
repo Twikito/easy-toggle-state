@@ -1,0 +1,47 @@
+.example-collapsible {
+
+	&-button {
+		display: flex;
+		width: 100%;
+		margin-top: .5em;
+		padding: .5em;
+		flex-flow: row nowrap;
+		justify-content: space-between;
+		align-content: center;
+		box-sizing: border-box;
+		border: none;
+		background-color: white;
+		text-align: left;
+
+		&.is-open {
+			background-color: var(--theme); /* You probably need to change this! */
+			color: white;
+		}
+
+		&::after {
+			font-size: 1.5em;
+			line-height: 1;
+			content: "+";
+		}
+
+		&.is-open::after {
+			content: "–";
+		}
+	}
+
+	&-panel {
+		max-height: 0;
+		margin-bottom: .5em;
+		overflow: hidden;
+		background-color: white;
+		transition: max-height .25s ease-out;
+
+		&.is-open {
+			max-height: 20em;
+		}
+
+		&-content {
+			padding: .5em;
+		}
+	}
+}

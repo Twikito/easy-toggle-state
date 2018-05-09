@@ -26,6 +26,9 @@
 	<link rel="stylesheet" href="assets/css/collapsible-panel.css">
 	<link rel="stylesheet" href="assets/css/tabs.css">
 	<link rel="stylesheet" href="assets/css/dropdown.css">
+	<link rel="stylesheet" href="assets/css/dialog.css">
+	<link rel="stylesheet" href="assets/css/lightbox.css">
+	<link rel="stylesheet" href="assets/css/burger-icon.css">
 </head>
 <body>
 	<header id="header">
@@ -64,7 +67,7 @@
 			</a>
 		</div>
 
-		<nav>
+		<nav id="navigation">
 			<ul>
 				<li>
 					<a href="#download">Direct download</a>
@@ -83,6 +86,9 @@
 						</li>
 						<li>
 							<a href="#basics">Basics</a>
+						</li>
+						<li>
+							<a href="#targeting">Targeting</a>
 						</li>
 						<li>
 							<a href="#advanced">Advanced</a>
@@ -114,7 +120,7 @@
 							<a href="#dropdown">Dropdown</a>
 						</li>
 						<li>
-							<a href="#popin">Popin</a>
+							<a href="#dialog">Dialog</a>
 						</li>
 						<li>
 							<a href="#lightbox">Lightbox</a>
@@ -176,6 +182,19 @@
 					<dd>
 						<p>Toggle the class on the trigger element and all the target elements, defined by the selector, in the page. This attribute has <code>data-toggle-target-all</code> as alias.</p>
 					</dd>
+				</dl>
+			</section>
+			<section class="language-html">
+				<h3 id="targeting">
+					<a href="#targeting">Targeting</a>
+				</h3>
+				<dl>
+					<dt>
+						<pre><code>&lt;foo data-toggle-class="class-name" data-toggle-target="selector"&gt;</code></pre>
+					</dt>
+					<dd>
+						<p>Toggle the class on the trigger element and all the target elements, defined by the selector, in the page. This attribute has <code>data-toggle-target-all</code> as alias.</p>
+					</dd>
 
 					<dt>
 						<pre><code>&lt;foo data-toggle-class="class-name" data-toggle-target-parent="selector"&gt;</code></pre>
@@ -189,6 +208,20 @@
 					</dt>
 					<dd>
 						<p>Toggle the class on the trigger element and all the target elements, defined by the selector, within it.</p>
+					</dd>
+
+					<dt>
+						<pre><code>&lt;foo data-toggle-class="class-name" data-toggle-target-previous&gt;</code></pre>
+					</dt>
+					<dd>
+						<p>Toggle the class on the trigger element and its previous adjacent element.</p>
+					</dd>
+
+					<dt>
+						<pre><code>&lt;foo data-toggle-class="class-name" data-toggle-target-next&gt;</code></pre>
+					</dt>
+					<dd>
+						<p>Toggle the class on the trigger element and its next adjacent element.</p>
 					</dd>
 				</dl>
 			</section>
@@ -287,6 +320,8 @@
 					</div>
 					<div class="text-right">
 						<a href="assets/css/checkbox.css" title="Download this checkbox demo stylesheet">download CSS</a>
+						-
+						<a href="assets/scss/checkbox.scss" title="Download this checkbox demo stylesheet in SCSS">SCSS</a>
 					</div>
 				</section>
 				<section>
@@ -304,6 +339,8 @@
 					</div>
 					<div class="text-right">
 						<a href="assets/css/checkbox.css" title="Download this checkbox demo stylesheet">download CSS</a>
+						-
+						<a href="assets/scss/checkbox.scss" title="Download this checkbox demo stylesheet in SCSS">SCSS</a>
 					</div>
 				</section>
 				<section>
@@ -326,6 +363,8 @@
 					</div>
 					<div class="text-right">
 						<a href="assets/css/checkbox.css" title="Download this checkbox demo stylesheet">download CSS</a>
+						-
+						<a href="assets/scss/checkbox.scss" title="Download this checkbox demo stylesheet in SCSS">SCSS</a>
 					</div>
 				</section>
 				<section>
@@ -349,6 +388,8 @@
 					</div>
 					<div class="text-right">
 						<a href="assets/css/checkbox.css" title="Download this checkbox demo stylesheet">download CSS</a>
+						-
+						<a href="assets/scss/checkbox.scss" title="Download this checkbox demo stylesheet in SCSS">SCSS</a>
 					</div>
 				</section>
 				<section>
@@ -404,6 +445,8 @@
 					</div>
 					<div class="text-right">
 						<a href="assets/css/radio.css" title="Download this radio demo stylesheet">download CSS</a>
+						-
+						<a href="assets/scss/radio.scss" title="Download this radio demo stylesheet in SCSS">SCSS</a>
 					</div>
 				</section>
 				<section>
@@ -451,6 +494,8 @@
 					</div>
 					<div class="text-right">
 						<a href="assets/css/radio.css" title="Download this radio demo stylesheet">download CSS</a>
+						-
+						<a href="assets/scss/radio.scss" title="Download this radio demo stylesheet in SCSS">SCSS</a>
 					</div>
 				</section>
 				<section>
@@ -492,6 +537,8 @@
 					</div>
 					<div class="text-right">
 						<a href="assets/css/tooltip.css" title="Download this tooltip demo stylesheet">download CSS</a>
+						-
+						<a href="assets/scss/tooltip.scss" title="Download this tooltip demo stylesheet in SCSS">SCSS</a>
 					</div>
 				</section>
 				<section>
@@ -519,7 +566,7 @@
 <pre><code class="language-html line-numbers">&lt;button type="button"
 	class="example-collapsible-button"
 	data-toggle-class="is-open"
-	data-toggle-target-parent=".example-collapsible-panel"&gt;
+	data-toggle-target-next&gt;
 	Click here
 &lt;/button&gt;
 &lt;div class="example-collapsible-panel"&gt;
@@ -528,7 +575,7 @@
 	&lt;/div&gt;
 &lt;/div&gt;</code></pre>
 					<div class="demo">
-						<button type="button" class="example-collapsible-button" data-toggle-class="is-open" data-toggle-target-parent=".example-collapsible-panel">
+						<button type="button" class="example-collapsible-button" data-toggle-class="is-open" data-toggle-target-next>
 							Click here
 						</button>
 						<div class="example-collapsible-panel">
@@ -539,6 +586,8 @@
 					</div>
 					<div class="text-right">
 						<a href="assets/css/collapsible-panel.css" title="Download this collapsible panel demo stylesheet">download CSS</a>
+						-
+						<a href="assets/scss/collapsible-spanel.css" title="Download this collapsible panel demo stylesheet in SCSS">SCSS</a>
 					</div>
 				</section>
 				<section>
@@ -548,7 +597,7 @@
 <pre><code class="language-html line-numbers">&lt;button type="button"
 	class="example-collapsible-button"
 	data-toggle-class="is-open"
-	data-toggle-target-parent=".example-collapsible-panel"
+	data-toggle-target-next
 	data-toggle-escape&gt;
 	Click here
 &lt;/button&gt;
@@ -558,7 +607,7 @@
 	&lt;/div&gt;
 &lt;/div&gt;</code></pre>
 					<div class="demo">
-						<button type="button" class="example-collapsible-button" data-toggle-class="is-open" data-toggle-target-parent=".example-collapsible-panel" data-toggle-escape>
+						<button type="button" class="example-collapsible-button" data-toggle-class="is-open" data-toggle-target-next data-toggle-escape>
 							Click here
 						</button>
 						<div class="example-collapsible-panel">
@@ -569,6 +618,8 @@
 					</div>
 					<div class="text-right">
 						<a href="assets/css/collapsible-panel.css" title="Download this collapsible panel demo stylesheet">download CSS</a>
+						-
+						<a href="assets/scss/collapsible-panel.scss" title="Download this collapsible panel demo stylesheet in SCSS">SCSS</a>
 					</div>
 				</section>
 				<section>
@@ -605,6 +656,8 @@
 					</div>
 					<div class="text-right">
 						<a href="assets/css/collapsible-panel.css" title="Download this collapsible panel demo stylesheet">download CSS</a>
+						-
+						<a href="assets/scss/collapsible-spanel.css" title="Download this collapsible panel demo stylesheet in SCSS">SCSS</a>
 					</div>
 				</section>
 				<section>
@@ -699,6 +752,8 @@
 					</div>
 					<div class="text-right">
 						<a href="assets/css/collapsible-panel.css" title="Download this accordion demo stylesheet">download CSS</a>
+						-
+						<a href="assets/scss/collapsible-spanel.css" title="Download this accordion demo stylesheet in SCSS">SCSS</a>
 					</div>
 				</section>
 				<section>
@@ -780,6 +835,8 @@
 					</div>
 					<div class="text-right">
 						<a href="assets/css/tabs.css" title="Download this tabs demo stylesheet">download CSS</a>
+						-
+						<a href="assets/scss/tabs.scss" title="Download this tabs demo stylesheet in SCSS">SCSS</a>
 					</div>
 				</section>
 				<section>
@@ -861,6 +918,8 @@
 					</div>
 					<div class="text-right">
 						<a href="assets/css/tabs.css" title="Download this tabs demo stylesheet">download CSS</a>
+						-
+						<a href="assets/scss/tabs.scss" title="Download this tabs demo stylesheet in SCSS">SCSS</a>
 					</div>
 				</section>
 				<section>
@@ -883,41 +942,289 @@
 				<h3 id="dropdown">
 					<a href="#dropdown">Dropdown</a>
 				</h3>
-				<p>You want to create a dropdown, i.e. .</p>
+				<p>You want to create a dropdown, i.e. a list of choices that appears when you click on a button. Of course you should use <code class="language-html">&lt;select&gt;</code> and <code class="language-html">&lt;option&gt;</code> HTML elements, but in some case, you can’t.</p>
 				<section>
 					<h4 id="simple-dropdown">
 						<a href="#simple-dropdown">Simple dropdown</a>
 					</h4>
-<pre><code class="language-html line-numbers">
-
-</code></pre>
+<pre><code class="language-html line-numbers">&lt;div class="example-dropdown"&gt;
+	&lt;button type="button"
+		class="example-dropdown-button"
+		data-toggle-class="is-open"
+		data-toggle-target-next
+		data-toggle-outside
+		data-toggle-escape&gt;
+		Select something here
+	&lt;/button&gt;
+	&lt;ul class="example-dropdown-list"&gt;
+		&lt;li&gt;
+			&lt;button type="button"&gt;Lorem ipsum dolor&lt;/button&gt;
+		&lt;/li&gt;
+		&lt;!-- Several options --&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;</code></pre>
 					<div class="demo">
-
+						<div class="example-dropdown">
+							<button type="button" class="example-dropdown-button" data-toggle-class="is-open" data-toggle-target-next data-toggle-outside data-toggle-escape>
+								Select something here
+							</button>
+							<ul class="example-dropdown-list">
+								<li>
+									<button type="button">Lorem ipsum dolor</button>
+								</li>
+								<li>
+									<button type="button">Consectetur adipiscing elit</button>
+								</li>
+								<li>
+									<button type="button">Ut bibendum nisi</button>
+								</li>
+								<li>
+									<button type="button">A tincidunt velit</button>
+								</li>
+								<li>
+									<button type="button">Duis egestas purus</button>
+								</li>
+								<li>
+									<button type="button">In sapien porta</button>
+								</li>
+								<li>
+									<button type="button">Pellentesque</button>
+								</li>
+								<li>
+									<button type="button">Condimentum risus</button>
+								</li>
+								<li>
+									<button type="button">Fringilla augue sed</button>
+								</li>
+								<li>
+									<button type="button">Nunc fermentum</button>
+								</li>
+							</ul>
+						</div>
 					</div>
 					<div class="text-right">
 						<a href="assets/css/dropdown.css" title="Download this dropdown demo stylesheet">download CSS</a>
+						-
+						<a href="assets/scss/dropdown.scss" title="Download this dropdown demo stylesheet in SCSS">SCSS</a>
 					</div>
+				</section>
+				<section>
+					<h4 id="dropdown-with-aria">
+						<a href="#dropdown-with-aria">Dropdown with ARIA attributes for accessibility</a>
+					</h4>
+<pre><code class="language-html line-numbers">&lt;div class="example-dropdown"&gt;
+	&lt;button type="button"
+		class="example-dropdown-button"
+		data-toggle-class="is-open"
+		data-toggle-target-next
+		data-toggle-outside
+		data-toggle-escape
+		id="dropdownButton"
+		aria-haspopup="listbox"
+		aria-controls="dropdownList"
+		aria-expanded="false"&gt;
+		Select something here
+	&lt;/button&gt;
+	&lt;ul class="example-dropdown-list"
+		id="dropdownList"
+		role="listbox"
+		aria-labelledby="dropdownButton"&gt;
+		&lt;li&gt;
+			&lt;button type="button"&gt;Lorem ipsum dolor&lt;/button&gt;
+		&lt;/li&gt;
+		&lt;!-- Several options --&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+					<div class="demo">
+						<div class="example-dropdown">
+							<button type="button" class="example-dropdown-button" data-toggle-class="is-open" data-toggle-target-next data-toggle-outside data-toggle-escape id="dropdownButton" aria-haspopup="listbox" aria-controls="dropdownList" aria-expanded="false">
+								Select something here
+							</button>
+							<ul class="example-dropdown-list" id="dropdownList" role="listbox" aria-labelledby="dropdownButton">
+								<li>
+									<button type="button" role="option">Lorem ipsum dolor</button>
+								</li>
+								<li>
+									<button type="button" role="option">Consectetur adipiscing elit</button>
+								</li>
+								<li>
+									<button type="button" role="option">Ut bibendum nisi</button>
+								</li>
+								<li>
+									<button type="button" role="option">A tincidunt velit</button>
+								</li>
+								<li>
+									<button type="button" role="option">Duis egestas purus</button>
+								</li>
+								<li>
+									<button type="button" role="option">In sapien porta</button>
+								</li>
+								<li>
+									<button type="button" role="option">Pellentesque</button>
+								</li>
+								<li>
+									<button type="button" role="option">Condimentum risus</button>
+								</li>
+								<li>
+									<button type="button" role="option">Fringilla augue sed</button>
+								</li>
+								<li>
+									<button type="button" role="option">Nunc fermentum</button>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="text-right">
+						<a href="assets/css/dropdown.css" title="Download this dropdown demo stylesheet">download CSS</a>
+						-
+						<a href="assets/scss/dropdown.scss" title="Download this dropdown demo stylesheet in SCSS">SCSS</a>
+					</div>
+				</section>
+				<section>
+					<h4 id="dropdown-explaination">
+						<a href="#dropdown-explaination">Explaination</a>
+					</h4>
+					<p>
+						Toggle <code class="language-html">.is-open</code> class on click on this element. Toggle the class on its target, the next adjacent element, at the same time. Click outside of the trigger or its target, or press <kbd>escape</kbd> key to toggle off.
+					</p>
+					<p>
+						You could also add <code class="language-html">data-toggle-trigger-off</code> attribute on each option button to toggle off dropdown’s state by clicking on them.
+					</p>
+					<p>
+						As <code class="language-html">aria-expanded</code> attribute is set, its value change too.
+					</p>
+					<p>
+						<strong>Note</strong>: You can not change the value of the trigger by clicking on an option with this script. <em>Easy Toggle State</em> only deal with changing state. You will have to do this by yourself.
+					</p>
 				</section>
 			</section>
 
 			<section>
-				<h3 id="popin">
-					<a href="#popin">Popin</a>
+				<h3 id="dialog">
+					<a href="#dialog">Dialog</a>
 				</h3>
-				<p>You want to create a popin, i.e. .</p>
+				<p>
+					You want to create a dialog, i.e. an information or form box displayed in front of all page content on click on a trigger.
+				</p>
+				<p>
+					Even if you should use <code class="language-html">&lt;dialog&gt;</code> HTML element, in some case, you can’t.
+				</p>
 				<section>
-					<h4 id="simple-popin">
-						<a href="#simple-popin">Simple popin</a>
+					<h4 id="simple-dialog">
+						<a href="#simple-dialog">Simple dialog</a>
 					</h4>
-<pre><code class="language-html line-numbers">
+<pre><code class="language-html line-numbers">&lt;button type="button"
+	class="example-dialog-trigger"
+	data-toggle-class
+	data-toggle-target="#dialog"
+	data-toggle-target-only
+	data-toggle-escape&gt;
+	Click to see the awesomeness
+&lt;/button&gt;
 
-</code></pre>
+&lt;!-- This dialog anywhere you want in the page --&gt;
+&lt;div class="example-dialog" id="dialog"&gt;
+	&lt;section class="example-dialog-container"&gt;
+		&lt;!-- Your content here, like text or form. --&gt;
+		&lt;button type="button" data-toggle-trigger-off&gt;close&lt;/button&gt;
+	&lt;/section&gt;
+&lt;/div&gt;</code></pre>
 					<div class="demo">
-
+						<button type="button" class="example-dialog-trigger" data-toggle-class data-toggle-target="#dialog_1" data-toggle-target-only data-toggle-escape>Click to see the awesomeness</button>
+						<div class="example-dialog" id="dialog_1">
+							<section class="example-dialog-container">
+								<header class="example-dialog-header">
+									Dialog title
+								</header>
+								<div class="example-dialog-content">
+									<p>
+										<strong>Any content you want, like text or form.</strong>
+									</p>
+									<p>
+										Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+									</p>
+								</div>
+								<footer class="example-dialog-footer">
+									<button type="button" data-toggle-trigger-off>close</button>
+								</footer>
+							</section>
+						</div>
 					</div>
 					<div class="text-right">
-						<a href="assets/css/popin.css" title="Download this popin demo stylesheet">download CSS</a>
+						<a href="assets/css/dialog.css" title="Download this dialog demo stylesheet">download CSS</a>
+						-
+						<a href="assets/scss/dialog.scss" title="Download this dialog demo stylesheet in SCSS">SCSS</a>
 					</div>
+				</section>
+				<section>
+					<h4 id="dialog-with-aria">
+						<a href="#dialog-with-aria">Dialog with ARIA attributes for accessibility</a>
+					</h4>
+<pre><code class="language-html line-numbers">&lt;button type="button"
+	class="example-dialog-trigger"
+	data-toggle-class
+	data-toggle-target="#dialog"
+	data-toggle-target-only
+	data-toggle-escape&gt;
+	Click to see the awesomeness
+&lt;/button&gt;
+
+&lt;!-- This dialog anywhere you want in the page --&gt;
+&lt;div class="example-dialog"
+	id="dialog"
+	role="dialog"
+	aria-modal="true"
+	aria-labelledby="dialogTitle"
+	aria-describedby="dialogContent"&gt;
+	&lt;section class="example-dialog-container"&gt;
+		&lt;header id="dialogTitle" class="example-dialog-header"&gt;
+			Dialog title
+		&lt;/header&gt;
+		&lt;div id="dialogContent" class="example-dialog-content"&gt;
+			&lt;!-- Your content here, like text or form. --&gt;
+		&lt;/div&gt;
+		&lt;footer class="example-dialog-footer"&gt;
+			&lt;button type="button" data-toggle-trigger-off&gt;close&lt;/button&gt;
+		&lt;/footer&gt;
+	&lt;/section&gt;
+&lt;/div&gt;</code></pre>
+					<div class="demo">
+						<button type="button" class="example-dialog-trigger" data-toggle-class data-toggle-target="#dialog_2" data-toggle-target-only data-toggle-escape>Click to see the awesomeness</button>
+						<div class="example-dialog" id="dialog_2" role="dialog" aria-modal="true" aria-labelledby="dialogTitle" aria-describedby="dialogContent">
+							<section class="example-dialog-container">
+								<header id="dialogTitle" class="example-dialog-header">
+									Dialog title
+								</header>
+								<div id="dialogContent" class="example-dialog-content">
+									<p>
+										<strong>Any content you want, like text or form.</strong>
+									</p>
+									<p>
+										Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+									</p>
+								</div>
+								<footer class="example-dialog-footer">
+									<button type="button" data-toggle-trigger-off>close</button>
+								</footer>
+							</section>
+						</div>
+					</div>
+					<div class="text-right">
+						<a href="assets/css/dialog.css" title="Download this dialog demo stylesheet">download CSS</a>
+						-
+						<a href="assets/scss/dialog.scss" title="Download this dialog demo stylesheet in SCSS">SCSS</a>
+					</div>
+				</section>
+				<section>
+					<h4 id="dialog-explaination">
+						<a href="#dialog-explaination">Explaination</a>
+					</h4>
+					<p>
+						Toggle <code class="language-css">.is-active</code> class – as default – on click on this element. Toggle the class on its target <code class="language-html">#dialog</code>, placed anywhere in the page – at the bottom for example –, at the same time. Press <kbd>escape</kbd> key to toggle off.
+					</p>
+					<p>
+						The attribute <code class="language-html">data-toggle-trigger-off</code> enable the “close” button to toggle off dialog’s state by clicking on it.
+					</p>
 				</section>
 			</section>
 
@@ -925,20 +1232,58 @@
 				<h3 id="lightbox">
 					<a href="#lightbox">Lightbox</a>
 				</h3>
-				<p>You want to create a lightbox, i.e. .</p>
+				<p>You want to create a lightbox, i.e. a box displayed in front of all page content to see a larger version of an image.</p>
 				<section>
 					<h4 id="simple-lightbox">
 						<a href="#simple-lightbox">Simple lightbox</a>
 					</h4>
-<pre><code class="language-html line-numbers">
-
-</code></pre>
+<pre><code class="language-html line-numbers">&lt;a class="example-lightbox-trigger"
+	href="image-lg.jpg"
+	title="Zoom"
+	data-toggle-class
+	data-toggle-target-parent=".example-lightbox"
+	data-toggle-target-only
+	data-toggle-escape&gt;
+	&lt;img src="image.jpg" alt="desc"&gt;
+&lt;/a&gt;
+&lt;div class="example-lightbox" role="dialog"&gt;
+	&lt;div class="example-lightbox-bg"
+		data-toggle-trigger-off&gt;
+	&lt;/div&gt;
+	&lt;button type="button"
+		class="example-lightbox-close"
+		data-toggle-trigger-off
+		title="close"&gt;
+		✖
+	&lt;/button&gt;
+	&lt;img class="example-lightbox-img" src="image-lg.jpg" alt="desc"&gt;
+&lt;/div&gt;</code></pre>
 					<div class="demo">
-
+						<a href="assets/img/rp1.jpg" class="example-lightbox-trigger" title="Zoom" data-toggle-class data-toggle-target-parent=".example-lightbox" data-toggle-target-only data-toggle-escape>
+							<img src="assets/img/rp1_s.jpg" alt="Ready Player One">
+						</a>
+						<div class="example-lightbox" role="dialog">
+							<div class="example-lightbox-bg" data-toggle-trigger-off></div>
+							<button type="button" class="example-lightbox-close" data-toggle-trigger-off title="close">✖</button>
+							<img class="example-lightbox-img" src="assets/img/rp1.jpg" alt="Ready Player One">
+						</div>
 					</div>
 					<div class="text-right">
 						<a href="assets/css/lightbox.css" title="Download this lightbox demo stylesheet">download CSS</a>
+						-
+						<a href="assets/scss/lightbox.scss" title="Download this lightbox demo stylesheet in SCSS">SCSS</a>
 					</div>
+				</section>
+				<section>
+					<h4 id="lightbox-explaination">
+						<a href="#lightbox-explaination">Explaination</a>
+					</h4>
+					<p>
+						Toggle <code class="language-css">.is-active</code> class – as default – on click on this element. Toggle the class on its target <code class="language-html">.example-lightbox</code>, belonging to its parent container, at the same time. Press <kbd>escape</kbd> key to toggle off.
+					</p>
+					<p>
+						The attribute <code class="language-html">data-toggle-trigger-off</code> enable the “close” button and the opacified black background to toggle off lightbox state by clicking on them.
+					</p>
 				</section>
 			</section>
 
@@ -946,20 +1291,52 @@
 				<h3 id="burger-icon">
 					<a href="#burger-icon">Burger icon</a>
 				</h3>
-				<p>You want to create a burger icon, i.e. .</p>
+				<p>You want to create a burger icon, i.e. an icon that represent a button you can click on to make a navigation menu visible.</p>
 				<section>
 					<h4 id="simple-burger-icon">
 						<a href="#simple-burger-icon">Simple burger icon</a>
 					</h4>
-<pre><code class="language-html line-numbers">
-
-</code></pre>
+<pre><code class="language-html line-numbers">&lt;button type="button"
+	class="example-nav-trigger"
+	title="Navigation"
+	data-toggle-class
+	data-toggle-escape&gt;
+	&lt;svg width="1em" class="example-nav-trigger-icon" role="img" viewBox="0 0 100 100"&gt;
+		&lt;title&gt;Navigation icon&lt;/title&gt;
+		&lt;rect class="top-bar" x="0" y="15" width="100" height="12"/&gt;
+		&lt;rect class="mid-bar" x="0" y="44" width="100" height="12"/&gt;
+		&lt;rect class="bot-bar" x="0" y="73" width="100" height="12"/&gt;
+	&lt;/svg&gt;
+&lt;/button&gt;</code></pre>
 					<div class="demo">
-
+						<button type="button" class="example-nav-trigger" data-toggle-class data-toggle-escape title="Navigation">
+							<svg width="1em" class="example-nav-trigger-icon" viewBox="0 0 100 100" role="img">
+								<title>Navigation icon</title>
+								<rect class="top-bar" x="0" y="15" width="100" height="12"/>
+								<rect class="mid-bar" x="0" y="44" width="100" height="12"/>
+								<rect class="bot-bar" x="0" y="73" width="100" height="12"/>
+							</svg>
+						</button>
 					</div>
 					<div class="text-right">
 						<a href="assets/css/burger-icon.css" title="Download this burger icon demo stylesheet">download CSS</a>
+						-
+						<a href="assets/scss/burger-icon.scss" title="Download this burger icon demo stylesheet in SCSS">SCSS</a>
 					</div>
+				</section>
+				<section>
+					<h4 id="burger-icon-explaination">
+						<a href="#burger-icon-explaination">Explaination</a>
+					</h4>
+					<p>
+						Toggle <code class="language-html">.is-active</code> class – by default – on click on this element. <code class="language-html">data-toggle-escape</code> attribute means you can press <kbd>escape</kbd> key to toggle off.
+					</p>
+					<p>
+						You will probably add <code class="language-html">data-toggle-target</code> attribute with the ID of your navigation bar to toggle it at the same time.
+					</p>
+					<p>
+						Consider adding some ARIA attributes for accessibility. Refer to other examples above.
+					</p>
 				</section>
 			</section>
 
@@ -983,9 +1360,9 @@
 		<div class="wrapper">
 			<p>
 				Proudly made
-				under <a href="//github.com/Twikito/easy-toggle-state/blob/master/LICENSE">MIT license</a>
-				on <a href="//github.com/Twikito/easy-toggle-state" title="View Easy Toggle State on GitHub">GitHub</a>
-				by <a href="//twikito.com" rel="nofollow">Matthieu Bué</a>.
+				under&nbsp;<a href="//github.com/Twikito/easy-toggle-state/blob/master/LICENSE">MIT&nbsp;license</a>
+				on&nbsp;<a href="//github.com/Twikito/easy-toggle-state" title="View Easy Toggle State on GitHub">GitHub</a>
+				by&nbsp;<a href="//twikito.com" rel="nofollow">Matthieu&nbsp;Bué</a>.
 			</p>
 		</div>
 	</footer>

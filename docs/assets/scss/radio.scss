@@ -1,0 +1,36 @@
+.example-radio {
+	display: inline-flex;
+	width: 1em;
+	height: 1em;
+	padding: 0;
+	box-sizing: content-box;
+	border: 2px solid darkgrey;
+	outline: none;
+	border-radius: 50%;
+	background-color: white;
+	vertical-align: middle;
+	cursor: pointer;
+	content: "";
+	transition: .15s ease-out;
+
+	&:hover,
+	&:focus {
+		border-color: var(--theme); /* You probably need to change this! */
+		box-shadow: 0 0 .25em var(--theme); /* You probably need to change this too! */
+	}
+
+	&::before {
+		width: 66.7%;
+		padding-bottom: 66.7%;
+		margin: auto;
+		transform: scale(0);
+		border-radius: 50%;
+		content: '';
+		transition: .15s ease-out;
+	}
+
+	&.is-checked::before {
+		transform: scale(1);
+		background-color: var(--theme); /* You probably need to change this! */
+	}
+}

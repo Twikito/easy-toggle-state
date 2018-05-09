@@ -1,0 +1,41 @@
+.example-checkbox {
+	display: inline-block;
+	width: 1em;
+	height: 1em;
+	padding: 0;
+	box-sizing: content-box;
+	border: 2px solid darkgrey;
+	outline: none;
+	border-radius: .25em;
+	background-color: white;
+	text-align: center;
+	line-height: 1;
+	cursor: pointer;
+	transition: .15s ease-out;
+
+	&:hover,
+	&:focus {
+		border-color: var(--theme); /* You probably need to change this! */
+		box-shadow: 0 0 .25em var(--theme); /* You probably need to change this too! */
+	}
+
+	&::before {
+		display: block;
+		color: var(--theme); /* You probably need to change this! */
+		opacity: 0;
+		content: "✔";
+		transition: opacity .15s ease-out;
+	}
+
+	&.is-checked::before {
+		opacity: 1;
+	}
+
+	/* For internal label */
+	&-container {
+		padding: 0;
+		border: none;
+		outline: none;
+		background: none;
+	}
+}

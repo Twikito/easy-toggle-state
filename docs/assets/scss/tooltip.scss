@@ -1,0 +1,27 @@
+.example-tooltip {
+	position: relative;
+	cursor: help;
+
+	.tooltip {
+		position: absolute;
+		bottom: 100%;
+		left: 100%;
+		width: max-content;
+		padding: .125em .5em;
+		transform: translateY(-.25em) rotate(-5deg);
+		transform-origin: left bottom;
+		border-radius: .75em .75em .75em 0;
+		background-color: var(--theme); /* You probably need to change this! */
+		color: white;
+		visibility: hidden;
+		opacity: 0;
+		pointer-events: none;
+		transition: .15s ease-out;
+
+		&.is-visible {
+			transform: translateY(0) rotate(0);
+			visibility: visible;
+			opacity: 1;
+		}
+	}
+}

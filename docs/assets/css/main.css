@@ -31,7 +31,7 @@ button {
 	cursor: pointer;
 }
 
-header {
+[id='header'] {
 	padding: 2.5% 0;
 	background: var(--theme) linear-gradient(to bottom, transparent 0%, rgba(0,0,0,.15) 100%);
 	color: white;

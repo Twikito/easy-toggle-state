@@ -1,0 +1,89 @@
+.example-lightbox {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 10;
+	display: flex;
+	padding: 2.5%;
+	visibility: hidden;
+	opacity: 0;
+	pointer-events: none;
+	transition: .25s ease-out;
+
+	&.is-active {
+		visibility: visible;
+		opacity: 1;
+		pointer-events: auto;
+	}
+
+	&-bg {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		background-color: rgba(0,0,0,.75);
+	}
+
+	&-close {
+		position: fixed;
+		top: .5em;
+		right: .5em;
+		z-index: 2;
+		padding: 0;
+		background: none;
+		border: none;
+		color: white;
+		font-size: 2em;
+		line-height: 1;
+	}
+
+	&-img {
+		z-index: 1;
+		display: block;
+		width: auto;
+		height: auto;
+		max-width: 100%;
+		max-height: 100%;
+		margin: auto;
+		transform: scale(.8);
+		transition: .25s ease-out;
+	}
+
+	&.is-active &-img {
+		transform: scale(1);
+	}
+
+	&-trigger {
+		position: relative;
+		display: inline-block;
+		vertical-align: middle;
+
+		&::after {
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			opacity: .5;
+			content: '';
+			transition: .25s ease-out;
+
+			@supports (mix-blend-mode: overlay) {
+				opacity: 1;
+				mix-blend-mode: overlay;
+			}
+		}
+
+		&:hover::after,
+		&:focus::after {
+			background-color: var(--theme); /* You probably need to change this! */
+		}
+
+		img {
+			display: block;
+		}
+	}
+}

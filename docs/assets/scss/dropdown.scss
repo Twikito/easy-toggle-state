@@ -1,0 +1,86 @@
+.example-dropdown {
+	position: relative;
+	display: inline-block;
+	z-index: 1;
+	transform-style: preserve-3d;
+	perspective: 1000px;
+
+	&-button {
+		display: inline-block;
+		padding: 0;
+		overflow: hidden;
+		border: none;
+		background: none;
+		color: var(--theme); /* You probably need to change this! */
+		text-decoration: underline;
+
+		&:hover,
+		&:focus {
+			text-decoration: none;
+		}
+
+		&::after {
+			display: inline-block;
+			content: "🡇";
+			transition: transform .25s ease-out;
+		}
+
+		&.is-open::after {
+			transform: rotate(180deg);
+		}
+	}
+
+	&-list {
+		position: absolute;
+		top: 100%;
+		left: 0;
+		z-index: 1;
+		display: block;
+		width: max-content;
+		min-width: 100%;
+		max-width: 15em;
+		max-height: 13em;
+		overflow: auto;
+		padding: 0;
+		margin: 0;
+		transform: rotateX(-20deg);
+		transform-origin: center top;
+		background-color: white;
+		perspective: 1000px;
+		box-shadow: 0 .125em .25em rgba(0,0,0,.5);
+		list-style: none;
+		visibility: hidden;
+		opacity: 0;
+		transition: .25s ease-in;
+
+		&.is-open {
+			transform: rotateX(0);
+			visibility: visible;
+			opacity: 1;
+			transition-timing-function: ease-out;
+		}
+
+		li {
+			border-bottom: 1px solid whitesmoke;
+
+			&:last-child {
+				border-bottom: none;
+			}
+		}
+
+		button {
+			display: block;
+			width: 100%;
+			padding: .25em .5em;
+			box-sizing: border-box;
+			border: none;
+			background: none;
+			text-align: left;
+
+			&:hover,
+			&:focus {
+				color: var(--theme); /* You probably need to change this too! */
+			}
+		}
+	}
+}

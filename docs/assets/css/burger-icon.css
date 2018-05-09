@@ -1,0 +1,42 @@
+.example-nav-trigger {
+	padding: .5em;
+	overflow: hidden;
+	border: none;
+	background: none;
+}
+.example-nav-trigger:hover,
+.example-nav-trigger:focus {
+	color: var(--theme); /* You probably need to change this! */
+}
+.example-nav-trigger-icon {
+	display: block;
+	width: 2em;
+	height: 2em;
+	fill: currentColor;
+}
+.example-nav-trigger-icon,
+.example-nav-trigger-icon rect {
+	transition: .25s ease-out;
+}
+.example-nav-trigger-icon .top-bar {
+	transform-origin: 94px 21px;
+}
+.example-nav-trigger-icon .bot-bar {
+	transform-origin: 94px 79px;
+}
+.example-nav-trigger-icon .mid-bar {
+	transform-origin: 6px 50px;
+}
+
+.example-nav-trigger.is-active .example-nav-trigger-icon {
+	transform: rotate(-180deg);
+}
+.example-nav-trigger.is-active .example-nav-trigger-icon .top-bar {
+	transform: translateY(29px) rotate(35deg) scale(.6, 1);
+}
+.example-nav-trigger.is-active .example-nav-trigger-icon .bot-bar {
+	transform: translateY(-29px) rotate(-35deg) scale(.6, 1);
+}
+.example-nav-trigger.is-active .example-nav-trigger-icon .mid-bar {
+	transform: scale(.975, 1);
+}
