@@ -31,7 +31,7 @@ Several quick start options are available:
 - Clone the repo: `git clone https://github.com/twikito/easy-toggle-state.git`
 - Install with [npm](https://www.npmjs.com/): `npm install easy-toggle-state`
 
-then add the script into your page, and it's done.
+Then, __add the script into your page__, and it's done.
 
 ## Documentation
 
