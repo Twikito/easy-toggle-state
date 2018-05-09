@@ -20,7 +20,7 @@
 }
 .example-dropdown-button::after {
 	display: inline-block;
-	content: "🡇";
+	content: "\25be";
 	transition: transform .25s ease-out;
 }
 .example-dropdown-button.is-open::after {
