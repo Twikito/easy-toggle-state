@@ -61,10 +61,15 @@ h2 {
 }
 
 h3 {
-	position: sticky; top: 0; z-index: 2;
 	display: inline-block; padding: 0 .25em 0 2em;
 	background-color: var(--theme);
 	font-size: 1.5em; color: white;
+}
+
+@supports (position: sticky) {
+	h3 {
+		position: sticky; top: 0; z-index: 2;
+	}
 }
 
 h4 {
