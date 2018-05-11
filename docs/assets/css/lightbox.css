@@ -55,7 +55,7 @@
 	background-color: rgba(0,0,0,.75);
 }
 .example-lightbox-close {
-	position: fixed;
+	position: absolute;
 	top: .5em;
 	right: .5em;
 	z-index: 2;
