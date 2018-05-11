@@ -1,0 +1,23 @@
+/* CREATOR */
+
+	Matthieu Bué
+	Twikito.com
+	github.com/Twikito
+	@Twikito
+	Bordeaux, France
+
+
+/* MANY THANKS TO */
+
+	Aurélien Garroux
+	github.com/dhoko
+	@dhoko_
+	Grenoble, France
+
+
+/* DOC SITE */
+
+	Language: English
+	Doctype: HTML5, CSS3, ES6
+	IDE: Sublime Text
+	Build with: hands, fingers, brain, open mind, love and coffee
