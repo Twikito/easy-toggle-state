@@ -5,6 +5,7 @@ import {
 	EVENT,
 	EXPANDED,
 	GROUP,
+	HIDDEN,
 	IS_ACTIVE,
 	OUTSIDE,
 	SELECTED,
@@ -44,6 +45,10 @@ const manageAria = element => {
 
 	if (element.hasAttribute(EXPANDED)) {
 		element.setAttribute(EXPANDED, element.isToggleActive);
+	}
+
+	if (element.hasAttribute(HIDDEN)) {
+		element.setAttribute(HIDDEN, !element.isToggleActive);
 	}
 
 	if (element.hasAttribute(SELECTED)) {
@@ -141,6 +146,10 @@ const manageActiveByDefault = element => {
 
 	if (element.hasAttribute(EXPANDED) && element.getAttribute(EXPANDED)) {
 		element.setAttribute(EXPANDED, true);
+	}
+
+	if (element.hasAttribute(HIDDEN) && element.getAttribute(HIDDEN)) {
+		element.setAttribute(HIDDEN, false);
 	}
 
 	if (element.hasAttribute(SELECTED) && !element.getAttribute(SELECTED)) {

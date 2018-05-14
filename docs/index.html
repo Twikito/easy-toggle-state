@@ -316,7 +316,7 @@
 				<h3 id="more">
 					<a href="#more">More</a>
 				</h3>
-				<p>If a trigger element has the <code>aria-expanded</code>, <code>aria-selected</code> or <code>aria-checked</code> attribute, its value will also change.</p>
+				<p>If a trigger or a target element has the <code>aria-expanded</code>, <code>aria-selected</code>, <code>aria-checked</code> or <code>aria-hidden</code> attribute, its value will also change.</p>
 				<p>You can also change the <code>PREFIX</code> value to prevent conflict with another JS library. This prefix will be set to all attributes like <code>data-[PREFIX]-class</code>, <code>toggle</code> as default.</p>
 				<p>Finally, for asynchronous needs, you can call <code class="language-js">window.initEasyToggleState()</code>.</p>
 			</section>
@@ -556,12 +556,12 @@
 	data-toggle-event="mouseover"
 	data-toggle-outside&gt;
 	Hover me
-	&lt;span class="tooltip"&gt;Awesome tooltip&lt;/span&gt;
+	&lt;span class="tooltip" aria-hidden="true"&gt;Awesome tooltip&lt;/span&gt;
 &lt;/span&gt;</code></pre>
 					<div class="demo">
 						<span class="example-tooltip" data-toggle-class="is-visible" data-toggle-target-self=".tooltip" data-toggle-target-only data-toggle-event="mouseover" data-toggle-outside>
 							Hover me
-							<span class="tooltip">Awesome tooltip</span>
+							<span class="tooltip" aria-hidden="true">Awesome tooltip</span>
 						</span>
 					</div>
 					<div class="text-right">
@@ -576,6 +576,9 @@
 					</h4>
 					<p>
 						Toggle <code class="language-css">.is-visible</code> class only on the target <code class="language-css">.tooltip</code> located inside this trigger, on <code class="language-js">mouseover</code> event, and toggle again when <code class="language-js">mouseover</code> is triggered outside this trigger.
+					</p>
+					<p>
+						As <code class="language-html">aria-hidden</code> attribute is set, its value change too.
 					</p>
 				</section>
 			</section>
@@ -668,7 +671,8 @@
 &lt;div class="example-collapsible-panel"
 	id="panel"
 	role="region"
-	aria-labelledby="buttonForPanel"&gt;
+	aria-labelledby="buttonForPanel"
+	aria-hidden="true"&gt;
 	&lt;div class="example-collapsible-panel-content"&gt;
 		Lorem ipsum dolor sit amet&hellip;
 	&lt;/div&gt;
@@ -677,7 +681,7 @@
 						<button type="button" class="example-collapsible-button" id="buttonForPanel" data-toggle-class="is-open" data-toggle-target-parent="#panel" data-toggle-escape aria-controls="panel" aria-expanded="false">
 							Click here
 						</button>
-						<div class="example-collapsible-panel" id="panel" role="region" aria-labelledby="buttonForPanel">
+						<div class="example-collapsible-panel" id="panel" role="region" aria-labelledby="buttonForPanel" aria-hidden="true">
 							<div class="example-collapsible-panel-content">
 								Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 							</div>
@@ -702,13 +706,14 @@
 	data-toggle-group="accordion"
 	data-toggle-is-active
 	aria-controls="panel_1"
-	aria-expanded="false"&gt;
+	aria-expanded="true"&gt;
 	Click here
 &lt;/button&gt;
 &lt;div class="example-collapsible-panel"
 	id="panel_1"
 	role="region"
-	aria-labelledby="buttonForPanel_1"&gt;
+	aria-labelledby="buttonForPanel_1"
+	aria-hidden="false"&gt;
 	&lt;div class="example-collapsible-panel-content"&gt;
 		Lorem ipsum dolor sit amet&hellip;
 	&lt;/div&gt;
@@ -728,7 +733,8 @@
 &lt;div class="example-collapsible-panel"
 	id="panel_2"
 	role="region"
-	aria-labelledby="buttonForPanel_2"&gt;
+	aria-labelledby="buttonForPanel_2"
+	aria-hidden="true"&gt;
 	&lt;div class="example-collapsible-panel-content"&gt;
 		In in erat blandit ante mollis tincidunt&hellip;
 	&lt;/div&gt;
@@ -748,16 +754,17 @@
 &lt;div class="example-collapsible-panel"
 	id="panel_3"
 	role="region"
-	aria-labelledby="buttonForPanel_3"&gt;
+	aria-labelledby="buttonForPanel_3"
+	aria-hidden="true"&gt;
 	&lt;div class="example-collapsible-panel-content"&gt;
 		Nam posuere tortor a augue vulputate&hellip;
 	&lt;/div&gt;
 &lt;/div&gt;</code></pre>
 					<div class="demo">
-						<button type="button" class="example-collapsible-button" id="buttonForPanel_1" data-toggle-class="is-open" data-toggle-target-parent="#panel_1" data-toggle-group="accordion" data-toggle-is-active aria-controls="panel_1" aria-expanded="false">
+						<button type="button" class="example-collapsible-button" id="buttonForPanel_1" data-toggle-class="is-open" data-toggle-target-parent="#panel_1" data-toggle-group="accordion" data-toggle-is-active aria-controls="panel_1" aria-expanded="true">
 							Click here
 						</button>
-						<div class="example-collapsible-panel" id="panel_1" role="region" aria-labelledby="buttonForPanel_1">
+						<div class="example-collapsible-panel" id="panel_1" role="region" aria-labelledby="buttonForPanel_1" aria-hidden="false">
 							<div class="example-collapsible-panel-content">
 								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam semper faucibus odio, vitae faucibus dui tempor in. Duis vitae luctus mi. Phasellus ultrices rhoncus lectus, non vehicula tortor sodales id.
 							</div>
@@ -765,7 +772,7 @@
 						<button type="button" class="example-collapsible-button" id="buttonForPanel_2" data-toggle-class="is-open" data-toggle-target-parent="#panel_2" data-toggle-group="accordion" aria-controls="panel_2" aria-expanded="false">
 							Click here
 						</button>
-						<div class="example-collapsible-panel" id="panel_2" role="region" aria-labelledby="buttonForPanel_2">
+						<div class="example-collapsible-panel" id="panel_2" role="region" aria-labelledby="buttonForPanel_2" aria-hidden="true">
 							<div class="example-collapsible-panel-content">
 								In in erat blandit ante mollis tincidunt. Quisque ac tempus nisi, a ultricies metus. Suspendisse et quam nec mauris feugiat luctus. Curabitur porta sem vitae nulla congue malesuada.
 							</div>
@@ -773,7 +780,7 @@
 						<button type="button" class="example-collapsible-button" id="buttonForPanel_3" data-toggle-class="is-open" data-toggle-target-parent="#panel_3" data-toggle-group="accordion" aria-controls="panel_3" aria-expanded="false">
 							Click here
 						</button>
-						<div class="example-collapsible-panel" id="panel_3" role="region" aria-labelledby="buttonForPanel_3">
+						<div class="example-collapsible-panel" id="panel_3" role="region" aria-labelledby="buttonForPanel_3" aria-hidden="true">
 							<div class="example-collapsible-panel-content">
 								Nam posuere tortor a augue vulputate, at blandit ipsum tincidunt. Donec dictum eros ligula, id congue justo porta eget. Aliquam vel erat venenatis, ornare nisi vel, convallis libero.
 							</div>
@@ -796,7 +803,7 @@
 						For an accordion, each trigger must be linked to the same group, here <code class="language-html">accordion</code>. This way, only one of this group can be opened at a time. The first panel is opened by default with <code class="language-html">data-toggle-is-active</code>.
 					</p>
 					<p>
-						As <code class="language-html">aria-expanded</code> attribute is set, its value change too.
+						As <code class="language-html">aria-expanded</code> and <code class="language-html">aria-hidden</code> attributes are set, their value change too.
 					</p>
 				</section>
 			</section>
@@ -908,21 +915,24 @@
 &lt;div class="example-tab-panel"
 	id="tabPanel_1"
 	role="tabpanel"
-	aria-labelledby="tab_1"&gt;
+	aria-labelledby="tab_1"
+	aria-hidden="false"&gt;
 	Panel 1&lt;br&gt;
 	Lorem ipsum dolor sit amet&hellip;
 &lt;/div&gt;
 &lt;div class="example-tab-panel"
 	id="tabPanel_2"
 	role="tabpanel"
-	aria-labelledby="tab_2"&gt;
+	aria-labelledby="tab_2"
+	aria-hidden="true"&gt;
 	Panel 2&lt;br&gt;
 	In in erat blandit ante mollis tincidunt&hellip;
 &lt;/div&gt;
 &lt;div class="example-tab-panel"
 	id="tabPanel_3"
 	role="tabpanel"
-	aria-labelledby="tab_3"&gt;
+	aria-labelledby="tab_3"
+	aria-hidden="true"&gt;
 	Panel 3&lt;br&gt;
 	Nam posuere tortor a augue vulputate&hellip;
 &lt;/div&gt;</code></pre>
@@ -932,15 +942,15 @@
 							<button type="button" id="tab_5" data-toggle-class data-toggle-target="#tabPanel_5" data-toggle-group="tabsGroup_2" role="tab" aria-selected="false" aria-controls="tabPanel_5">tab 2</button>
 							<button type="button" id="tab_6" data-toggle-class data-toggle-target="#tabPanel_6" data-toggle-group="tabsGroup_2" role="tab" aria-selected="false" aria-controls="tabPanel_6">tab 3</button>
 						</div>
-						<div class="example-tab-panel" id="tabPanel_4" role="tabpanel" aria-labelledby="tab_4">
+						<div class="example-tab-panel" id="tabPanel_4" role="tabpanel" aria-labelledby="tab_4" aria-hidden="false">
 							Panel 1<br>
 							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam semper faucibus odio, vitae faucibus dui tempor in. Duis vitae luctus mi. Phasellus ultrices rhoncus lectus, non vehicula tortor sodales id.
 						</div>
-						<div class="example-tab-panel" id="tabPanel_5" role="tabpanel" aria-labelledby="tab_5">
+						<div class="example-tab-panel" id="tabPanel_5" role="tabpanel" aria-labelledby="tab_5" aria-hidden="true">
 							Panel 2<br>
 							In in erat blandit ante mollis tincidunt. Quisque ac tempus nisi, a ultricies metus. Suspendisse et quam nec mauris feugiat luctus. Curabitur porta sem vitae nulla congue malesuada.
 						</div>
-						<div class="example-tab-panel" id="tabPanel_6" role="tabpanel" aria-labelledby="tab_6">
+						<div class="example-tab-panel" id="tabPanel_6" role="tabpanel" aria-labelledby="tab_6" aria-hidden="true">
 							Panel 3<br>
 							Nam posuere tortor a augue vulputate, at blandit ipsum tincidunt. Donec dictum eros ligula, id congue justo porta eget. Aliquam vel erat venenatis, ornare nisi vel, convallis libero.
 						</div>
@@ -962,7 +972,7 @@
 						Each trigger must be linked to the same group, here <code class="language-html">tabsGroup</code>. This way, only one of this group can be opened at a time. The first panel is opened by default with <code class="language-html">data-toggle-is-active</code>.
 					</p>
 					<p>
-						As <code class="language-html">aria-selected</code> attribute is set, its value change too.
+						As <code class="language-html">aria-selected</code> and <code class="language-html">aria-hidden</code> attributes are set, their value change too.
 					</p>
 				</section>
 			</section>
@@ -1057,7 +1067,8 @@
 	&lt;ul class="example-dropdown-list"
 		id="dropdownList"
 		role="listbox"
-		aria-labelledby="dropdownButton"&gt;
+		aria-labelledby="dropdownButton"
+		aria-hidden="true"&gt;
 		&lt;li&gt;
 			&lt;button type="button"&gt;Lorem ipsum dolor&lt;/button&gt;
 		&lt;/li&gt;
@@ -1069,7 +1080,7 @@
 							<button type="button" class="example-dropdown-button" data-toggle-class="is-open" data-toggle-target-next data-toggle-outside data-toggle-escape id="dropdownButton" aria-haspopup="listbox" aria-controls="dropdownList" aria-expanded="false">
 								Select something here
 							</button>
-							<ul class="example-dropdown-list" id="dropdownList" role="listbox" aria-labelledby="dropdownButton">
+							<ul class="example-dropdown-list" id="dropdownList" role="listbox" aria-labelledby="dropdownButton" aria-hidden="true">
 								<li>
 									<button type="button" role="option">Lorem ipsum dolor</button>
 								</li>
@@ -1120,7 +1131,7 @@
 						You could also add <code class="language-html">data-toggle-trigger-off</code> attribute on each option button to toggle off dropdown’s state by clicking on them.
 					</p>
 					<p>
-						As <code class="language-html">aria-expanded</code> attribute is set, its value change too.
+						As <code class="language-html">aria-expanded</code> and <code class="language-html">aria-hidden</code> attributes are set, their value change too.
 					</p>
 					<p>
 						<strong>Note</strong>: You can not change the value of the trigger by clicking on an option with this script. <em>Easy Toggle State</em> only deal with changing state. You will have to do this by yourself.
@@ -1202,9 +1213,9 @@
 &lt;div class="example-dialog"
 	id="dialog"
 	role="dialog"
-	aria-modal="true"
 	aria-labelledby="dialogTitle"
-	aria-describedby="dialogContent"&gt;
+	aria-describedby="dialogContent"
+	aria-hidden="true"&gt;
 	&lt;section class="example-dialog-container"&gt;
 		&lt;header id="dialogTitle" class="example-dialog-header"&gt;
 			Dialog title
@@ -1219,7 +1230,7 @@
 &lt;/div&gt;</code></pre>
 					<div class="demo">
 						<button type="button" class="example-dialog-trigger" data-toggle-class data-toggle-target="#dialog_2" data-toggle-target-only data-toggle-escape>Click to see the awesomeness</button>
-						<div class="example-dialog" id="dialog_2" role="dialog" aria-modal="true" aria-labelledby="dialogTitle" aria-describedby="dialogContent">
+						<div class="example-dialog" id="dialog_2" role="dialog" aria-labelledby="dialogTitle" aria-describedby="dialogContent" aria-hidden="true">
 							<section class="example-dialog-container">
 								<header id="dialogTitle" class="example-dialog-header">
 									Dialog title
@@ -1254,6 +1265,9 @@
 					<p>
 						The attribute <code class="language-html">data-toggle-trigger-off</code> enable the “close” button to toggle off dialog’s state by clicking on it.
 					</p>
+					<p>
+						As <code class="language-html">aria-hidden</code> attribute is set, its value change too.
+					</p>
 				</section>
 			</section>
 
@@ -1275,7 +1289,7 @@
 	data-toggle-escape&gt;
 	&lt;img src="image.jpg" alt="desc"&gt;
 &lt;/a&gt;
-&lt;div class="example-lightbox" role="dialog"&gt;
+&lt;div class="example-lightbox" role="dialog" aria-hidden="true"&gt;
 	&lt;div class="example-lightbox-bg"
 		data-toggle-trigger-off&gt;
 	&lt;/div&gt;
@@ -1291,7 +1305,7 @@
 						<a href="assets/img/rp1.jpg" class="example-lightbox-trigger" title="Zoom" data-toggle-class data-toggle-target-parent=".example-lightbox" data-toggle-target-only data-toggle-escape>
 							<img src="assets/img/rp1_s.jpg" alt="Ready Player One">
 						</a>
-						<div class="example-lightbox" role="dialog">
+						<div class="example-lightbox" role="dialog" aria-hidden="true">
 							<div class="example-lightbox-bg" data-toggle-trigger-off></div>
 							<button type="button" class="example-lightbox-close" data-toggle-trigger-off title="close">✖</button>
 							<img class="example-lightbox-img" src="assets/img/rp1.jpg" alt="Ready Player One">
@@ -1312,6 +1326,9 @@
 					</p>
 					<p>
 						The attribute <code class="language-html">data-toggle-trigger-off</code> enable the “close” button and the opacified black background to toggle off lightbox state by clicking on them.
+					</p>
+					<p>
+						As <code class="language-html">aria-hidden</code> attribute is set, its value change too.
 					</p>
 				</section>
 			</section>

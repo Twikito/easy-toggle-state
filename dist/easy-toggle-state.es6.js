@@ -28,6 +28,7 @@
 	      EVENT = dataset("event"),
 	      EXPANDED = "aria-expanded",
 	      GROUP = dataset("group"),
+	      HIDDEN = "aria-hidden",
 	      IS_ACTIVE = dataset("is-active"),
 	      OUTSIDE = dataset("outside"),
 	      SELECTED = "aria-selected",
@@ -130,6 +131,10 @@
 			element.setAttribute(EXPANDED, element.isToggleActive);
 		}
 
+		if (element.hasAttribute(HIDDEN)) {
+			element.setAttribute(HIDDEN, !element.isToggleActive);
+		}
+
 		if (element.hasAttribute(SELECTED)) {
 			element.setAttribute(SELECTED, element.isToggleActive);
 		}
@@ -225,6 +230,10 @@
 
 		if (element.hasAttribute(EXPANDED) && element.getAttribute(EXPANDED)) {
 			element.setAttribute(EXPANDED, true);
+		}
+
+		if (element.hasAttribute(HIDDEN) && element.getAttribute(HIDDEN)) {
+			element.setAttribute(HIDDEN, false);
 		}
 
 		if (element.hasAttribute(SELECTED) && !element.getAttribute(SELECTED)) {
