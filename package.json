@@ -36,7 +36,7 @@
 	"bugs": {
 		"url": "https://github.com/Twikito/easy-toggle-state/issues"
 	},
-	"homepage": "https://github.com/Twikito/easy-toggle-state#readme",
+	"homepage": "https://twikito.github.io/easy-toggle-state/",
 	"dependencies": {},
 	"devDependencies": {
 		"babel-core": "^6.26.3",
