@@ -190,7 +190,7 @@
 				<h3 id="recommandation">
 					<a href="#recommandation">Recommendation</a>
 				</h3>
-				<p class="language-html">Although it is conceivable, I recommend using only buttons or links as trigger elements. For a link element with a fake <code>href</code> value, don’t forget to add the <code>role="button"</code> attribute.</p>
+				<p class="language-html">Although you could use any element you want, I recommend using only buttons or links as trigger elements. For a link element with a fake <code>href</code> value, don’t forget to add the <code>role="button"</code> attribute.</p>
 			</section>
 			<section class="language-html">
 				<h3 id="basics">
@@ -216,12 +216,13 @@
 				<h3 id="targeting">
 					<a href="#targeting">Targeting</a>
 				</h3>
+				<p>You can go further in selecting targets by using one of the following options: it specify a scope where to select targets.</p>
 				<dl>
 					<dt>
 						<pre><code>&lt;foo data-toggle-class="class-name" data-toggle-target="selector"&gt;</code></pre>
 					</dt>
 					<dd>
-						<p>Toggle the class on the trigger element and all the target elements, defined by the selector, in the page. This attribute has <code>data-toggle-target-all</code> as alias.</p>
+						<p>Basic targeting: Toggle the class on the trigger element and all the target elements, defined by the selector, in the whole page. This attribute has <code>data-toggle-target-all</code> as alias.</p>
 					</dd>
 
 					<dt>

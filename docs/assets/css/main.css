@@ -117,6 +117,10 @@ section section section {
 	margin: 0 0 5%;
 }
 
+dl {
+	margin: 5% 0;
+}
+
 dd {
 	margin-left: 1em; margin-bottom: 5%;
 }
