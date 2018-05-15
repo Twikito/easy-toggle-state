@@ -19,7 +19,7 @@
 	const PREFIX = "toggle";
 
 	/* Retrieve a valid HTML attribute. */
-	const dataset = (key => `data-${PREFIX}${PREFIX != "" ? "-" : ""}${key}`);
+	const dataset = (key => ["data", PREFIX, key].filter(Boolean).join("-"));
 
 	/* HTML attributes */
 	const CHECKED = "aria-checked",

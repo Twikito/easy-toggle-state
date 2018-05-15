@@ -15,7 +15,12 @@ module.exports = {
 			"never"
 		],
 		"array-callback-return": "error",
-		"array-element-newline": "error",
+		"array-element-newline": [
+			"error",
+			{
+				"multiline": true
+			}
+		],
 		"arrow-body-style": "error",
 		"arrow-parens": "off",
 		"arrow-spacing": [

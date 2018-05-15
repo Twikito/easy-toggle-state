@@ -20,7 +20,7 @@
 
 	/* Retrieve a valid HTML attribute. */
 	var dataset = (function (key) {
-	  return "data-" + PREFIX + (PREFIX != "" ? "-" : "") + key;
+	  return ["data", PREFIX, key].filter(Boolean).join("-");
 	});
 
 	/* HTML attributes */
