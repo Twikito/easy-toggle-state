@@ -3,16 +3,23 @@ const
 	uglify  = require('rollup-plugin-uglify'),
 	license = require('rollup-plugin-license');
 
-const banner = [
-	' -------------------------------------------------------------------',
-	' <%= pkg.name %>',
-	' <%= pkg.description %>',
-	'',
-	' @version v<%= pkg.version %>',
-	' @link <%= pkg.homepage %>',
-	' @license <%= pkg.license %> : https://github.com/Twikito/easy-toggle-state/blob/master/LICENSE',
-	' -------------------------------------------------------------------'
-].join('\n');
+const getBanner = isMin => {
+	if (isMin) {
+		return '/*! <%= pkg.name %> v<%= pkg.version %> | (c) <%= moment().format("YYYY") %> <%= pkg.author %> | <%= pkg.license %> License | <%= pkg.homepage %> */';
+	} else {
+		return [
+			' -------------------------------------------------------------------',
+			' <%= pkg.name %>',
+			' <%= pkg.description %>',
+			'',
+			' @author <%= pkg.author %>',
+			' @version v<%= pkg.version %>',
+			' @link <%= pkg.homepage %>',
+			' @license <%= pkg.license %> : https://github.com/Twikito/easy-toggle-state/blob/master/LICENSE',
+			' -------------------------------------------------------------------'
+		].join('\n');
+	}
+};
 
 const getFileName = (version = 'es5', isMin = false) => {
 	const base = 'easy-toggle-state';
@@ -42,20 +49,20 @@ const getBabelConfig = (version = 'es5') => {
 
 const getPlugins = (version = 'es5', isMin = false) => {
 	const babelConfig = getBabelConfig(version);
-	const list = [
-		babel(babelConfig)
-	];
-	isMin ? list.push(uglify()) : list.push(license({ banner }));
+	const list = [ babel(babelConfig) ];
+	if (isMin) list.push(uglify());
+	list.push(license({ banner: getBanner(isMin) }));
 	return list;
 };
 
 const getPreferConst = (version = 'es5') => version === 'es6';
 
 const getConfig = () => {
-	const isMinify = process.env.OUT_STYLE === 'min';
-	const plugins = getPlugins(process.env.NODE_ENV, isMinify);
-	const fileName = getFileName(process.env.NODE_ENV, isMinify);
-	const preferConst = getPreferConst(process.env.NODE_ENV);
+	const
+		isMinify = process.env.OUT_STYLE === 'min',
+		fileName = getFileName(process.env.NODE_ENV, isMinify),
+		preferConst = getPreferConst(process.env.NODE_ENV),
+		plugins = getPlugins(process.env.NODE_ENV, isMinify);
 	return { fileName, preferConst, plugins };
 };
 
