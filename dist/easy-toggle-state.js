@@ -45,6 +45,21 @@
 	    TARGET_STATE = dataset("state"),
 	    TRIGGER_OFF = dataset("trigger-off");
 
+	var defineProperty = function (obj, key, value) {
+	  if (key in obj) {
+	    Object.defineProperty(obj, key, {
+	      value: value,
+	      enumerable: true,
+	      configurable: true,
+	      writable: true
+	    });
+	  } else {
+	    obj[key] = value;
+	  }
+
+	  return obj;
+	};
+
 	var toConsumableArray = function (arr) {
 	  if (Array.isArray(arr)) {
 	    for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
@@ -59,6 +74,17 @@
 	var $$ = (function (selector) {
 		var scope = selector ? "[" + selector + "]" : "";
 		return [].concat(toConsumableArray(document.querySelectorAll(("[" + CLASS + "]" + scope).trim())));
+	});
+
+	/* Manage ARIA attributes */
+	var manageAria = (function (element) {
+		var _ref;
+
+		var config = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : (_ref = {}, defineProperty(_ref, CHECKED, element.isToggleActive), defineProperty(_ref, EXPANDED, element.isToggleActive), defineProperty(_ref, HIDDEN, !element.isToggleActive), defineProperty(_ref, SELECTED, element.isToggleActive), _ref);
+
+		Object.keys(config).forEach(function (key) {
+			return element.hasAttribute(key) && element.setAttribute(key, config[key]);
+		});
 	});
 
 	/* Retrieve all active trigger of a group. */
@@ -140,25 +166,6 @@
 		manageToggle(event.target.targetElement);
 	};
 
-	/* Manage ARIA attributes */
-	var manageAria = function manageAria(element) {
-		if (element.hasAttribute(CHECKED)) {
-			element.setAttribute(CHECKED, element.isToggleActive);
-		}
-
-		if (element.hasAttribute(EXPANDED)) {
-			element.setAttribute(EXPANDED, element.isToggleActive);
-		}
-
-		if (element.hasAttribute(HIDDEN)) {
-			element.setAttribute(HIDDEN, !element.isToggleActive);
-		}
-
-		if (element.hasAttribute(SELECTED)) {
-			element.setAttribute(SELECTED, element.isToggleActive);
-		}
-	};
-
 	/* Manage attributes and events of target elements. */
 	var manageTarget = function manageTarget(targetElement, triggerElement) {
 		targetElement.isToggleActive = !targetElement.isToggleActive;
@@ -188,7 +195,6 @@
 		var className = element.getAttribute(CLASS) || "is-active";
 		element.isToggleActive = !element.isToggleActive;
 		manageAria(element);
-		//console.log("toggle to "+element.isToggleActive);
 
 		if (!element.hasAttribute(TARGET_ONLY)) {
 			element.classList.toggle(className);
@@ -236,27 +242,14 @@
 
 	/* Toggle elements set to be active by default. */
 	var manageActiveByDefault = function manageActiveByDefault(element) {
-		element.isToggleActive = true;
+		var _manageAria;
+
 		var className = element.getAttribute(CLASS) || "is-active";
+		element.isToggleActive = true;
+		manageAria(element, (_manageAria = {}, defineProperty(_manageAria, CHECKED, true), defineProperty(_manageAria, EXPANDED, true), defineProperty(_manageAria, HIDDEN, false), defineProperty(_manageAria, SELECTED, true), _manageAria));
 
 		if (!element.hasAttribute(TARGET_ONLY) && !element.classList.contains(className)) {
 			element.classList.add(className);
-		}
-
-		if (element.hasAttribute(CHECKED) && element.getAttribute(CHECKED)) {
-			element.setAttribute(CHECKED, true);
-		}
-
-		if (element.hasAttribute(EXPANDED) && element.getAttribute(EXPANDED)) {
-			element.setAttribute(EXPANDED, true);
-		}
-
-		if (element.hasAttribute(HIDDEN) && element.getAttribute(HIDDEN)) {
-			element.setAttribute(HIDDEN, false);
-		}
-
-		if (element.hasAttribute(SELECTED) && !element.getAttribute(SELECTED)) {
-			element.setAttribute(SELECTED, true);
 		}
 
 		var targetElements = retrieveTargets(element);

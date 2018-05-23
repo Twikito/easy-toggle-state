@@ -49,6 +49,16 @@
 		return [...document.querySelectorAll(`[${CLASS}]${scope}`.trim())];
 	});
 
+	/* Manage ARIA attributes */
+	const manageAria = ((element, config = {
+		[CHECKED]: element.isToggleActive,
+		[EXPANDED]: element.isToggleActive,
+		[HIDDEN]: !element.isToggleActive,
+		[SELECTED]: element.isToggleActive
+	}) => {
+		Object.keys(config).forEach(key => element.hasAttribute(key) && element.setAttribute(key, config[key]));
+	});
+
 	/* Retrieve all active trigger of a group. */
 	const retrieveGroupState = (group => $$(`${GROUP}="${group}"`).filter(groupElement => groupElement.isToggleActive));
 
@@ -122,25 +132,6 @@
 		manageToggle(event.target.targetElement);
 	};
 
-	/* Manage ARIA attributes */
-	const manageAria = element => {
-		if (element.hasAttribute(CHECKED)) {
-			element.setAttribute(CHECKED, element.isToggleActive);
-		}
-
-		if (element.hasAttribute(EXPANDED)) {
-			element.setAttribute(EXPANDED, element.isToggleActive);
-		}
-
-		if (element.hasAttribute(HIDDEN)) {
-			element.setAttribute(HIDDEN, !element.isToggleActive);
-		}
-
-		if (element.hasAttribute(SELECTED)) {
-			element.setAttribute(SELECTED, element.isToggleActive);
-		}
-	};
-
 	/* Manage attributes and events of target elements. */
 	const manageTarget = (targetElement, triggerElement) => {
 		targetElement.isToggleActive = !targetElement.isToggleActive;
@@ -170,7 +161,6 @@
 		let className = element.getAttribute(CLASS) || "is-active";
 		element.isToggleActive = !element.isToggleActive;
 		manageAria(element);
-		//console.log("toggle to "+element.isToggleActive);
 
 		if (!element.hasAttribute(TARGET_ONLY)) {
 			element.classList.toggle(className);
@@ -218,27 +208,17 @@
 
 	/* Toggle elements set to be active by default. */
 	const manageActiveByDefault = element => {
-		element.isToggleActive = true;
 		let className = element.getAttribute(CLASS) || "is-active";
+		element.isToggleActive = true;
+		manageAria(element, {
+			[CHECKED]: true,
+			[EXPANDED]: true,
+			[HIDDEN]: false,
+			[SELECTED]: true
+		});
 
 		if (!element.hasAttribute(TARGET_ONLY) && !element.classList.contains(className)) {
 			element.classList.add(className);
-		}
-
-		if (element.hasAttribute(CHECKED) && element.getAttribute(CHECKED)) {
-			element.setAttribute(CHECKED, true);
-		}
-
-		if (element.hasAttribute(EXPANDED) && element.getAttribute(EXPANDED)) {
-			element.setAttribute(EXPANDED, true);
-		}
-
-		if (element.hasAttribute(HIDDEN) && element.getAttribute(HIDDEN)) {
-			element.setAttribute(HIDDEN, false);
-		}
-
-		if (element.hasAttribute(SELECTED) && !element.getAttribute(SELECTED)) {
-			element.setAttribute(SELECTED, true);
 		}
 
 		let targetElements = retrieveTargets(element);
