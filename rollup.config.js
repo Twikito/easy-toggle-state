@@ -1,7 +1,7 @@
 const
-	babel   = require('rollup-plugin-babel'),
-	uglify  = require('rollup-plugin-uglify'),
-	license = require('rollup-plugin-license');
+	babel    = require('rollup-plugin-babel'),
+	{terser} = require('rollup-plugin-terser'),
+	license  = require('rollup-plugin-license');
 
 const getBanner = isMin => {
 	if (isMin) {
@@ -50,7 +50,7 @@ const getBabelConfig = (version = 'es5') => {
 const getPlugins = (version = 'es5', isMin = false) => {
 	const babelConfig = getBabelConfig(version);
 	const list = [ babel(babelConfig) ];
-	if (isMin) list.push(uglify());
+	if (isMin) list.push(terser());
 	list.push(license({ banner: getBanner(isMin) }));
 	return list;
 };
