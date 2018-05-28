@@ -52,6 +52,10 @@
 	color: white;
 	font-weight: bold;
 }
+.example-dialog-header h5 {
+	margin: 0;
+	font: inherit;
+}
 .example-dialog-footer {
 	background-color: whitesmoke;
 	text-align: right;

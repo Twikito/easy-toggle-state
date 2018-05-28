@@ -42,6 +42,10 @@
 		background-color: var(--theme);
 		color: white;
 		font-weight: bold;
+		h5 {
+			margin: 0;
+			font: inherit;
+		}
 	}
 
 	&-footer {

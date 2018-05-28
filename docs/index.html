@@ -30,7 +30,7 @@
 	<link rel="author" href="//github.com/Twikito">
 	<link rel="author" type="text/plain" href="humans.txt">
 
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:500|Open+Sans:400,600">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:500%7COpen+Sans:400,600">
 	<link rel="stylesheet" href="assets/css/prism.css">
 	<link rel="stylesheet" href="assets/css/main.css">
 	<link rel="stylesheet" href="assets/css/checkbox.css">
@@ -46,17 +46,18 @@
 <body>
 	<header id="header">
 		<h1>
-			<div class="logo">
+			<span class="logo">
 				<button type="button" class="logo-switch" title="Toggle that logo!" data-toggle-class="🤘😝" data-toggle-target="html">
 					<span class="logo-switch-bullet"></span>
 				</button>
 				<span class="logo-text">
 					Easy<br> Toggle<br> State
 				</span>
-			</div>
+			</span>
 		</h1>
 	</header>
-	<article class="wrapper">
+
+	<main class="wrapper">
 
 		<p class="color-theme text-lg baseline">
 			<strong>A tiny JavaScript library to easily toggle the state of any HTML element and its targets.</strong>
@@ -68,11 +69,11 @@
 
 		<div id="download">
 			<a class="button" href="//raw.githubusercontent.com/Twikito/easy-toggle-state/master/dist/easy-toggle-state.es6.min.js" title="Download Easy Toggle State compressed, production version">
-				<big><strong>Download</strong> &ndash; 3,60ko</big><br>
+				<span class="big"><strong>Download</strong> &ndash; 3,60ko</span><br>
 				<small>Compressed, for production</small>
 			</a>
 			<a class="button" href="//raw.githubusercontent.com/Twikito/easy-toggle-state/master/dist/easy-toggle-state.es6.js" title="Download Easy Toggle State uncompressed, development version">
-				<big><strong>Download</strong> &ndash; 9,14ko</big><br>
+				<span class="big"><strong>Download</strong> &ndash; 9,14ko</span><br>
 				<small>Uncompressed, for development</small>
 			</a>
 			<a class="button button--grey" href="//github.com/Twikito/easy-toggle-state" title="View Easy Toggle State on GitHub">
@@ -793,8 +794,8 @@
 					</div>
 				</section>
 				<section>
-					<h4 id="tooltip-explanation">
-						<a href="#tooltip-explanation">Explanation</a>
+					<h4 id="collapsible-panel-explanation">
+						<a href="#collapsible-panel-explanation">Explanation</a>
 					</h4>
 					<p>
 						The button toggles <code class="language-css">.is-open</code> class on itself and its target located inside its parent container. If there’s more than one button / panel, be careful to target a unique ID.
@@ -962,8 +963,8 @@
 					</div>
 				</section>
 				<section>
-					<h4 id="tooltip-explanation">
-						<a href="#tooltip-explanation">Explanation</a>
+					<h4 id="tabs-explanation">
+						<a href="#tabs-explanation">Explanation</a>
 					</h4>
 					<p>
 						Toggle <code class="language-css">.is-active</code> class – by default – on click on this element, but only one of the <code class="language-html">tabsGroup</code> group at a time. Toggle the same class on the target element. As there’s more than one button / panel, be careful to target a unique ID.
@@ -1174,7 +1175,7 @@
 						<div class="example-dialog" id="dialog_1">
 							<section class="example-dialog-container">
 								<header class="example-dialog-header">
-									Dialog title
+									<h5>Dialog title</h5>
 								</header>
 								<div class="example-dialog-content">
 									<p>
@@ -1233,7 +1234,7 @@
 						<div class="example-dialog" id="dialog_2" role="dialog" aria-labelledby="dialogTitle" aria-describedby="dialogContent" aria-hidden="true">
 							<section class="example-dialog-container">
 								<header id="dialogTitle" class="example-dialog-header">
-									Dialog title
+									<h5>Dialog title</h5>
 								</header>
 								<div id="dialogContent" class="example-dialog-content">
 									<p>
@@ -1400,7 +1401,7 @@
 			</ul>
 		</section>
 
-	</article>
+	</main>
 
 	<footer>
 		<div class="wrapper">

@@ -136,6 +136,10 @@ strong {
 	font-weight: 600;
 }
 
+.big {
+	font-size: 1.25em;
+}
+
 pre[class*="language-"],
 .demo {
 	background: #f6f8fa;
@@ -154,7 +158,7 @@ pre[class*="language-"],
 }
 
 .logo {
-
+	display: block;
 }
 .logo-switch {
 	position: relative;
