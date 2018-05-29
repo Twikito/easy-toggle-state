@@ -1,5 +1,5 @@
 if (ENV_IE_11) {
-	Array.from = [].slice.call;
+	!Array.from && (Array.from = [].slice.call);
 
 	/**
 	 * Polyfill for closest

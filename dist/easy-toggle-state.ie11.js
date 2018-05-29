@@ -14,7 +14,7 @@
 	'use strict';
 
 	{
-		Array.from = [].slice.call;
+		!Array.from && (Array.from = [].slice.call);
 
 		/**
 	  * Polyfill for closest
