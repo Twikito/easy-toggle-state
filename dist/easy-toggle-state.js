@@ -70,20 +70,10 @@
 	  }
 	};
 
-	/**
-	 * Retrieve all triggers with a specific attribute
-	 * @param  {String} selector  CSS selector (attribute)
-	 * @param  {Element} node     Current target for the selector
-	 * @return {Array}          Array<Node>
-	 */
+	/* Retrieve all triggers with a specific attribute */
 	var $$ = (function (selector, node) {
-	  var scope = selector ? "[" + selector + "]" : "";
-
-	  if (node) {
-	    return [].concat(toConsumableArray(node.querySelectorAll(scope)));
-	  }
-
-	  return [].concat(toConsumableArray(document.querySelectorAll(("[" + CLASS + "]" + scope).trim())));
+		var scope = selector ? "[" + selector + "]" : "";
+		return node ? [].concat(toConsumableArray(node.querySelectorAll(scope))) : [].concat(toConsumableArray(document.querySelectorAll(("[" + CLASS + "]" + scope).trim())));
 	});
 
 	/* Manage ARIA attributes */

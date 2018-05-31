@@ -43,20 +43,10 @@
 	      TARGET_STATE = dataset("state"),
 	      TRIGGER_OFF = dataset("trigger-off");
 
-	/**
-	 * Retrieve all triggers with a specific attribute
-	 * @param  {String} selector  CSS selector (attribute)
-	 * @param  {Element} node     Current target for the selector
-	 * @return {Array}          Array<Node>
-	 */
+	/* Retrieve all triggers with a specific attribute */
 	const $$ = ((selector, node) => {
-	  const scope = selector ? `[${selector}]` : "";
-
-	  if (node) {
-	    return [...node.querySelectorAll(scope)];
-	  }
-
-	  return [...document.querySelectorAll(`[${CLASS}]${scope}`.trim())];
+		const scope = selector ? `[${selector}]` : "";
+		return node ? [...node.querySelectorAll(scope)] : [...document.querySelectorAll(`[${CLASS}]${scope}`.trim())];
 	});
 
 	/* Manage ARIA attributes */

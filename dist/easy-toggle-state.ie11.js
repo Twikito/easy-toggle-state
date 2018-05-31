@@ -13,71 +13,56 @@
 (function () {
 	'use strict';
 
-  {
-    // Production steps of ECMA-262, Edition 6, 22.1.2.1
-    // Référence : https://people.mozilla.org/~jorendorff/es6-draft.html#sec-array.from
-    if (!Array.from) {
-      Array.from = function () {
-        var toStr = Object.prototype.toString;
-        var isCallable = function isCallable(fn) {
-          return typeof fn === 'function' || toStr.call(fn) === '[object Function]';
-        };
-        var toInteger = function toInteger(value) {
-          var number = Number(value);
-          if (isNaN(number)) {
-            return 0;
-          }
-          if (number === 0 || !isFinite(number)) {
-            return number;
-          }
-          return (number > 0 ? 1 : -1) * Math.floor(Math.abs(number));
-        };
-        var maxSafeInteger = Math.pow(2, 53) - 1;
-        var toLength = function toLength(value) {
-          var len = toInteger(value);
-          return Math.min(Math.max(len, 0), maxSafeInteger);
-        };
+	{
 
-				// La propriété length de la méthode vaut 1.
+		// Production steps of ECMA-262, Edition 6, 22.1.2.1
+		// Référence : https://people.mozilla.org/~jorendorff/es6-draft.html#sec-array.from
+		if (!Array.from) {
+			Array.from = function () {
+				var toStr = Object.prototype.toString;
+				var isCallable = function isCallable(fn) {
+					return typeof fn === "function" || toStr.call(fn) === "[object Function]";
+				};
+				var toInteger = function toInteger(value) {
+					var number = Number(value);
+					if (isNaN(number)) {
+						return 0;
+					}
+					if (number === 0 || !isFinite(number)) {
+						return number;
+					}
+					return (number > 0 ? 1 : -1) * Math.floor(Math.abs(number));
+				};
+				var maxSafeInteger = Math.pow(2, 53) - 1;
+				var toLength = function toLength(value) {
+					var len = toInteger(value);
+					return Math.min(Math.max(len, 0), maxSafeInteger);
+				};
+
 				return function from(arrayLike /*, mapFn, thisArg */) {
-					// 1. Soit C, la valeur this
+
 					var C = this;
-
-					// 2. Soit items le ToObject(arrayLike).
 					var items = Object(arrayLike);
-
-					// 3. ReturnIfAbrupt(items).
 					if (arrayLike == null) {
 						throw new TypeError("Array.from doit utiliser un objet semblable à un tableau - null ou undefined ne peuvent pas être utilisés");
 					}
 
-					// 4. Si mapfn est undefined, le mapping sera false.
 					var mapFn = arguments.length > 1 ? arguments[1] : void undefined;
 					var T;
 					if (typeof mapFn !== "undefined") {
-						// 5. sinon
-						// 5. a. si IsCallable(mapfn) est false, on lève une TypeError.
+
 						if (!isCallable(mapFn)) {
 							throw new TypeError("Array.from: lorsqu il est utilisé le deuxième argument doit être une fonction");
 						}
 
-						// 5. b. si thisArg a été fourni, T sera thisArg ; sinon T sera undefined.
 						if (arguments.length > 2) {
 							T = arguments[2];
 						}
 					}
 
-					// 10. Soit lenValue pour Get(items, "length").
-					// 11. Soit len pour ToLength(lenValue).
 					var len = toLength(items.length);
-
-					// 13. Si IsConstructor(C) vaut true, alors
-					// 13. a. Soit A le résultat de l'appel à la méthode interne [[Construct]] avec une liste en argument qui contient l'élément len.
-					// 14. a. Sinon, soit A le résultat de ArrayCreate(len).
 					var A = isCallable(C) ? Object(new C(len)) : new Array(len);
-
-					// 16. Soit k égal à 0.
-					var k = 0; // 17. On répète tant que k < len…
+					var k = 0;
 					var kValue;
 					while (k < len) {
 						kValue = items[k];
@@ -88,8 +73,8 @@
 						}
 						k += 1;
 					}
-					// 18. Soit putStatus égal à Put(A, "length", len, true).
-					A.length = len; // 20. On renvoie A.
+
+					A.length = len;
 					return A;
 				};
 			}();
@@ -132,11 +117,11 @@
 		})(window.Element.prototype);
 	}
 
-  /**
-   * You can change this PREFIX value to prevent conflict with another JS library.
-   * This prefix will be set to all attributes like data-[PREFIX]-class.
-   */
-  var PREFIX = "toggle";
+	/**
+	 * You can change this PREFIX value to prevent conflict with another JS library.
+	 * This prefix will be set to all attributes like data-[PREFIX]-class.
+	 */
+	var PREFIX = "toggle";
 
 	/* Retrieve a valid HTML attribute. */
 	var dataset = (function (key) {
@@ -189,20 +174,10 @@
 	  }
 	};
 
-	/**
-	 * Retrieve all triggers with a specific attribute
-	 * @param  {String} selector  CSS selector (attribute)
-	 * @param  {Element} node     Current target for the selector
-	 * @return {Array}          Array<Node>
-	 */
+	/* Retrieve all triggers with a specific attribute */
 	var $$ = (function (selector, node) {
-	  var scope = selector ? "[" + selector + "]" : "";
-
-	  if (node) {
-	    return [].concat(toConsumableArray(node.querySelectorAll(scope)));
-	  }
-
-	  return [].concat(toConsumableArray(document.querySelectorAll(("[" + CLASS + "]" + scope).trim())));
+		var scope = selector ? "[" + selector + "]" : "";
+		return node ? [].concat(toConsumableArray(node.querySelectorAll(scope))) : [].concat(toConsumableArray(document.querySelectorAll(("[" + CLASS + "]" + scope).trim())));
 	});
 
 	/* Manage ARIA attributes */
@@ -456,57 +431,3 @@
 	window.initEasyToggleState = init;
 
 }());
-
-  {
-    // Production steps of ECMA-262, Edition 6, 22.1.2.1
-    // Référence : https://people.mozilla.org/~jorendorff/es6-draft.html#sec-array.from
-    if (!Array.from) {
-      Array.from = function () {
-        var toStr = Object.prototype.toString;
-        var isCallable = function isCallable(fn) {
-          return typeof fn === 'function' || toStr.call(fn) === '[object Function]';
-        };
-        var toInteger = function toInteger(value) {
-          var number = Number(value);
-          if (isNaN(number)) {
-            return 0;
-          }
-          if (number === 0 || !isFinite(number)) {
-            return number;
-          }
-          return (number > 0 ? 1 : -1) * Math.floor(Math.abs(number));
-        };
-        var maxSafeInteger = Math.pow(2, 53) - 1;
-        var toLength = function toLength(value) {
-          var len = toInteger(value);
-          return Math.min(Math.max(len, 0), maxSafeInteger);
-        };
-	{
-		// Production steps of ECMA-262, Edition 6, 22.1.2.1
-		// Référence : https://people.mozilla.org/~jorendorff/es6-draft.html#sec-array.from
-		if (!Array.from) {
-			Array.from = function () {
-				var toStr = Object.prototype.toString;
-				var isCallable = function isCallable(fn) {
-					return typeof fn === "function" || toStr.call(fn) === "[object Function]";
-				};
-				var toInteger = function toInteger(value) {
-					var number = Number(value);
-					if (isNaN(number)) {
-						return 0;
-					}
-					if (number === 0 || !isFinite(number)) {
-						return number;
-					}
-					return (number > 0 ? 1 : -1) * Math.floor(Math.abs(number));
-				};
-				var maxSafeInteger = Math.pow(2, 53) - 1;
-				var toLength = function toLength(value) {
-					var len = toInteger(value);
-					return Math.min(Math.max(len, 0), maxSafeInteger);
-				};
-	/**
-	 * You can change this PREFIX value to prevent conflict with another JS library.
-	 * This prefix will be set to all attributes like data-[PREFIX]-class.
-	 */
-	var PREFIX = "toggle";

@@ -35,12 +35,15 @@ const getBabelConfig = (version = "es5") => {
 	if (version === "es5") {
 		return {
 			presets: [
-				[
-					"env",
-					{
-						modules: false
+				['env', {
+					'modules': false,
+					'targets': {
+						'browsers': [
+							'Explorer 11',
+							'last 2 versions'
+						]
 					}
-				]
+				}]
 			],
 			plugins: ["external-helpers"]
 		};
