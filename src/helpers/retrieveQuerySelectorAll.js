@@ -1,7 +1,7 @@
 import { CLASS } from "../constants/constants";
 
 /* Retrieve all triggers with a specific attribute */
-export default selector => {
+export default (selector, node) => {
 	const scope = selector ? `[${selector}]` : "";
-	return [...document.querySelectorAll(`[${CLASS}]${scope}`.trim())];
+	return node ? [...node.querySelectorAll(scope)] : [...document.querySelectorAll(`[${CLASS}]${scope}`.trim())];
 };

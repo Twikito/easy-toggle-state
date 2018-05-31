@@ -44,9 +44,9 @@
 	      TRIGGER_OFF = dataset("trigger-off");
 
 	/* Retrieve all triggers with a specific attribute */
-	const $$ = (selector => {
+	const $$ = ((selector, node) => {
 		const scope = selector ? `[${selector}]` : "";
-		return [...document.querySelectorAll(`[${CLASS}]${scope}`.trim())];
+		return node ? [...node.querySelectorAll(scope)] : [...document.querySelectorAll(`[${CLASS}]${scope}`.trim())];
 	});
 
 	/* Manage ARIA attributes */
@@ -141,7 +141,7 @@
 			targetElement.setAttribute(TARGET_STATE, triggerElement.isToggleActive);
 		}
 
-		let triggerOffList = targetElement.querySelectorAll("[" + TRIGGER_OFF + "]");
+		let triggerOffList = $$(TRIGGER_OFF, targetElement);
 		if (triggerOffList.length > 0) {
 			if (triggerElement.isToggleActive) {
 				triggerOffList.forEach(triggerOff => {
@@ -284,6 +284,8 @@
 			}, false);
 		}
 	});
+
+	/* eslint no-unused-vars: "off" */
 
 	const onLoad = () => {
 		init();

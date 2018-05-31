@@ -13,7 +13,7 @@ import {
 	TARGET_STATE,
 	TRIGGER_OFF
 } from "../constants/constants";
-import $$ from "../helpers/retrieveQuerySelectorAll.js";
+import $$ from "../helpers/retrieveQuerySelectorAll";
 import manageAria from "../helpers/manageAria";
 import retrieveGroupState from "../helpers/retrieveGroupState";
 import retrieveTargets from "../helpers/retrieveTargets";
@@ -47,7 +47,7 @@ const manageTarget = (targetElement, triggerElement) => {
 		targetElement.setAttribute(TARGET_STATE, triggerElement.isToggleActive);
 	}
 
-	let triggerOffList = targetElement.querySelectorAll("[" + TRIGGER_OFF + "]");
+	let triggerOffList = $$(TRIGGER_OFF, targetElement);
 	if (triggerOffList.length > 0) {
 		if (triggerElement.isToggleActive) {
 			triggerOffList.forEach(triggerOff => {
