@@ -27,7 +27,7 @@ __Only focus on adjusting the rest with your CSS creativity__.
 Several quick start options are available:
 
 - [Direct download](https://rawgit.com/Twikito/easy-toggle-state/master/dist/easy-toggle-state.es6.js)
-- Choose another version: [ES5 and ES6 available, minified or not](https://github.com/Twikito/easy-toggle-state/tree/master/dist)
+- Choose another version: [ES5, ES6 or a build for IE11 with polyfills](https://github.com/Twikito/easy-toggle-state/tree/master/dist)
 - Clone the repo: `git clone https://github.com/twikito/easy-toggle-state.git`
 - Install with [npm](https://www.npmjs.com/): `npm install easy-toggle-state`
 
