@@ -1,6 +1,6 @@
 {
 	"name": "easy-toggle-state",
-	"version": "1.4.2",
+	"version": "1.5.0",
 	"description": "A tiny JavaScript plugin to toggle the state of any HTML element in most of contexts with ease.",
 	"main": "dist/easy-toggle-state.es6.js",
 	"scripts": {
