@@ -14,9 +14,8 @@
 	'use strict';
 
 	{
-
 		// Production steps of ECMA-262, Edition 6, 22.1.2.1
-		// Référence : https://people.mozilla.org/~jorendorff/es6-draft.html#sec-array.from
+		// Reference : https://people.mozilla.org/~jorendorff/es6-draft.html#sec-array.from
 		if (!Array.from) {
 			Array.from = function () {
 				var toStr = Object.prototype.toString;
@@ -40,7 +39,6 @@
 				};
 
 				return function from(arrayLike /*, mapFn, thisArg */) {
-
 					var C = this;
 					var items = Object(arrayLike);
 					if (arrayLike == null) {
@@ -50,7 +48,6 @@
 					var mapFn = arguments.length > 1 ? arguments[1] : void undefined;
 					var T;
 					if (typeof mapFn !== "undefined") {
-
 						if (!isCallable(mapFn)) {
 							throw new TypeError("Array.from: lorsqu il est utilisé le deuxième argument doit être une fonction");
 						}
@@ -192,7 +189,7 @@
 	});
 
 	/* Retrieve all active trigger of a group. */
-	var retrieveGroupState = (function (group) {
+	var retrieveGroupActiveElement = (function (group) {
 	  return $$(GROUP + "=\"" + group + "\"").filter(function (groupElement) {
 	    return groupElement.isToggleActive;
 	  });
@@ -330,13 +327,11 @@
 
 	/* Toggle elements of a same group. */
 	var manageGroup = function manageGroup(element) {
-		var activeGroupElements = retrieveGroupState(element.getAttribute(GROUP));
+		var groupActiveElements = retrieveGroupActiveElement(element.getAttribute(GROUP));
 
-		if (activeGroupElements.length > 0) {
-			if (activeGroupElements.indexOf(element) === -1) {
-				activeGroupElements.forEach(function (groupElement) {
-					manageToggle(groupElement);
-				});
+		if (groupActiveElements.length > 0) {
+			if (groupActiveElements.indexOf(element) === -1) {
+				groupActiveElements.forEach(manageToggle);
 				manageToggle(element);
 			}
 		} else {
@@ -374,7 +369,7 @@
 		$$(IS_ACTIVE).forEach(function (trigger) {
 			if (trigger.hasAttribute(GROUP)) {
 				var group = trigger.getAttribute(GROUP);
-				if (retrieveGroupState(group).length > 0) {
+				if (retrieveGroupActiveElement(group).length > 0) {
 					console.warn("Toggle group '" + group + "' must not have more than one trigger with '" + IS_ACTIVE + "'");
 				} else {
 					manageActiveByDefault(trigger);

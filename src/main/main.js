@@ -15,7 +15,7 @@ import {
 } from "../constants/constants";
 import $$ from "../helpers/retrieveQuerySelectorAll";
 import manageAria from "../helpers/manageAria";
-import retrieveGroupState from "../helpers/retrieveGroupState";
+import retrieveGroupActiveElement from "../helpers/retrieveGroupActiveElement";
 import retrieveTargets from "../helpers/retrieveTargets";
 
 /* Toggle off all 'toggle-outside' elements when reproducing specified or click event outside trigger or target elements. */
@@ -98,13 +98,11 @@ const manageTriggerOutside = element => {
 
 /* Toggle elements of a same group. */
 const manageGroup = element => {
-	let activeGroupElements = retrieveGroupState(element.getAttribute(GROUP));
+	let groupActiveElements = retrieveGroupActiveElement(element.getAttribute(GROUP));
 
-	if (activeGroupElements.length > 0) {
-		if (activeGroupElements.indexOf(element) === -1) {
-			activeGroupElements.forEach(groupElement => {
-				manageToggle(groupElement);
-			});
+	if (groupActiveElements.length > 0) {
+		if (groupActiveElements.indexOf(element) === -1) {
+			groupActiveElements.forEach(manageToggle);
 			manageToggle(element);
 		}
 	} else {
@@ -145,7 +143,7 @@ export default () => {
 	$$(IS_ACTIVE).forEach(trigger => {
 		if (trigger.hasAttribute(GROUP)) {
 			let group = trigger.getAttribute(GROUP);
-			if (retrieveGroupState(group).length > 0) {
+			if (retrieveGroupActiveElement(group).length > 0) {
 				console.warn(`Toggle group '${group}' must not have more than one trigger with '${IS_ACTIVE}'`);
 			} else {
 				manageActiveByDefault(trigger);

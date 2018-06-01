@@ -88,7 +88,7 @@
 	});
 
 	/* Retrieve all active trigger of a group. */
-	var retrieveGroupState = (function (group) {
+	var retrieveGroupActiveElement = (function (group) {
 	  return $$(GROUP + "=\"" + group + "\"").filter(function (groupElement) {
 	    return groupElement.isToggleActive;
 	  });
@@ -226,13 +226,11 @@
 
 	/* Toggle elements of a same group. */
 	var manageGroup = function manageGroup(element) {
-		var activeGroupElements = retrieveGroupState(element.getAttribute(GROUP));
+		var groupActiveElements = retrieveGroupActiveElement(element.getAttribute(GROUP));
 
-		if (activeGroupElements.length > 0) {
-			if (activeGroupElements.indexOf(element) === -1) {
-				activeGroupElements.forEach(function (groupElement) {
-					manageToggle(groupElement);
-				});
+		if (groupActiveElements.length > 0) {
+			if (groupActiveElements.indexOf(element) === -1) {
+				groupActiveElements.forEach(manageToggle);
 				manageToggle(element);
 			}
 		} else {
@@ -270,7 +268,7 @@
 		$$(IS_ACTIVE).forEach(function (trigger) {
 			if (trigger.hasAttribute(GROUP)) {
 				var group = trigger.getAttribute(GROUP);
-				if (retrieveGroupState(group).length > 0) {
+				if (retrieveGroupActiveElement(group).length > 0) {
 					console.warn("Toggle group '" + group + "' must not have more than one trigger with '" + IS_ACTIVE + "'");
 				} else {
 					manageActiveByDefault(trigger);

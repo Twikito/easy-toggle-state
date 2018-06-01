@@ -60,7 +60,7 @@
 	});
 
 	/* Retrieve all active trigger of a group. */
-	const retrieveGroupState = (group => $$(`${GROUP}="${group}"`).filter(groupElement => groupElement.isToggleActive));
+	const retrieveGroupActiveElement = (group => $$(`${GROUP}="${group}"`).filter(groupElement => groupElement.isToggleActive));
 
 	/* Test the targets list */
 	const testTargets = ((selector, targetList) => {
@@ -192,13 +192,11 @@
 
 	/* Toggle elements of a same group. */
 	const manageGroup = element => {
-		let activeGroupElements = retrieveGroupState(element.getAttribute(GROUP));
+		let groupActiveElements = retrieveGroupActiveElement(element.getAttribute(GROUP));
 
-		if (activeGroupElements.length > 0) {
-			if (activeGroupElements.indexOf(element) === -1) {
-				activeGroupElements.forEach(groupElement => {
-					manageToggle(groupElement);
-				});
+		if (groupActiveElements.length > 0) {
+			if (groupActiveElements.indexOf(element) === -1) {
+				groupActiveElements.forEach(manageToggle);
 				manageToggle(element);
 			}
 		} else {
@@ -239,7 +237,7 @@
 		$$(IS_ACTIVE).forEach(trigger => {
 			if (trigger.hasAttribute(GROUP)) {
 				let group = trigger.getAttribute(GROUP);
-				if (retrieveGroupState(group).length > 0) {
+				if (retrieveGroupActiveElement(group).length > 0) {
 					console.warn(`Toggle group '${group}' must not have more than one trigger with '${IS_ACTIVE}'`);
 				} else {
 					manageActiveByDefault(trigger);
