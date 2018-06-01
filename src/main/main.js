@@ -20,10 +20,10 @@ import retrieveTargets from "../helpers/retrieveTargets";
 
 /* Toggle off all 'toggle-outside' elements when reproducing specified or click event outside trigger or target elements. */
 const documentEventHandler = event => {
-	let target = event.target;
+	const target = event.target;
 	if (!target.closest("[" + TARGET_STATE + '="true"]')) {
 		$$(OUTSIDE).forEach(element => {
-			if (element != target && element.isToggleActive) {
+			if (element !== target && element.isToggleActive) {
 				(element.hasAttribute(GROUP) ? manageGroup : manageToggle)(element);
 			}
 		});
@@ -47,7 +47,7 @@ const manageTarget = (targetElement, triggerElement) => {
 		targetElement.setAttribute(TARGET_STATE, triggerElement.isToggleActive);
 	}
 
-	let triggerOffList = $$(TRIGGER_OFF, targetElement);
+	const triggerOffList = $$(TRIGGER_OFF, targetElement);
 	if (triggerOffList.length > 0) {
 		if (triggerElement.isToggleActive) {
 			triggerOffList.forEach(triggerOff => {
@@ -64,7 +64,7 @@ const manageTarget = (targetElement, triggerElement) => {
 
 /* Toggle class and aria on trigger and target elements. */
 const manageToggle = element => {
-	let className = element.getAttribute(CLASS) || "is-active";
+	const className = element.getAttribute(CLASS) || "is-active";
 	element.isToggleActive = !element.isToggleActive;
 	manageAria(element);
 
@@ -72,7 +72,7 @@ const manageToggle = element => {
 		element.classList.toggle(className);
 	}
 
-	let targetElements = retrieveTargets(element);
+	const targetElements = retrieveTargets(element);
 	for (let i = 0; i < targetElements.length; i++) {
 		targetElements[i].classList.toggle(className);
 		manageTarget(targetElements[i], element);
@@ -98,7 +98,7 @@ const manageTriggerOutside = element => {
 
 /* Toggle elements of a same group. */
 const manageGroup = element => {
-	let groupActiveElements = retrieveGroupActiveElement(element.getAttribute(GROUP));
+	const groupActiveElements = retrieveGroupActiveElement(element.getAttribute(GROUP));
 
 	if (groupActiveElements.length > 0) {
 		if (groupActiveElements.indexOf(element) === -1) {
@@ -112,7 +112,7 @@ const manageGroup = element => {
 
 /* Toggle elements set to be active by default. */
 const manageActiveByDefault = element => {
-	let className = element.getAttribute(CLASS) || "is-active";
+	const className = element.getAttribute(CLASS) || "is-active";
 	element.isToggleActive = true;
 	manageAria(element, {
 		[CHECKED]: true,
@@ -125,7 +125,7 @@ const manageActiveByDefault = element => {
 		element.classList.add(className);
 	}
 
-	let targetElements = retrieveTargets(element);
+	const targetElements = retrieveTargets(element);
 	for (let i = 0; i < targetElements.length; i++) {
 		if (!targetElements[i].classList.contains(className)) {
 			targetElements[i].classList.add(className);
@@ -142,7 +142,7 @@ export default () => {
 	/* Active by default management. */
 	$$(IS_ACTIVE).forEach(trigger => {
 		if (trigger.hasAttribute(GROUP)) {
-			let group = trigger.getAttribute(GROUP);
+			const group = trigger.getAttribute(GROUP);
 			if (retrieveGroupActiveElement(group).length > 0) {
 				console.warn(`Toggle group '${group}' must not have more than one trigger with '${IS_ACTIVE}'`);
 			} else {
@@ -166,21 +166,13 @@ export default () => {
 	});
 
 	/* Escape key management. */
-	let triggerEscElements = $$(ESCAPE);
+	const triggerEscElements = $$(ESCAPE);
 	if (triggerEscElements.length > 0) {
 		document.addEventListener(
 			"keyup",
 			event => {
 				event = event || window.event;
-				let isEscape = false;
-
-				if ("key" in event) {
-					isEscape = event.key === "Escape" || event.key === "Esc";
-				} else {
-					isEscape = event.keyCode === 27;
-				}
-
-				if (isEscape) {
+				if (event.key === "Escape" || event.key === "Esc") {
 					triggerEscElements.forEach(trigger => {
 						if (trigger.isToggleActive) {
 							if (trigger.hasAttribute(GROUP)) {

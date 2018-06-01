@@ -10,7 +10,7 @@ export default (selector, targetList) => {
 	const matches = selector.match(/#\w+/gi);
 	if (matches) {
 		matches.forEach(match => {
-			let result = [...targetList].filter(target => target.id === match.slice(1));
+			const result = [...targetList].filter(target => target.id === match.slice(1));
 			if (result.length > 1) {
 				console.warn(`There's ${result.length} matches for the selector '${match}' for this trigger`);
 			}

@@ -74,7 +74,7 @@
 		const matches = selector.match(/#\w+/gi);
 		if (matches) {
 			matches.forEach(match => {
-				let result = [...targetList].filter(target => target.id === match.slice(1));
+				const result = [...targetList].filter(target => target.id === match.slice(1));
 				if (result.length > 1) {
 					console.warn(`There's ${result.length} matches for the selector '${match}' for this trigger`);
 				}
@@ -87,17 +87,17 @@
 	/* Retrieve all targets of a trigger element. */
 	const retrieveTargets = (element => {
 		if (element.hasAttribute(TARGET) || element.hasAttribute(TARGET_ALL)) {
-			let selector = element.getAttribute(TARGET) || element.getAttribute(TARGET_ALL);
+			const selector = element.getAttribute(TARGET) || element.getAttribute(TARGET_ALL);
 			return testTargets(selector, document.querySelectorAll(selector));
 		}
 
 		if (element.hasAttribute(TARGET_PARENT)) {
-			let selector = element.getAttribute(TARGET_PARENT);
+			const selector = element.getAttribute(TARGET_PARENT);
 			return testTargets(selector, element.parentElement.querySelectorAll(selector));
 		}
 
 		if (element.hasAttribute(TARGET_SELF)) {
-			let selector = element.getAttribute(TARGET_SELF);
+			const selector = element.getAttribute(TARGET_SELF);
 			return testTargets(selector, element.querySelectorAll(selector));
 		}
 
@@ -114,10 +114,10 @@
 
 	/* Toggle off all 'toggle-outside' elements when reproducing specified or click event outside trigger or target elements. */
 	const documentEventHandler = event => {
-		let target = event.target;
+		const target = event.target;
 		if (!target.closest("[" + TARGET_STATE + '="true"]')) {
 			$$(OUTSIDE).forEach(element => {
-				if (element != target && element.isToggleActive) {
+				if (element !== target && element.isToggleActive) {
 					(element.hasAttribute(GROUP) ? manageGroup : manageToggle)(element);
 				}
 			});
@@ -141,7 +141,7 @@
 			targetElement.setAttribute(TARGET_STATE, triggerElement.isToggleActive);
 		}
 
-		let triggerOffList = $$(TRIGGER_OFF, targetElement);
+		const triggerOffList = $$(TRIGGER_OFF, targetElement);
 		if (triggerOffList.length > 0) {
 			if (triggerElement.isToggleActive) {
 				triggerOffList.forEach(triggerOff => {
@@ -158,7 +158,7 @@
 
 	/* Toggle class and aria on trigger and target elements. */
 	const manageToggle = element => {
-		let className = element.getAttribute(CLASS) || "is-active";
+		const className = element.getAttribute(CLASS) || "is-active";
 		element.isToggleActive = !element.isToggleActive;
 		manageAria(element);
 
@@ -166,7 +166,7 @@
 			element.classList.toggle(className);
 		}
 
-		let targetElements = retrieveTargets(element);
+		const targetElements = retrieveTargets(element);
 		for (let i = 0; i < targetElements.length; i++) {
 			targetElements[i].classList.toggle(className);
 			manageTarget(targetElements[i], element);
@@ -192,7 +192,7 @@
 
 	/* Toggle elements of a same group. */
 	const manageGroup = element => {
-		let groupActiveElements = retrieveGroupActiveElement(element.getAttribute(GROUP));
+		const groupActiveElements = retrieveGroupActiveElement(element.getAttribute(GROUP));
 
 		if (groupActiveElements.length > 0) {
 			if (groupActiveElements.indexOf(element) === -1) {
@@ -206,7 +206,7 @@
 
 	/* Toggle elements set to be active by default. */
 	const manageActiveByDefault = element => {
-		let className = element.getAttribute(CLASS) || "is-active";
+		const className = element.getAttribute(CLASS) || "is-active";
 		element.isToggleActive = true;
 		manageAria(element, {
 			[CHECKED]: true,
@@ -219,7 +219,7 @@
 			element.classList.add(className);
 		}
 
-		let targetElements = retrieveTargets(element);
+		const targetElements = retrieveTargets(element);
 		for (let i = 0; i < targetElements.length; i++) {
 			if (!targetElements[i].classList.contains(className)) {
 				targetElements[i].classList.add(className);
@@ -236,7 +236,7 @@
 		/* Active by default management. */
 		$$(IS_ACTIVE).forEach(trigger => {
 			if (trigger.hasAttribute(GROUP)) {
-				let group = trigger.getAttribute(GROUP);
+				const group = trigger.getAttribute(GROUP);
 				if (retrieveGroupActiveElement(group).length > 0) {
 					console.warn(`Toggle group '${group}' must not have more than one trigger with '${IS_ACTIVE}'`);
 				} else {
@@ -256,19 +256,11 @@
 		});
 
 		/* Escape key management. */
-		let triggerEscElements = $$(ESCAPE);
+		const triggerEscElements = $$(ESCAPE);
 		if (triggerEscElements.length > 0) {
 			document.addEventListener("keyup", event => {
 				event = event || window.event;
-				let isEscape = false;
-
-				if ("key" in event) {
-					isEscape = event.key === "Escape" || event.key === "Esc";
-				} else {
-					isEscape = event.keyCode === 27;
-				}
-
-				if (isEscape) {
+				if (event.key === "Escape" || event.key === "Esc") {
 					triggerEscElements.forEach(trigger => {
 						if (trigger.isToggleActive) {
 							if (trigger.hasAttribute(GROUP)) {

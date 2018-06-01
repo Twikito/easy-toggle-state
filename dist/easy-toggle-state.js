@@ -151,7 +151,7 @@
 		var target = event.target;
 		if (!target.closest("[" + TARGET_STATE + '="true"]')) {
 			$$(OUTSIDE).forEach(function (element) {
-				if (element != target && element.isToggleActive) {
+				if (element !== target && element.isToggleActive) {
 					(element.hasAttribute(GROUP) ? manageGroup : manageToggle)(element);
 				}
 			});
@@ -291,15 +291,7 @@
 		if (triggerEscElements.length > 0) {
 			document.addEventListener("keyup", function (event) {
 				event = event || window.event;
-				var isEscape = false;
-
-				if ("key" in event) {
-					isEscape = event.key === "Escape" || event.key === "Esc";
-				} else {
-					isEscape = event.keyCode === 27;
-				}
-
-				if (isEscape) {
+				if (event.key === "Escape" || event.key === "Esc") {
 					triggerEscElements.forEach(function (trigger) {
 						if (trigger.isToggleActive) {
 							if (trigger.hasAttribute(GROUP)) {
