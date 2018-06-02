@@ -1,4 +1,4 @@
-# [![Easy Toggle State](logo.png)](https://twikito.github.io/easy-toggle-state/)
+# [![Easy Toggle State](https://raw.githubusercontent.com/Twikito/easy-toggle-state/master/logo.png)](https://twikito.github.io/easy-toggle-state/)
 
 __A tiny JavaScript library to easily toggle the state of any HTML element and its targets.__
 
