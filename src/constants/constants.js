@@ -1,6 +1,8 @@
 import dataset from "../helpers/dataset";
 
-/* HTML attributes */
+/**
+ * All constants containing HTML attributes string.
+ */
 export const CHECKED = "aria-checked",
 	CLASS = dataset("class"),
 	ESCAPE = dataset("escape"),

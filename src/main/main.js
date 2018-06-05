@@ -13,14 +13,15 @@ import {
 	TARGET_STATE,
 	TRIGGER_OFF
 } from "../constants/constants";
-import $$ from "../helpers/retrieveQuerySelectorAll";
-import manageAria from "../helpers/manageAria";
-import retrieveGroupActiveElement from "../helpers/retrieveGroupActiveElement";
-import retrieveTargets from "../helpers/retrieveTargets";
+import $$ from "../helpers/retrieve-query-selector-all";
+import manageAria from "../helpers/manage-aria";
+import retrieveGroupActiveElement from "../helpers/retrieve-group-active-element";
+import retrieveTargets from "../helpers/retrieve-targets";
 
 /**
- * Toggle off all 'toggle-outside' elements when reproducing specified or click event outside trigger or target elements.
- * @param {event} event - Event triggered on document.
+ * Toggle off all elements width 'data-toggle-outside' attribute
+ * when reproducing specified or click event outside itself or its targets.
+ * @param {event} event - Event triggered on document
  * @returns {undefined}
  */
 const documentEventHandler = event => {
@@ -38,8 +39,8 @@ const documentEventHandler = event => {
 };
 
 /**
- * Manage click on 'trigger-off' elements.
- * @param {event} event - Event triggered on element with 'trigger-off' attribute.
+ * Manage click on elements with 'data-trigger-off' attribue.
+ * @param {event} event - Event triggered on element with 'trigger-off' attribute
  * @returns {undefined}
  */
 const triggerOffHandler = event => {
@@ -48,8 +49,8 @@ const triggerOffHandler = event => {
 
 /**
  * Manage attributes and events of target elements.
- * @param {object} targetElement - An element targeted by the trigger element.
- * @param {object} triggerElement - The trigger element.
+ * @param {node} targetElement - An element targeted by the trigger element
+ * @param {node} triggerElement - The trigger element
  * @returns {undefined}
  */
 const manageTarget = (targetElement, triggerElement) => {
@@ -75,7 +76,11 @@ const manageTarget = (targetElement, triggerElement) => {
 	}
 };
 
-/* Toggle class and aria on trigger and target elements. */
+/**
+ * Toggle class and aria on trigger and target elements.
+ * @param {node} element - The element to toggle state and attributes
+ * @returns {undefined}
+ */
 const manageToggle = element => {
 	const className = element.getAttribute(CLASS) || "is-active";
 	element.isToggleActive = !element.isToggleActive;
@@ -94,7 +99,11 @@ const manageToggle = element => {
 	manageTriggerOutside(element);
 };
 
-/* Manage event ouside trigger or target elements. */
+/**
+ * Manage event ouside trigger or target elements.
+ * @param {node} element - The element to toggle when 'click' or custom event is triggered on document
+ * @returns {undefined}
+ */
 const manageTriggerOutside = element => {
 	if (element.hasAttribute(OUTSIDE)) {
 		if (element.hasAttribute(GROUP)) {
@@ -109,7 +118,11 @@ const manageTriggerOutside = element => {
 	}
 };
 
-/* Toggle elements of a same group. */
+/**
+ * Toggle elements of a same group.
+ * @param {node} element - The element to test if it's in a group
+ * @returns {undefined}
+ */
 const manageGroup = element => {
 	const groupActiveElements = retrieveGroupActiveElement(element.getAttribute(GROUP));
 
@@ -123,7 +136,11 @@ const manageGroup = element => {
 	}
 };
 
-/* Toggle elements set to be active by default. */
+/**
+ * Toggle elements set to be active by default.
+ * @param {node} element - The element to activate on page load
+ * @returns {undefined}
+ */
 const manageActiveByDefault = element => {
 	const className = element.getAttribute(CLASS) || "is-active";
 	element.isToggleActive = true;
@@ -149,10 +166,15 @@ const manageActiveByDefault = element => {
 	manageTriggerOutside(element);
 };
 
-/* Initialization. */
+/**
+ * Initialization.
+ * @returns {undefined}
+ */
 export default () => {
 
-	/* Active by default management. */
+	/**
+	 * Active by default management.
+	 */
 	$$(IS_ACTIVE).forEach(trigger => {
 		if (trigger.hasAttribute(GROUP)) {
 			const group = trigger.getAttribute(GROUP);
@@ -166,7 +188,9 @@ export default () => {
 		}
 	});
 
-	/* Set specified or click event on each trigger element. */
+	/**
+	 * Set specified or click event on each trigger element.
+	 */
 	$$().forEach(trigger => {
 		trigger.addEventListener(
 			trigger.getAttribute(EVENT) || "click",
@@ -178,7 +202,9 @@ export default () => {
 		);
 	});
 
-	/* Escape key management. */
+	/**
+	 * Escape key management.
+	 */
 	const triggerEscElements = $$(ESCAPE);
 	if (triggerEscElements.length > 0) {
 		document.addEventListener(

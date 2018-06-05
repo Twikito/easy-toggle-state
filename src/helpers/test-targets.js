@@ -1,4 +1,9 @@
-/* Test the targets list */
+/**
+ * Test the targets list.
+ * @param {string} selector - The selector corresponding to the targets list
+ * @param {nodeList} targetList - A target elements list
+ * @returns {nodeList} - The targets list
+ */
 export default (selector, targetList) => {
 
 	/* Test if there's no match for a selector */
