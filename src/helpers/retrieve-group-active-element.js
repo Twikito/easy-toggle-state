@@ -2,7 +2,7 @@ import $$ from "./retrieve-query-selector-all";
 import { GROUP } from "../constants/constants";
 
 /**
- * Retrieve all active trigger of a group.
+ * Retrieve all active elements of a group.
  * @param {string} group - The trigger group name
  * @returns {array} - An array of active elements of a group
  */

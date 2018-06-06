@@ -172,9 +172,7 @@ const manageActiveByDefault = element => {
  */
 export default () => {
 
-	/**
-	 * Active by default management.
-	 */
+	/** Active by default management. */
 	$$(IS_ACTIVE).forEach(trigger => {
 		if (trigger.hasAttribute(GROUP)) {
 			const group = trigger.getAttribute(GROUP);
@@ -188,9 +186,7 @@ export default () => {
 		}
 	});
 
-	/**
-	 * Set specified or click event on each trigger element.
-	 */
+	/** Set specified or click event on each trigger element. */
 	$$().forEach(trigger => {
 		trigger.addEventListener(
 			trigger.getAttribute(EVENT) || "click",
@@ -202,9 +198,7 @@ export default () => {
 		);
 	});
 
-	/**
-	 * Escape key management.
-	 */
+	/** Escape key management. */
 	const triggerEscElements = $$(ESCAPE);
 	if (triggerEscElements.length > 0) {
 		document.addEventListener(
