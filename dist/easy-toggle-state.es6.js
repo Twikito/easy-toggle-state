@@ -4,7 +4,7 @@
  * A tiny JavaScript plugin to toggle the state of any HTML element in most of contexts with ease.
  *
  * @author Matthieu Bué <https://twikito.com>
- * @version v1.5.0
+ * @version v1.5.1
  * @link https://twikito.github.io/easy-toggle-state/
  * @license MIT : https://github.com/Twikito/easy-toggle-state/blob/master/LICENSE
  * -------------------------------------------------------------------
@@ -15,14 +15,20 @@
 
 	/**
 	 * You can change this PREFIX value to prevent conflict with another JS library.
-	 * This prefix will be set to all attributes like data-[PREFIX]-class.
+	 * This prefix will be set to all attributes like 'data-[PREFIX]-class'.
 	 */
 	const PREFIX = "toggle";
 
-	/* Retrieve a valid HTML attribute. */
+	/**
+	 * Retrieve a valid HTML attribute string.
+	 * @param {string} key - A string to build a html attribute
+	 * @returns {string} A valid html attribute
+	 */
 	const dataset = (key => ["data", PREFIX, key].filter(Boolean).join("-"));
 
-	/* HTML attributes */
+	/**
+	 * All constants containing HTML attributes string.
+	 */
 	const CHECKED = "aria-checked",
 	      CLASS = dataset("class"),
 	      ESCAPE = dataset("escape"),
@@ -43,13 +49,23 @@
 	      TARGET_STATE = dataset("state"),
 	      TRIGGER_OFF = dataset("trigger-off");
 
-	/* Retrieve all triggers with a specific attribute */
+	/**
+	 * Retrieve all trigger elements with a specific attribute, or all nodes in a specific scope.
+	 * @param {string} selector - A string that contains a selector
+	 * @param {object} [node] - An element in which to make the selection
+	 * @returns {array} - An array of elements
+	 */
 	const $$ = ((selector, node) => {
-		const scope = selector ? `[${selector}]` : "";
-		return node ? [...node.querySelectorAll(scope)] : [...document.querySelectorAll(`[${CLASS}]${scope}`.trim())];
+	  const scope = selector ? `[${selector}]` : "";
+	  return node ? [...node.querySelectorAll(scope)] : [...document.querySelectorAll(`[${CLASS}]${scope}`.trim())];
 	});
 
-	/* Manage ARIA attributes */
+	/**
+	 * Aria attributes toggle manager.
+	 * @param {node} element - Current element with aria attributes to manage.
+	 * @param {json} [config] - List of aria attributes and value to assign.
+	 * @returns {undefined}
+	 */
 	const manageAria = ((element, config = {
 		[CHECKED]: element.isToggleActive,
 		[EXPANDED]: element.isToggleActive,
@@ -59,10 +75,19 @@
 		Object.keys(config).forEach(key => element.hasAttribute(key) && element.setAttribute(key, config[key]));
 	});
 
-	/* Retrieve all active trigger of a group. */
+	/**
+	 * Retrieve all active trigger of a group.
+	 * @param {string} group - The trigger group name
+	 * @returns {array} - An array of active elements of a group
+	 */
 	const retrieveGroupActiveElement = (group => $$(`${GROUP}="${group}"`).filter(groupElement => groupElement.isToggleActive));
 
-	/* Test the targets list */
+	/**
+	 * Test the targets list.
+	 * @param {string} selector - The selector corresponding to the targets list
+	 * @param {nodeList} targetList - A target elements list
+	 * @returns {nodeList} - The targets list
+	 */
 	const testTargets = ((selector, targetList) => {
 
 		/* Test if there's no match for a selector */
@@ -84,7 +109,11 @@
 		return targetList;
 	});
 
-	/* Retrieve all targets of a trigger element. */
+	/**
+	 * Retrieve all targets of a trigger element, depending of its target attribute.
+	 * @param {node} element - A trigger element
+	 * @returns {nodeList} - All targets of a trigger element
+	 */
 	const retrieveTargets = (element => {
 		if (element.hasAttribute(TARGET) || element.hasAttribute(TARGET_ALL)) {
 			const selector = element.getAttribute(TARGET) || element.getAttribute(TARGET_ALL);
@@ -112,7 +141,12 @@
 		return [];
 	});
 
-	/* Toggle off all 'toggle-outside' elements when reproducing specified or click event outside trigger or target elements. */
+	/**
+	 * Toggle off all elements width 'data-toggle-outside' attribute
+	 * when reproducing specified or click event outside itself or its targets.
+	 * @param {event} event - Event triggered on document
+	 * @returns {undefined}
+	 */
 	const documentEventHandler = event => {
 		const target = event.target;
 		if (!target.closest("[" + TARGET_STATE + '="true"]')) {
@@ -127,12 +161,21 @@
 		}
 	};
 
-	/* Manage click on 'trigger-off' elements. */
+	/**
+	 * Manage click on elements with 'data-trigger-off' attribue.
+	 * @param {event} event - Event triggered on element with 'trigger-off' attribute
+	 * @returns {undefined}
+	 */
 	const triggerOffHandler = event => {
 		manageToggle(event.target.targetElement);
 	};
 
-	/* Manage attributes and events of target elements. */
+	/**
+	 * Manage attributes and events of target elements.
+	 * @param {node} targetElement - An element targeted by the trigger element
+	 * @param {node} triggerElement - The trigger element
+	 * @returns {undefined}
+	 */
 	const manageTarget = (targetElement, triggerElement) => {
 		targetElement.isToggleActive = !targetElement.isToggleActive;
 		manageAria(targetElement);
@@ -156,7 +199,11 @@
 		}
 	};
 
-	/* Toggle class and aria on trigger and target elements. */
+	/**
+	 * Toggle class and aria on trigger and target elements.
+	 * @param {node} element - The element to toggle state and attributes
+	 * @returns {undefined}
+	 */
 	const manageToggle = element => {
 		const className = element.getAttribute(CLASS) || "is-active";
 		element.isToggleActive = !element.isToggleActive;
@@ -175,7 +222,11 @@
 		manageTriggerOutside(element);
 	};
 
-	/* Manage event ouside trigger or target elements. */
+	/**
+	 * Manage event ouside trigger or target elements.
+	 * @param {node} element - The element to toggle when 'click' or custom event is triggered on document
+	 * @returns {undefined}
+	 */
 	const manageTriggerOutside = element => {
 		if (element.hasAttribute(OUTSIDE)) {
 			if (element.hasAttribute(GROUP)) {
@@ -190,7 +241,11 @@
 		}
 	};
 
-	/* Toggle elements of a same group. */
+	/**
+	 * Toggle elements of a same group.
+	 * @param {node} element - The element to test if it's in a group
+	 * @returns {undefined}
+	 */
 	const manageGroup = element => {
 		const groupActiveElements = retrieveGroupActiveElement(element.getAttribute(GROUP));
 
@@ -204,7 +259,11 @@
 		}
 	};
 
-	/* Toggle elements set to be active by default. */
+	/**
+	 * Toggle elements set to be active by default.
+	 * @param {node} element - The element to activate on page load
+	 * @returns {undefined}
+	 */
 	const manageActiveByDefault = element => {
 		const className = element.getAttribute(CLASS) || "is-active";
 		element.isToggleActive = true;
@@ -230,10 +289,15 @@
 		manageTriggerOutside(element);
 	};
 
-	/* Initialization. */
+	/**
+	 * Initialization.
+	 * @returns {undefined}
+	 */
 	const init = (() => {
 
-		/* Active by default management. */
+		/**
+	  * Active by default management.
+	  */
 		$$(IS_ACTIVE).forEach(trigger => {
 			if (trigger.hasAttribute(GROUP)) {
 				const group = trigger.getAttribute(GROUP);
@@ -247,7 +311,9 @@
 			}
 		});
 
-		/* Set specified or click event on each trigger element. */
+		/**
+	  * Set specified or click event on each trigger element.
+	  */
 		$$().forEach(trigger => {
 			trigger.addEventListener(trigger.getAttribute(EVENT) || "click", event => {
 				event.preventDefault();
@@ -255,7 +321,9 @@
 			}, false);
 		});
 
-		/* Escape key management. */
+		/**
+	  * Escape key management.
+	  */
 		const triggerEscElements = $$(ESCAPE);
 		if (triggerEscElements.length > 0) {
 			document.addEventListener("keyup", event => {

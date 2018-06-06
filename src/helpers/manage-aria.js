@@ -1,6 +1,11 @@
 import { CHECKED, EXPANDED, HIDDEN, SELECTED } from "../constants/constants";
 
-/* Manage ARIA attributes */
+/**
+ * Aria attributes toggle manager.
+ * @param {node} element - Current element with aria attributes to manage.
+ * @param {json} [config] - List of aria attributes and value to assign.
+ * @returns {undefined}
+ */
 export default (
 	element,
 	config = {

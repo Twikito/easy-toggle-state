@@ -1,6 +1,15 @@
-import dataset from "../helpers/dataset";
+import PREFIX from "./prefix";
 
-/* HTML attributes */
+/**
+ * Retrieve a valid HTML attribute string.
+ * @param {string} key - A string to build a html attribute
+ * @returns {string} - A valid html attribute
+ */
+const dataset = key => ["data", PREFIX, key].filter(Boolean).join("-");
+
+/**
+ * All constants containing HTML attributes string.
+ */
 export const CHECKED = "aria-checked",
 	CLASS = dataset("class"),
 	ESCAPE = dataset("escape"),
