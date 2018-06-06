@@ -55,7 +55,7 @@ const getPlugins = (version = "es5", isMin = false) => {
 	const babelConfig = getBabelConfig(version);
 	const list = [
 		replace({
-			ENV_IE_11: process.env.ENV_BROWSER === "ie11"
+			ENV_IE: process.env.ENV_BROWSER === "ie"
 		}),
 		babel(babelConfig)
 	];

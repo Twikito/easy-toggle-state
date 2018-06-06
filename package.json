@@ -13,8 +13,8 @@
 		"bundle:es6:min": "cross-env NODE_ENV=es6 OUT_STYLE=min rollup -c",
 		"bundle:es5": "cross-env NODE_ENV=es5 rollup -c",
 		"bundle:es5:min": "cross-env NODE_ENV=es5 OUT_STYLE=min rollup -c",
-		"bundle:es5:ie11": "cross-env NODE_ENV=es5 ENV_BROWSER=ie11 rollup -c",
-		"bundle:es5:ie11:min": "cross-env NODE_ENV=es5 ENV_BROWSER=ie11 OUT_STYLE=min rollup -c",
+		"bundle:es5:ie11": "cross-env NODE_ENV=es5 ENV_BROWSER=ie rollup -c",
+		"bundle:es5:ie11:min": "cross-env NODE_ENV=es5 ENV_BROWSER=ie OUT_STYLE=min rollup -c",
 		"build": "npm test && npm run clean && npm-run-all -p bundle:**"
 	},
 	"lint-staged": {

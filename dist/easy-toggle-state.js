@@ -22,11 +22,11 @@
 	/**
 	 * Retrieve a valid HTML attribute string.
 	 * @param {string} key - A string to build a html attribute
-	 * @returns {string} A valid html attribute
+	 * @returns {string} - A valid html attribute
 	 */
-	var dataset = (function (key) {
-	  return ["data", PREFIX, key].filter(Boolean).join("-");
-	});
+	var dataset = function dataset(key) {
+		return ["data", PREFIX, key].filter(Boolean).join("-");
+	};
 
 	/**
 	 * All constants containing HTML attributes string.
@@ -79,7 +79,7 @@
 	/**
 	 * Retrieve all trigger elements with a specific attribute, or all nodes in a specific scope.
 	 * @param {string} selector - A string that contains a selector
-	 * @param {object} [node] - An element in which to make the selection
+	 * @param {node} [node] - An element in which to make the selection
 	 * @returns {array} - An array of elements
 	 */
 	var $$ = (function (selector, node) {
@@ -104,7 +104,7 @@
 	});
 
 	/**
-	 * Retrieve all active trigger of a group.
+	 * Retrieve all active elements of a group.
 	 * @param {string} group - The trigger group name
 	 * @returns {array} - An array of active elements of a group
 	 */
@@ -115,19 +115,19 @@
 	});
 
 	/**
-	 * Test the targets list.
+	 * Test a targets list.
 	 * @param {string} selector - The selector corresponding to the targets list
 	 * @param {nodeList} targetList - A target elements list
 	 * @returns {nodeList} - The targets list
 	 */
-	var testTargets = (function (selector, targetList) {
+	var testTargets = function testTargets(selector, targetList) {
 
-		/* Test if there's no match for a selector */
+		/** Test if there's no match for a selector */
 		if (targetList.length === 0) {
 			console.warn("There's no match for the selector '" + selector + "' for this trigger");
 		}
 
-		/* Test if there's more than one match for an ID selector */
+		/** Test if there's more than one match for an ID selector */
 		var matches = selector.match(/#\w+/gi);
 		if (matches) {
 			matches.forEach(function (match) {
@@ -141,7 +141,7 @@
 		}
 
 		return targetList;
-	});
+	};
 
 	/**
 	 * Retrieve all targets of a trigger element, depending of its target attribute.
@@ -326,9 +326,7 @@
 	 */
 	var init = (function () {
 
-		/**
-	  * Active by default management.
-	  */
+		/** Active by default management. */
 		$$(IS_ACTIVE).forEach(function (trigger) {
 			if (trigger.hasAttribute(GROUP)) {
 				var group = trigger.getAttribute(GROUP);
@@ -342,9 +340,7 @@
 			}
 		});
 
-		/**
-	  * Set specified or click event on each trigger element.
-	  */
+		/** Set specified or click event on each trigger element. */
 		$$().forEach(function (trigger) {
 			trigger.addEventListener(trigger.getAttribute(EVENT) || "click", function (event) {
 				event.preventDefault();
@@ -352,9 +348,7 @@
 			}, false);
 		});
 
-		/**
-	  * Escape key management.
-	  */
+		/** Escape key management. */
 		var triggerEscElements = $$(ESCAPE);
 		if (triggerEscElements.length > 0) {
 			document.addEventListener("keyup", function (event) {

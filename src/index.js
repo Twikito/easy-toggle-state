@@ -1,5 +1,5 @@
 /* eslint no-unused-vars: "off" */
-import ie11 from "./polyfill/ie11";
+import ie from "./polyfills/ie";
 import init from "./main/main";
 
 const onLoad = () => {

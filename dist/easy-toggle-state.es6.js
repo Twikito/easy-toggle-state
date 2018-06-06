@@ -22,9 +22,9 @@
 	/**
 	 * Retrieve a valid HTML attribute string.
 	 * @param {string} key - A string to build a html attribute
-	 * @returns {string} A valid html attribute
+	 * @returns {string} - A valid html attribute
 	 */
-	const dataset = (key => ["data", PREFIX, key].filter(Boolean).join("-"));
+	const dataset = key => ["data", PREFIX, key].filter(Boolean).join("-");
 
 	/**
 	 * All constants containing HTML attributes string.
@@ -52,7 +52,7 @@
 	/**
 	 * Retrieve all trigger elements with a specific attribute, or all nodes in a specific scope.
 	 * @param {string} selector - A string that contains a selector
-	 * @param {object} [node] - An element in which to make the selection
+	 * @param {node} [node] - An element in which to make the selection
 	 * @returns {array} - An array of elements
 	 */
 	const $$ = ((selector, node) => {
@@ -76,26 +76,26 @@
 	});
 
 	/**
-	 * Retrieve all active trigger of a group.
+	 * Retrieve all active elements of a group.
 	 * @param {string} group - The trigger group name
 	 * @returns {array} - An array of active elements of a group
 	 */
 	const retrieveGroupActiveElement = (group => $$(`${GROUP}="${group}"`).filter(groupElement => groupElement.isToggleActive));
 
 	/**
-	 * Test the targets list.
+	 * Test a targets list.
 	 * @param {string} selector - The selector corresponding to the targets list
 	 * @param {nodeList} targetList - A target elements list
 	 * @returns {nodeList} - The targets list
 	 */
-	const testTargets = ((selector, targetList) => {
+	const testTargets = (selector, targetList) => {
 
-		/* Test if there's no match for a selector */
+		/** Test if there's no match for a selector */
 		if (targetList.length === 0) {
 			console.warn(`There's no match for the selector '${selector}' for this trigger`);
 		}
 
-		/* Test if there's more than one match for an ID selector */
+		/** Test if there's more than one match for an ID selector */
 		const matches = selector.match(/#\w+/gi);
 		if (matches) {
 			matches.forEach(match => {
@@ -107,7 +107,7 @@
 		}
 
 		return targetList;
-	});
+	};
 
 	/**
 	 * Retrieve all targets of a trigger element, depending of its target attribute.
@@ -295,9 +295,7 @@
 	 */
 	const init = (() => {
 
-		/**
-	  * Active by default management.
-	  */
+		/** Active by default management. */
 		$$(IS_ACTIVE).forEach(trigger => {
 			if (trigger.hasAttribute(GROUP)) {
 				const group = trigger.getAttribute(GROUP);
@@ -311,9 +309,7 @@
 			}
 		});
 
-		/**
-	  * Set specified or click event on each trigger element.
-	  */
+		/** Set specified or click event on each trigger element. */
 		$$().forEach(trigger => {
 			trigger.addEventListener(trigger.getAttribute(EVENT) || "click", event => {
 				event.preventDefault();
@@ -321,9 +317,7 @@
 			}, false);
 		});
 
-		/**
-	  * Escape key management.
-	  */
+		/** Escape key management. */
 		const triggerEscElements = $$(ESCAPE);
 		if (triggerEscElements.length > 0) {
 			document.addEventListener("keyup", event => {
