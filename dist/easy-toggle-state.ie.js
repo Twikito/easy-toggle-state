@@ -14,7 +14,6 @@
 	'use strict';
 
 	{
-
 		/**
 	  * Polyfill for Array.from
 	  * @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from#Polyfill
@@ -23,7 +22,7 @@
 			Array.from = function () {
 				var toStr = Object.prototype.toString;
 				var isCallable = function isCallable(fn) {
-					return typeof fn === 'function' || toStr.call(fn) === '[object Function]';
+					return typeof fn === "function" || toStr.call(fn) === "[object Function]";
 				};
 				var toInteger = function toInteger(value) {
 					var number = Number(value);
@@ -51,17 +50,17 @@
 
 					// 3. ReturnIfAbrupt(items).
 					if (arrayLike == null) {
-						throw new TypeError('Array.from requires an array-like object - not null or undefined');
+						throw new TypeError("Array.from requires an array-like object - not null or undefined");
 					}
 
 					// 4. If mapfn is undefined, then let mapping be false.
 					var mapFn = arguments.length > 1 ? arguments[1] : void undefined;
 					var T;
-					if (typeof mapFn !== 'undefined') {
+					if (typeof mapFn !== "undefined") {
 						// 5. else
 						// 5. a If IsCallable(mapfn) is false, throw a TypeError exception.
 						if (!isCallable(mapFn)) {
-							throw new TypeError('Array.from: when provided, the second argument must be a function');
+							throw new TypeError("Array.from: when provided, the second argument must be a function");
 						}
 
 						// 5. b. If thisArg was supplied, let T be thisArg; else let T be undefined.
@@ -87,7 +86,7 @@
 					while (k < len) {
 						kValue = items[k];
 						if (mapFn) {
-							A[k] = typeof T === 'undefined' ? mapFn(kValue, k) : mapFn.call(T, kValue, k);
+							A[k] = typeof T === "undefined" ? mapFn(kValue, k) : mapFn.call(T, kValue, k);
 						} else {
 							A[k] = kValue;
 						}
@@ -112,7 +111,8 @@
 				    el = this;
 				do {
 					i = matches.length;
-					while (--i >= 0 && matches.item(i) !== el) {}			} while (i < 0 && (el = el.parentElement));
+					while (--i >= 0 && matches.item(i) !== el) {}
+				} while (i < 0 && (el = el.parentElement));
 				return el;
 			};
 		}
