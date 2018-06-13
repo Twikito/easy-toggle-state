@@ -102,12 +102,22 @@ h4 a:focus::before {
 	opacity: 1; visibility: visible;
 }
 
-a {
+a,
+.link-like {
 	color: var(--theme);
 }
 a:hover,
-a:focus {
+.link-like:hover,
+a:focus,
+.link-like:focus {
 	text-decoration: none;
+}
+
+.link-like {
+	display: inline; padding: 0;
+	border: none; outline: none;
+	background: none;
+	text-decoration: underline;
 }
 
 section {
