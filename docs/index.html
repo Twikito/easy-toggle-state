@@ -364,10 +364,14 @@
 	class="example-checkbox"
 	data-toggle-class="is-checked"
 	role="checkbox"
-	aria-checked="false"&gt;
+	aria-checked="false"
+	title="Toggle this box"&gt;
+	&lt;span class="sr-only"&gt;Toggle&lt;/span&gt;
 &lt;/button&gt;</code></pre>
 					<div class="demo" id="checkbox-with-aria-demo">
-<button type="button" class="example-checkbox" data-toggle-class="is-checked" role="checkbox" aria-checked="false"></button>
+<button type="button" class="example-checkbox" data-toggle-class="is-checked" role="checkbox" aria-checked="false" title="Toggle this box">
+	<span class="sr-only">Toggle</span>
+</button>
 					</div>
 					<div class="text-right">
 						<a href="assets/css/checkbox.css" title="Download this checkbox demo stylesheet">download CSS</a>
@@ -386,13 +390,17 @@
 	data-toggle-class="is-checked"
 	id="checkbox"
 	role="checkbox"
-	aria-checked="false"&gt;
+	aria-checked="false"
+	title="Toggle this box"&gt;
+	&lt;span class="sr-only"&gt;Toggle&lt;/span&gt;
 &lt;/button&gt;
 &lt;label for="checkbox"&gt;
 	Awesome checkbox
 &lt;/label&gt;</code></pre>
 					<div class="demo" id="checkbox-with-external-label-demo">
-<button type="button" class="example-checkbox" data-toggle-class="is-checked" id="checkbox_1" role="checkbox" aria-checked="false"></button>
+<button type="button" class="example-checkbox" data-toggle-class="is-checked" id="checkbox_1" role="checkbox" aria-checked="false" title="Toggle this box">
+	<span class="sr-only">Toggle</span>
+</button>
 <label for="checkbox_1">Awesome checkbox</label>
 					</div>
 					<div class="text-right">
@@ -413,12 +421,12 @@
 	data-toggle-target-self=".example-checkbox"
 	role="checkbox"
 	aria-checked="false"&gt;
-	&lt;span class="example-checkbox"&gt;&lt;/span&gt;
+	&lt;span class="example-checkbox" aria-hidden="true"&gt;&lt;/span&gt;
 	Awesome checkbox
 &lt;/button&gt;</code></pre>
 					<div class="demo" id="checkbox-with-internal-label-demo">
 <button type="button" class="example-checkbox-container" data-toggle-class="is-checked" data-toggle-target-self=".example-checkbox" role="checkbox" aria-checked="false">
-	<span class="example-checkbox"></span>
+	<span class="example-checkbox" aria-hidden="true"></span>
 	Awesome checkbox
 </button>
 					</div>
@@ -436,6 +444,9 @@
 					</h4>
 					<p>
 						Toggle <code class="language-css">.is-checked</code> class on click on the box. As <code class="language-html">aria-checked</code> attribute is set, its value change too.
+					</p>
+					<p>
+						The CSS class <code class="language-css">.sr-only</code> is for <a href="https://snook.ca/archives/html_and_css/hiding-content-for-accessibility">hiding content for accessibility</a>.
 					</p>
 				</section>
 			</section>
@@ -496,45 +507,61 @@
 						<a href="#radio-with-aria">Radio buttons with ARIA attributes for accessibility</a>
 					</h4>
 <pre><code class="language-html line-numbers">&lt;div role="radiogroup"&gt;
+
 	&lt;button type="button"
 		class="example-radio"
 		id="radio_1"
 		data-toggle-class="is-checked"
 		data-toggle-group="radioGroup"
 		role="radio"
-		aria-checked="false"&gt;
+		aria-checked="false"
+		title="Toggle this box"&gt;
+		&lt;span class="sr-only"&gt;Toggle&lt;/span&gt;
 	&lt;/button&gt;
 	&lt;label for="radio_1"&gt;Option 1&lt;/label&gt;&lt;br&gt;
+
 	&lt;button type="button"
 		class="example-radio"
 		id="radio_2"
 		data-toggle-class="is-checked"
 		data-toggle-group="radioGroup"
 		role="radio"
-		aria-checked="false"&gt;
+		aria-checked="false"
+		title="Toggle this box"&gt;
+		&lt;span class="sr-only"&gt;Toggle&lt;/span&gt;
 	&lt;/button&gt;
 	&lt;label for="radio_2"&gt;Option 2&lt;/label&gt;&lt;br&gt;
+
 	&lt;button type="button"
 		class="example-radio"
 		id="radio_3"
 		data-toggle-class="is-checked"
 		data-toggle-group="radioGroup"
 		role="radio"
-		aria-checked="false"&gt;
+		aria-checked="false"
+		title="Toggle this box"&gt;
+		&lt;span class="sr-only"&gt;Toggle&lt;/span&gt;
 	&lt;/button&gt;
 	&lt;label for="radio_3"&gt;Option 3&lt;/label&gt;
+
 &lt;/div&gt;</code></pre>
 					<div class="demo" id="radio-with-aria-demo">
-						<div role="radiogroup">
-<button type="button" class="example-radio" id="radio_4" data-toggle-class="is-checked" data-toggle-group="radioGroup2" role="radio" aria-checked="false"></button>
-<label for="radio_4">Option 1</label>
-<br>
-<button type="button" class="example-radio" id="radio_5" data-toggle-class="is-checked" data-toggle-group="radioGroup2" role="radio" aria-checked="false"></button>
-<label for="radio_5">Option 2</label>
-<br>
-<button type="button" class="example-radio" id="radio_6" data-toggle-class="is-checked" data-toggle-group="radioGroup2" role="radio" aria-checked="false"></button>
-<label for="radio_6">Option 3</label>
-						</div>
+<div role="radiogroup">
+	<button type="button" class="example-radio" id="radio_4" data-toggle-class="is-checked" data-toggle-group="radioGroup2" role="radio" aria-checked="false" title="Toggle this box">
+		<span class="sr-only">Toggle</span>
+	</button>
+	<label for="radio_4">Option 1</label>
+	<br>
+	<button type="button" class="example-radio" id="radio_5" data-toggle-class="is-checked" data-toggle-group="radioGroup2" role="radio" aria-checked="false" title="Toggle this box">
+		<span class="sr-only">Toggle</span>
+	</button>
+	<label for="radio_5">Option 2</label>
+	<br>
+	<button type="button" class="example-radio" id="radio_6" data-toggle-class="is-checked" data-toggle-group="radioGroup2" role="radio" aria-checked="false" title="Toggle this box">
+		<span class="sr-only">Toggle</span>
+	</button>
+	<label for="radio_6">Option 3</label>
+</div>
 					</div>
 					<div class="text-right">
 						<a href="assets/css/radio.css" title="Download this radio demo stylesheet">download CSS</a>
@@ -553,6 +580,9 @@
 					</p>
 					<p>
 						The label is associated to the trigger by the <code class="language-html">for</code> attribute.
+					</p>
+					<p>
+						The CSS class <code class="language-css">.sr-only</code> is for <a href="https://snook.ca/archives/html_and_css/hiding-content-for-accessibility">hiding content for accessibility</a>.
 					</p>
 				</section>
 			</section>
