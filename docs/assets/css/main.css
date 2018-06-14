@@ -39,8 +39,8 @@ button {
 }
 
 nav {
-	margin: 10% 0; overflow: auto;
-	background-color: whitesmoke;
+	margin: 0 0 10%; overflow: auto;
+	background-color: #f6f8fa;
 }
 
 nav ul {
@@ -193,6 +193,21 @@ pre[class*="language-"],
 	display: inline-block;
 	text-align: left;
 	vertical-align: middle;
+}
+
+.nav-link {
+	position: sticky; top: 0; z-index: 2;
+	display: block; width: 1em; height: 1em; margin: 0 0 -1.5em auto; padding: .25em;
+	background-color: #f6f8fa;
+	font-size: 1.5em; line-height: 1; color: inherit;
+}
+.nav-link:hover,
+.nav-link:focus {
+	background-color: var(--theme);
+	color: white;
+}
+.nav-link svg {
+	fill: currentColor;
 }
 
 .color-theme {
