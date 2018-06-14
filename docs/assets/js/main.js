@@ -70,7 +70,7 @@
 				 */
 			`,
 			"js_external" : "https://rawgit.com/Twikito/easy-toggle-state/master/dist/easy-toggle-state.es6.min.js",
-			html: document.getElementById(event.target.dataset.demo).innerHTML
+			html: dedent(document.getElementById(event.target.dataset.demo).innerHTML)
 		};
 
 		const response = await fetch(`https://rawgit.com/Twikito/easy-toggle-state/master/docs/assets/css/${event.target.dataset.css}.css`);
