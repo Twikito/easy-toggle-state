@@ -18,7 +18,6 @@
 		const form = document.createElement("FORM");
 		form.method = "post";
 		form.action = "https://codepen.io/pen/define";
-		form.target = "_blank";
 		form.className = "hidden";
 		form.innerHTML = `
 			<input type="hidden" name="data">
