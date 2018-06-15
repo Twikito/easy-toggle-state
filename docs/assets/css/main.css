@@ -199,9 +199,9 @@ pre[class*="language-"],
 
 .nav-link {
 	position: sticky; top: 0; z-index: 2;
-	display: block; width: 1em; height: 1em; margin: 0 0 -1.5em auto; padding: .25em;
+	display: block; width: .982em; height: .982em; margin: 0 0 -1.5em auto; padding: .25em; overflow: hidden;
 	background-color: #f6f8fa;
-	font-size: 1.5em; line-height: 1; color: inherit;
+	font-size: 1.5em; line-height: 1;
 }
 .nav-link:hover,
 .nav-link:focus {
@@ -210,6 +210,36 @@ pre[class*="language-"],
 }
 .nav-link svg {
 	fill: currentColor;
+}
+.nav-link svg,
+.nav-link rect {
+	transition: transform .15s ease-out;
+}
+.nav-link .top-bar {
+	transform-origin: 94px 21px;
+}
+.nav-link .bot-bar {
+	transform-origin: 94px 79px;
+}
+.nav-link .mid-bar {
+	transform-origin: 6px 50px;
+}
+
+.nav-link:hover svg,
+.nav-link:focus svg {
+	transform: rotate(-90deg);
+}
+.nav-link:hover .top-bar,
+.nav-link:focus .top-bar {
+	transform: translateY(29px) rotate(35deg) scale(.6, 1);
+}
+.nav-link:hover .bot-bar,
+.nav-link:focus .bot-bar {
+	transform: translateY(-29px) rotate(-35deg) scale(.6, 1);
+}
+.nav-link:hover .mid-bar,
+.nav-link:focus .mid-bar {
+	transform: scale(.975, 1);
 }
 
 .color-theme {
