@@ -275,15 +275,23 @@
 						<pre><code>data-toggle-is-active</code></pre>
 					</dt>
 					<dd>
-						<p>Specify a trigger element and its targets toggled as default, set during the <code class="language-js">onload</code> event. In this case, you should add the specified class name on each element.</p>
+						<p>Specify a trigger element and its targets toggled as default, set during the <code class="language-js">onload</code> event. In this case, you should add the specified class name on each element, even if the script will check that for you.</p>
 					</dd>
 
 					<dt>
 						<pre><code>data-toggle-group="groupName"</code></pre>
 					</dt>
 					<dd>
-						<p>Specify if a trigger is a part of a group. Only one trigger of a group can be active at a time. It will actually behave like radio buttons or tabs component.</p>
-						<p>Note that a grouped trigger can’t have <code>data-toggle-outside</code> or <code>data-toggle-escape</code> behavior.</p>
+						<p>Specify if a trigger is a part of a group. Only one trigger of a group can be active at a time. It will actually behave like an accordion component.</p>
+					</dd>
+
+					<dt>
+						<pre><code>data-toggle-radio-group="groupName"</code></pre>
+					</dt>
+					<dd>
+						<p>Specify if a trigger is a part of a radio group. Only one trigger of a radio group can be active at a time.</p>
+						<p>Unlike a simple group as seen above, as soon as a trigger is activated, <strong>a radio group will always keep one trigger active</strong>. It will actually behave like radio buttons or tabs component.</p>
+						<p>Note that a radio grouped trigger can’t have <code>data-toggle-outside</code> or <code>data-toggle-escape</code> behavior.</p>
 					</dd>
 
 					<dt>
@@ -477,31 +485,31 @@
 	class="example-radio"
 	id="radio_1"
 	data-toggle-class="is-checked"
-	data-toggle-group="radioGroup"&gt;
+	data-toggle-radio-group="radioGroup"&gt;
 &lt;/button&gt;
 &lt;label for="radio_1"&gt;Option 1&lt;/label&gt;&lt;br&gt;
 &lt;button type="button"
 	class="example-radio"
 	id="radio_2"
 	data-toggle-class="is-checked"
-	data-toggle-group="radioGroup"&gt;
+	data-toggle-radio-group="radioGroup"&gt;
 &lt;/button&gt;
 &lt;label for="radio_2"&gt;Option 2&lt;/label&gt;&lt;br&gt;
 &lt;button type="button"
 	class="example-radio"
 	id="radio_3"
 	data-toggle-class="is-checked"
-	data-toggle-group="radioGroup"&gt;
+	data-toggle-radio-group="radioGroup"&gt;
 &lt;/button&gt;
 &lt;label for="radio_3"&gt;Option 3&lt;/label&gt;</code></pre>
 					<div class="demo" id="simple-radio-demo">
-						<button type="button" class="example-radio" id="radio_1" data-toggle-class="is-checked" data-toggle-group="radioGroup1"></button>
+						<button type="button" class="example-radio" id="radio_1" data-toggle-class="is-checked" data-toggle-radio-group="radioGroup1"></button>
 						<label for="radio_1">Option 1</label>
 						<br>
-						<button type="button" class="example-radio" id="radio_2" data-toggle-class="is-checked" data-toggle-group="radioGroup1"></button>
+						<button type="button" class="example-radio" id="radio_2" data-toggle-class="is-checked" data-toggle-radio-group="radioGroup1"></button>
 						<label for="radio_2">Option 2</label>
 						<br>
-						<button type="button" class="example-radio" id="radio_3" data-toggle-class="is-checked" data-toggle-group="radioGroup1"></button>
+						<button type="button" class="example-radio" id="radio_3" data-toggle-class="is-checked" data-toggle-radio-group="radioGroup1"></button>
 						<label for="radio_3">Option 3</label>
 					</div>
 					<div class="text-right">
@@ -522,7 +530,7 @@
 		class="example-radio"
 		id="radio_1"
 		data-toggle-class="is-checked"
-		data-toggle-group="radioGroup"
+		data-toggle-radio-group="radioGroup"
 		role="radio"
 		aria-checked="false"
 		title="Toggle this box"&gt;
@@ -534,7 +542,7 @@
 		class="example-radio"
 		id="radio_2"
 		data-toggle-class="is-checked"
-		data-toggle-group="radioGroup"
+		data-toggle-radio-group="radioGroup"
 		role="radio"
 		aria-checked="false"
 		title="Toggle this box"&gt;
@@ -546,7 +554,7 @@
 		class="example-radio"
 		id="radio_3"
 		data-toggle-class="is-checked"
-		data-toggle-group="radioGroup"
+		data-toggle-radio-group="radioGroup"
 		role="radio"
 		aria-checked="false"
 		title="Toggle this box"&gt;
@@ -557,17 +565,17 @@
 &lt;/div&gt;</code></pre>
 					<div class="demo" id="radio-with-aria-demo">
 						<div role="radiogroup">
-							<button type="button" class="example-radio" id="radio_4" data-toggle-class="is-checked" data-toggle-group="radioGroup2" role="radio" aria-checked="false" title="Toggle this box">
+							<button type="button" class="example-radio" id="radio_4" data-toggle-class="is-checked" data-toggle-radio-group="radioGroup2" role="radio" aria-checked="false" title="Toggle this box">
 								<span class="sr-only">Toggle</span>
 							</button>
 							<label for="radio_4">Option 1</label>
 							<br>
-							<button type="button" class="example-radio" id="radio_5" data-toggle-class="is-checked" data-toggle-group="radioGroup2" role="radio" aria-checked="false" title="Toggle this box">
+							<button type="button" class="example-radio" id="radio_5" data-toggle-class="is-checked" data-toggle-radio-group="radioGroup2" role="radio" aria-checked="false" title="Toggle this box">
 								<span class="sr-only">Toggle</span>
 							</button>
 							<label for="radio_5">Option 2</label>
 							<br>
-							<button type="button" class="example-radio" id="radio_6" data-toggle-class="is-checked" data-toggle-group="radioGroup2" role="radio" aria-checked="false" title="Toggle this box">
+							<button type="button" class="example-radio" id="radio_6" data-toggle-class="is-checked" data-toggle-radio-group="radioGroup2" role="radio" aria-checked="false" title="Toggle this box">
 								<span class="sr-only">Toggle</span>
 							</button>
 							<label for="radio_6">Option 3</label>
@@ -586,7 +594,7 @@
 						<a href="#radio-explanation">Explanation</a>
 					</h4>
 					<p>
-						Toggle <code class="language-css">.is-checked</code> class on click on this element, but only one of the <code class="language-html">radioGroup</code> group at a time. As <code class="language-html">aria-checked</code> attribute is set, its value change too.
+						Toggle <code class="language-css">.is-checked</code> class on click on this element, but only one of the <code class="language-html">radioGroup</code> group at a time, and always keep one active. As <code class="language-html">aria-checked</code> attribute is set, its value change too.
 					</p>
 					<p>
 						The label is associated to the trigger by the <code class="language-html">for</code> attribute.
@@ -769,6 +777,7 @@
 	data-toggle-class="is-open"
 	data-toggle-target-parent="#panel_1"
 	data-toggle-group="accordion"
+	data-toggle-escape
 	data-toggle-is-active
 	aria-controls="panel_1"
 	aria-expanded="true"&gt;
@@ -791,6 +800,7 @@
 	data-toggle-class="is-open"
 	data-toggle-target-parent="#panel_2"
 	data-toggle-group="accordion"
+	data-toggle-escape
 	aria-controls="panel_2"
 	aria-expanded="false"&gt;
 	Click here
@@ -812,6 +822,7 @@
 	data-toggle-class="is-open"
 	data-toggle-target-parent="#panel_3"
 	data-toggle-group="accordion"
+	data-toggle-escape
 	aria-controls="panel_3"
 	aria-expanded="false"&gt;
 	Click here
@@ -826,7 +837,7 @@
 	&lt;/div&gt;
 &lt;/div&gt;</code></pre>
 					<div class="demo" id="accordion-demo">
-						<button type="button" class="example-collapsible-button" id="buttonForPanel_1" data-toggle-class="is-open" data-toggle-target-parent="#panel_1" data-toggle-group="accordion" data-toggle-is-active aria-controls="panel_1" aria-expanded="true">
+						<button type="button" class="example-collapsible-button" id="buttonForPanel_1" data-toggle-class="is-open" data-toggle-target-parent="#panel_1" data-toggle-group="accordion" data-toggle-escape data-toggle-is-active aria-controls="panel_1" aria-expanded="true">
 							Click here
 						</button>
 						<div class="example-collapsible-panel" id="panel_1" role="region" aria-labelledby="buttonForPanel_1" aria-hidden="false">
@@ -834,7 +845,7 @@
 								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam semper faucibus odio, vitae faucibus dui tempor in. Duis vitae luctus mi. Phasellus ultrices rhoncus lectus, non vehicula tortor sodales id.
 							</div>
 						</div>
-						<button type="button" class="example-collapsible-button" id="buttonForPanel_2" data-toggle-class="is-open" data-toggle-target-parent="#panel_2" data-toggle-group="accordion" aria-controls="panel_2" aria-expanded="false">
+						<button type="button" class="example-collapsible-button" id="buttonForPanel_2" data-toggle-class="is-open" data-toggle-target-parent="#panel_2" data-toggle-group="accordion" data-toggle-escape aria-controls="panel_2" aria-expanded="false">
 							Click here
 						</button>
 						<div class="example-collapsible-panel" id="panel_2" role="region" aria-labelledby="buttonForPanel_2" aria-hidden="true">
@@ -842,7 +853,7 @@
 								In in erat blandit ante mollis tincidunt. Quisque ac tempus nisi, a ultricies metus. Suspendisse et quam nec mauris feugiat luctus. Curabitur porta sem vitae nulla congue malesuada.
 							</div>
 						</div>
-						<button type="button" class="example-collapsible-button" id="buttonForPanel_3" data-toggle-class="is-open" data-toggle-target-parent="#panel_3" data-toggle-group="accordion" aria-controls="panel_3" aria-expanded="false">
+						<button type="button" class="example-collapsible-button" id="buttonForPanel_3" data-toggle-class="is-open" data-toggle-target-parent="#panel_3" data-toggle-group="accordion" data-toggle-escape aria-controls="panel_3" aria-expanded="false">
 							Click here
 						</button>
 						<div class="example-collapsible-panel" id="panel_3" role="region" aria-labelledby="buttonForPanel_3" aria-hidden="true">
@@ -888,20 +899,20 @@
 	&lt;button type="button"
 		data-toggle-class
 		data-toggle-target="#tabPanel_1"
-		data-toggle-group="tabsGroup"
+		data-toggle-radio-group="tabsGroup"
 		data-toggle-is-active&gt;
 		tab 1
 	&lt;/button&gt;
 	&lt;button type="button"
 		data-toggle-class
 		data-toggle-target="#tabPanel_2"
-		data-toggle-group="tabsGroup"&gt;
+		data-toggle-radio-group="tabsGroup"&gt;
 		tab 2
 	&lt;/button&gt;
 	&lt;button type="button"
 		data-toggle-class
 		data-toggle-target="#tabPanel_3"
-		data-toggle-group="tabsGroup"&gt;
+		data-toggle-radio-group="tabsGroup"&gt;
 		tab 3
 	&lt;/button&gt;
 &lt;/div&gt;
@@ -919,9 +930,9 @@
 &lt;/div&gt;</code></pre>
 					<div class="demo" id="simple-tabs-demo">
 						<div class="example-tabs">
-							<button type="button" data-toggle-class data-toggle-target="#tabPanel_1" data-toggle-group="tabsGroup_1" data-toggle-is-active>tab 1</button>
-							<button type="button" data-toggle-class data-toggle-target="#tabPanel_2" data-toggle-group="tabsGroup_1">tab 2</button>
-							<button type="button" data-toggle-class data-toggle-target="#tabPanel_3" data-toggle-group="tabsGroup_1">tab 3</button>
+							<button type="button" data-toggle-class data-toggle-target="#tabPanel_1" data-toggle-radio-group="tabsGroup_1" data-toggle-is-active>tab 1</button>
+							<button type="button" data-toggle-class data-toggle-target="#tabPanel_2" data-toggle-radio-group="tabsGroup_1">tab 2</button>
+							<button type="button" data-toggle-class data-toggle-target="#tabPanel_3" data-toggle-radio-group="tabsGroup_1">tab 3</button>
 						</div>
 						<div class="example-tab-panel" id="tabPanel_1">
 							Panel 1<br>
@@ -953,7 +964,7 @@
 		id="tab_1"
 		data-toggle-class
 		data-toggle-target="#tabPanel_1"
-		data-toggle-group="tabsGroup"
+		data-toggle-radio-group="tabsGroup"
 		data-toggle-is-active
 		role="tab"
 		aria-selected="true"
@@ -964,7 +975,7 @@
 		id="tab_2"
 		data-toggle-class
 		data-toggle-target="#tabPanel_2"
-		data-toggle-group="tabsGroup"
+		data-toggle-radio-group="tabsGroup"
 		role="tab"
 		aria-selected="false"
 		aria-controls="tabPanel_2"&gt;
@@ -974,7 +985,7 @@
 		id="tab_3"
 		data-toggle-class
 		data-toggle-target="#tabPanel_3"
-		data-toggle-group="tabsGroup"
+		data-toggle-radio-group="tabsGroup"
 		role="tab"
 		aria-selected="false"
 		aria-controls="tabPanel_3"&gt;
@@ -1007,9 +1018,9 @@
 &lt;/div&gt;</code></pre>
 					<div class="demo" id="tabs-with-aria-demo">
 						<div class="example-tabs" role="tablist">
-							<button type="button" id="tab_4" data-toggle-class data-toggle-target="#tabPanel_4" data-toggle-group="tabsGroup_2" data-toggle-is-active role="tab" aria-selected="true" aria-controls="tabPanel_4">tab 1</button>
-							<button type="button" id="tab_5" data-toggle-class data-toggle-target="#tabPanel_5" data-toggle-group="tabsGroup_2" role="tab" aria-selected="false" aria-controls="tabPanel_5">tab 2</button>
-							<button type="button" id="tab_6" data-toggle-class data-toggle-target="#tabPanel_6" data-toggle-group="tabsGroup_2" role="tab" aria-selected="false" aria-controls="tabPanel_6">tab 3</button>
+							<button type="button" id="tab_4" data-toggle-class data-toggle-target="#tabPanel_4" data-toggle-radio-group="tabsGroup_2" data-toggle-is-active role="tab" aria-selected="true" aria-controls="tabPanel_4">tab 1</button>
+							<button type="button" id="tab_5" data-toggle-class data-toggle-target="#tabPanel_5" data-toggle-radio-group="tabsGroup_2" role="tab" aria-selected="false" aria-controls="tabPanel_5">tab 2</button>
+							<button type="button" id="tab_6" data-toggle-class data-toggle-target="#tabPanel_6" data-toggle-radio-group="tabsGroup_2" role="tab" aria-selected="false" aria-controls="tabPanel_6">tab 3</button>
 						</div>
 						<div class="example-tab-panel" id="tabPanel_4" role="tabpanel" aria-labelledby="tab_4" aria-hidden="false">
 							Panel 1<br>
@@ -1037,7 +1048,7 @@
 						<a href="#tabs-explanation">Explanation</a>
 					</h4>
 					<p>
-						Toggle <code class="language-css">.is-active</code> class – by default – on click on this element, but only one of the <code class="language-html">tabsGroup</code> group at a time. Toggle the same class on the target element. As there’s more than one button / panel, be careful to target a unique ID.
+						Toggle <code class="language-css">.is-active</code> class – by default – on click on this element, but only one of the <code class="language-html">tabsGroup</code> group at a time, and always keep one active. Toggle the same class on the target element. As there’s more than one button / panel, be careful to target a unique ID.
 					</p>
 					<p>
 						Each trigger must be linked to the same group, here <code class="language-html">tabsGroup</code>. This way, only one of this group can be opened at a time. The first panel is opened by default with <code class="language-html">data-toggle-is-active</code>.
@@ -1496,7 +1507,7 @@
 		</div>
 	</footer>
 
-	<script src="https://rawgit.com/Twikito/easy-toggle-state/master/dist/easy-toggle-state.es6.min.js"></script>
+	<script src="../dist/easy-toggle-state.es6.min.js"></script>
 	<script src="assets/js/prism.js"></script>
 	<script src="assets/js/main.js"></script>
 </body>

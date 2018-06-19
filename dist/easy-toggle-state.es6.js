@@ -38,6 +38,7 @@
 	      HIDDEN = "aria-hidden",
 	      IS_ACTIVE = dataset("is-active"),
 	      OUTSIDE = dataset("outside"),
+	      RADIO_GROUP = dataset("radio-group"),
 	      SELECTED = "aria-selected",
 	      TARGET = dataset("target"),
 	      TARGET_ALL = dataset("target-all"),
@@ -77,10 +78,13 @@
 
 	/**
 	 * Retrieve all active elements of a group.
-	 * @param {string} group - The trigger group name
+	 * @param {node} element - An element of a group
 	 * @returns {array} - An array of active elements of a group
 	 */
-	const retrieveGroupActiveElement = (group => $$(`${GROUP}="${group}"`).filter(groupElement => groupElement.isToggleActive));
+	const retrieveGroupActiveElement = (element => {
+	  const type = element.hasAttribute(GROUP) ? GROUP : RADIO_GROUP;
+	  return $$(`${type}="${element.getAttribute(type)}"`).filter(groupElement => groupElement.isToggleActive);
+	});
 
 	/**
 	 * Test a targets list.
@@ -152,7 +156,7 @@
 		if (!target.closest("[" + TARGET_STATE + '="true"]')) {
 			$$(OUTSIDE).forEach(element => {
 				if (element !== target && element.isToggleActive) {
-					(element.hasAttribute(GROUP) ? manageGroup : manageToggle)(element);
+					(element.hasAttribute(GROUP) || element.hasAttribute(RADIO_GROUP) ? manageGroup : manageToggle)(element);
 				}
 			});
 			if (target.hasAttribute(OUTSIDE) && target.isToggleActive) {
@@ -229,8 +233,8 @@
 	 */
 	const manageTriggerOutside = element => {
 		if (element.hasAttribute(OUTSIDE)) {
-			if (element.hasAttribute(GROUP)) {
-				console.warn(`You can't use '${OUTSIDE}' on a grouped trigger`);
+			if (element.hasAttribute(RADIO_GROUP)) {
+				console.warn(`You can't use '${OUTSIDE}' on a radio grouped trigger`);
 			} else {
 				if (element.isToggleActive) {
 					document.addEventListener(element.getAttribute(EVENT) || "click", documentEventHandler, false);
@@ -247,11 +251,13 @@
 	 * @returns {undefined}
 	 */
 	const manageGroup = element => {
-		const groupActiveElements = retrieveGroupActiveElement(element.getAttribute(GROUP));
-
+		const groupActiveElements = retrieveGroupActiveElement(element);
 		if (groupActiveElements.length > 0) {
 			if (groupActiveElements.indexOf(element) === -1) {
 				groupActiveElements.forEach(manageToggle);
+				manageToggle(element);
+			}
+			if (groupActiveElements.indexOf(element) !== -1 && !element.hasAttribute(RADIO_GROUP)) {
 				manageToggle(element);
 			}
 		} else {
@@ -297,10 +303,9 @@
 
 		/** Active by default management. */
 		$$(IS_ACTIVE).forEach(trigger => {
-			if (trigger.hasAttribute(GROUP)) {
-				const group = trigger.getAttribute(GROUP);
-				if (retrieveGroupActiveElement(group).length > 0) {
-					console.warn(`Toggle group '${group}' must not have more than one trigger with '${IS_ACTIVE}'`);
+			if (trigger.hasAttribute(GROUP) || trigger.hasAttribute(RADIO_GROUP)) {
+				if (retrieveGroupActiveElement(trigger).length > 0) {
+					console.warn(`Toggle group '${trigger.getAttribute(GROUP) || trigger.getAttribute(RADIO_GROUP)}' must not have more than one trigger with '${IS_ACTIVE}'`);
 				} else {
 					manageActiveByDefault(trigger);
 				}
@@ -313,7 +318,7 @@
 		$$().forEach(trigger => {
 			trigger.addEventListener(trigger.getAttribute(EVENT) || "click", event => {
 				event.preventDefault();
-				(trigger.hasAttribute(GROUP) ? manageGroup : manageToggle)(trigger);
+				(trigger.hasAttribute(GROUP) || trigger.hasAttribute(RADIO_GROUP) ? manageGroup : manageToggle)(trigger);
 			}, false);
 		});
 
@@ -325,10 +330,10 @@
 				if (event.key === "Escape" || event.key === "Esc") {
 					triggerEscElements.forEach(trigger => {
 						if (trigger.isToggleActive) {
-							if (trigger.hasAttribute(GROUP)) {
-								console.warn(`You can't use '${ESCAPE}' on a grouped trigger`);
+							if (trigger.hasAttribute(RADIO_GROUP)) {
+								console.warn(`You can't use '${ESCAPE}' on a radio grouped trigger`);
 							} else {
-								manageToggle(trigger);
+								(trigger.hasAttribute(GROUP) ? manageGroup : manageToggle)(trigger);
 							}
 						}
 					});
