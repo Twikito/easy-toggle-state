@@ -175,6 +175,12 @@ const manageActiveByDefault = element => {
  */
 export default () => {
 
+	/** Test if there's some trigger */
+	if ($$().length === 0) {
+		console.warn(`Easy Toggle State is not used: there's no trigger to initialize.`);
+		return;
+	}
+
 	/** Active by default management. */
 	$$(IS_ACTIVE).forEach(trigger => {
 		if (trigger.hasAttribute(GROUP) || trigger.hasAttribute(RADIO_GROUP)) {
