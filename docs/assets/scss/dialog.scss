@@ -23,13 +23,13 @@
 		width: 100%;
 		max-width: 30em;
 		margin: auto;
-		transform: translateY(-1em);
+		transform: translateY(-1em) scale(.95);
 		background-color: white;
 		transition: transform .25s ease-out;
 	}
 
 	&.is-active &-container {
-		transform: translateY(0);
+		transform: translateY(0) scale(1);
 	}
 
 	&-header,
