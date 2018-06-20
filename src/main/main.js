@@ -177,8 +177,7 @@ export default () => {
 
 	/** Test if there's some trigger */
 	if ($$().length === 0) {
-		console.warn(`Easy Toggle State is not used: there's no trigger to initialize.`);
-		return;
+		return console.warn(`Easy Toggle State is not used: there's no trigger to initialize.`);
 	}
 
 	/** Active by default management. */
