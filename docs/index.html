@@ -1051,7 +1051,7 @@
 						Toggle <code class="language-css">.is-active</code> class – by default – on click on this element, but only one of the <code class="language-html">tabsGroup</code> group at a time, and always keep one active. Toggle the same class on the target element. As there’s more than one button / panel, be careful to target a unique ID.
 					</p>
 					<p>
-						Each trigger must be linked to the same group, here <code class="language-html">tabsGroup</code>. This way, only one of this group can be opened at a time. The first panel is opened by default with <code class="language-html">data-toggle-is-active</code>.
+						Each trigger must be linked to the same group, here <code class="language-html">tabsGroup</code>. This way, only one of this group can be opened at a time. Since <code class="language-html">data-toggle-radio-group</code> is used instead of <code class="language-html">data-toggle-group</code>, this group will always keep one of its triggers active. The first panel is opened by default with <code class="language-html">data-toggle-is-active</code>.
 					</p>
 					<p>
 						As <code class="language-html">aria-selected</code> and <code class="language-html">aria-hidden</code> attributes are set, their value change too.
