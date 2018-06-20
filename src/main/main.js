@@ -8,6 +8,7 @@ import {
 	HIDDEN,
 	IS_ACTIVE,
 	OUTSIDE,
+	RADIO_GROUP,
 	SELECTED,
 	TARGET_ONLY,
 	TARGET_STATE,
@@ -29,7 +30,7 @@ const documentEventHandler = event => {
 	if (!target.closest("[" + TARGET_STATE + '="true"]')) {
 		$$(OUTSIDE).forEach(element => {
 			if (element !== target && element.isToggleActive) {
-				(element.hasAttribute(GROUP) ? manageGroup : manageToggle)(element);
+				(element.hasAttribute(GROUP) || element.hasAttribute(RADIO_GROUP) ? manageGroup : manageToggle)(element);
 			}
 		});
 		if (target.hasAttribute(OUTSIDE) && target.isToggleActive) {
@@ -106,8 +107,8 @@ const manageToggle = element => {
  */
 const manageTriggerOutside = element => {
 	if (element.hasAttribute(OUTSIDE)) {
-		if (element.hasAttribute(GROUP)) {
-			console.warn(`You can't use '${OUTSIDE}' on a grouped trigger`);
+		if (element.hasAttribute(RADIO_GROUP)) {
+			console.warn(`You can't use '${OUTSIDE}' on a radio grouped trigger`);
 		} else {
 			if (element.isToggleActive) {
 				document.addEventListener(element.getAttribute(EVENT) || "click", documentEventHandler, false);
@@ -124,11 +125,13 @@ const manageTriggerOutside = element => {
  * @returns {undefined}
  */
 const manageGroup = element => {
-	const groupActiveElements = retrieveGroupActiveElement(element.getAttribute(GROUP));
-
+	const groupActiveElements = retrieveGroupActiveElement(element);
 	if (groupActiveElements.length > 0) {
 		if (groupActiveElements.indexOf(element) === -1) {
 			groupActiveElements.forEach(manageToggle);
+			manageToggle(element);
+		}
+		if (groupActiveElements.indexOf(element) !== -1 && !element.hasAttribute(RADIO_GROUP)) {
 			manageToggle(element);
 		}
 	} else {
@@ -172,12 +175,17 @@ const manageActiveByDefault = element => {
  */
 export default () => {
 
+	/** Test if there's some trigger */
+	if ($$().length === 0) {
+		return console.warn(`Easy Toggle State is not used: there's no trigger to initialize.`);
+	}
+
 	/** Active by default management. */
 	$$(IS_ACTIVE).forEach(trigger => {
-		if (trigger.hasAttribute(GROUP)) {
-			const group = trigger.getAttribute(GROUP);
-			if (retrieveGroupActiveElement(group).length > 0) {
-				console.warn(`Toggle group '${group}' must not have more than one trigger with '${IS_ACTIVE}'`);
+		if (trigger.hasAttribute(GROUP) || trigger.hasAttribute(RADIO_GROUP)) {
+			if (retrieveGroupActiveElement(trigger).length > 0) {
+				console.warn(`Toggle group '${trigger.getAttribute(GROUP) ||
+						trigger.getAttribute(RADIO_GROUP)}' must not have more than one trigger with '${IS_ACTIVE}'`);
 			} else {
 				manageActiveByDefault(trigger);
 			}
@@ -192,7 +200,7 @@ export default () => {
 			trigger.getAttribute(EVENT) || "click",
 			event => {
 				event.preventDefault();
-				(trigger.hasAttribute(GROUP) ? manageGroup : manageToggle)(trigger);
+				(trigger.hasAttribute(GROUP) || trigger.hasAttribute(RADIO_GROUP) ? manageGroup : manageToggle)(trigger);
 			},
 			false
 		);
@@ -208,10 +216,10 @@ export default () => {
 				if (event.key === "Escape" || event.key === "Esc") {
 					triggerEscElements.forEach(trigger => {
 						if (trigger.isToggleActive) {
-							if (trigger.hasAttribute(GROUP)) {
-								console.warn(`You can't use '${ESCAPE}' on a grouped trigger`);
+							if (trigger.hasAttribute(RADIO_GROUP)) {
+								console.warn(`You can't use '${ESCAPE}' on a radio grouped trigger`);
 							} else {
-								manageToggle(trigger);
+								(trigger.hasAttribute(GROUP) ? manageGroup : manageToggle)(trigger);
 							}
 						}
 					});
