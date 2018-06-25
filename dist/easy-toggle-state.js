@@ -98,8 +98,7 @@
 		var _ref;
 
 		var config = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : (_ref = {}, defineProperty(_ref, CHECKED, element.isToggleActive), defineProperty(_ref, EXPANDED, element.isToggleActive), defineProperty(_ref, HIDDEN, !element.isToggleActive), defineProperty(_ref, SELECTED, element.isToggleActive), _ref);
-
-		Object.keys(config).forEach(function (key) {
+		return Object.keys(config).forEach(function (key) {
 			return element.hasAttribute(key) && element.setAttribute(key, config[key]);
 		});
 	});
@@ -127,6 +126,7 @@
 		/** Test if there's no match for a selector */
 		if (targetList.length === 0) {
 			console.warn("There's no match for the selector '" + selector + "' for this trigger");
+			return targetList;
 		}
 
 		/** Test if there's more than one match for an ID selector */
@@ -185,15 +185,19 @@
 	 */
 	var documentEventHandler = function documentEventHandler(event) {
 		var target = event.target;
-		if (!target.closest("[" + TARGET_STATE + '="true"]')) {
-			$$(OUTSIDE).forEach(function (element) {
-				if (element !== target && element.isToggleActive) {
-					(element.hasAttribute(GROUP) || element.hasAttribute(RADIO_GROUP) ? manageGroup : manageToggle)(element);
-				}
-			});
-			if (target.hasAttribute(OUTSIDE) && target.isToggleActive) {
-				document.addEventListener(target.getAttribute(EVENT) || "click", documentEventHandler, false);
+
+		if (target.closest("[" + TARGET_STATE + '="true"]')) {
+			return;
+		}
+
+		$$(OUTSIDE).forEach(function (element) {
+			if (element !== target && element.isToggleActive) {
+				(element.hasAttribute(GROUP) || element.hasAttribute(RADIO_GROUP) ? manageGroup : manageToggle)(element);
 			}
+		});
+
+		if (target.hasAttribute(OUTSIDE) && target.isToggleActive) {
+			document.addEventListener(target.getAttribute(EVENT) || "click", documentEventHandler, false);
 		}
 	};
 
@@ -203,7 +207,7 @@
 	 * @returns {undefined}
 	 */
 	var triggerOffHandler = function triggerOffHandler(event) {
-		manageToggle(event.target.targetElement);
+		return manageToggle(event.target.targetElement);
 	};
 
 	/**
@@ -221,18 +225,21 @@
 		}
 
 		var triggerOffList = $$(TRIGGER_OFF, targetElement);
-		if (triggerOffList.length > 0) {
-			if (triggerElement.isToggleActive) {
-				triggerOffList.forEach(function (triggerOff) {
-					triggerOff.targetElement = triggerElement;
-					triggerOff.addEventListener("click", triggerOffHandler, false);
-				});
-			} else {
-				triggerOffList.forEach(function (triggerOff) {
-					triggerOff.removeEventListener("click", triggerOffHandler, false);
-				});
-			}
+
+		if (triggerOffList.length === 0) {
+			return;
 		}
+
+		if (triggerElement.isToggleActive) {
+			return triggerOffList.forEach(function (triggerOff) {
+				triggerOff.targetElement = triggerElement;
+				triggerOff.addEventListener("click", triggerOffHandler, false);
+			});
+		}
+
+		return triggerOffList.forEach(function (triggerOff) {
+			triggerOff.removeEventListener("click", triggerOffHandler, false);
+		});
 	};
 
 	/**
@@ -255,7 +262,7 @@
 			manageTarget(targetElements[i], element);
 		}
 
-		manageTriggerOutside(element);
+		return manageTriggerOutside(element);
 	};
 
 	/**
@@ -264,17 +271,19 @@
 	 * @returns {undefined}
 	 */
 	var manageTriggerOutside = function manageTriggerOutside(element) {
-		if (element.hasAttribute(OUTSIDE)) {
-			if (element.hasAttribute(RADIO_GROUP)) {
-				console.warn("You can't use '" + OUTSIDE + "' on a radio grouped trigger");
-			} else {
-				if (element.isToggleActive) {
-					document.addEventListener(element.getAttribute(EVENT) || "click", documentEventHandler, false);
-				} else {
-					document.removeEventListener(element.getAttribute(EVENT) || "click", documentEventHandler, false);
-				}
-			}
+		if (!element.hasAttribute(OUTSIDE)) {
+			return;
 		}
+
+		if (element.hasAttribute(RADIO_GROUP)) {
+			return console.warn("You can't use '" + OUTSIDE + "' on a radio grouped trigger");
+		}
+
+		if (element.isToggleActive) {
+			return document.addEventListener(element.getAttribute(EVENT) || "click", documentEventHandler, false);
+		}
+
+		return document.removeEventListener(element.getAttribute(EVENT) || "click", documentEventHandler, false);
 	};
 
 	/**
@@ -284,16 +293,17 @@
 	 */
 	var manageGroup = function manageGroup(element) {
 		var groupActiveElements = retrieveGroupActiveElement(element);
-		if (groupActiveElements.length > 0) {
-			if (groupActiveElements.indexOf(element) === -1) {
-				groupActiveElements.forEach(manageToggle);
-				manageToggle(element);
-			}
-			if (groupActiveElements.indexOf(element) !== -1 && !element.hasAttribute(RADIO_GROUP)) {
-				manageToggle(element);
-			}
-		} else {
-			manageToggle(element);
+		if (groupActiveElements.length === 0) {
+			return manageToggle(element);
+		}
+
+		if (groupActiveElements.indexOf(element) === -1) {
+			groupActiveElements.forEach(manageToggle);
+			return manageToggle(element);
+		}
+
+		if (groupActiveElements.indexOf(element) !== -1 && !element.hasAttribute(RADIO_GROUP)) {
+			return manageToggle(element);
 		}
 	};
 
@@ -321,7 +331,7 @@
 			manageTarget(targetElements[i], element);
 		}
 
-		manageTriggerOutside(element);
+		return manageTriggerOutside(element);
 	};
 
 	/**
@@ -332,20 +342,20 @@
 
 		/** Test if there's some trigger */
 		if ($$().length === 0) {
-			return console.warn("Easy Toggle State is not used: there's no trigger to initialize.");
+			return console.warn("Easy Toggle State is not used: there's no trigger with '" + CLASS + "' attribute to initialize.");
 		}
 
 		/** Active by default management. */
 		$$(IS_ACTIVE).forEach(function (trigger) {
-			if (trigger.hasAttribute(GROUP) || trigger.hasAttribute(RADIO_GROUP)) {
-				if (retrieveGroupActiveElement(trigger).length > 0) {
-					console.warn("Toggle group '" + (trigger.getAttribute(GROUP) || trigger.getAttribute(RADIO_GROUP)) + "' must not have more than one trigger with '" + IS_ACTIVE + "'");
-				} else {
-					manageActiveByDefault(trigger);
-				}
-			} else {
-				manageActiveByDefault(trigger);
+			if (!trigger.hasAttribute(GROUP) && !trigger.hasAttribute(RADIO_GROUP)) {
+				return manageActiveByDefault(trigger);
 			}
+
+			if (retrieveGroupActiveElement(trigger).length > 0) {
+				return console.warn("Toggle group '" + (trigger.getAttribute(GROUP) || trigger.getAttribute(RADIO_GROUP)) + "' must not have more than one trigger with '" + IS_ACTIVE + "'");
+			}
+
+			return manageActiveByDefault(trigger);
 		});
 
 		/** Set specified or click event on each trigger element. */
@@ -361,17 +371,22 @@
 		if (triggerEscElements.length > 0) {
 			document.addEventListener("keyup", function (event) {
 				event = event || window.event;
-				if (event.key === "Escape" || event.key === "Esc") {
-					triggerEscElements.forEach(function (trigger) {
-						if (trigger.isToggleActive) {
-							if (trigger.hasAttribute(RADIO_GROUP)) {
-								console.warn("You can't use '" + ESCAPE + "' on a radio grouped trigger");
-							} else {
-								(trigger.hasAttribute(GROUP) ? manageGroup : manageToggle)(trigger);
-							}
-						}
-					});
+
+				if (!event.key === "Escape" && !event.key === "Esc") {
+					return;
 				}
+
+				triggerEscElements.forEach(function (trigger) {
+					if (!trigger.isToggleActive) {
+						return;
+					}
+
+					if (trigger.hasAttribute(RADIO_GROUP)) {
+						return console.warn("You can't use '" + ESCAPE + "' on a radio grouped trigger");
+					}
+
+					return (trigger.hasAttribute(GROUP) ? manageGroup : manageToggle)(trigger);
+				});
 			}, false);
 		}
 	});

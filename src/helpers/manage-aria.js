@@ -14,6 +14,4 @@ export default (
 		[HIDDEN]: !element.isToggleActive,
 		[SELECTED]: element.isToggleActive
 	}
-) => {
-	Object.keys(config).forEach(key => element.hasAttribute(key) && element.setAttribute(key, config[key]));
-};
+) => Object.keys(config).forEach(key => element.hasAttribute(key) && element.setAttribute(key, config[key]));

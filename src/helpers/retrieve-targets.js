@@ -11,6 +11,7 @@ const testTargets = (selector, targetList) => {
 	/** Test if there's no match for a selector */
 	if (targetList.length === 0) {
 		console.warn(`There's no match for the selector '${selector}' for this trigger`);
+		return targetList;
 	}
 
 	/** Test if there's more than one match for an ID selector */
