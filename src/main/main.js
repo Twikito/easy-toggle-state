@@ -27,15 +27,19 @@ import retrieveTargets from "../helpers/retrieve-targets";
  */
 const documentEventHandler = event => {
 	const target = event.target;
-	if (!target.closest("[" + TARGET_STATE + '="true"]')) {
-		$$(OUTSIDE).forEach(element => {
-			if (element !== target && element.isToggleActive) {
-				(element.hasAttribute(GROUP) || element.hasAttribute(RADIO_GROUP) ? manageGroup : manageToggle)(element);
-			}
-		});
-		if (target.hasAttribute(OUTSIDE) && target.isToggleActive) {
-			document.addEventListener(target.getAttribute(EVENT) || "click", documentEventHandler, false);
+
+	if (target.closest("[" + TARGET_STATE + '="true"]')) {
+		return;
+	}
+
+	$$(OUTSIDE).forEach(element => {
+		if (element !== target && element.isToggleActive) {
+			(element.hasAttribute(GROUP) || element.hasAttribute(RADIO_GROUP) ? manageGroup : manageToggle)(element);
 		}
+	});
+
+	if (target.hasAttribute(OUTSIDE) && target.isToggleActive) {
+		document.addEventListener(target.getAttribute(EVENT) || "click", documentEventHandler, false);
 	}
 };
 
@@ -44,9 +48,7 @@ const documentEventHandler = event => {
  * @param {event} event - Event triggered on element with 'trigger-off' attribute
  * @returns {undefined}
  */
-const triggerOffHandler = event => {
-	manageToggle(event.target.targetElement);
-};
+const triggerOffHandler = event => manageToggle(event.target.targetElement);
 
 /**
  * Manage attributes and events of target elements.
@@ -63,18 +65,21 @@ const manageTarget = (targetElement, triggerElement) => {
 	}
 
 	const triggerOffList = $$(TRIGGER_OFF, targetElement);
-	if (triggerOffList.length > 0) {
-		if (triggerElement.isToggleActive) {
-			triggerOffList.forEach(triggerOff => {
-				triggerOff.targetElement = triggerElement;
-				triggerOff.addEventListener("click", triggerOffHandler, false);
-			});
-		} else {
-			triggerOffList.forEach(triggerOff => {
-				triggerOff.removeEventListener("click", triggerOffHandler, false);
-			});
-		}
+
+	if (triggerOffList.length === 0) {
+		return;
 	}
+
+	if (triggerElement.isToggleActive) {
+		return triggerOffList.forEach(triggerOff => {
+			triggerOff.targetElement = triggerElement;
+			triggerOff.addEventListener("click", triggerOffHandler, false);
+		});
+	}
+
+	return triggerOffList.forEach(triggerOff => {
+		triggerOff.removeEventListener("click", triggerOffHandler, false);
+	});
 };
 
 /**
@@ -97,7 +102,7 @@ const manageToggle = element => {
 		manageTarget(targetElements[i], element);
 	}
 
-	manageTriggerOutside(element);
+	return manageTriggerOutside(element);
 };
 
 /**
@@ -106,17 +111,19 @@ const manageToggle = element => {
  * @returns {undefined}
  */
 const manageTriggerOutside = element => {
-	if (element.hasAttribute(OUTSIDE)) {
-		if (element.hasAttribute(RADIO_GROUP)) {
-			console.warn(`You can't use '${OUTSIDE}' on a radio grouped trigger`);
-		} else {
-			if (element.isToggleActive) {
-				document.addEventListener(element.getAttribute(EVENT) || "click", documentEventHandler, false);
-			} else {
-				document.removeEventListener(element.getAttribute(EVENT) || "click", documentEventHandler, false);
-			}
-		}
+	if (!element.hasAttribute(OUTSIDE)) {
+		return;
 	}
+
+	if (element.hasAttribute(RADIO_GROUP)) {
+		return console.warn(`You can't use '${OUTSIDE}' on a radio grouped trigger`);
+	}
+
+	if (element.isToggleActive) {
+		return document.addEventListener(element.getAttribute(EVENT) || "click", documentEventHandler, false);
+	}
+
+	return document.removeEventListener(element.getAttribute(EVENT) || "click", documentEventHandler, false);
 };
 
 /**
@@ -126,16 +133,17 @@ const manageTriggerOutside = element => {
  */
 const manageGroup = element => {
 	const groupActiveElements = retrieveGroupActiveElement(element);
-	if (groupActiveElements.length > 0) {
-		if (groupActiveElements.indexOf(element) === -1) {
-			groupActiveElements.forEach(manageToggle);
-			manageToggle(element);
-		}
-		if (groupActiveElements.indexOf(element) !== -1 && !element.hasAttribute(RADIO_GROUP)) {
-			manageToggle(element);
-		}
-	} else {
-		manageToggle(element);
+	if (groupActiveElements.length === 0) {
+		return manageToggle(element);
+	}
+
+	if (groupActiveElements.indexOf(element) === -1) {
+		groupActiveElements.forEach(manageToggle);
+		return manageToggle(element);
+	}
+
+	if (groupActiveElements.indexOf(element) !== -1 && !element.hasAttribute(RADIO_GROUP)) {
+		return manageToggle(element);
 	}
 };
 
@@ -166,7 +174,7 @@ const manageActiveByDefault = element => {
 		manageTarget(targetElements[i], element);
 	}
 
-	manageTriggerOutside(element);
+	return manageTriggerOutside(element);
 };
 
 /**
@@ -177,21 +185,21 @@ export default () => {
 
 	/** Test if there's some trigger */
 	if ($$().length === 0) {
-		return console.warn(`Easy Toggle State is not used: there's no trigger to initialize.`);
+		return console.warn(`Easy Toggle State is not used: there's no trigger with '${CLASS}' attribute to initialize.`);
 	}
 
 	/** Active by default management. */
 	$$(IS_ACTIVE).forEach(trigger => {
-		if (trigger.hasAttribute(GROUP) || trigger.hasAttribute(RADIO_GROUP)) {
-			if (retrieveGroupActiveElement(trigger).length > 0) {
-				console.warn(`Toggle group '${trigger.getAttribute(GROUP) ||
-						trigger.getAttribute(RADIO_GROUP)}' must not have more than one trigger with '${IS_ACTIVE}'`);
-			} else {
-				manageActiveByDefault(trigger);
-			}
-		} else {
-			manageActiveByDefault(trigger);
+		if (!trigger.hasAttribute(GROUP) && !trigger.hasAttribute(RADIO_GROUP)) {
+			return manageActiveByDefault(trigger);
 		}
+
+		if (retrieveGroupActiveElement(trigger).length > 0) {
+			return console.warn(`Toggle group '${trigger.getAttribute(GROUP) ||
+					trigger.getAttribute(RADIO_GROUP)}' must not have more than one trigger with '${IS_ACTIVE}'`);
+		}
+
+		return manageActiveByDefault(trigger);
 	});
 
 	/** Set specified or click event on each trigger element. */
@@ -213,17 +221,22 @@ export default () => {
 			"keyup",
 			event => {
 				event = event || window.event;
-				if (event.key === "Escape" || event.key === "Esc") {
-					triggerEscElements.forEach(trigger => {
-						if (trigger.isToggleActive) {
-							if (trigger.hasAttribute(RADIO_GROUP)) {
-								console.warn(`You can't use '${ESCAPE}' on a radio grouped trigger`);
-							} else {
-								(trigger.hasAttribute(GROUP) ? manageGroup : manageToggle)(trigger);
-							}
-						}
-					});
+
+				if (!event.key === "Escape" && !event.key === "Esc") {
+					return;
 				}
+
+				triggerEscElements.forEach(trigger => {
+					if (!trigger.isToggleActive) {
+						return;
+					}
+
+					if (trigger.hasAttribute(RADIO_GROUP)) {
+						return console.warn(`You can't use '${ESCAPE}' on a radio grouped trigger`);
+					}
+
+					return (trigger.hasAttribute(GROUP) ? manageGroup : manageToggle)(trigger);
+				});
 			},
 			false
 		);
