@@ -338,12 +338,9 @@
 		const triggerEscElements = $$(ESCAPE);
 		if (triggerEscElements.length > 0) {
 			document.addEventListener("keyup", event => {
-				event = event || window.event;
-
-				if (!event.key === "Escape" && !event.key === "Esc") {
+				if (!(event.key === "Escape") && !(event.key === "Esc")) {
 					return;
 				}
-
 				triggerEscElements.forEach(trigger => {
 					if (!trigger.isToggleActive) {
 						return;
