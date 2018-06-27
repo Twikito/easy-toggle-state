@@ -1,7 +1,7 @@
 /**
  * -------------------------------------------------------------------
  * easy-toggle-state
- * A tiny JavaScript plugin to toggle the state of any HTML element in most of contexts with ease.
+ * A tiny JavaScript library to easily toggle the state of any HTML element in any contexts.
  *
  * @author Matthieu Bué <https://twikito.com>
  * @version v1.6.0
