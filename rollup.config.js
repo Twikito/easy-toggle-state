@@ -24,11 +24,10 @@ const getBanner = isMin => {
 const getFileName = (version = "es5", isMin = false) => {
 	const base = "easy-toggle-state";
 	const ext = isMin ? "min.js" : "js";
-	const browser = process.env.ENV_BROWSER || "";
 	if (version === "es6") {
-		return [base, browser, "es6", ext].filter(Boolean).join(".");
+		return [base, "es6", ext].filter(Boolean).join(".");
 	}
-	return [base, browser, ext].filter(Boolean).join(".");
+	return [base, ext].filter(Boolean).join(".");
 };
 
 const getBabelConfig = (version = "es5") => {
@@ -39,7 +38,6 @@ const getBabelConfig = (version = "es5") => {
 					'modules': false,
 					'targets': {
 						'browsers': [
-							'Explorer 11',
 							'last 2 versions'
 						]
 					}
@@ -53,12 +51,7 @@ const getBabelConfig = (version = "es5") => {
 
 const getPlugins = (version = "es5", isMin = false) => {
 	const babelConfig = getBabelConfig(version);
-	const list = [
-		replace({
-			ENV_IE: process.env.ENV_BROWSER === "ie"
-		}),
-		babel(babelConfig)
-	];
+	const list = [ babel(babelConfig) ];
 	if (isMin) list.push(terser());
 	list.push(license({ banner: getBanner(isMin) }));
 	return list;
