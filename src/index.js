@@ -1,5 +1,3 @@
-/* eslint no-unused-vars: "off" */
-import ie from "./polyfills/ie";
 import init from "./main/main";
 
 const onLoad = () => {

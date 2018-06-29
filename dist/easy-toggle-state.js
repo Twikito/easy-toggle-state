@@ -388,8 +388,6 @@
 		}
 	});
 
-	/* eslint no-unused-vars: "off" */
-
 	var onLoad = function onLoad() {
 		init();
 		document.removeEventListener("DOMContentLoaded", onLoad);
