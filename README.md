@@ -27,11 +27,17 @@ __Only focus on adjusting the rest with your CSS creativity__.
 Several quick start options are available:
 
 - [Direct download](https://rawgit.com/Twikito/easy-toggle-state/master/dist/easy-toggle-state.es6.js)
-- Choose another version: [ES5, ES6 or a build for IE11 with polyfills](https://github.com/Twikito/easy-toggle-state/tree/master/dist)
+- Choose another version: [ES5 or ES6](https://github.com/Twikito/easy-toggle-state/tree/master/dist)
 - Clone the repo: `git clone https://github.com/twikito/easy-toggle-state.git`
 - Install with [npm](https://www.npmjs.com/package/easy-toggle-state): `npm install easy-toggle-state`
 
 Then, __add the script into your page__, and it's done.
+
+## IE compatibility
+
+In addition of using [ES5 version](https://github.com/Twikito/easy-toggle-state/blob/master/dist/easy-toggle-state.min.js), compatibility for Internet Explorer is provided by [polyfill.io](https://polyfill.io/) which supports back to IE 7. It brings polyfills for `Array.from` and `Element.prototype.closest`.
+
+And before you ask, yes, you can [run it locally](https://github.com/Financial-Times/polyfill-service#running-locally).
 
 ## Documentation
 
