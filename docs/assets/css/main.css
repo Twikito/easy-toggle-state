@@ -119,7 +119,7 @@ a:focus,
 
 .link-like {
 	display: inline; padding: 0;
-	border: none; outline: none;
+	border: none;
 	background: none;
 	text-decoration: underline;
 }
