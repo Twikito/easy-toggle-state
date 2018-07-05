@@ -93,74 +93,42 @@
 
 		<nav id="navigation">
 			<ul>
-				<li>
-					<a href="#download">Direct download</a>
-				</li>
-				<li>
-					<a href="#why">Why?</a>
-				</li>
-				<li>
-					<a href="#quick-start">Quick start</a>
-				</li>
-				<li>
-					<a href="#compatibility"><abbr title="Internet Explorer">IE</abbr> compatibility</a>
-				</li>
-				<li>
-					<a href="#how-to-use">How to use</a>
+				<li><a href="#download">Direct download</a></li>
+				<li><a href="#why">Why?</a></li>
+				<li><a href="#quick-start">Quick start</a>
 					<ul>
-						<li>
-							<a href="#recommandation">Recommandation</a>
-						</li>
-						<li>
-							<a href="#basics">Basics</a>
-						</li>
-						<li>
-							<a href="#targeting">Targeting</a>
-						</li>
-						<li>
-							<a href="#advanced">Advanced</a>
-						</li>
-						<li>
-							<a href="#more">More</a>
-						</li>
+						<li><a href="#quick-start-manually">Manually</a></li>
+						<li><a href="#quick-start-npm">With npm</a></li>
+						<li><a href="#compatibility">Compatibility</a></li>
+						<li><a href="#more">More</a></li>
 					</ul>
 				</li>
-				<li>
-					<a href="#examples">Examples</a>
+				<li><a href="#how-to-use">How to use</a>
 					<ul>
-						<li>
-							<a href="#checkbox">Checkbox</a>
-						</li>
-						<li>
-							<a href="#radio">Radio buttons</a>
-						</li>
-						<li>
-							<a href="#tooltip">Tooltip</a>
-						</li>
-						<li>
-							<a href="#collapsible-panel">Collapsible panel / accordion</a>
-						</li>
-						<li>
-							<a href="#tabs">Tabs</a>
-						</li>
-						<li>
-							<a href="#dropdown">Dropdown</a>
-						</li>
-						<li>
-							<a href="#dialog">Dialog</a>
-						</li>
-						<li>
-							<a href="#lightbox">Lightbox</a>
-						</li>
-						<li>
-							<a href="#burger-icon">Burger icon</a>
-						</li>
+						<li><a href="#recommandation">Recomman<wbr>dation</a></li>
+						<li><a href="#basics">Basics</a></li>
+						<li><a href="#targeting">Targeting</a></li>
+						<li><a href="#advanced">Advanced</a></li>
+						<li><a href="#a11y">Accessibility</a></li>
 					</ul>
-				<li>
-					<a href="#contribution">Contribution</a>
 				</li>
+				<li><a href="#examples">Examples</a>
+					<ul>
+						<li><a href="#checkbox">Checkbox</a></li>
+						<li><a href="#radio">Radio buttons</a></li>
+						<li><a href="#tooltip">Tooltip</a></li>
+						<li><a href="#collapsible-panel">Collapsible panel / accordion</a></li>
+						<li><a href="#tabs">Tabs</a></li>
+						<li><a href="#dropdown">Dropdown</a></li>
+						<li><a href="#dialog">Dialog</a></li>
+						<li><a href="#lightbox">Lightbox</a></li>
+						<li><a href="#burger-icon">Burger icon</a></li>
+					</ul>
+				<li><a href="#contribution">Contribution</a></li>
 			</ul>
 		</nav>
+
+		<hr>
 
 		<section>
 			<h2 id="why">
@@ -172,41 +140,51 @@
 			<p><strong>Only focus on adjusting the rest with your CSS creativity</strong>.</p>
 		</section>
 
+		<hr>
+
 		<section class="language-bash">
 			<h2 id="quick-start">
 				<a href="#quick-start">Quick start</a>
 			</h2>
-			<p>
-				Several quick start options are available:
-			</p>
-			<ul>
-				<li>
-					<a href="#download">Direct download</a>
-				</li>
-				<li>
-					Choose another version: <a href="//github.com/Twikito/easy-toggle-state/tree/master/dist">ES5 or ES6</a>.
-				</li>
-				<li>
-					Clone the repo: <code>git clone https://github.com/twikito/easy-toggle-state.git</code>
-				</li>
-				<li>
-					Install with <a href="//www.npmjs.com/package/easy-toggle-state">npm</a>: <code>npm install easy-toggle-state</code>
-				</li>
-			</ul>
-			<p>Then, <strong>add the script into your page</strong>, and it’s done.</p>
+			<section>
+				<h3 id="quick-start-manually">
+					<a href="#quick-start-manually">Manually</a>
+				</h3>
+				<ul>
+					<li><a href="#download">Direct download</a></li>
+					<li>Choose another version: <a href="//github.com/Twikito/easy-toggle-state/tree/master/dist">ES5 or ES6</a>.</li>
+				</ul>
+				<p>Then, <strong>add the script into your page</strong>, and it’s done.</p>
+			</section>
+			<section>
+				<h3 id="quick-start-npm">
+					<a href="#quick-start-npm">With npm</a>
+				</h3>
+				<p>Install with <a href="//www.npmjs.com/package/easy-toggle-state">npm</a>:</p>
+				<pre><code>npm install easy-toggle-state</code></pre>
+				<p>Then load <em>Easy Toggle State</em> into your application, inside your main <abbr title="JavaScript">JS</abbr> file:</p>
+				<pre><code class="language-js">import "easy-toggle-state";
+// or
+require("easy-toggle-state");</code></pre>
+ 				<p>and the magic happens!</p>
+			</section>
+			<section>
+				<h3 id="compatibility">
+					<a href="#compatibility">Compatibility</a>
+				</h3>
+				<p>In addition of using <a href="//github.com/Twikito/easy-toggle-state/blob/master/dist/easy-toggle-state.min.js">ES5 version</a>, compatibility for Internet Explorer is provided by <a href="//polyfill.io/">polyfill.io</a> which supports back to <abbr title="Internet Explorer">IE</abbr> 7. It brings polyfills for <code class="language-js">Array.from</code>, <code class="language-js">Array.prototype.filter</code>, <code class="language-js">Element.prototype.closest</code> and more.</p>
+				<p>And before you ask, yes, you can <a href="//github.com/Financial-Times/polyfill-service#running-locally">run it locally</a>.</p>
+			</section>
+			<section>
+				<h3 id="more">
+					<a href="#more">More</a>
+				</h3>
+				<p>You can also change the <code>PREFIX</code> value to prevent conflict with another JS library. This prefix will be set to all attributes like <code>data-PREFIX-class</code>, <code>toggle</code> as default.</p>
+				<p>Finally, for asynchronous needs, you can call <code class="language-js">window.initEasyToggleState()</code>.</p>
+			</section>
 		</section>
 
-		<section>
-			<h2 id="compatibility">
-				<a href="#compatibility"><abbr title="Internet Explorer">IE</abbr> compatibility</a>
-			</h2>
-			<p>
-				In addition of using <a href="//github.com/Twikito/easy-toggle-state/blob/master/dist/easy-toggle-state.min.js">ES5 version</a>, compatibility for Internet Explorer is provided by <a href="//polyfill.io/">polyfill.io</a> which supports back to <abbr title="Internet Explorer">IE</abbr> 7. It brings polyfills for <code class="language-js">Array.from</code>, <code class="language-js">Array.prototype.filter</code>, <code class="language-js">Element.prototype.closest</code> and more.
-			</p>
-			<p>
-				And before you ask, yes, you can <a href="//github.com/Financial-Times/polyfill-service#running-locally">run it locally</a>.
-			</p>
-		</section>
+		<hr>
 
 		<section>
 			<h2 id="how-to-use">
@@ -347,15 +325,15 @@
 			</section>
 
 			<section class="language-html">
-				<h3 id="more">
-					<a href="#more">More</a>
+				<h3 id="a11y">
+					<a href="#a11y">Accessibility</a>
 				</h3>
 				<p>If a trigger or a target element has the <code>aria-expanded</code>, <code>aria-selected</code>, <code>aria-checked</code> or <code>aria-hidden</code> attribute, its value will also change.</p>
-				<p>You can also change the <code>PREFIX</code> value to prevent conflict with another JS library. This prefix will be set to all attributes like <code>data-[PREFIX]-class</code>, <code>toggle</code> as default.</p>
-				<p>Finally, for asynchronous needs, you can call <code class="language-js">window.initEasyToggleState()</code>.</p>
 			</section>
 
 		</section>
+
+		<hr>
 
 		<section>
 			<h2 id="examples">
@@ -1497,15 +1475,18 @@
 
 		</section>
 
+		<hr>
+
 		<section>
 			<h2 id="contribution">
 				<a href="#contribution">Contribution</a>
 			</h2>
 			<ul>
+				<li>Clone the repo: <code class="language-bash">git clone https://github.com/twikito/easy-toggle-state.git</code></li>
+				<li>Development: <code class="language-bash">npm run build</code></li>
 				<li><a href="//github.com/Twikito/easy-toggle-state/fork">Fork repository on GitHub</a></li>
 				<li><a href="//github.com/Twikito/easy-toggle-state/issues">Report a bug</a></li>
 				<li><a href="//github.com/Twikito/easy-toggle-state/issues">Suggest a feature</a></li>
-				<li>Development: <code class="language-bash">$ npm run build</code></li>
 			</ul>
 		</section>
 
@@ -1523,6 +1504,7 @@
 	</footer>
 
 	<script src="https://rawgit.com/Twikito/easy-toggle-state/master/dist/easy-toggle-state.es6.min.js"></script>
+	<script src="https://rawgit.com/cferdinandi/smooth-scroll/master/dist/smooth-scroll.min.js"></script>
 	<script src="assets/js/prism.js"></script>
 	<script src="assets/js/main.js"></script>
 </body>

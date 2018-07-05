@@ -20,6 +20,12 @@ body {
 	}
 }
 
+@media (min-width: 961px) {
+	body {
+		padding-left: 20%;
+	}
+}
+
 a,
 button,
 .baseline {
@@ -42,6 +48,7 @@ abbr {
 	transition: background-color .3s ease-in-out;
 }
 
+
 nav {
 	margin: 0 0 10%; overflow: auto;
 	background-color: #f6f8fa;
@@ -49,6 +56,39 @@ nav {
 
 nav ul {
 	list-style: none;
+}
+
+nav a {
+	text-decoration: none;
+}
+
+nav a:hover,
+nav a:focus {
+	text-decoration: underline;
+}
+
+nav > ul > li {
+	margin: 1em 0;
+}
+
+nav > ul > li > a {
+	font-weight: bold;
+}
+
+nav ul ul {
+	padding-left: 10%;
+}
+
+@media (min-width: 961px) {
+	nav {
+		position: fixed; top: 0; left: 0; bottom: 0; z-index: 3;
+		width: 20%; margin: 0; padding: 1% 2%; box-sizing: border-box;
+		border-right: 1px solid lightgrey;
+	}
+
+	nav > ul {
+		padding: 0;
+	}
 }
 
 h1, h2, h3, h4 {
@@ -61,7 +101,7 @@ h1 {
 }
 
 h2 {
-	font-size: 2em; color: var(--theme);
+	font-size: 2.5em; color: var(--theme);
 }
 
 h3 {
@@ -70,9 +110,11 @@ h3 {
 	font-size: 1.5em; color: white;
 }
 
-@supports (position: sticky) {
-	h3 {
-		position: sticky; top: 0; z-index: 2;
+@media (max-width: 960px) {
+	@supports (position: sticky) {
+		h3 {
+			position: sticky; top: 0; z-index: 2;
+		}
 	}
 }
 
@@ -124,6 +166,12 @@ a:focus,
 	text-decoration: underline;
 }
 
+hr {
+	height: 5px; margin: 0 -5vw 0;
+	border: none;
+	background-color: whitesmoke;
+}
+
 section {
 	margin: 0 0 10%;
 }
@@ -150,6 +198,16 @@ strong {
 	font-weight: 600;
 }
 
+footer {
+	overflow: auto;
+	background-color: var(--theme);
+	color: white; text-align: center;
+}
+
+footer a {
+	color: inherit;
+}
+
 .big {
 	font-size: 1.25em;
 }
@@ -162,6 +220,7 @@ pre[class*="language-"],
 	padding: .05em .25em;
 	border-radius: .15em;
 	background: #f0f2f4;
+	word-break: break-word;
 }
 
 .demo {
@@ -202,48 +261,54 @@ pre[class*="language-"],
 }
 
 .nav-link {
-	position: sticky; top: 0; z-index: 2;
-	display: block; width: .982em; height: .982em; margin: 0 0 -1.5em auto; padding: .25em; overflow: hidden;
-	background-color: #f6f8fa;
-	font-size: 1.5em; line-height: 1;
-}
-.nav-link:hover,
-.nav-link:focus {
-	background-color: var(--theme);
-	color: white;
-}
-.nav-link svg {
-	fill: currentColor;
-}
-.nav-link svg,
-.nav-link rect {
-	transition: transform .15s ease-out;
-}
-.nav-link .top-bar {
-	transform-origin: 94px 21px;
-}
-.nav-link .bot-bar {
-	transform-origin: 94px 79px;
-}
-.nav-link .mid-bar {
-	transform-origin: 6px 50px;
+	display: none;
 }
 
-.nav-link:hover svg,
-.nav-link:focus svg {
-	transform: rotate(-90deg);
-}
-.nav-link:hover .top-bar,
-.nav-link:focus .top-bar {
-	transform: translateY(29px) rotate(35deg) scale(.6, 1);
-}
-.nav-link:hover .bot-bar,
-.nav-link:focus .bot-bar {
-	transform: translateY(-29px) rotate(-35deg) scale(.6, 1);
-}
-.nav-link:hover .mid-bar,
-.nav-link:focus .mid-bar {
-	transform: scale(.975, 1);
+@media (max-width: 960px) {
+	.nav-link {
+		position: sticky; top: 0; z-index: 2;
+		display: block; width: .982em; height: .982em; margin: 0 0 -1.5em auto; padding: .25em; overflow: hidden;
+		background-color: #f6f8fa;
+		font-size: 1.5em; line-height: 1;
+	}
+	.nav-link:hover,
+	.nav-link:focus {
+		background-color: var(--theme);
+		color: white;
+	}
+	.nav-link svg {
+		fill: currentColor;
+	}
+	.nav-link svg,
+	.nav-link rect {
+		transition: transform .15s ease-out;
+	}
+	.nav-link .top-bar {
+		transform-origin: 94px 21px;
+	}
+	.nav-link .bot-bar {
+		transform-origin: 94px 79px;
+	}
+	.nav-link .mid-bar {
+		transform-origin: 6px 50px;
+	}
+
+	.nav-link:hover svg,
+	.nav-link:focus svg {
+		transform: rotate(-90deg);
+	}
+	.nav-link:hover .top-bar,
+	.nav-link:focus .top-bar {
+		transform: translateY(29px) rotate(35deg) scale(.6, 1);
+	}
+	.nav-link:hover .bot-bar,
+	.nav-link:focus .bot-bar {
+		transform: translateY(-29px) rotate(-35deg) scale(.6, 1);
+	}
+	.nav-link:hover .mid-bar,
+	.nav-link:focus .mid-bar {
+		transform: scale(.975, 1);
+	}
 }
 
 .color-theme {
@@ -283,16 +348,6 @@ pre[class*="language-"],
 [id='download'] > * {
 	margin: .5em;
 	flex: 0 1 15em;
-}
-
-footer {
-	overflow: auto;
-	background-color: var(--theme);
-	color: white; text-align: center;
-}
-
-footer a {
-	color: inherit;
 }
 
 .sr-only {

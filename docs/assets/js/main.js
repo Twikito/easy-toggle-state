@@ -1,5 +1,11 @@
 (() => {
 
+	const scroll = new SmoothScroll("a[href^='#']:not([role='button'])", {
+		speed: 500,
+		easing: 'easeInOutQuint'
+	});
+
+
 	const dedent = (callSite, ...args) => {
 		const format = str => {
 			let size = -1;

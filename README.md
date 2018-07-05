@@ -28,27 +28,19 @@ Several quick start options are available:
 
 - [Direct download](https://rawgit.com/Twikito/easy-toggle-state/master/dist/easy-toggle-state.es6.js)
 - Choose another version: [ES5 or ES6](https://github.com/Twikito/easy-toggle-state/tree/master/dist)
-- Clone the repo: `git clone https://github.com/twikito/easy-toggle-state.git`
 - Install with [npm](https://www.npmjs.com/package/easy-toggle-state): `npm install easy-toggle-state`
-
-Then, __add the script into your page__, and it's done.
-
-## IE compatibility
-
-In addition of using [ES5 version](https://github.com/Twikito/easy-toggle-state/blob/master/dist/easy-toggle-state.min.js), compatibility for Internet Explorer is provided by [polyfill.io](https://polyfill.io/) which supports back to IE 7. It brings polyfills for `Array.from` and `Element.prototype.closest`.
-
-And before you ask, yes, you can [run it locally](https://github.com/Financial-Times/polyfill-service#running-locally).
 
 ## Documentation
 
-Easy Toggle State's documentation is hosted on GitHub Pages at [twikito.github.io/easy-toggle-state/](https://twikito.github.io/easy-toggle-state/).
+Easy Toggle State's full documentation is hosted on GitHub Pages at [twikito.github.io/easy-toggle-state/](https://twikito.github.io/easy-toggle-state/).
 
 ## Contribution
 
+- Clone the repo: `git clone https://github.com/twikito/easy-toggle-state.git`
+- Development: `npm run build`
 - [Fork repository on GitHub](https://github.com/Twikito/easy-toggle-state/fork)
 - [Report a bug](https://github.com/Twikito/easy-toggle-state/issues)
 - [Suggest a feature](https://github.com/Twikito/easy-toggle-state/issues)
-- Development: `npm run build`
 
 ## License
 
