@@ -27,7 +27,7 @@
 	}
 	&-icon,
 	&-icon rect {
-		transition: .25s ease-out;
+		transition: transform .25s ease-out;
 	}
 
 	&.is-active &-icon {

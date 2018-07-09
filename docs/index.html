@@ -41,7 +41,7 @@
 	<link rel="stylesheet" href="assets/css/dropdown.css">
 	<link rel="stylesheet" href="assets/css/dialog.css">
 	<link rel="stylesheet" href="assets/css/lightbox.css">
-	<link rel="stylesheet" href="assets/css/burger-icon.css">
+	<link rel="stylesheet" href="assets/css/navigation-icon.css">
 </head>
 <body>
 	<header id="header">
@@ -122,7 +122,7 @@
 						<li><a href="#dropdown">Dropdown</a></li>
 						<li><a href="#dialog">Dialog</a></li>
 						<li><a href="#lightbox">Lightbox</a></li>
-						<li><a href="#burger-icon">Burger icon</a></li>
+						<li><a href="#navigation-icon">Navigation icon</a></li>
 					</ul>
 				<li><a href="#contribution">Contribution</a></li>
 			</ul>
@@ -1419,13 +1419,13 @@ require("easy-toggle-state");</code></pre>
 			</section>
 
 			<section>
-				<h3 id="burger-icon">
-					<a href="#burger-icon">Burger icon</a>
+				<h3 id="navigation-icon">
+					<a href="#navigation-icon">Navigation icon</a>
 				</h3>
-				<p>You want to create a burger icon, i.e. an icon that represent a button you can click on to make a navigation menu visible.</p>
+				<p>You want to create a navigation icon, i.e. an icon that represent a button you can click on to make a navigation menu visible.</p>
 				<section>
-					<h4 id="simple-burger-icon">
-						<a href="#simple-burger-icon">Simple burger icon</a>
+					<h4 id="simple-navigation-icon">
+						<a href="#simple-navigation-icon">Simple navigation icon</a>
 					</h4>
 <pre><code class="language-html line-numbers">&lt;button type="button"
 	class="example-nav-trigger"
@@ -1439,7 +1439,7 @@ require("easy-toggle-state");</code></pre>
 		&lt;rect class="bot-bar" x="0" y="73" width="100" height="12"/&gt;
 	&lt;/svg&gt;
 &lt;/button&gt;</code></pre>
-					<div class="demo" id="simple-burger-icon-demo">
+					<div class="demo" id="simple-navigation-icon-demo">
 						<button type="button" class="example-nav-trigger" data-toggle-class data-toggle-escape title="Navigation">
 							<svg width="1em" class="example-nav-trigger-icon" viewBox="0 0 100 100" role="img">
 								<title>Navigation icon</title>
@@ -1450,22 +1450,22 @@ require("easy-toggle-state");</code></pre>
 						</button>
 					</div>
 					<div class="text-right">
-						<a href="assets/css/burger-icon.css" title="Download this burger icon demo stylesheet">download CSS</a>
+						<a href="assets/css/navigation-icon.css" title="Download this navigation icon demo stylesheet">download CSS</a>
 						-
-						<a href="assets/scss/burger-icon.scss" title="Download this burger icon demo stylesheet in SCSS">SCSS</a>
+						<a href="assets/scss/navigation-icon.scss" title="Download this navigation icon demo stylesheet in SCSS">SCSS</a>
 						-
-						<button type="button" class="link-like codepen" title="Open this burger icon demo on CodePen" data-title="a burger icon" data-demo="simple-burger-icon-demo" data-css="burger-icon">open in CodePen</button>
+						<button type="button" class="link-like codepen" title="Open this navigation icon demo on CodePen" data-title="a navigation icon" data-demo="simple-navigation-icon-demo" data-css="navigation-icon">open in CodePen</button>
 					</div>
 				</section>
 				<section>
-					<h4 id="burger-icon-explanation">
-						<a href="#burger-icon-explanation">Explanation</a>
+					<h4 id="navigation-icon-explanation">
+						<a href="#navigation-icon-explanation">Explanation</a>
 					</h4>
 					<p>
 						Toggle <code class="language-html">.is-active</code> class – by default – on click on this element. <code class="language-html">data-toggle-escape</code> attribute means you can press <kbd>escape</kbd> key to toggle off.
 					</p>
 					<p>
-						You will probably add <code class="language-html">data-toggle-target</code> attribute with the ID of your navigation bar to toggle it at the same time.
+						You will probably add <code class="language-html">data-toggle-target</code> attribute with the ID of your navigation bar to toggle it at the same time. Here is <a href="//codepen.io/Twikito/pen/VdJVop">an example of navigation management</a>.
 					</p>
 					<p>
 						Consider adding some ARIA attributes for accessibility. Refer to other examples above.

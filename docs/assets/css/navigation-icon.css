@@ -16,7 +16,7 @@
 }
 .example-nav-trigger-icon,
 .example-nav-trigger-icon rect {
-	transition: .25s ease-out;
+	transition: transform .25s ease-out;
 }
 .example-nav-trigger-icon .top-bar {
 	transform-origin: 94px 21px;
