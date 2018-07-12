@@ -52,6 +52,12 @@
 	    TARGET_STATE = dataset("state"),
 	    TRIGGER_OFF = dataset("trigger-off");
 
+	/**
+	 * Hooks
+	 */
+	var TOGGLE_AFTER = new Event("toggleAfter"),
+	    TOGGLE_BEFORE = new Event("toggleBefore");
+
 	var defineProperty = function (obj, key, value) {
 	  if (key in obj) {
 	    Object.defineProperty(obj, key, {
@@ -95,7 +101,7 @@
 	 * @returns {boolean} - True or False
 	 */
 	var dispatchHook = (function (element, action) {
-	  return element.dispatchEvent(new Event(action));
+	  return element.dispatchEvent(action);
 	});
 
 	/**
@@ -258,7 +264,7 @@
 	 * @returns {undefined}
 	 */
 	var manageToggle = function manageToggle(element) {
-		dispatchHook(element, "toogleBefore");
+		dispatchHook(element, TOGGLE_BEFORE);
 
 		var className = element.getAttribute(CLASS) || "is-active";
 		element.isToggleActive = !element.isToggleActive;
@@ -270,15 +276,15 @@
 
 		var targetElements = retrieveTargets(element);
 		for (var i = 0; i < targetElements.length; i++) {
-			dispatchHook(targetElements[i], "toogleBefore");
+			dispatchHook(targetElements[i], TOGGLE_BEFORE);
 
 			targetElements[i].classList.toggle(className);
 			manageTarget(targetElements[i], element);
 
-			dispatchHook(targetElements[i], "toogleAfter");
+			dispatchHook(targetElements[i], TOGGLE_AFTER);
 		}
 
-		dispatchHook(element, "toogleAfter");
+		dispatchHook(element, TOGGLE_AFTER);
 		return manageTriggerOutside(element);
 	};
 
@@ -332,7 +338,7 @@
 	var manageActiveByDefault = function manageActiveByDefault(element) {
 		var _manageAria;
 
-		dispatchHook(element, "toogleBefore");
+		dispatchHook(element, TOGGLE_BEFORE);
 
 		var className = element.getAttribute(CLASS) || "is-active";
 		element.isToggleActive = true;
@@ -344,17 +350,17 @@
 
 		var targetElements = retrieveTargets(element);
 		for (var i = 0; i < targetElements.length; i++) {
-			dispatchHook(targetElements[i], "toogleBefore");
+			dispatchHook(targetElements[i], TOGGLE_BEFORE);
 
 			if (!targetElements[i].classList.contains(className)) {
 				targetElements[i].classList.add(className);
 			}
 			manageTarget(targetElements[i], element);
 
-			dispatchHook(targetElements[i], "toogleAfter");
+			dispatchHook(targetElements[i], TOGGLE_AFTER);
 		}
 
-		dispatchHook(element, "toogleAfter");
+		dispatchHook(element, TOGGLE_AFTER);
 		return manageTriggerOutside(element);
 	};
 

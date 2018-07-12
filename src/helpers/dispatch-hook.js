@@ -4,4 +4,4 @@
  * @param {string} action - An event to dispatch
  * @returns {boolean} - True or False
  */
-export default (element, action) => element.dispatchEvent(new Event(action));
+export default (element, action) => element.dispatchEvent(action);

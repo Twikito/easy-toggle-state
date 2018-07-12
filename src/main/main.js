@@ -14,6 +14,7 @@ import {
 	TARGET_STATE,
 	TRIGGER_OFF
 } from "../constants/constants";
+import { TOGGLE_AFTER, TOGGLE_BEFORE } from "../constants/events";
 import $$ from "../helpers/retrieve-query-selector-all";
 import dispatchHook from "../helpers/dispatch-hook";
 import manageAria from "../helpers/manage-aria";
@@ -89,7 +90,7 @@ const manageTarget = (targetElement, triggerElement) => {
  * @returns {undefined}
  */
 const manageToggle = element => {
-	dispatchHook(element, "toogleBefore");
+	dispatchHook(element, TOGGLE_BEFORE);
 
 	const className = element.getAttribute(CLASS) || "is-active";
 	element.isToggleActive = !element.isToggleActive;
@@ -101,15 +102,15 @@ const manageToggle = element => {
 
 	const targetElements = retrieveTargets(element);
 	for (let i = 0; i < targetElements.length; i++) {
-		dispatchHook(targetElements[i], "toogleBefore");
+		dispatchHook(targetElements[i], TOGGLE_BEFORE);
 
 		targetElements[i].classList.toggle(className);
 		manageTarget(targetElements[i], element);
 
-		dispatchHook(targetElements[i], "toogleAfter");
+		dispatchHook(targetElements[i], TOGGLE_AFTER);
 	}
 
-	dispatchHook(element, "toogleAfter");
+	dispatchHook(element, TOGGLE_AFTER);
 	return manageTriggerOutside(element);
 };
 
@@ -161,7 +162,7 @@ const manageGroup = element => {
  * @returns {undefined}
  */
 const manageActiveByDefault = element => {
-	dispatchHook(element, "toogleBefore");
+	dispatchHook(element, TOGGLE_BEFORE);
 
 	const className = element.getAttribute(CLASS) || "is-active";
 	element.isToggleActive = true;
@@ -178,17 +179,17 @@ const manageActiveByDefault = element => {
 
 	const targetElements = retrieveTargets(element);
 	for (let i = 0; i < targetElements.length; i++) {
-		dispatchHook(targetElements[i], "toogleBefore");
+		dispatchHook(targetElements[i], TOGGLE_BEFORE);
 
 		if (!targetElements[i].classList.contains(className)) {
 			targetElements[i].classList.add(className);
 		}
 		manageTarget(targetElements[i], element);
 
-		dispatchHook(targetElements[i], "toogleAfter");
+		dispatchHook(targetElements[i], TOGGLE_AFTER);
 	}
 
-	dispatchHook(element, "toogleAfter");
+	dispatchHook(element, TOGGLE_AFTER);
 	return manageTriggerOutside(element);
 };
 
