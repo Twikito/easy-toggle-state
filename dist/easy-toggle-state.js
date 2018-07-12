@@ -89,6 +89,16 @@
 	});
 
 	/**
+	 * Dispatch hooks
+	 * @param {node} element - An element on which dispatch the hook
+	 * @param {string} action - An event to dispatch
+	 * @returns {boolean} - True or False
+	 */
+	var dispatchHook = (function (element, action) {
+	  return element.dispatchEvent(new Event(action));
+	});
+
+	/**
 	 * Aria attributes toggle manager.
 	 * @param {node} element - Current element with aria attributes to manage.
 	 * @param {json} [config] - List of aria attributes and value to assign.
@@ -248,6 +258,8 @@
 	 * @returns {undefined}
 	 */
 	var manageToggle = function manageToggle(element) {
+		dispatchHook(element, "toogleBefore");
+
 		var className = element.getAttribute(CLASS) || "is-active";
 		element.isToggleActive = !element.isToggleActive;
 		manageAria(element);
@@ -258,10 +270,15 @@
 
 		var targetElements = retrieveTargets(element);
 		for (var i = 0; i < targetElements.length; i++) {
+			dispatchHook(targetElements[i], "toogleBefore");
+
 			targetElements[i].classList.toggle(className);
 			manageTarget(targetElements[i], element);
+
+			dispatchHook(targetElements[i], "toogleAfter");
 		}
 
+		dispatchHook(element, "toogleAfter");
 		return manageTriggerOutside(element);
 	};
 
@@ -315,6 +332,8 @@
 	var manageActiveByDefault = function manageActiveByDefault(element) {
 		var _manageAria;
 
+		dispatchHook(element, "toogleBefore");
+
 		var className = element.getAttribute(CLASS) || "is-active";
 		element.isToggleActive = true;
 		manageAria(element, (_manageAria = {}, defineProperty(_manageAria, CHECKED, true), defineProperty(_manageAria, EXPANDED, true), defineProperty(_manageAria, HIDDEN, false), defineProperty(_manageAria, SELECTED, true), _manageAria));
@@ -325,12 +344,17 @@
 
 		var targetElements = retrieveTargets(element);
 		for (var i = 0; i < targetElements.length; i++) {
+			dispatchHook(targetElements[i], "toogleBefore");
+
 			if (!targetElements[i].classList.contains(className)) {
 				targetElements[i].classList.add(className);
 			}
 			manageTarget(targetElements[i], element);
+
+			dispatchHook(targetElements[i], "toogleAfter");
 		}
 
+		dispatchHook(element, "toogleAfter");
 		return manageTriggerOutside(element);
 	};
 

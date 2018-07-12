@@ -15,6 +15,7 @@ import {
 	TRIGGER_OFF
 } from "../constants/constants";
 import $$ from "../helpers/retrieve-query-selector-all";
+import dispatchHook from "../helpers/dispatch-hook";
 import manageAria from "../helpers/manage-aria";
 import retrieveGroupActiveElement from "../helpers/retrieve-group-active-element";
 import retrieveTargets from "../helpers/retrieve-targets";
@@ -88,6 +89,8 @@ const manageTarget = (targetElement, triggerElement) => {
  * @returns {undefined}
  */
 const manageToggle = element => {
+	dispatchHook(element, "toogleBefore");
+
 	const className = element.getAttribute(CLASS) || "is-active";
 	element.isToggleActive = !element.isToggleActive;
 	manageAria(element);
@@ -98,10 +101,15 @@ const manageToggle = element => {
 
 	const targetElements = retrieveTargets(element);
 	for (let i = 0; i < targetElements.length; i++) {
+		dispatchHook(targetElements[i], "toogleBefore");
+
 		targetElements[i].classList.toggle(className);
 		manageTarget(targetElements[i], element);
+
+		dispatchHook(targetElements[i], "toogleAfter");
 	}
 
+	dispatchHook(element, "toogleAfter");
 	return manageTriggerOutside(element);
 };
 
@@ -153,6 +161,8 @@ const manageGroup = element => {
  * @returns {undefined}
  */
 const manageActiveByDefault = element => {
+	dispatchHook(element, "toogleBefore");
+
 	const className = element.getAttribute(CLASS) || "is-active";
 	element.isToggleActive = true;
 	manageAria(element, {
@@ -168,12 +178,17 @@ const manageActiveByDefault = element => {
 
 	const targetElements = retrieveTargets(element);
 	for (let i = 0; i < targetElements.length; i++) {
+		dispatchHook(targetElements[i], "toogleBefore");
+
 		if (!targetElements[i].classList.contains(className)) {
 			targetElements[i].classList.add(className);
 		}
 		manageTarget(targetElements[i], element);
+
+		dispatchHook(targetElements[i], "toogleAfter");
 	}
 
+	dispatchHook(element, "toogleAfter");
 	return manageTriggerOutside(element);
 };
 

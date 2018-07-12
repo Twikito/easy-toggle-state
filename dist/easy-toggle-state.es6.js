@@ -62,6 +62,14 @@
 	});
 
 	/**
+	 * Dispatch hooks
+	 * @param {node} element - An element on which dispatch the hook
+	 * @param {string} action - An event to dispatch
+	 * @returns {boolean} - True or False
+	 */
+	const dispatchHook = ((element, action) => element.dispatchEvent(new Event(action)));
+
+	/**
 	 * Aria attributes toggle manager.
 	 * @param {node} element - Current element with aria attributes to manage.
 	 * @param {json} [config] - List of aria attributes and value to assign.
@@ -213,6 +221,8 @@
 	 * @returns {undefined}
 	 */
 	const manageToggle = element => {
+		dispatchHook(element, "toogleBefore");
+
 		const className = element.getAttribute(CLASS) || "is-active";
 		element.isToggleActive = !element.isToggleActive;
 		manageAria(element);
@@ -223,10 +233,15 @@
 
 		const targetElements = retrieveTargets(element);
 		for (let i = 0; i < targetElements.length; i++) {
+			dispatchHook(targetElements[i], "toogleBefore");
+
 			targetElements[i].classList.toggle(className);
 			manageTarget(targetElements[i], element);
+
+			dispatchHook(targetElements[i], "toogleAfter");
 		}
 
+		dispatchHook(element, "toogleAfter");
 		return manageTriggerOutside(element);
 	};
 
@@ -278,6 +293,8 @@
 	 * @returns {undefined}
 	 */
 	const manageActiveByDefault = element => {
+		dispatchHook(element, "toogleBefore");
+
 		const className = element.getAttribute(CLASS) || "is-active";
 		element.isToggleActive = true;
 		manageAria(element, {
@@ -293,12 +310,17 @@
 
 		const targetElements = retrieveTargets(element);
 		for (let i = 0; i < targetElements.length; i++) {
+			dispatchHook(targetElements[i], "toogleBefore");
+
 			if (!targetElements[i].classList.contains(className)) {
 				targetElements[i].classList.add(className);
 			}
 			manageTarget(targetElements[i], element);
+
+			dispatchHook(targetElements[i], "toogleAfter");
 		}
 
+		dispatchHook(element, "toogleAfter");
 		return manageTriggerOutside(element);
 	};
 
