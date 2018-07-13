@@ -109,7 +109,7 @@
 		/** Test if there's no match for a selector */
 		if (targetList.length === 0) {
 			console.warn(`There's no match for the selector '${selector}' for this trigger`);
-			return targetList;
+			return [];
 		}
 
 		/** Test if there's more than one match for an ID selector */
@@ -123,7 +123,7 @@
 			});
 		}
 
-		return targetList;
+		return [...targetList];
 	};
 
 	/**
@@ -183,73 +183,11 @@
 	};
 
 	/**
-	 * Manage click on elements with 'data-trigger-off' attribue.
+	 * Manage click on elements with 'data-trigger-off' attribute.
 	 * @param {event} event - Event triggered on element with 'trigger-off' attribute
 	 * @returns {undefined}
 	 */
 	const triggerOffHandler = event => manageToggle(event.target.targetElement);
-
-	/**
-	 * Manage attributes and events of target elements.
-	 * @param {node} targetElement - An element targeted by the trigger element
-	 * @param {node} triggerElement - The trigger element
-	 * @returns {undefined}
-	 */
-	const manageTarget = (targetElement, triggerElement) => {
-		targetElement.isToggleActive = !targetElement.isToggleActive;
-		manageAria(targetElement);
-
-		if (triggerElement.hasAttribute(OUTSIDE)) {
-			targetElement.setAttribute(TARGET_STATE, triggerElement.isToggleActive);
-		}
-
-		const triggerOffList = $$(TRIGGER_OFF, targetElement);
-
-		if (triggerOffList.length === 0) {
-			return;
-		}
-
-		if (triggerElement.isToggleActive) {
-			return triggerOffList.forEach(triggerOff => {
-				triggerOff.targetElement = triggerElement;
-				triggerOff.addEventListener("click", triggerOffHandler, false);
-			});
-		}
-
-		return triggerOffList.forEach(triggerOff => {
-			triggerOff.removeEventListener("click", triggerOffHandler, false);
-		});
-	};
-
-	/**
-	 * Toggle class and aria on trigger and target elements.
-	 * @param {node} element - The element to toggle state and attributes
-	 * @returns {undefined}
-	 */
-	const manageToggle = element => {
-		dispatchHook(element, TOGGLE_BEFORE);
-
-		const className = element.getAttribute(CLASS) || "is-active";
-		element.isToggleActive = !element.isToggleActive;
-		manageAria(element);
-
-		if (!element.hasAttribute(TARGET_ONLY)) {
-			element.classList.toggle(className);
-		}
-
-		const targetElements = retrieveTargets(element);
-		for (let i = 0; i < targetElements.length; i++) {
-			dispatchHook(targetElements[i], TOGGLE_BEFORE);
-
-			targetElements[i].classList.toggle(className);
-			manageTarget(targetElements[i], element);
-
-			dispatchHook(targetElements[i], TOGGLE_AFTER);
-		}
-
-		dispatchHook(element, TOGGLE_AFTER);
-		return manageTriggerOutside(element);
-	};
 
 	/**
 	 * Manage event ouside trigger or target elements.
@@ -273,24 +211,80 @@
 	};
 
 	/**
-	 * Toggle elements of a same group.
-	 * @param {node} element - The element to test if it's in a group
+	 * Manage elements inside a target element which have 'data-toggle-trigger-off' attribute.
+	 * @param {node} targetElement - An element targeted by the trigger element
+	 * @param {node} triggerElement - The trigger element
 	 * @returns {undefined}
 	 */
-	const manageGroup = element => {
-		const groupActiveElements = retrieveGroupActiveElement(element);
-		if (groupActiveElements.length === 0) {
-			return manageToggle(element);
+	const manageTriggerOff = (targetElement, triggerElement) => {
+		const triggerOffList = $$(TRIGGER_OFF, targetElement);
+
+		if (triggerOffList.length === 0) {
+			return;
 		}
 
-		if (groupActiveElements.indexOf(element) === -1) {
-			groupActiveElements.forEach(manageToggle);
-			return manageToggle(element);
+		if (triggerElement.isToggleActive) {
+			return triggerOffList.forEach(triggerOff => {
+				triggerOff.targetElement = triggerElement;
+				triggerOff.addEventListener("click", triggerOffHandler, false);
+			});
 		}
 
-		if (groupActiveElements.indexOf(element) !== -1 && !element.hasAttribute(RADIO_GROUP)) {
-			return manageToggle(element);
+		return triggerOffList.forEach(triggerOff => {
+			triggerOff.removeEventListener("click", triggerOffHandler, false);
+		});
+	};
+
+	/**
+	 * Manage attributes and events of targets elements.
+	 * @param {node} triggerElement - The trigger element
+	 * @param {string} className - The class name to toggle
+	 * @param {boolean} onLoadActive - A flag for active by default
+	 * @returns {undefined}
+	 */
+	const manageTargets = (triggerElement, className, onLoadActive) => retrieveTargets(triggerElement).forEach(targetElement => {
+		dispatchHook(targetElement, TOGGLE_BEFORE);
+
+		targetElement.isToggleActive = !targetElement.isToggleActive;
+		manageAria(targetElement);
+
+		if (onLoadActive && !targetElement.classList.contains(className)) {
+			targetElement.classList.add(className);
 		}
+
+		if (!onLoadActive) {
+			targetElement.classList.toggle(className);
+		}
+
+		if (triggerElement.hasAttribute(OUTSIDE)) {
+			targetElement.setAttribute(TARGET_STATE, triggerElement.isToggleActive);
+		}
+
+		dispatchHook(targetElement, TOGGLE_AFTER);
+
+		manageTriggerOff(targetElement, triggerElement);
+	});
+
+	/**
+	 * Toggle class and aria on trigger and target elements.
+	 * @param {node} element - The element to toggle state and attributes
+	 * @returns {undefined}
+	 */
+	const manageToggle = element => {
+		dispatchHook(element, TOGGLE_BEFORE);
+
+		const className = element.getAttribute(CLASS) || "is-active";
+		element.isToggleActive = !element.isToggleActive;
+		manageAria(element);
+
+		if (!element.hasAttribute(TARGET_ONLY)) {
+			element.classList.toggle(className);
+		}
+
+		dispatchHook(element, TOGGLE_AFTER);
+
+		manageTargets(element, className, false);
+		return manageTriggerOutside(element);
 	};
 
 	/**
@@ -314,20 +308,31 @@
 			element.classList.add(className);
 		}
 
-		const targetElements = retrieveTargets(element);
-		for (let i = 0; i < targetElements.length; i++) {
-			dispatchHook(targetElements[i], TOGGLE_BEFORE);
+		dispatchHook(element, TOGGLE_AFTER);
 
-			if (!targetElements[i].classList.contains(className)) {
-				targetElements[i].classList.add(className);
-			}
-			manageTarget(targetElements[i], element);
+		manageTargets(element, className, true);
+		return manageTriggerOutside(element);
+	};
 
-			dispatchHook(targetElements[i], TOGGLE_AFTER);
+	/**
+	 * Toggle elements of a same group.
+	 * @param {node} element - The element to test if it's in a group
+	 * @returns {undefined}
+	 */
+	const manageGroup = element => {
+		const groupActiveElements = retrieveGroupActiveElement(element);
+		if (groupActiveElements.length === 0) {
+			return manageToggle(element);
 		}
 
-		dispatchHook(element, TOGGLE_AFTER);
-		return manageTriggerOutside(element);
+		if (groupActiveElements.indexOf(element) === -1) {
+			groupActiveElements.forEach(manageToggle);
+			return manageToggle(element);
+		}
+
+		if (groupActiveElements.indexOf(element) !== -1 && !element.hasAttribute(RADIO_GROUP)) {
+			return manageToggle(element);
+		}
 	};
 
 	/**
