@@ -2,9 +2,11 @@
 
 * ~~New attribute to group some triggers~~
 * ~~Uglify~~
-* ~~Transpile~~ _done, but have to check for compatibilities_
+* ~~Transpile~~
 * ~~Demos!~~
 * ~~Support for `aria-checked` attribute~~
 * ~~Support for `aria-hidden` attribute~~
 * ~~New attributes for targetting previous or next adjacent element~~
+* Manage arrow keys
+* Manage styles calculated by JS
 * Anything else?
