@@ -52,6 +52,12 @@
 	    TARGET_STATE = dataset("state"),
 	    TRIGGER_OFF = dataset("trigger-off");
 
+	/**
+	 * Hooks
+	 */
+	var TOGGLE_AFTER = new Event("toggleAfter"),
+	    TOGGLE_BEFORE = new Event("toggleBefore");
+
 	var defineProperty = function (obj, key, value) {
 	  if (key in obj) {
 	    Object.defineProperty(obj, key, {
@@ -86,6 +92,16 @@
 	var $$ = (function (selector, node) {
 	  var scope = selector ? "[" + selector + "]" : "";
 	  return node ? [].concat(toConsumableArray(node.querySelectorAll(scope))) : [].concat(toConsumableArray(document.querySelectorAll(("[" + CLASS + "]" + scope).trim())));
+	});
+
+	/**
+	 * Dispatch hooks
+	 * @param {node} element - An element on which dispatch the hook
+	 * @param {string} action - An event to dispatch
+	 * @returns {boolean} - True or False
+	 */
+	var dispatchHook = (function (element, action) {
+	  return element.dispatchEvent(action);
 	});
 
 	/**
@@ -126,7 +142,7 @@
 		/** Test if there's no match for a selector */
 		if (targetList.length === 0) {
 			console.warn("There's no match for the selector '" + selector + "' for this trigger");
-			return targetList;
+			return [];
 		}
 
 		/** Test if there's more than one match for an ID selector */
@@ -142,7 +158,7 @@
 			});
 		}
 
-		return targetList;
+		return [].concat(toConsumableArray(targetList));
 	};
 
 	/**
@@ -202,67 +218,12 @@
 	};
 
 	/**
-	 * Manage click on elements with 'data-trigger-off' attribue.
+	 * Manage click on elements with 'data-trigger-off' attribute.
 	 * @param {event} event - Event triggered on element with 'trigger-off' attribute
 	 * @returns {undefined}
 	 */
 	var triggerOffHandler = function triggerOffHandler(event) {
 		return manageToggle(event.target.targetElement);
-	};
-
-	/**
-	 * Manage attributes and events of target elements.
-	 * @param {node} targetElement - An element targeted by the trigger element
-	 * @param {node} triggerElement - The trigger element
-	 * @returns {undefined}
-	 */
-	var manageTarget = function manageTarget(targetElement, triggerElement) {
-		targetElement.isToggleActive = !targetElement.isToggleActive;
-		manageAria(targetElement);
-
-		if (triggerElement.hasAttribute(OUTSIDE)) {
-			targetElement.setAttribute(TARGET_STATE, triggerElement.isToggleActive);
-		}
-
-		var triggerOffList = $$(TRIGGER_OFF, targetElement);
-
-		if (triggerOffList.length === 0) {
-			return;
-		}
-
-		if (triggerElement.isToggleActive) {
-			return triggerOffList.forEach(function (triggerOff) {
-				triggerOff.targetElement = triggerElement;
-				triggerOff.addEventListener("click", triggerOffHandler, false);
-			});
-		}
-
-		return triggerOffList.forEach(function (triggerOff) {
-			triggerOff.removeEventListener("click", triggerOffHandler, false);
-		});
-	};
-
-	/**
-	 * Toggle class and aria on trigger and target elements.
-	 * @param {node} element - The element to toggle state and attributes
-	 * @returns {undefined}
-	 */
-	var manageToggle = function manageToggle(element) {
-		var className = element.getAttribute(CLASS) || "is-active";
-		element.isToggleActive = !element.isToggleActive;
-		manageAria(element);
-
-		if (!element.hasAttribute(TARGET_ONLY)) {
-			element.classList.toggle(className);
-		}
-
-		var targetElements = retrieveTargets(element);
-		for (var i = 0; i < targetElements.length; i++) {
-			targetElements[i].classList.toggle(className);
-			manageTarget(targetElements[i], element);
-		}
-
-		return manageTriggerOutside(element);
 	};
 
 	/**
@@ -287,6 +248,109 @@
 	};
 
 	/**
+	 * Manage elements inside a target element which have 'data-toggle-trigger-off' attribute.
+	 * @param {node} targetElement - An element targeted by the trigger element
+	 * @param {node} triggerElement - The trigger element
+	 * @returns {undefined}
+	 */
+	var manageTriggerOff = function manageTriggerOff(targetElement, triggerElement) {
+		var triggerOffList = $$(TRIGGER_OFF, targetElement);
+
+		if (triggerOffList.length === 0) {
+			return;
+		}
+
+		if (triggerElement.isToggleActive) {
+			return triggerOffList.forEach(function (triggerOff) {
+				triggerOff.targetElement = triggerElement;
+				triggerOff.addEventListener("click", triggerOffHandler, false);
+			});
+		}
+
+		return triggerOffList.forEach(function (triggerOff) {
+			triggerOff.removeEventListener("click", triggerOffHandler, false);
+		});
+	};
+
+	/**
+	 * Manage attributes and events of targets elements.
+	 * @param {node} triggerElement - The trigger element
+	 * @param {string} className - The class name to toggle
+	 * @param {boolean} onLoadActive - A flag for active by default
+	 * @returns {undefined}
+	 */
+	var manageTargets = function manageTargets(triggerElement, className, onLoadActive) {
+		return retrieveTargets(triggerElement).forEach(function (targetElement) {
+			dispatchHook(targetElement, TOGGLE_BEFORE);
+
+			targetElement.isToggleActive = !targetElement.isToggleActive;
+			manageAria(targetElement);
+
+			if (onLoadActive && !targetElement.classList.contains(className)) {
+				targetElement.classList.add(className);
+			}
+
+			if (!onLoadActive) {
+				targetElement.classList.toggle(className);
+			}
+
+			if (triggerElement.hasAttribute(OUTSIDE)) {
+				targetElement.setAttribute(TARGET_STATE, triggerElement.isToggleActive);
+			}
+
+			dispatchHook(targetElement, TOGGLE_AFTER);
+
+			manageTriggerOff(targetElement, triggerElement);
+		});
+	};
+
+	/**
+	 * Toggle class and aria on trigger and target elements.
+	 * @param {node} element - The element to toggle state and attributes
+	 * @returns {undefined}
+	 */
+	var manageToggle = function manageToggle(element) {
+		dispatchHook(element, TOGGLE_BEFORE);
+
+		var className = element.getAttribute(CLASS) || "is-active";
+		element.isToggleActive = !element.isToggleActive;
+		manageAria(element);
+
+		if (!element.hasAttribute(TARGET_ONLY)) {
+			element.classList.toggle(className);
+		}
+
+		dispatchHook(element, TOGGLE_AFTER);
+
+		manageTargets(element, className, false);
+		return manageTriggerOutside(element);
+	};
+
+	/**
+	 * Toggle elements set to be active by default.
+	 * @param {node} element - The element to activate on page load
+	 * @returns {undefined}
+	 */
+	var manageActiveByDefault = function manageActiveByDefault(element) {
+		var _manageAria;
+
+		dispatchHook(element, TOGGLE_BEFORE);
+
+		var className = element.getAttribute(CLASS) || "is-active";
+		element.isToggleActive = true;
+		manageAria(element, (_manageAria = {}, defineProperty(_manageAria, CHECKED, true), defineProperty(_manageAria, EXPANDED, true), defineProperty(_manageAria, HIDDEN, false), defineProperty(_manageAria, SELECTED, true), _manageAria));
+
+		if (!element.hasAttribute(TARGET_ONLY) && !element.classList.contains(className)) {
+			element.classList.add(className);
+		}
+
+		dispatchHook(element, TOGGLE_AFTER);
+
+		manageTargets(element, className, true);
+		return manageTriggerOutside(element);
+	};
+
+	/**
 	 * Toggle elements of a same group.
 	 * @param {node} element - The element to test if it's in a group
 	 * @returns {undefined}
@@ -305,33 +369,6 @@
 		if (groupActiveElements.indexOf(element) !== -1 && !element.hasAttribute(RADIO_GROUP)) {
 			return manageToggle(element);
 		}
-	};
-
-	/**
-	 * Toggle elements set to be active by default.
-	 * @param {node} element - The element to activate on page load
-	 * @returns {undefined}
-	 */
-	var manageActiveByDefault = function manageActiveByDefault(element) {
-		var _manageAria;
-
-		var className = element.getAttribute(CLASS) || "is-active";
-		element.isToggleActive = true;
-		manageAria(element, (_manageAria = {}, defineProperty(_manageAria, CHECKED, true), defineProperty(_manageAria, EXPANDED, true), defineProperty(_manageAria, HIDDEN, false), defineProperty(_manageAria, SELECTED, true), _manageAria));
-
-		if (!element.hasAttribute(TARGET_ONLY) && !element.classList.contains(className)) {
-			element.classList.add(className);
-		}
-
-		var targetElements = retrieveTargets(element);
-		for (var i = 0; i < targetElements.length; i++) {
-			if (!targetElements[i].classList.contains(className)) {
-				targetElements[i].classList.add(className);
-			}
-			manageTarget(targetElements[i], element);
-		}
-
-		return manageTriggerOutside(element);
 	};
 
 	/**

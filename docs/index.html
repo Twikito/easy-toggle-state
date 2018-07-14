@@ -100,7 +100,6 @@
 						<li><a href="#quick-start-manually">Manually</a></li>
 						<li><a href="#quick-start-npm">With npm</a></li>
 						<li><a href="#compatibility">Compatibility</a></li>
-						<li><a href="#more">More</a></li>
 					</ul>
 				</li>
 				<li><a href="#how-to-use">How to use</a>
@@ -110,6 +109,7 @@
 						<li><a href="#targeting">Targeting</a></li>
 						<li><a href="#advanced">Advanced</a></li>
 						<li><a href="#a11y">Accessibility</a></li>
+						<li><a href="#expert">Expert</a></li>
 					</ul>
 				</li>
 				<li><a href="#examples">Examples</a>
@@ -174,13 +174,6 @@ require("easy-toggle-state");</code></pre>
 				</h3>
 				<p>In addition of using <a href="//github.com/Twikito/easy-toggle-state/blob/master/dist/easy-toggle-state.min.js">ES5 version</a>, compatibility for Internet Explorer is provided by <a href="//polyfill.io/">polyfill.io</a> which supports back to <abbr title="Internet Explorer">IE</abbr> 7. It brings polyfills for <code class="language-js">Array.from</code>, <code class="language-js">Array.prototype.filter</code>, <code class="language-js">Element.prototype.closest</code> and more.</p>
 				<p>And before you ask, yes, you can <a href="//github.com/Financial-Times/polyfill-service#running-locally">run it locally</a>.</p>
-			</section>
-			<section>
-				<h3 id="more">
-					<a href="#more">More</a>
-				</h3>
-				<p>You can also change the <code>PREFIX</code> value to prevent conflict with another JS library. This prefix will be set to all attributes like <code>data-PREFIX-class</code>, <code>toggle</code> as default.</p>
-				<p>Finally, for asynchronous needs, you can call <code class="language-js">window.initEasyToggleState()</code>.</p>
 			</section>
 		</section>
 
@@ -329,6 +322,18 @@ require("easy-toggle-state");</code></pre>
 					<a href="#a11y">Accessibility</a>
 				</h3>
 				<p>If a trigger or a target element has the <code>aria-expanded</code>, <code>aria-selected</code>, <code>aria-checked</code> or <code>aria-hidden</code> attribute, its value will also change.</p>
+			</section>
+
+			<section class="language-html">
+				<h3 id="expert">
+					<a href="#expert">Expert</a>
+				</h3>
+				<p>You can change the <code>PREFIX</code> value to prevent conflict with another <abbr title="JavaScript">JS</abbr> library. This prefix will be set to all attributes like <code>data-PREFIX-class</code>, <code>toggle</code> as default.</p>
+				<p>For asynchronous needs, you can call <code class="language-js">window.initEasyToggleState()</code> to initiate the magic.</p>
+				<p>You can also add some hooks: each trigger and target element fires a <code>toggleBefore</code> event before and a <code>toggleAfter</code> event after toggling its state, so you can add event listeners on these events, and test the active state with <code>isToggleActive</code> property. For example:</p>
+				<pre><code class="language-js">document.querySelector("#myTrigger").addEventListener("toggleAfter", (event) => {
+	console.log(`Active: ${event.target.isToggleActive}`);
+}, false);</code></pre>
 			</section>
 
 		</section>
@@ -1503,7 +1508,7 @@ require("easy-toggle-state");</code></pre>
 		</div>
 	</footer>
 
-	<script src="https://rawgit.com/Twikito/easy-toggle-state/master/dist/easy-toggle-state.es6.min.js"></script>
+	<script src="../dist/easy-toggle-state.es6.js"></script>
 	<script src="https://rawgit.com/cferdinandi/smooth-scroll/master/dist/smooth-scroll.min.js"></script>
 	<script src="assets/js/prism.js"></script>
 	<script src="assets/js/main.js"></script>
