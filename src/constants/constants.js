@@ -1,11 +1,12 @@
-import PREFIX from "./prefix";
+import { getPrefix } from "./prefix";
 
 /**
  * Retrieve a valid HTML attribute string.
  * @param {string} key - A string to build a html attribute
+ * @param {string} prefix - The prefix maybe set by user
  * @returns {string} - A valid html attribute
  */
-const dataset = key => ["data", PREFIX, key].filter(Boolean).join("-");
+const dataset = (key, prefix = getPrefix()) => ["data", prefix, key].filter(Boolean).join("-");
 
 /**
  * All constants containing HTML attributes string.

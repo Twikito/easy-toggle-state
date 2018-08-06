@@ -15,17 +15,24 @@
 
 	/**
 	 * You can change this PREFIX value to prevent conflict with another JS library.
-	 * This prefix will be set to all attributes like 'data-[PREFIX]-class'.
+	 * This prefix will be set to all attributes like 'data-PREFIX-class'.
 	 */
-	var PREFIX = "toggle";
+
+	var PREFIX = document.documentElement.getAttribute("data-easy-toggle-state-custom-prefix") || 'toggle';
+
+	var getPrefix = function getPrefix() {
+	  return PREFIX;
+	};
 
 	/**
 	 * Retrieve a valid HTML attribute string.
 	 * @param {string} key - A string to build a html attribute
+	 * @param {string} prefix - The prefix maybe set by user
 	 * @returns {string} - A valid html attribute
 	 */
 	var dataset = function dataset(key) {
-		return ["data", PREFIX, key].filter(Boolean).join("-");
+		var prefix = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : getPrefix();
+		return ["data", prefix, key].filter(Boolean).join("-");
 	};
 
 	/**
