@@ -14,8 +14,7 @@
 	'use strict';
 
 	/**
-	 * You can change this PREFIX value to prevent conflict with another JS library.
-	 * This prefix will be set to all attributes like 'data-PREFIX-class'.
+	 * Prefix set to all attributes.
 	 */
 
 	var PREFIX = document.documentElement.getAttribute("data-easy-toggle-state-custom-prefix") || "toggle";
