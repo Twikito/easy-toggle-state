@@ -18,7 +18,7 @@
 	 * This prefix will be set to all attributes like 'data-PREFIX-class'.
 	 */
 
-	const PREFIX = document.documentElement.getAttribute("data-easy-toggle-state-custom-prefix") || 'toggle';
+	const PREFIX = document.documentElement.getAttribute("data-easy-toggle-state-custom-prefix") || "toggle";
 
 	const getPrefix = () => PREFIX;
 
