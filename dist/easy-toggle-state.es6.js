@@ -14,17 +14,20 @@
 	'use strict';
 
 	/**
-	 * You can change this PREFIX value to prevent conflict with another JS library.
-	 * This prefix will be set to all attributes like 'data-[PREFIX]-class'.
+	 * Prefix set to all attributes.
 	 */
-	const PREFIX = "toggle";
+
+	const PREFIX = document.documentElement.getAttribute("data-easy-toggle-state-custom-prefix") || "toggle";
+
+	const getPrefix = () => PREFIX;
 
 	/**
 	 * Retrieve a valid HTML attribute string.
 	 * @param {string} key - A string to build a html attribute
+	 * @param {string} prefix - The prefix maybe set by user
 	 * @returns {string} - A valid html attribute
 	 */
-	const dataset = key => ["data", PREFIX, key].filter(Boolean).join("-");
+	const dataset = (key, prefix = getPrefix()) => ["data", prefix, key].filter(Boolean).join("-");
 
 	/**
 	 * All constants containing HTML attributes string.
