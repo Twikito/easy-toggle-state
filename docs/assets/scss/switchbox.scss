@@ -1,0 +1,53 @@
+.example-switchbox {
+	display: inline-block;
+	width: 3em;
+	height: 1em;
+	padding: .125em;
+	box-sizing: content-box;
+	border: 2px solid darkgrey;
+	outline: none;
+	border-radius: .75em;
+	background-color: white;
+	vertical-align: middle;
+	cursor: pointer;
+	transition: .15s ease-out;
+
+	&::before {
+		display: block;
+		width: 1em;
+		height: 1em;
+		border-radius: 50%;
+		background-color: darkgrey;
+		content: '';
+		transition: .15s ease-out;
+	}
+
+	&:hover,
+	&:focus {
+		border-color: var(--theme); /* You probably need to change this! */
+		box-shadow: 0 0 .25em var(--theme); /* You probably need to change this too! */
+
+		&::before {
+			background-color: var(--theme); /* You probably need to change this! */
+		}
+	}
+
+	&.is-checked {
+		border-color: var(--theme); /* You probably need to change this! */
+		background-color: var(--theme); /* You probably need to change this too! */
+
+		&::before {
+			transform: translateX(2em);
+			background-color: white;
+		}
+
+		&:hover,
+		&:focus {
+			border-color: rgba(0,0,0,.35);
+
+			&::before {
+				background-color: white;
+			}
+		}
+	}
+}

@@ -34,6 +34,7 @@
 	<link rel="stylesheet" href="assets/css/prism.css">
 	<link rel="stylesheet" href="assets/css/main.css">
 	<link rel="stylesheet" href="assets/css/checkbox.css">
+	<link rel="stylesheet" href="assets/css/switchbox.css">
 	<link rel="stylesheet" href="assets/css/radio.css">
 	<link rel="stylesheet" href="assets/css/tooltip.css">
 	<link rel="stylesheet" href="assets/css/collapsible-panel.css">
@@ -115,6 +116,7 @@
 				<li><a href="#examples">Examples</a>
 					<ul>
 						<li><a href="#checkbox">Checkbox</a></li>
+						<li><a href="#switchbox">Switchbox</a></li>
 						<li><a href="#radio">Radio buttons</a></li>
 						<li><a href="#tooltip">Tooltip</a></li>
 						<li><a href="#collapsible-panel">Collapsible panel / accordion</a></li>
@@ -475,6 +477,60 @@ require("easy-toggle-state");</code></pre>
 				<section>
 					<h4 id="checkbox-explanation">
 						<a href="#checkbox-explanation">Explanation</a>
+					</h4>
+					<p>
+						Toggle <code class="language-css">.is-checked</code> class on click on the box. As <code class="language-html">aria-checked</code> attribute is set, its value change too.
+					</p>
+					<p>
+						The CSS class <code class="language-css">.sr-only</code> is for <a href="https://snook.ca/archives/html_and_css/hiding-content-for-accessibility">hiding content for accessibility</a>.
+					</p>
+				</section>
+			</section>
+
+			<section>
+				<h3 id="switchbox">
+					<a href="#switchbox">Switchbox</a>
+				</h3>
+				<p>
+					You want to display a switchbox, i.e. a box with a "ball" that moves on click on this box.
+					Even if you should use the <code class="language-html">&lt;input type="checkbox"&gt;</code> native component, in some case, you can’t.
+				</p>
+				<p>
+					In this example, the <abbr title="HyperText Markup Language">HTML</abbr> code is actually the same as a <a href="#checkbox-with-external-label">checkbox with external label</a>, only <abbr title="Cascading StyleSheet">CSS</abbr> code changes.
+				</p>
+				<section>
+					<h4 id="switchbox-with-external-label">
+						<a href="#switchbox-with-external-label">Switchbox with external label</a>
+					</h4>
+<pre><code class="language-html line-numbers">&lt;button type="button"
+	class="example-switchbox"
+	data-toggle-class="is-checked"
+	id="switchbox"
+	role="checkbox"
+	aria-checked="false"
+	title="Toggle this box"&gt;
+	&lt;span class="sr-only"&gt;Toggle&lt;/span&gt;
+&lt;/button&gt;
+&lt;label for="switchbox"&gt;
+	Awesome switchbox
+&lt;/label&gt;</code></pre>
+					<div class="demo" id="switchbox-with-external-label-demo">
+						<button type="button" class="example-switchbox" data-toggle-class="is-checked" id="switchbox_1" role="checkbox" aria-checked="false" title="Toggle this box">
+							<span class="sr-only">Toggle</span>
+						</button>
+						<label for="switchbox_1">Awesome switchbox</label>
+					</div>
+					<div class="text-right">
+						<a href="assets/css/switchbox.css" title="Download this switchbox demo stylesheet">download CSS</a>
+						-
+						<a href="assets/scss/switchbox.scss" title="Download this switchbox demo stylesheet in SCSS">SCSS</a>
+						-
+						<button type="button" class="link-like codepen" title="Open this switchbox demo on CodePen" data-title="a switchbox with external label" data-demo="switchbox-with-external-label-demo" data-css="switchbox">open in CodePen</button>
+					</div>
+				</section>
+				<section>
+					<h4 id="switchbox-explanation">
+						<a href="#switchbox-explanation">Explanation</a>
 					</h4>
 					<p>
 						Toggle <code class="language-css">.is-checked</code> class on click on the box. As <code class="language-html">aria-checked</code> attribute is set, its value change too.
