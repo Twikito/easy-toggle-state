@@ -10,7 +10,6 @@
 	background-color: white;
 	vertical-align: middle;
 	cursor: pointer;
-	content: "";
 	transition: .15s ease-out;
 }
 .example-radio:hover,
