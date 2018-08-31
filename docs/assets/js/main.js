@@ -1,8 +1,8 @@
 (() => {
 
-	const scroll = new SmoothScroll("a[href^='#']:not([role='button'])", {
-		speed: 500,
-		easing: 'easeInOutQuint'
+	// Debounce function: https://davidwalsh.name/javascript-debounce-function
+	const debounce = (func, wait, immediate) => {
+		let timeout;
 	});
 
 

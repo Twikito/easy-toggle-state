@@ -8,6 +8,7 @@ html.🤘😝 {
 html {
 	background-color: white;
 	font-size: 62.5%;
+	scroll-behavior: smooth;
 }
 
 body {
