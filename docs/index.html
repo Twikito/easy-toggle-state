@@ -136,8 +136,8 @@
 
 		<hr>
 
-		<section>
-			<h2 id="why">
+		<section id="why">
+			<h2>
 				<a href="#why">Why?</a>
 			</h2>
 			<p>A front-end developer often has to <strong>code scripts for interface components</strong>. Components such as dropdowns, navigation buttons, tooltips, expandable panels, lightboxes, tabs, etc.</p>
@@ -148,12 +148,12 @@
 
 		<hr>
 
-		<section class="language-bash">
-			<h2 id="quick-start">
+		<section id="quick-start" class="language-bash">
+			<h2>
 				<a href="#quick-start">Quick start</a>
 			</h2>
-			<section>
-				<h3 id="quick-start-manually">
+			<section id="quick-start-manually">
+				<h3>
 					<a href="#quick-start-manually">Manually</a>
 				</h3>
 				<ul>
@@ -162,8 +162,8 @@
 				</ul>
 				<p>Then, <strong>add the script into your page</strong>, and it’s done.</p>
 			</section>
-			<section>
-				<h3 id="quick-start-npm">
+			<section id="quick-start-npm">
+				<h3>
 					<a href="#quick-start-npm">With npm</a>
 				</h3>
 				<p>Install with <a href="//www.npmjs.com/package/easy-toggle-state">npm</a>:</p>
@@ -174,8 +174,8 @@
 require("easy-toggle-state");</code></pre>
  				<p>and the magic happens!</p>
 			</section>
-			<section>
-				<h3 id="compatibility">
+			<section id="compatibility">
+				<h3>
 					<a href="#compatibility">Compatibility</a>
 				</h3>
 				<p>In addition of using <a href="//github.com/Twikito/easy-toggle-state/blob/master/dist/easy-toggle-state.min.js">ES5 version</a>, compatibility for Internet Explorer is provided by <a href="//polyfill.io/">polyfill.io</a> which supports back to <abbr title="Internet Explorer">IE</abbr> 7. It brings polyfills for <code class="language-js">Array.from</code>, <code class="language-js">Array.prototype.filter</code>, <code class="language-js">Element.prototype.closest</code> and more.</p>
@@ -185,18 +185,18 @@ require("easy-toggle-state");</code></pre>
 
 		<hr>
 
-		<section>
-			<h2 id="how-to-use">
+		<section id="how-to-use">
+			<h2>
 				<a href="#how-to-use">How to use</a>
 			</h2>
-			<section>
-				<h3 id="recommandation">
+			<section id="recommandation">
+				<h3>
 					<a href="#recommandation">Recommendation</a>
 				</h3>
 				<p class="language-html">Although you could use any element you want, I recommend using only buttons or links as trigger elements. For a link element with a fake <code>href</code> value, don’t forget to add the <code>role="button"</code> attribute.</p>
 			</section>
-			<section class="language-html">
-				<h3 id="basics">
+			<section id="basics" class="language-html">
+				<h3>
 					<a href="#basics">Basics</a>
 				</h3>
 				<dl>
@@ -215,8 +215,8 @@ require("easy-toggle-state");</code></pre>
 					</dd>
 				</dl>
 			</section>
-			<section class="language-html">
-				<h3 id="targeting">
+			<section id="targeting" class="language-html">
+				<h3>
 					<a href="#targeting">Targeting</a>
 				</h3>
 				<p>You can go further in selecting targets by using one of the following options: it specify a scope where to select targets.</p>
@@ -258,8 +258,8 @@ require("easy-toggle-state");</code></pre>
 				</dl>
 			</section>
 
-			<section class="language-html">
-				<h3 id="advanced">
+			<section id="advanced" class="language-html">
+				<h3>
 					<a href="#advanced">Advanced</a>
 				</h3>
 				<dl>
@@ -323,34 +323,34 @@ require("easy-toggle-state");</code></pre>
 				</dl>
 			</section>
 
-			<section class="language-html">
-				<h3 id="a11y">
+			<section id="a11y" class="language-html">
+				<h3>
 					<a href="#a11y">Accessibility</a>
 				</h3>
 				<p>If a trigger or a target element has the <code>aria-expanded</code>, <code>aria-selected</code>, <code>aria-checked</code> or <code>aria-hidden</code> attribute, its value will also change.</p>
 			</section>
 
-			<section class="language-html">
-				<h3 id="expert">
+			<section id="expert" class="language-html">
+				<h3>
 					<a href="#expert">Expert</a>
 				</h3>
-				<section>
-					<h4 id="prefix">
+				<section id="prefix">
+					<h4>
 						<a href="#prefix">Custom prefix</a>
 					</h4>
 					<p>You can change the prefix <code>toggle</code> in <code>data-toggle-class</code> and every attributes to prevent conflict with another <abbr title="JavaScript">JS</abbr> library. To do so, add this attribute to your <code>&lt;html&gt;</code> element with your new prefix:</p>
 					<pre><code class="language-html">&lt;html data-easy-toggle-state-custom-prefix="my-prefix"&gt;</code></pre>
 					<p>It will so be set to all attributes like <code>data-my-prefix-class</code>.</p>
 				</section>
-				<section>
-					<h4 id="asynchronous">
+				<section id="asynchronous">
+					<h4>
 						<a href="#asynchronous">Asynchronous needs</a>
 					</h4>
 					<p>For asynchronous needs, you can initiate the magic with:</p>
 					<pre><code class="language-js">window.initEasyToggleState();</code></pre>
 				</section>
-				<section>
-					<h4 id="hooks">
+				<section id="hooks">
+					<h4>
 						<a href="#hooks">Hooks</a>
 					</h4>
 					<p>You can also add some hooks: each trigger and target element fires a <code>toggleBefore</code> event before and a <code>toggleAfter</code> event after toggling its state, so you can add event listeners on these events, and test the active state with <code>isToggleActive</code> property. For example:</p>
@@ -364,21 +364,21 @@ require("easy-toggle-state");</code></pre>
 
 		<hr>
 
-		<section>
-			<h2 id="examples">
+		<section id="examples">
+			<h2>
 				<a href="#examples">Examples</a>
 			</h2>
 			<p>Here are some demos to show you how this is powerful. Of course, <strong>these examples can be made in other ways</strong>.</p>
-			<section>
-				<h3 id="checkbox">
+			<section id="checkbox">
+				<h3>
 					<a href="#checkbox">Checkbox</a>
 				</h3>
 				<p>
 					You want to display a checkbox, i.e. a box with a checkmark that appears on click on this box.
 					Even if you should use the <code class="language-html">&lt;input type="checkbox"&gt;</code> native component, in some case, you can’t.
 				</p>
-				<section>
-					<h4 id="simple-checkbox">
+				<section id="simple-checkbox">
+					<h4>
 						<a href="#simple-checkbox">Simple checkbox</a>
 					</h4>
 <pre><code class="language-html line-numbers">&lt;button type="button"
@@ -396,8 +396,8 @@ require("easy-toggle-state");</code></pre>
 						<button type="button" class="link-like codepen" title="Open this checkbox demo on CodePen" data-title="a simple checkbox" data-demo="simple-checkbox-demo" data-css="checkbox">open in CodePen</button>
 					</div>
 				</section>
-				<section>
-					<h4 id="checkbox-with-aria">
+				<section id="checkbox-with-aria">
+					<h4>
 						<a href="#checkbox-with-aria">Checkbox with ARIA attributes for accessibility</a>
 					</h4>
 <pre><code class="language-html line-numbers">&lt;button type="button"
@@ -421,8 +421,8 @@ require("easy-toggle-state");</code></pre>
 						<button type="button" class="link-like codepen" title="Open this checkbox demo on CodePen" data-title="a checkbox with aria" data-demo="checkbox-with-aria-demo" data-css="checkbox">open in CodePen</button>
 					</div>
 				</section>
-				<section>
-					<h4 id="checkbox-with-external-label">
+				<section id="checkbox-with-external-label">
+					<h4>
 						<a href="#checkbox-with-external-label">Checkbox with external label</a>
 					</h4>
 <pre><code class="language-html line-numbers">&lt;button type="button"
@@ -451,8 +451,8 @@ require("easy-toggle-state");</code></pre>
 						<button type="button" class="link-like codepen" title="Open this checkbox demo on CodePen" data-title="a checkbox with external label" data-demo="checkbox-with-external-label-demo" data-css="checkbox">open in CodePen</button>
 					</div>
 				</section>
-				<section>
-					<h4 id="checkbox-with-internal-label">
+				<section id="checkbox-with-internal-label">
+					<h4>
 						<a href="#checkbox-with-internal-label">Checkbox with internal label</a>
 					</h4>
 <pre><code class="language-html line-numbers">&lt;button type="button"
@@ -478,8 +478,8 @@ require("easy-toggle-state");</code></pre>
 						<button type="button" class="link-like codepen" title="Open this checkbox demo on CodePen" data-title="a checkbox with internal label" data-demo="checkbox-with-internal-label-demo" data-css="checkbox">open in CodePen</button>
 					</div>
 				</section>
-				<section>
-					<h4 id="checkbox-explanation">
+				<section id="checkbox-explanation">
+					<h4>
 						<a href="#checkbox-explanation">Explanation</a>
 					</h4>
 					<p>
@@ -491,8 +491,8 @@ require("easy-toggle-state");</code></pre>
 				</section>
 			</section>
 
-			<section>
-				<h3 id="switchbox">
+			<section id="switchbox">
+				<h3>
 					<a href="#switchbox">Switchbox</a>
 				</h3>
 				<p>
@@ -502,8 +502,8 @@ require("easy-toggle-state");</code></pre>
 				<p>
 					In this example, the <abbr title="HyperText Markup Language">HTML</abbr> code is actually the same as a <a href="#checkbox-with-external-label">checkbox with external label</a>, only <abbr title="Cascading StyleSheet">CSS</abbr> code changes.
 				</p>
-				<section>
-					<h4 id="switchbox-with-external-label">
+				<section id="switchbox-with-external-label">
+					<h4>
 						<a href="#switchbox-with-external-label">Switchbox with external label</a>
 					</h4>
 <pre><code class="language-html line-numbers">&lt;button type="button"
@@ -532,8 +532,8 @@ require("easy-toggle-state");</code></pre>
 						<button type="button" class="link-like codepen" title="Open this switchbox demo on CodePen" data-title="a switchbox with external label" data-demo="switchbox-with-external-label-demo" data-css="switchbox">open in CodePen</button>
 					</div>
 				</section>
-				<section>
-					<h4 id="switchbox-explanation">
+				<section id="switchbox-explanation">
+					<h4>
 						<a href="#switchbox-explanation">Explanation</a>
 					</h4>
 					<p>
@@ -545,16 +545,16 @@ require("easy-toggle-state");</code></pre>
 				</section>
 			</section>
 
-			<section>
-				<h3 id="radio">
+			<section id="radio">
+				<h3>
 					<a href="#radio">Radio buttons</a>
 				</h3>
 				<p>
 					You want to display some radio buttons, i.e. somes circles which are filled on click on them, only one at a time.
 					Even if you should use the <code class="language-html">&lt;input type="radio"&gt;</code> native component, in some case, you can’t.
 				</p>
-				<section>
-					<h4 id="simple-radio">
+				<section id="simple-radio">
+					<h4>
 						<a href="#simple-radio">Simple radio buttons</a>
 					</h4>
 <pre><code class="language-html line-numbers">&lt;button type="button"
@@ -596,8 +596,8 @@ require("easy-toggle-state");</code></pre>
 						<button type="button" class="link-like codepen" title="Open this radio demo on CodePen" data-title="simple radio buttons" data-demo="simple-radio-demo" data-css="radio">open in CodePen</button>
 					</div>
 				</section>
-				<section>
-					<h4 id="radio-with-aria">
+				<section id="radio-with-aria">
+					<h4>
 						<a href="#radio-with-aria">Radio buttons with ARIA attributes for accessibility</a>
 					</h4>
 <pre><code class="language-html line-numbers">&lt;div role="radiogroup"&gt;
@@ -665,8 +665,8 @@ require("easy-toggle-state");</code></pre>
 						<button type="button" class="link-like codepen" title="Open this radio demo on CodePen" data-title="radio buttons with aria" data-demo="radio-with-aria-demo" data-css="radio">open in CodePen</button>
 					</div>
 				</section>
-				<section>
-					<h4 id="radio-explanation">
+				<section id="radio-explanation">
+					<h4>
 						<a href="#radio-explanation">Explanation</a>
 					</h4>
 					<p>
@@ -681,13 +681,13 @@ require("easy-toggle-state");</code></pre>
 				</section>
 			</section>
 
-			<section>
-				<h3 id="tooltip">
+			<section id="tooltip">
+				<h3>
 					<a href="#tooltip">Tooltip</a>
 				</h3>
 				<p>You want to put a tooltip on a text, i.e. show an element when hovering this text, and hide it when the cursor leaves this text.</p>
-				<section>
-					<h4 id="simple-tooltip">
+				<section id="simple-tooltip">
+					<h4>
 						<a href="#simple-tooltip">Simple tooltip</a>
 					</h4>
 <pre><code class="language-html line-numbers">&lt;span class="example-tooltip"
@@ -713,8 +713,8 @@ require("easy-toggle-state");</code></pre>
 						<button type="button" class="link-like codepen" title="Open this demo tooltip on CodePen" data-title="tooltip" data-demo="simple-tooltip-demo" data-css="tooltip">open in CodePen</button>
 					</div>
 				</section>
-				<section>
-					<h4 id="tooltip-explanation">
+				<section id="tooltip-explanation">
+					<h4>
 						<a href="#tooltip-explanation">Explanation</a>
 					</h4>
 					<p>
@@ -726,16 +726,16 @@ require("easy-toggle-state");</code></pre>
 				</section>
 			</section>
 
-			<section>
-				<h3 id="collapsible-panel">
+			<section id="collapsible-panel">
+				<h3>
 					<a href="#collapsible-panel">Collapsible panel / accordion</a>
 				</h3>
 				<p>
 					You want to create a collapsible panel, i.e. a frame, with some content, that can be collapsed on click on a button.
 					Even if you should use <code class="language-html">&lt;details&gt;</code> and <code class="language-html">&lt;summary&gt;</code> HTML elements, in some case, you can’t.
 				</p>
-				<section>
-					<h4 id="simple-collapsible-panel">
+				<section id="simple-collapsible-panel">
+					<h4>
 						<a href="#simple-collapsible-panel">Simple collapsible panel</a>
 					</h4>
 <pre><code class="language-html line-numbers">&lt;button type="button"
@@ -767,8 +767,8 @@ require("easy-toggle-state");</code></pre>
 						<button type="button" class="link-like codepen" title="Open this collapsible panel demo on CodePen" data-title="collapsible panel" data-demo="simple-collapsible-panel-demo" data-css="collapsible-panel">open in CodePen</button>
 					</div>
 				</section>
-				<section>
-					<h4 id="collapsible-panel-with-escape">
+				<section id="collapsible-panel-with-escape">
+					<h4>
 						<a href="#collapsible-panel-with-escape">Collapsible panel with escape key support</a>
 					</h4>
 <pre><code class="language-html line-numbers">&lt;button type="button"
@@ -801,8 +801,8 @@ require("easy-toggle-state");</code></pre>
 						<button type="button" class="link-like codepen" title="Open this collapsible panel demo on CodePen" data-title="collapsible panel" data-demo="collapsible-panel-with-escape-demo" data-css="collapsible-panel">open in CodePen</button>
 					</div>
 				</section>
-				<section>
-					<h4 id="collapsible-panel-with-aria">
+				<section id="collapsible-panel-with-aria">
+					<h4>
 						<a href="#simple-collapsible-panel-with-aria">Collapsible panel with ARIA attributes for accessibility</a>
 					</h4>
 <pre><code class="language-html line-numbers">&lt;button type="button"
@@ -842,8 +842,8 @@ require("easy-toggle-state");</code></pre>
 						<button type="button" class="link-like codepen" title="Open this collapsible panel demo on CodePen" data-title="collapsible panel with aria" data-demo="collapsible-panel-with-aria-demo" data-css="collapsible-panel">open in CodePen</button>
 					</div>
 				</section>
-				<section>
-					<h4 id="accordion">
+				<section id="accordion">
+					<h4>
 						<a href="#accordion">Accordion</a>
 					</h4>
 <pre><code class="language-html line-numbers">&lt;!-- First panel, opened by default --&gt;
@@ -946,8 +946,8 @@ require("easy-toggle-state");</code></pre>
 						<button type="button" class="link-like codepen" title="Open this accordion demo on CodePen" data-title="an accordion" data-demo="accordion-demo" data-css="collapsible-panel">open in CodePen</button>
 					</div>
 				</section>
-				<section>
-					<h4 id="collapsible-panel-explanation">
+				<section id="collapsible-panel-explanation">
+					<h4>
 						<a href="#collapsible-panel-explanation">Explanation</a>
 					</h4>
 					<p>
@@ -962,13 +962,13 @@ require("easy-toggle-state");</code></pre>
 				</section>
 			</section>
 
-			<section>
-				<h3 id="tabs">
+			<section id="tabs">
+				<h3>
 					<a href="#tabs">Tabs</a>
 				</h3>
 				<p>You want to create some tabs, i.e. some panels visualisable by clicking on their associated button.</p>
-				<section>
-					<h4 id="simple-tabs">
+				<section id="simple-tabs">
+					<h4>
 						<a href="#simple-tabs">Simple tabs</a>
 					</h4>
 <pre><code class="language-html line-numbers">&lt;div class="example-tabs"&gt;
@@ -1031,8 +1031,8 @@ require("easy-toggle-state");</code></pre>
 						<button type="button" class="link-like codepen" title="Open this tabs demo on CodePen" data-title="tabs" data-demo="simple-tabs-demo" data-css="tabs">open in CodePen</button>
 					</div>
 				</section>
-				<section>
-					<h4 id="tabs-with-aria">
+				<section id="tabs-with-aria">
+					<h4>
 						<a href="#tabs-with-aria">Tabs with ARIA attributes for accessibility</a>
 					</h4>
 <pre><code class="language-html line-numbers">&lt;div class="example-tabs" role="tablist"&gt;
@@ -1119,8 +1119,8 @@ require("easy-toggle-state");</code></pre>
 						<button type="button" class="link-like codepen" title="Open this tabs demo on CodePen" data-title="tabs with aria" data-demo="tabs-with-aria-demo" data-css="tabs">open in CodePen</button>
 					</div>
 				</section>
-				<section>
-					<h4 id="tabs-explanation">
+				<section id="tabs-explanation">
+					<h4>
 						<a href="#tabs-explanation">Explanation</a>
 					</h4>
 					<p>
@@ -1135,13 +1135,13 @@ require("easy-toggle-state");</code></pre>
 				</section>
 			</section>
 
-			<section>
-				<h3 id="dropdown">
+			<section id="dropdown">
+				<h3>
 					<a href="#dropdown">Dropdown</a>
 				</h3>
 				<p>You want to create a dropdown, i.e. a list of choices that appears when you click on a button. Of course you should use <code class="language-html">&lt;select&gt;</code> and <code class="language-html">&lt;option&gt;</code> HTML elements, but in some case, you can’t.</p>
-				<section>
-					<h4 id="simple-dropdown">
+				<section id="simple-dropdown">
+					<h4>
 						<a href="#simple-dropdown">Simple dropdown</a>
 					</h4>
 <pre><code class="language-html line-numbers">&lt;div class="example-dropdown"&gt;
@@ -1207,8 +1207,8 @@ require("easy-toggle-state");</code></pre>
 						<button type="button" class="link-like codepen" title="Open this dropdown demo on CodePen" data-title="a dropdown" data-demo="dropdown-demo" data-css="dropdown">open in CodePen</button>
 					</div>
 				</section>
-				<section>
-					<h4 id="dropdown-with-aria">
+				<section id="dropdown-with-aria">
+					<h4>
 						<a href="#dropdown-with-aria">Dropdown with ARIA attributes for accessibility</a>
 					</h4>
 <pre><code class="language-html line-numbers">&lt;div class="example-dropdown"&gt;
@@ -1282,8 +1282,8 @@ require("easy-toggle-state");</code></pre>
 						<button type="button" class="link-like codepen" title="Open this dropdown demo on CodePen" data-title="a dropdown with aria" data-demo="dropdown-with-aria-demo" data-css="dropdown">open in CodePen</button>
 					</div>
 				</section>
-				<section>
-					<h4 id="dropdown-explanation">
+				<section id="dropdown-explanation">
+					<h4>
 						<a href="#dropdown-explanation">Explanation</a>
 					</h4>
 					<p>
@@ -1301,8 +1301,8 @@ require("easy-toggle-state");</code></pre>
 				</section>
 			</section>
 
-			<section>
-				<h3 id="dialog">
+			<section id="dialog">
+				<h3>
 					<a href="#dialog">Dialog</a>
 				</h3>
 				<p>
@@ -1311,8 +1311,8 @@ require("easy-toggle-state");</code></pre>
 				<p>
 					Even if you should use <code class="language-html">&lt;dialog&gt;</code> HTML element, in some case, you can’t.
 				</p>
-				<section>
-					<h4 id="simple-dialog">
+				<section id="simple-dialog">
+					<h4>
 						<a href="#simple-dialog">Simple dialog</a>
 					</h4>
 <pre><code class="language-html line-numbers">&lt;button type="button"
@@ -1360,8 +1360,8 @@ require("easy-toggle-state");</code></pre>
 						<button type="button" class="link-like codepen" title="Open this dialog demo on CodePen" data-title="a dialog" data-demo="simple-dialog-demo" data-css="dialog">open in CodePen</button>
 					</div>
 				</section>
-				<section>
-					<h4 id="dialog-with-aria">
+				<section id="dialog-with-aria">
+					<h4>
 						<a href="#dialog-with-aria">Dialog with ARIA attributes for accessibility</a>
 					</h4>
 <pre><code class="language-html line-numbers">&lt;button type="button"
@@ -1421,8 +1421,8 @@ require("easy-toggle-state");</code></pre>
 						<button type="button" class="link-like codepen" title="Open this dialog demo on CodePen" data-title="a dialog with aria" data-demo="dialog-with-aria-demo" data-css="dialog">open in CodePen</button>
 					</div>
 				</section>
-				<section>
-					<h4 id="dialog-explanation">
+				<section id="dialog-explanation">
+					<h4>
 						<a href="#dialog-explanation">Explanation</a>
 					</h4>
 					<p>
@@ -1437,13 +1437,13 @@ require("easy-toggle-state");</code></pre>
 				</section>
 			</section>
 
-			<section>
-				<h3 id="lightbox">
+			<section id="lightbox">
+				<h3>
 					<a href="#lightbox">Lightbox</a>
 				</h3>
 				<p>You want to create a lightbox, i.e. a box displayed in front of all page content to see a larger version of an image.</p>
-				<section>
-					<h4 id="simple-lightbox">
+				<section id="simple-lightbox">
+					<h4>
 						<a href="#simple-lightbox">Simple lightbox</a>
 					</h4>
 <pre><code class="language-html line-numbers">&lt;a class="example-lightbox-trigger"
@@ -1485,8 +1485,8 @@ require("easy-toggle-state");</code></pre>
 						<button type="button" class="link-like codepen" title="Open this lightbox demo on CodePen" data-title="a lightbox" data-demo="simple-lightbox-demo" data-css="lightbox">open in CodePen</button>
 					</div>
 				</section>
-				<section>
-					<h4 id="lightbox-explanation">
+				<section id="lightbox-explanation">
+					<h4>
 						<a href="#lightbox-explanation">Explanation</a>
 					</h4>
 					<p>
@@ -1501,13 +1501,13 @@ require("easy-toggle-state");</code></pre>
 				</section>
 			</section>
 
-			<section>
-				<h3 id="navigation-icon">
+			<section id="navigation-icon">
+				<h3>
 					<a href="#navigation-icon">Navigation icon</a>
 				</h3>
 				<p>You want to create a navigation icon, i.e. an icon that represent a button you can click on to make a navigation menu visible.</p>
-				<section>
-					<h4 id="simple-navigation-icon">
+				<section id="simple-navigation-icon">
+					<h4>
 						<a href="#simple-navigation-icon">Simple navigation icon</a>
 					</h4>
 <pre><code class="language-html line-numbers">&lt;button type="button"
@@ -1540,8 +1540,8 @@ require("easy-toggle-state");</code></pre>
 						<button type="button" class="link-like codepen" title="Open this navigation icon demo on CodePen" data-title="a navigation icon" data-demo="simple-navigation-icon-demo" data-css="navigation-icon">open in CodePen</button>
 					</div>
 				</section>
-				<section>
-					<h4 id="navigation-icon-explanation">
+				<section id="navigation-icon-explanation">
+					<h4>
 						<a href="#navigation-icon-explanation">Explanation</a>
 					</h4>
 					<p>
@@ -1560,8 +1560,8 @@ require("easy-toggle-state");</code></pre>
 
 		<hr>
 
-		<section>
-			<h2 id="contribution">
+		<section id="contribution">
+			<h2>
 				<a href="#contribution">Contribution</a>
 			</h2>
 			<ul>

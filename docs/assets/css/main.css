@@ -77,6 +77,10 @@ nav > ul > li > a {
 	font-weight: bold;
 }
 
+nav a.is-current {
+	color: inherit;
+}
+
 nav ul ul {
 	padding-left: 10%;
 }

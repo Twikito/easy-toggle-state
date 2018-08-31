@@ -3,8 +3,40 @@
 	// Debounce function: https://davidwalsh.name/javascript-debounce-function
 	const debounce = (func, wait, immediate) => {
 		let timeout;
+		return function () {
+			const
+				args = arguments,
+				context = this;
+			clearTimeout(timeout);
+			timeout = setTimeout(() => {
+				timeout = null;
+				if (!immediate) Reflect.apply(func, context, args);
+			}, wait);
+			if (immediate && !timeout) Reflect.apply(func, context, args);
+		};
+	};
+
+	const scrollNav = () => {
+		[...document.querySelectorAll("#navigation a")].forEach(link => {
+			const
+				section = document.querySelector(link.hash),
+				scrollY = window.scrollY + 1;
+
+			section.offsetTop <= scrollY &&
+			section.offsetTop + section.offsetHeight > scrollY
+				? link.classList.add("is-current")
+				: link.classList.remove("is-current");
+		});
+	};
+
+	window.addEventListener("load", function (e) {
+		scrollNav();
+		e.target.removeEventListener(e.type, arguments.callee);
 	});
 
+	window.addEventListener("scroll", debounce(scrollNav, 10), true);
+
+// ---
 
 	const dedent = (callSite, ...args) => {
 		const format = str => {
