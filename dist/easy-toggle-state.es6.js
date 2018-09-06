@@ -33,31 +33,31 @@
 	 * All constants containing HTML attributes string.
 	 */
 	const CHECKED = "aria-checked",
-	      CLASS = dataset("class"),
-	      ESCAPE = dataset("escape"),
-	      EVENT = dataset("event"),
-	      EXPANDED = "aria-expanded",
-	      GROUP = dataset("group"),
-	      HIDDEN = "aria-hidden",
-	      IS_ACTIVE = dataset("is-active"),
-	      OUTSIDE = dataset("outside"),
-	      RADIO_GROUP = dataset("radio-group"),
-	      SELECTED = "aria-selected",
-	      TARGET = dataset("target"),
-	      TARGET_ALL = dataset("target-all"),
-	      TARGET_NEXT = dataset("target-next"),
-	      TARGET_ONLY = dataset("target-only"),
-	      TARGET_PARENT = dataset("target-parent"),
-	      TARGET_PREVIOUS = dataset("target-previous"),
-	      TARGET_SELF = dataset("target-self"),
-	      TARGET_STATE = dataset("state"),
-	      TRIGGER_OFF = dataset("trigger-off");
+		CLASS = dataset("class"),
+		ESCAPE = dataset("escape"),
+		EVENT = dataset("event"),
+		EXPANDED = "aria-expanded",
+		GROUP = dataset("group"),
+		HIDDEN = "aria-hidden",
+		IS_ACTIVE = dataset("is-active"),
+		OUTSIDE = dataset("outside"),
+		RADIO_GROUP = dataset("radio-group"),
+		SELECTED = "aria-selected",
+		TARGET = dataset("target"),
+		TARGET_ALL = dataset("target-all"),
+		TARGET_NEXT = dataset("target-next"),
+		TARGET_ONLY = dataset("target-only"),
+		TARGET_PARENT = dataset("target-parent"),
+		TARGET_PREVIOUS = dataset("target-previous"),
+		TARGET_SELF = dataset("target-self"),
+		TARGET_STATE = dataset("state"),
+		TRIGGER_OFF = dataset("trigger-off");
 
 	/**
 	 * Hooks
 	 */
 	const TOGGLE_AFTER = new Event("toggleAfter"),
-	      TOGGLE_BEFORE = new Event("toggleBefore");
+		TOGGLE_BEFORE = new Event("toggleBefore");
 
 	/**
 	 * Retrieve all trigger elements with a specific attribute, or all nodes in a specific scope.
@@ -65,10 +65,10 @@
 	 * @param {node} [node] - An element in which to make the selection
 	 * @returns {array} - An array of elements
 	 */
-	const $$ = ((selector, node) => {
-	  const scope = selector ? `[${selector}]` : "";
-	  return node ? [...node.querySelectorAll(scope)] : [...document.querySelectorAll(`[${CLASS}]${scope}`.trim())];
-	});
+	const $$ = (selector, node) => {
+		const scope = selector ? `[${selector}]` : "";
+		return node ? [...node.querySelectorAll(scope)] : [...document.querySelectorAll(`[${CLASS}]${scope}`.trim())];
+	};
 
 	/**
 	 * Dispatch hooks
@@ -76,7 +76,7 @@
 	 * @param {string} action - An event to dispatch
 	 * @returns {boolean} - True or False
 	 */
-	const dispatchHook = ((element, action) => element.dispatchEvent(action));
+	const dispatchHook = (element, action) => element.dispatchEvent(action);
 
 	/**
 	 * Aria attributes toggle manager.
@@ -84,22 +84,25 @@
 	 * @param {json} [config] - List of aria attributes and value to assign.
 	 * @returns {undefined}
 	 */
-	const manageAria = ((element, config = {
-		[CHECKED]: element.isToggleActive,
-		[EXPANDED]: element.isToggleActive,
-		[HIDDEN]: !element.isToggleActive,
-		[SELECTED]: element.isToggleActive
-	}) => Object.keys(config).forEach(key => element.hasAttribute(key) && element.setAttribute(key, config[key])));
+	const manageAria = (
+		element,
+		config = {
+			[CHECKED]: element.isToggleActive,
+			[EXPANDED]: element.isToggleActive,
+			[HIDDEN]: !element.isToggleActive,
+			[SELECTED]: element.isToggleActive
+		}
+	) => Object.keys(config).forEach(key => element.hasAttribute(key) && element.setAttribute(key, config[key]));
 
 	/**
 	 * Retrieve all active elements of a group.
 	 * @param {node} element - An element of a group
 	 * @returns {array} - An array of active elements of a group
 	 */
-	const retrieveGroupActiveElement = (element => {
-	  const type = element.hasAttribute(GROUP) ? GROUP : RADIO_GROUP;
-	  return $$(`${type}="${element.getAttribute(type)}"`).filter(groupElement => groupElement.isToggleActive);
-	});
+	const retrieveGroupActiveElement = element => {
+		const type = element.hasAttribute(GROUP) ? GROUP : RADIO_GROUP;
+		return $$(`${type}="${element.getAttribute(type)}"`).filter(groupElement => groupElement.isToggleActive);
+	};
 
 	/**
 	 * Test a targets list.
@@ -134,7 +137,7 @@
 	 * @param {node} element - A trigger element
 	 * @returns {nodeList} - All targets of a trigger element
 	 */
-	const retrieveTargets = (element => {
+	const retrieveTargets = element => {
 		if (element.hasAttribute(TARGET) || element.hasAttribute(TARGET_ALL)) {
 			const selector = element.getAttribute(TARGET) || element.getAttribute(TARGET_ALL);
 			return testTargets(selector, document.querySelectorAll(selector));
@@ -159,7 +162,7 @@
 		}
 
 		return [];
-	});
+	};
 
 	/**
 	 * Toggle off all elements width 'data-toggle-outside' attribute
@@ -246,27 +249,27 @@
 	 * @returns {undefined}
 	 */
 	const manageTargets = (triggerElement, className, onLoadActive) => retrieveTargets(triggerElement).forEach(targetElement => {
-		dispatchHook(targetElement, TOGGLE_BEFORE);
+			dispatchHook(targetElement, TOGGLE_BEFORE);
 
-		targetElement.isToggleActive = !targetElement.isToggleActive;
-		manageAria(targetElement);
+			targetElement.isToggleActive = !targetElement.isToggleActive;
+			manageAria(targetElement);
 
-		if (onLoadActive && !targetElement.classList.contains(className)) {
-			targetElement.classList.add(className);
-		}
+			if (onLoadActive && !targetElement.classList.contains(className)) {
+				targetElement.classList.add(className);
+			}
 
-		if (!onLoadActive) {
-			targetElement.classList.toggle(className);
-		}
+			if (!onLoadActive) {
+				targetElement.classList.toggle(className);
+			}
 
-		if (triggerElement.hasAttribute(OUTSIDE)) {
-			targetElement.setAttribute(TARGET_STATE, triggerElement.isToggleActive);
-		}
+			if (triggerElement.hasAttribute(OUTSIDE)) {
+				targetElement.setAttribute(TARGET_STATE, triggerElement.isToggleActive);
+			}
 
-		dispatchHook(targetElement, TOGGLE_AFTER);
+			dispatchHook(targetElement, TOGGLE_AFTER);
 
-		manageTriggerOff(targetElement, triggerElement);
-	});
+			manageTriggerOff(targetElement, triggerElement);
+		});
 
 	/**
 	 * Toggle class and aria on trigger and target elements.
@@ -342,7 +345,7 @@
 	 * Initialization.
 	 * @returns {undefined}
 	 */
-	const init = (() => {
+	const init = () => {
 
 		/** Test if there's some trigger */
 		if ($$().length === 0) {
@@ -356,7 +359,8 @@
 			}
 
 			if (retrieveGroupActiveElement(trigger).length > 0) {
-				return console.warn(`Toggle group '${trigger.getAttribute(GROUP) || trigger.getAttribute(RADIO_GROUP)}' must not have more than one trigger with '${IS_ACTIVE}'`);
+				return console.warn(`Toggle group '${trigger.getAttribute(GROUP) ||
+					trigger.getAttribute(RADIO_GROUP)}' must not have more than one trigger with '${IS_ACTIVE}'`);
 			}
 
 			return manageActiveByDefault(trigger);
@@ -364,33 +368,41 @@
 
 		/** Set specified or click event on each trigger element. */
 		$$().forEach(trigger => {
-			trigger.addEventListener(trigger.getAttribute(EVENT) || "click", event => {
-				event.preventDefault();
-				(trigger.hasAttribute(GROUP) || trigger.hasAttribute(RADIO_GROUP) ? manageGroup : manageToggle)(trigger);
-			}, false);
+			trigger.addEventListener(
+				trigger.getAttribute(EVENT) || "click",
+				event => {
+					event.preventDefault();
+					(trigger.hasAttribute(GROUP) || trigger.hasAttribute(RADIO_GROUP) ? manageGroup : manageToggle)(trigger);
+				},
+				false
+			);
 		});
 
 		/** Escape key management. */
 		const triggerEscElements = $$(ESCAPE);
 		if (triggerEscElements.length > 0) {
-			document.addEventListener("keyup", event => {
-				if (!(event.key === "Escape") && !(event.key === "Esc")) {
-					return;
-				}
-				triggerEscElements.forEach(trigger => {
-					if (!trigger.isToggleActive) {
+			document.addEventListener(
+				"keyup",
+				event => {
+					if (!(event.key === "Escape") && !(event.key === "Esc")) {
 						return;
 					}
+					triggerEscElements.forEach(trigger => {
+						if (!trigger.isToggleActive) {
+							return;
+						}
 
-					if (trigger.hasAttribute(RADIO_GROUP)) {
-						return console.warn(`You can't use '${ESCAPE}' on a radio grouped trigger`);
-					}
+						if (trigger.hasAttribute(RADIO_GROUP)) {
+							return console.warn(`You can't use '${ESCAPE}' on a radio grouped trigger`);
+						}
 
-					return (trigger.hasAttribute(GROUP) ? manageGroup : manageToggle)(trigger);
-				});
-			}, false);
+						return (trigger.hasAttribute(GROUP) ? manageGroup : manageToggle)(trigger);
+					});
+				},
+				false
+			);
 		}
-	});
+	};
 
 	const onLoad = () => {
 		init();
