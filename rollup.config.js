@@ -34,7 +34,7 @@ const getBabelConfig = (version = "es5") => {
 	if (version === "es5") {
 		return {
 			presets: [
-				['env', {
+				['@babel/preset-env', {
 					'modules': false,
 					'targets': {
 						'browsers': [
@@ -42,8 +42,7 @@ const getBabelConfig = (version = "es5") => {
 						]
 					}
 				}]
-			],
-			plugins: ["external-helpers"]
+			]
 		};
 	}
 	return {};
@@ -51,7 +50,8 @@ const getBabelConfig = (version = "es5") => {
 
 const getPlugins = (version = "es5", isMin = false) => {
 	const babelConfig = getBabelConfig(version);
-	const list = [ babel(babelConfig) ];
+	const list = [];
+	if (version === "es5") list.push(babel(babelConfig));
 	if (isMin) list.push(terser());
 	list.push(license({ banner: getBanner(isMin) }));
 	return list;
