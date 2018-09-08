@@ -11,7 +11,8 @@ const dataset = (key, prefix = getPrefix()) => ["data", prefix, key].filter(Bool
 /**
  * All constants containing HTML attributes string.
  */
-export const CHECKED = "aria-checked",
+export const ARROWS = dataset("arrows"),
+	CHECKED = "aria-checked",
 	CLASS = dataset("class"),
 	ESCAPE = dataset("escape"),
 	EVENT = dataset("event"),

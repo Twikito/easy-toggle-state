@@ -32,7 +32,8 @@
 	/**
 	 * All constants containing HTML attributes string.
 	 */
-	const CHECKED = "aria-checked",
+	const ARROWS = dataset("arrows"),
+		CHECKED = "aria-checked",
 		CLASS = dataset("class"),
 		ESCAPE = dataset("escape"),
 		EVENT = dataset("event"),
@@ -382,7 +383,7 @@
 		const triggerEscElements = $$(ESCAPE);
 		if (triggerEscElements.length > 0) {
 			document.addEventListener(
-				"keyup",
+				"keydown",
 				event => {
 					if (!(event.key === "Escape") && !(event.key === "Esc")) {
 						return;
@@ -398,6 +399,56 @@
 
 						return (trigger.hasAttribute(GROUP) ? manageGroup : manageToggle)(trigger);
 					});
+				},
+				false
+			);
+		}
+
+		/** Arrows key management. */
+		if ($$(ARROWS).length > 0) {
+			document.addEventListener(
+				"keydown",
+				event => {
+					const activeElement = document.activeElement;
+					if (
+						["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "Home", "End"].indexOf(event.key) === -1 ||
+						!activeElement.hasAttribute(CLASS) ||
+						!activeElement.hasAttribute(ARROWS)
+					) {
+						return;
+					}
+
+					if (!activeElement.hasAttribute(GROUP) && !activeElement.hasAttribute(RADIO_GROUP)) {
+						return console.warn(`You can't use '${ARROWS}' on a trigger without '${GROUP}' or '${RADIO_GROUP}'`);
+					}
+
+					event.preventDefault();
+
+					const groupList = activeElement.hasAttribute(GROUP)
+						? [...$$(`${GROUP}='${activeElement.getAttribute(GROUP)}'`)]
+						: [...$$(`${RADIO_GROUP}='${activeElement.getAttribute(RADIO_GROUP)}'`)];
+
+					let newElement = activeElement;
+					switch (event.key) {
+						case "ArrowUp":
+						case"ArrowLeft":
+							newElement = groupList.indexOf(activeElement) > 0 ? groupList[groupList.indexOf(activeElement)-1] : groupList[groupList.length-1];
+							break;
+						case "ArrowDown":
+						case "ArrowRight":
+							newElement = groupList.indexOf(activeElement) < groupList.length-1 ? groupList[groupList.indexOf(activeElement)+1] : groupList[0];
+							break;
+						case "Home":
+							newElement = groupList[0];
+							break;
+						case "End":
+							newElement = groupList[groupList.length-1];
+							break;
+						default:
+					}
+
+					newElement.focus();
+					return newElement.dispatchEvent(new Event(newElement.getAttribute(EVENT) || "click"));
 				},
 				false
 			);
