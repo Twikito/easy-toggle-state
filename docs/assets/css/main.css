@@ -194,7 +194,7 @@ dd {
 }
 
 kbd {
-	display: inline-block; padding: 0 .25em;
+	display: inline-block; padding: 0 .5em;
 	background: #fcfcfc;
 	border: solid 1px #ccc; border-top-color: #ddd; border-bottom-color: #bbb; border-radius: .25em; box-shadow:0 2px 0 #bbb, 0 2px .125em #bbb;
 	font-family: monospace, monospace;
