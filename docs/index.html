@@ -753,14 +753,20 @@ require("easy-toggle-state");</code></pre>
 	data-toggle-target-self=".tooltip"
 	data-toggle-target-only
 	data-toggle-event="mouseover"
-	data-toggle-outside&gt;
+	data-toggle-outside
+	aria-describedby="tooltip_id"&gt;
 	Hover me
-	&lt;span class="tooltip" aria-hidden="true"&gt;Awesome tooltip&lt;/span&gt;
+	&lt;span class="tooltip"
+		id="tooltip_id"
+		role="tooltip"
+		aria-hidden="true"&gt;
+		Awesome tooltip
+	&lt;/span&gt;
 &lt;/span&gt;</code></pre>
 					<div class="demo" id="simple-tooltip-demo">
-						<span class="example-tooltip" data-toggle-class="is-visible" data-toggle-target-self=".tooltip" data-toggle-target-only data-toggle-event="mouseover" data-toggle-outside>
+						<span class="example-tooltip" data-toggle-class="is-visible" data-toggle-target-self=".tooltip" data-toggle-target-only data-toggle-event="mouseover" data-toggle-outside aria-describedby="tooltip_id">
 							Hover me
-							<span class="tooltip" aria-hidden="true">Awesome tooltip</span>
+							<span class="tooltip" id="tooltip_id" role="tooltip" aria-hidden="true">Awesome tooltip</span>
 						</span>
 					</div>
 					<div class="text-right">
