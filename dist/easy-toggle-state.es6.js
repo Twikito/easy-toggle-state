@@ -431,18 +431,24 @@
 					let newElement = activeElement;
 					switch (event.key) {
 						case "ArrowUp":
-						case"ArrowLeft":
-							newElement = groupList.indexOf(activeElement) > 0 ? groupList[groupList.indexOf(activeElement)-1] : groupList[groupList.length-1];
+						case "ArrowLeft":
+							newElement =
+								groupList.indexOf(activeElement) > 0
+									? groupList[groupList.indexOf(activeElement) - 1]
+									: groupList[groupList.length - 1];
 							break;
 						case "ArrowDown":
 						case "ArrowRight":
-							newElement = groupList.indexOf(activeElement) < groupList.length-1 ? groupList[groupList.indexOf(activeElement)+1] : groupList[0];
+							newElement =
+								groupList.indexOf(activeElement) < groupList.length - 1
+									? groupList[groupList.indexOf(activeElement) + 1]
+									: groupList[0];
 							break;
 						case "Home":
 							newElement = groupList[0];
 							break;
 						case "End":
-							newElement = groupList[groupList.length-1];
+							newElement = groupList[groupList.length - 1];
 							break;
 						default:
 					}
