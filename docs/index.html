@@ -74,11 +74,11 @@
 
 		<div id="download">
 			<a class="button" href="//raw.githubusercontent.com/Twikito/easy-toggle-state/master/dist/easy-toggle-state.es6.min.js" title="Download Easy Toggle State compressed, production version">
-				<span class="big"><strong>Download</strong> &ndash; 4,11ko</span><br>
+				<span class="big"><strong>Download</strong> &ndash; 4,89ko</span><br>
 				<small>Compressed, for production</small>
 			</a>
 			<a class="button" href="//raw.githubusercontent.com/Twikito/easy-toggle-state/master/dist/easy-toggle-state.es6.js" title="Download Easy Toggle State uncompressed, development version">
-				<span class="big"><strong>Download</strong> &ndash; 12,90ko</span><br>
+				<span class="big"><strong>Download</strong> &ndash; 14,50ko</span><br>
 				<small>Uncompressed, for development</small>
 			</a>
 			<a class="button button--grey" href="//github.com/Twikito/easy-toggle-state" title="View Easy Toggle State on GitHub">
@@ -297,7 +297,7 @@ require("easy-toggle-state");</code></pre>
 						<pre><code>data-toggle-outside</code></pre>
 					</dt>
 					<dd>
-						<p>Toggle off the class when the event is triggered again outside the trigger element.</p>
+						<p>Toggle off the class when the event is triggered again outside of the trigger element.</p>
 					</dd>
 
 					<dt>
@@ -311,14 +311,23 @@ require("easy-toggle-state");</code></pre>
 						<pre><code>data-toggle-escape</code></pre>
 					</dt>
 					<dd>
-						<p>Toggle the class when the trigger element is active and when the <kbd>escape</kbd> key is released.</p>
+						<p>Toggle the class when the trigger element is active and when the <kbd>escape</kbd> key is pressed.</p>
+					</dd>
+
+					<dt>
+						<pre><code>data-toggle-arrows</code></pre>
+					</dt>
+					<dd>
+						<p>Specify that when a grouped trigger is focused, you can navigate between other triggers of the same group with arrows <kbd title="arrow up">&uarr;</kbd> <kbd title="arrow right">&rarr;</kbd> <kbd title="arrow down">&darr;</kbd> <kbd title="arrow left">&larr;</kbd>, <kbd>home</kbd> and <kbd>end</kbd> keys.</p>
+						<p>Remember that this attribute must be used with <code>data-toggle-group</code> or <code>data-toggle-radio-group</code>.</p>
 					</dd>
 
 					<dt>
 						<pre><code>data-toggle-trigger-off</code></pre>
 					</dt>
 					<dd>
-						<p>Add this attribute to an element <strong>inside a target</strong> to enable this element to toggle the behavior. For example, a close button in a modal.</p>
+						<p>Add this attribute to an element inside a target to enable it to toggle the state of this target. For example, a close button in a modal.</p>
+						<p>Remember that this attribute must be used on an element <strong>inside a target</strong>.</p>
 					</dd>
 				</dl>
 			</section>
@@ -596,6 +605,52 @@ require("easy-toggle-state");</code></pre>
 						<button type="button" class="link-like codepen" title="Open this radio demo on CodePen" data-title="simple radio buttons" data-demo="simple-radio-demo" data-css="radio">open in CodePen</button>
 					</div>
 				</section>
+				<section id="radio-with-arrows">
+					<h4>
+						<a href="#radio-with-arrows">Radio buttons with arrow keys support</a>
+					</h4>
+<pre><code class="language-html line-numbers">&lt;button type="button"
+	class="example-radio"
+	id="radio_1"
+	data-toggle-class="is-checked"
+	data-toggle-radio-group="radioGroup"
+	data-toggle-arrows&gt;
+&lt;/button&gt;
+&lt;label for="radio_1"&gt;Option 1&lt;/label&gt;&lt;br&gt;
+&lt;button type="button"
+	class="example-radio"
+	id="radio_2"
+	data-toggle-class="is-checked"
+	data-toggle-radio-group="radioGroup"
+	data-toggle-arrows&gt;
+&lt;/button&gt;
+&lt;label for="radio_2"&gt;Option 2&lt;/label&gt;&lt;br&gt;
+&lt;button type="button"
+	class="example-radio"
+	id="radio_3"
+	data-toggle-class="is-checked"
+	data-toggle-radio-group="radioGroup"
+	data-toggle-arrows&gt;
+&lt;/button&gt;
+&lt;label for="radio_3"&gt;Option 3&lt;/label&gt;</code></pre>
+					<div class="demo" id="radio-with-arrows-demo">
+						<button type="button" class="example-radio" id="radio_4" data-toggle-class="is-checked" data-toggle-radio-group="radioGroup2" data-toggle-arrows></button>
+						<label for="radio_4">Option 1</label>
+						<br>
+						<button type="button" class="example-radio" id="radio_5" data-toggle-class="is-checked" data-toggle-radio-group="radioGroup2" data-toggle-arrows></button>
+						<label for="radio_5">Option 2</label>
+						<br>
+						<button type="button" class="example-radio" id="radio_6" data-toggle-class="is-checked" data-toggle-radio-group="radioGroup2" data-toggle-arrows></button>
+						<label for="radio_6">Option 3</label>
+					</div>
+					<div class="text-right">
+						<a href="assets/css/radio.css" title="Download this radio demo stylesheet">download CSS</a>
+						-
+						<a href="assets/scss/radio.scss" title="Download this radio demo stylesheet in SCSS">SCSS</a>
+						-
+						<button type="button" class="link-like codepen" title="Open this radio demo on CodePen" data-title="radio buttons with arrow keys support" data-demo="radio-with-arrows-demo" data-css="radio">open in CodePen</button>
+					</div>
+				</section>
 				<section id="radio-with-aria">
 					<h4>
 						<a href="#radio-with-aria">Radio buttons with ARIA attributes for accessibility</a>
@@ -641,17 +696,17 @@ require("easy-toggle-state");</code></pre>
 &lt;/div&gt;</code></pre>
 					<div class="demo" id="radio-with-aria-demo">
 						<div role="radiogroup">
-							<button type="button" class="example-radio" id="radio_4" data-toggle-class="is-checked" data-toggle-radio-group="radioGroup2" role="radio" aria-checked="false" title="Toggle this box">
+							<button type="button" class="example-radio" id="radio_7" data-toggle-class="is-checked" data-toggle-radio-group="radioGroup3" role="radio" aria-checked="false" title="Toggle this box">
 								<span class="sr-only">Toggle</span>
 							</button>
 							<label for="radio_4">Option 1</label>
 							<br>
-							<button type="button" class="example-radio" id="radio_5" data-toggle-class="is-checked" data-toggle-radio-group="radioGroup2" role="radio" aria-checked="false" title="Toggle this box">
+							<button type="button" class="example-radio" id="radio_8" data-toggle-class="is-checked" data-toggle-radio-group="radioGroup3" role="radio" aria-checked="false" title="Toggle this box">
 								<span class="sr-only">Toggle</span>
 							</button>
 							<label for="radio_5">Option 2</label>
 							<br>
-							<button type="button" class="example-radio" id="radio_6" data-toggle-class="is-checked" data-toggle-radio-group="radioGroup2" role="radio" aria-checked="false" title="Toggle this box">
+							<button type="button" class="example-radio" id="radio_9" data-toggle-class="is-checked" data-toggle-radio-group="radioGroup3" role="radio" aria-checked="false" title="Toggle this box">
 								<span class="sr-only">Toggle</span>
 							</button>
 							<label for="radio_6">Option 3</label>
@@ -671,6 +726,9 @@ require("easy-toggle-state");</code></pre>
 					</h4>
 					<p>
 						Toggle <code class="language-css">.is-checked</code> class on click on this element, but only one of the <code class="language-html">radioGroup</code> group at a time, and always keep one active. As <code class="language-html">aria-checked</code> attribute is set, its value change too.
+					</p>
+					<p>
+						Thanks to <code class="language-html">data-toggle-arrows</code> attribute, you can navigate between options with arrow keys as soon as one option is focused.
 					</p>
 					<p>
 						The label is associated to the trigger by the <code class="language-html">for</code> attribute.
@@ -854,6 +912,7 @@ require("easy-toggle-state");</code></pre>
 	data-toggle-target-parent="#panel_1"
 	data-toggle-group="accordion"
 	data-toggle-escape
+	data-toggle-arrows
 	data-toggle-is-active
 	aria-controls="panel_1"
 	aria-expanded="true"&gt;
@@ -877,6 +936,7 @@ require("easy-toggle-state");</code></pre>
 	data-toggle-target-parent="#panel_2"
 	data-toggle-group="accordion"
 	data-toggle-escape
+	data-toggle-arrows
 	aria-controls="panel_2"
 	aria-expanded="false"&gt;
 	Click here
@@ -891,29 +951,9 @@ require("easy-toggle-state");</code></pre>
 	&lt;/div&gt;
 &lt;/div&gt;
 
-&lt;!-- Third panel --&gt;
-&lt;button type="button"
-	class="example-collapsible-button"
-	id="buttonForPanel_3"
-	data-toggle-class="is-open"
-	data-toggle-target-parent="#panel_3"
-	data-toggle-group="accordion"
-	data-toggle-escape
-	aria-controls="panel_3"
-	aria-expanded="false"&gt;
-	Click here
-&lt;/button&gt;
-&lt;div class="example-collapsible-panel"
-	id="panel_3"
-	role="region"
-	aria-labelledby="buttonForPanel_3"
-	aria-hidden="true"&gt;
-	&lt;div class="example-collapsible-panel-content"&gt;
-		Nam posuere tortor a augue vulputate&hellip;
-	&lt;/div&gt;
-&lt;/div&gt;</code></pre>
+&lt;!-- … --&gt;</code></pre>
 					<div class="demo" id="accordion-demo">
-						<button type="button" class="example-collapsible-button" id="buttonForPanel_1" data-toggle-class="is-open" data-toggle-target-parent="#panel_1" data-toggle-group="accordion" data-toggle-escape data-toggle-is-active aria-controls="panel_1" aria-expanded="true">
+						<button type="button" class="example-collapsible-button" id="buttonForPanel_1" data-toggle-class="is-open" data-toggle-target-parent="#panel_1" data-toggle-group="accordion" data-toggle-escape data-toggle-arrows data-toggle-is-active aria-controls="panel_1" aria-expanded="true">
 							Click here
 						</button>
 						<div class="example-collapsible-panel" id="panel_1" role="region" aria-labelledby="buttonForPanel_1" aria-hidden="false">
@@ -921,7 +961,7 @@ require("easy-toggle-state");</code></pre>
 								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam semper faucibus odio, vitae faucibus dui tempor in. Duis vitae luctus mi. Phasellus ultrices rhoncus lectus, non vehicula tortor sodales id.
 							</div>
 						</div>
-						<button type="button" class="example-collapsible-button" id="buttonForPanel_2" data-toggle-class="is-open" data-toggle-target-parent="#panel_2" data-toggle-group="accordion" data-toggle-escape aria-controls="panel_2" aria-expanded="false">
+						<button type="button" class="example-collapsible-button" id="buttonForPanel_2" data-toggle-class="is-open" data-toggle-target-parent="#panel_2" data-toggle-group="accordion" data-toggle-escape data-toggle-arrows aria-controls="panel_2" aria-expanded="false">
 							Click here
 						</button>
 						<div class="example-collapsible-panel" id="panel_2" role="region" aria-labelledby="buttonForPanel_2" aria-hidden="true">
@@ -929,7 +969,7 @@ require("easy-toggle-state");</code></pre>
 								In in erat blandit ante mollis tincidunt. Quisque ac tempus nisi, a ultricies metus. Suspendisse et quam nec mauris feugiat luctus. Curabitur porta sem vitae nulla congue malesuada.
 							</div>
 						</div>
-						<button type="button" class="example-collapsible-button" id="buttonForPanel_3" data-toggle-class="is-open" data-toggle-target-parent="#panel_3" data-toggle-group="accordion" data-toggle-escape aria-controls="panel_3" aria-expanded="false">
+						<button type="button" class="example-collapsible-button" id="buttonForPanel_3" data-toggle-class="is-open" data-toggle-target-parent="#panel_3" data-toggle-group="accordion" data-toggle-escape data-toggle-arrows aria-controls="panel_3" aria-expanded="false">
 							Click here
 						</button>
 						<div class="example-collapsible-panel" id="panel_3" role="region" aria-labelledby="buttonForPanel_3" aria-hidden="true">
@@ -954,7 +994,7 @@ require("easy-toggle-state");</code></pre>
 						The button toggles <code class="language-css">.is-open</code> class on itself and its target located inside its parent container. If there’s more than one button / panel, be careful to target a unique ID.
 					</p>
 					<p>
-						For an accordion, each trigger must be linked to the same group, here <code class="language-html">accordion</code>. This way, only one of this group can be opened at a time. The first panel is opened by default with <code class="language-html">data-toggle-is-active</code>.
+						For an accordion, each trigger must be linked to the same group, here <code class="language-html">accordion</code>. This way, only one of this group can be opened at a time. The first panel is opened by default with <code class="language-html">data-toggle-is-active</code>. Thanks to <code class="language-html">data-toggle-arrows</code> attribute, you can also navigate between panels with arrow keys as soon as one tab is focused.
 					</p>
 					<p>
 						As <code class="language-html">aria-expanded</code> and <code class="language-html">aria-hidden</code> attributes are set, their value change too.
@@ -1031,6 +1071,79 @@ require("easy-toggle-state");</code></pre>
 						<button type="button" class="link-like codepen" title="Open this tabs demo on CodePen" data-title="tabs" data-demo="simple-tabs-demo" data-css="tabs">open in CodePen</button>
 					</div>
 				</section>
+				<section id="tabs-with-arrows">
+					<h4>
+						<a href="#tabs-with-arrows">Tabs with arrow keys support</a>
+					</h4>
+<pre><code class="language-html line-numbers">&lt;div class="example-tabs"&gt;
+	&lt;button type="button"
+		data-toggle-class
+		data-toggle-target="#tabPanel_1"
+		data-toggle-radio-group="tabsGroup"
+		data-toggle-arrows
+		data-toggle-is-active&gt;
+		tab 1
+	&lt;/button&gt;
+	&lt;button type="button"
+		data-toggle-class
+		data-toggle-target="#tabPanel_2"
+		data-toggle-radio-group="tabsGroup"
+		data-toggle-arrows&gt;
+		tab 2
+	&lt;/button&gt;
+	&lt;!-- … --&gt;
+&lt;/div&gt;
+&lt;div class="example-tab-panel" id="tabPanel_1"&gt;
+	Panel 1&lt;br&gt;
+	Lorem ipsum dolor sit amet&hellip;
+&lt;/div&gt;
+&lt;div class="example-tab-panel" id="tabPanel_2"&gt;
+	Panel 2&lt;br&gt;
+	In in erat blandit ante mollis tincidunt&hellip;
+&lt;/div&gt;
+&lt;!-- … --&gt;</code></pre>
+					<div class="demo" id="tabs-with-arrows-demo">
+						<div class="example-tabs">
+							<button type="button" data-toggle-class data-toggle-target="#tabPanel_10" data-toggle-radio-group="tabsGroup_3" data-toggle-arrows data-toggle-is-active>tab 1</button>
+							<button type="button" data-toggle-class data-toggle-target="#tabPanel_11" data-toggle-radio-group="tabsGroup_3" data-toggle-arrows>tab 2</button>
+							<button type="button" data-toggle-class data-toggle-target="#tabPanel_12" data-toggle-radio-group="tabsGroup_3" data-toggle-arrows>tab 3</button>
+							<button type="button" data-toggle-class data-toggle-target="#tabPanel_13" data-toggle-radio-group="tabsGroup_3" data-toggle-arrows>tab 4</button>
+							<button type="button" data-toggle-class data-toggle-target="#tabPanel_14" data-toggle-radio-group="tabsGroup_3" data-toggle-arrows>tab 5</button>
+							<button type="button" data-toggle-class data-toggle-target="#tabPanel_15" data-toggle-radio-group="tabsGroup_3" data-toggle-arrows>tab 6</button>
+						</div>
+						<div class="example-tab-panel" id="tabPanel_10">
+							Panel 1<br>
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam semper faucibus odio, vitae faucibus dui tempor in. Duis vitae luctus mi. Phasellus ultrices rhoncus lectus, non vehicula tortor sodales id.
+						</div>
+						<div class="example-tab-panel" id="tabPanel_11">
+							Panel 2<br>
+							In in erat blandit ante mollis tincidunt. Quisque ac tempus nisi, a ultricies metus. Suspendisse et quam nec mauris feugiat luctus. Curabitur porta sem vitae nulla congue malesuada.
+						</div>
+						<div class="example-tab-panel" id="tabPanel_12">
+							Panel 3<br>
+							Nam posuere tortor a augue vulputate, at blandit ipsum tincidunt. Donec dictum eros ligula, id congue justo porta eget. Aliquam vel erat venenatis, ornare nisi vel, convallis libero.
+						</div>
+						<div class="example-tab-panel" id="tabPanel_13">
+							Panel 4<br>
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam semper faucibus odio, vitae faucibus dui tempor in. Duis vitae luctus mi. Phasellus ultrices rhoncus lectus, non vehicula tortor sodales id.
+						</div>
+						<div class="example-tab-panel" id="tabPanel_14">
+							Panel 5<br>
+							In in erat blandit ante mollis tincidunt. Quisque ac tempus nisi, a ultricies metus. Suspendisse et quam nec mauris feugiat luctus. Curabitur porta sem vitae nulla congue malesuada.
+						</div>
+						<div class="example-tab-panel" id="tabPanel_15">
+							Panel 6<br>
+							Nam posuere tortor a augue vulputate, at blandit ipsum tincidunt. Donec dictum eros ligula, id congue justo porta eget. Aliquam vel erat venenatis, ornare nisi vel, convallis libero.
+						</div>
+					</div>
+					<div class="text-right">
+						<a href="assets/css/tabs.css" title="Download this tabs demo stylesheet">download CSS</a>
+						-
+						<a href="assets/scss/tabs.scss" title="Download this tabs demo stylesheet in SCSS">SCSS</a>
+						-
+						<button type="button" class="link-like codepen" title="Open this tabs demo on CodePen" data-title="tabs" data-demo="tabs-with-arrows-demo" data-css="tabs">open in CodePen</button>
+					</div>
+				</section>
 				<section id="tabs-with-aria">
 					<h4>
 						<a href="#tabs-with-aria">Tabs with ARIA attributes for accessibility</a>
@@ -1041,6 +1154,7 @@ require("easy-toggle-state");</code></pre>
 		data-toggle-class
 		data-toggle-target="#tabPanel_1"
 		data-toggle-radio-group="tabsGroup"
+		data-toggle-arrows
 		data-toggle-is-active
 		role="tab"
 		aria-selected="true"
@@ -1052,21 +1166,13 @@ require("easy-toggle-state");</code></pre>
 		data-toggle-class
 		data-toggle-target="#tabPanel_2"
 		data-toggle-radio-group="tabsGroup"
+		data-toggle-arrows
 		role="tab"
 		aria-selected="false"
 		aria-controls="tabPanel_2"&gt;
 		tab 2
 	&lt;/button&gt;
-	&lt;button type="button"
-		id="tab_3"
-		data-toggle-class
-		data-toggle-target="#tabPanel_3"
-		data-toggle-radio-group="tabsGroup"
-		role="tab"
-		aria-selected="false"
-		aria-controls="tabPanel_3"&gt;
-		tab 3
-	&lt;/button&gt;
+	&lt;!-- … --&gt;
 &lt;/div&gt;
 &lt;div class="example-tab-panel"
 	id="tabPanel_1"
@@ -1084,19 +1190,12 @@ require("easy-toggle-state");</code></pre>
 	Panel 2&lt;br&gt;
 	In in erat blandit ante mollis tincidunt&hellip;
 &lt;/div&gt;
-&lt;div class="example-tab-panel"
-	id="tabPanel_3"
-	role="tabpanel"
-	aria-labelledby="tab_3"
-	aria-hidden="true"&gt;
-	Panel 3&lt;br&gt;
-	Nam posuere tortor a augue vulputate&hellip;
-&lt;/div&gt;</code></pre>
+&lt;!-- … --&gt;</code></pre>
 					<div class="demo" id="tabs-with-aria-demo">
 						<div class="example-tabs" role="tablist">
-							<button type="button" id="tab_4" data-toggle-class data-toggle-target="#tabPanel_4" data-toggle-radio-group="tabsGroup_2" data-toggle-is-active role="tab" aria-selected="true" aria-controls="tabPanel_4">tab 1</button>
-							<button type="button" id="tab_5" data-toggle-class data-toggle-target="#tabPanel_5" data-toggle-radio-group="tabsGroup_2" role="tab" aria-selected="false" aria-controls="tabPanel_5">tab 2</button>
-							<button type="button" id="tab_6" data-toggle-class data-toggle-target="#tabPanel_6" data-toggle-radio-group="tabsGroup_2" role="tab" aria-selected="false" aria-controls="tabPanel_6">tab 3</button>
+							<button type="button" id="tab_4" data-toggle-class data-toggle-target="#tabPanel_4" data-toggle-radio-group="tabsGroup_2" data-toggle-arrows data-toggle-is-active role="tab" aria-selected="true" aria-controls="tabPanel_4">tab 1</button>
+							<button type="button" id="tab_5" data-toggle-class data-toggle-target="#tabPanel_5" data-toggle-radio-group="tabsGroup_2" data-toggle-arrows role="tab" aria-selected="false" aria-controls="tabPanel_5">tab 2</button>
+							<button type="button" id="tab_6" data-toggle-class data-toggle-target="#tabPanel_6" data-toggle-radio-group="tabsGroup_2" data-toggle-arrows role="tab" aria-selected="false" aria-controls="tabPanel_6">tab 3</button>
 						</div>
 						<div class="example-tab-panel" id="tabPanel_4" role="tabpanel" aria-labelledby="tab_4" aria-hidden="false">
 							Panel 1<br>
@@ -1127,7 +1226,7 @@ require("easy-toggle-state");</code></pre>
 						Toggle <code class="language-css">.is-active</code> class – by default – on click on this element, but only one of the <code class="language-html">tabsGroup</code> group at a time, and always keep one active. Toggle the same class on the target element. As there’s more than one button / panel, be careful to target a unique ID.
 					</p>
 					<p>
-						Each trigger must be linked to the same group, here <code class="language-html">tabsGroup</code>. This way, only one of this group can be opened at a time. Since <code class="language-html">data-toggle-radio-group</code> is used instead of <code class="language-html">data-toggle-group</code>, this group will always keep one of its triggers active. The first panel is opened by default with <code class="language-html">data-toggle-is-active</code>.
+						Each trigger must be linked to the same group, here <code class="language-html">tabsGroup</code>. This way, only one of this group can be opened at a time. Since <code class="language-html">data-toggle-radio-group</code> is used instead of <code class="language-html">data-toggle-group</code>, this group will always keep one of its triggers active. The first panel is opened by default with <code class="language-html">data-toggle-is-active</code>. Thanks to <code class="language-html">data-toggle-arrows</code> attribute, you can also navigate between panels with arrow keys as soon as one tab is focused.
 					</p>
 					<p>
 						As <code class="language-html">aria-selected</code> and <code class="language-html">aria-hidden</code> attributes are set, their value change too.
