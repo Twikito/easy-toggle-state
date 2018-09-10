@@ -282,8 +282,8 @@ export default () => {
 				event.preventDefault();
 
 				const groupList = activeElement.hasAttribute(GROUP)
-					? [...$$(`${GROUP}='${activeElement.getAttribute(GROUP)}'`)]
-					: [...$$(`${RADIO_GROUP}='${activeElement.getAttribute(RADIO_GROUP)}'`)];
+					? $$(`${GROUP}='${activeElement.getAttribute(GROUP)}'`)
+					: $$(`${RADIO_GROUP}='${activeElement.getAttribute(RADIO_GROUP)}'`);
 
 				let newElement = activeElement;
 				switch (event.key) {

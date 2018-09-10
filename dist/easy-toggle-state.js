@@ -471,7 +471,7 @@
         }
 
         event.preventDefault();
-        var groupList = activeElement.hasAttribute(GROUP) ? _toConsumableArray($$("".concat(GROUP, "='").concat(activeElement.getAttribute(GROUP), "'"))) : _toConsumableArray($$("".concat(RADIO_GROUP, "='").concat(activeElement.getAttribute(RADIO_GROUP), "'")));
+        var groupList = activeElement.hasAttribute(GROUP) ? $$("".concat(GROUP, "='").concat(activeElement.getAttribute(GROUP), "'")) : $$("".concat(RADIO_GROUP, "='").concat(activeElement.getAttribute(RADIO_GROUP), "'"));
         var newElement = activeElement;
 
         switch (event.key) {
