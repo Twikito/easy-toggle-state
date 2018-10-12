@@ -251,7 +251,7 @@
 
 
   var triggerOffHandler = function triggerOffHandler(event) {
-    return manageToggle(event.target.targetElement);
+    return manageToggle(event.currentTarget.targetElement);
   };
   /**
    * Manage event ouside trigger or target elements.

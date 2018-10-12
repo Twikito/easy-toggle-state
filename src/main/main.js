@@ -51,7 +51,7 @@ const documentEventHandler = event => {
  * @param {event} event - Event triggered on element with 'trigger-off' attribute
  * @returns {undefined}
  */
-const triggerOffHandler = event => manageToggle(event.target.targetElement);
+const triggerOffHandler = event => manageToggle(event.currentTarget.targetElement);
 
 /**
  * Manage event ouside trigger or target elements.
