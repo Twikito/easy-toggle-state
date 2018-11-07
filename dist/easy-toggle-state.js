@@ -406,13 +406,7 @@
 
 
   var init = (function () {
-    /** Test if there's some trigger */
-    if ($$().length === 0) {
-      return console.warn("Easy Toggle State is not used: there's no trigger with '".concat(CLASS, "' attribute to initialize."));
-    }
     /** Active by default management. */
-
-
     $$(IS_ACTIVE).forEach(function (trigger) {
       if (!trigger.hasAttribute(GROUP) && !trigger.hasAttribute(RADIO_GROUP)) {
         return manageActiveByDefault(trigger);
