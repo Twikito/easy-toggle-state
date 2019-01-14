@@ -10,7 +10,7 @@ UI components made in minutes without worried about JavaScript. Only set a few H
 [![devDependencies Status](https://david-dm.org/Twikito/easy-toggle-state/dev-status.svg?style=flat-square)](https://david-dm.org/Twikito/easy-toggle-state?type=dev)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat-square)](https://github.com/Twikito/easy-toggle-state/issues)
-[![GitHub license](https://img.shields.io/github/license/Twikito/easy-toggle-state.svg?style=flat-square)](https://github.com/Twikito/easy-toggle-state/blob/master/LICENSE)
+[![GitHub license](https://img.shields.io/github/license/Twikito/easy-toggle-state.svg?style=flat-square)](https://github.com/Twikito/easy-toggle-state/blob/master/LICENSE) [![Greenkeeper badge](https://badges.greenkeeper.io/Twikito/easy-toggle-state.svg)](https://greenkeeper.io/)
 
 ## Why?
 
