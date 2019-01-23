@@ -74,7 +74,8 @@ export default {
 	output: {
 		file: `dist/${fileName}`,
 		format: "iife",
-		name: "easyToggleState"
+		name: "easyToggleState",
+		preferConst: true
 	},
 	plugins,
 	preferConst

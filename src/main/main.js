@@ -201,26 +201,30 @@ const manageGroup = element => {
 
 /**
  * Initialization.
- * @returns {undefined}
+ * @returns {array} - An array of initialized triggers
  */
 export default () => {
 
 	/** Active by default management. */
-	$$(IS_ACTIVE).forEach(trigger => {
-		if (!trigger.hasAttribute(GROUP) && !trigger.hasAttribute(RADIO_GROUP)) {
-			return manageActiveByDefault(trigger);
-		}
+	$$(IS_ACTIVE)
+		.filter(trigger => !trigger.isETSDefInit)
+		.forEach(trigger => {
+			if (!trigger.hasAttribute(GROUP) && !trigger.hasAttribute(RADIO_GROUP)) {
+				return manageActiveByDefault(trigger);
+			}
 
-		if (retrieveGroupActiveElement(trigger).length > 0) {
-			return console.warn(`Toggle group '${trigger.getAttribute(GROUP) ||
-					trigger.getAttribute(RADIO_GROUP)}' must not have more than one trigger with '${IS_ACTIVE}'`);
-		}
+			if (retrieveGroupActiveElement(trigger).length > 0) {
+				return console.warn(`Toggle group '${trigger.getAttribute(GROUP) ||
+						trigger.getAttribute(RADIO_GROUP)}' must not have more than one trigger with '${IS_ACTIVE}'`);
+			}
 
-		return manageActiveByDefault(trigger);
-	});
+			manageActiveByDefault(trigger);
+			trigger.isETSDefInit = true;
+		});
 
 	/** Set specified or click event on each trigger element. */
-	$$().forEach(trigger => {
+	const triggerList = $$().filter(trigger => !trigger.isETSInit);
+	triggerList.forEach(trigger => {
 		trigger.addEventListener(
 			trigger.getAttribute(EVENT) || "click",
 			event => {
@@ -229,18 +233,18 @@ export default () => {
 			},
 			false
 		);
+		trigger.isETSInit = true;
 	});
 
 	/** Escape key management. */
-	const triggerEscElements = $$(ESCAPE);
-	if (triggerEscElements.length > 0) {
+	if ($$(ESCAPE).length > 0 && !document.isETSEscInit) {
 		document.addEventListener(
 			"keydown",
 			event => {
 				if (!(event.key === "Escape") && !(event.key === "Esc")) {
 					return;
 				}
-				triggerEscElements.forEach(trigger => {
+				$$(ESCAPE).forEach(trigger => {
 					if (!trigger.isToggleActive) {
 						return;
 					}
@@ -254,10 +258,11 @@ export default () => {
 			},
 			false
 		);
+		document.isETSEscInit = true;
 	}
 
 	/** Arrows key management. */
-	if ($$(ARROWS).length > 0) {
+	if ($$(ARROWS).length > 0 && !document.isETSArrInit) {
 		document.addEventListener(
 			"keydown",
 			event => {
@@ -310,5 +315,8 @@ export default () => {
 			},
 			false
 		);
+		document.isETSArrInit = true;
 	}
+
+	return triggerList;
 };
