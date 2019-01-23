@@ -401,13 +401,15 @@
   };
   /**
    * Initialization.
-   * @returns {undefined}
+   * @returns {array} - An array of initialized triggers
    */
 
 
   var init = (function () {
     /** Active by default management. */
-    $$(IS_ACTIVE).forEach(function (trigger) {
+    $$(IS_ACTIVE).filter(function (trigger) {
+      return !trigger.isETSDefInit;
+    }).forEach(function (trigger) {
       if (!trigger.hasAttribute(GROUP) && !trigger.hasAttribute(RADIO_GROUP)) {
         return manageActiveByDefault(trigger);
       }
@@ -416,27 +418,30 @@
         return console.warn("Toggle group '".concat(trigger.getAttribute(GROUP) || trigger.getAttribute(RADIO_GROUP), "' must not have more than one trigger with '").concat(IS_ACTIVE, "'"));
       }
 
-      return manageActiveByDefault(trigger);
+      manageActiveByDefault(trigger);
+      trigger.isETSDefInit = true;
     });
     /** Set specified or click event on each trigger element. */
 
-    $$().forEach(function (trigger) {
+    var triggerList = $$().filter(function (trigger) {
+      return !trigger.isETSInit;
+    });
+    triggerList.forEach(function (trigger) {
       trigger.addEventListener(trigger.getAttribute(EVENT) || "click", function (event) {
         event.preventDefault();
         (trigger.hasAttribute(GROUP) || trigger.hasAttribute(RADIO_GROUP) ? manageGroup : manageToggle)(trigger);
       }, false);
+      trigger.isETSInit = true;
     });
     /** Escape key management. */
 
-    var triggerEscElements = $$(ESCAPE);
-
-    if (triggerEscElements.length > 0) {
+    if ($$(ESCAPE).length > 0 && !document.isETSEscInit) {
       document.addEventListener("keydown", function (event) {
         if (!(event.key === "Escape") && !(event.key === "Esc")) {
           return;
         }
 
-        triggerEscElements.forEach(function (trigger) {
+        $$(ESCAPE).forEach(function (trigger) {
           if (!trigger.isToggleActive) {
             return;
           }
@@ -448,11 +453,12 @@
           return (trigger.hasAttribute(GROUP) ? manageGroup : manageToggle)(trigger);
         });
       }, false);
+      document.isETSEscInit = true;
     }
     /** Arrows key management. */
 
 
-    if ($$(ARROWS).length > 0) {
+    if ($$(ARROWS).length > 0 && !document.isETSArrInit) {
       document.addEventListener("keydown", function (event) {
         var activeElement = document.activeElement;
 
@@ -493,7 +499,10 @@
         newElement.focus();
         return newElement.dispatchEvent(new Event(newElement.getAttribute(EVENT) || "click"));
       }, false);
+      document.isETSArrInit = true;
     }
+
+    return triggerList;
   });
 
   var onLoad = function onLoad() {
