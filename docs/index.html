@@ -297,7 +297,16 @@ require("easy-toggle-state");</code></pre>
 						<pre><code>data-toggle-outside</code></pre>
 					</dt>
 					<dd>
-						<p>Toggle off the class when the event is triggered again outside of the trigger element.</p>
+						<p>Toggle off the class when the event is triggered again outside of the trigger element. The event will be the same as <code>data-toggle-event</code> value, or <code>click</code> by default.</p>
+						<p>Note that this attribute does not work on an element with <code>data-toggle-radio-group="groupName"</code>.</p>
+					</dd>
+
+					<dt>
+						<pre><code>data-toggle-outside-event="event"</code></pre>
+					</dt>
+					<dd>
+						<p>When using <code>data-toggle-outside</code> attribute, add this attribute to use a specific event for that behavior.</p>
+						<p>Note that this attribute only works when used in addition of <code>data-toggle-outside</code> attribute.</p>
 					</dd>
 
 					<dt>
@@ -312,6 +321,7 @@ require("easy-toggle-state");</code></pre>
 					</dt>
 					<dd>
 						<p>Toggle the class when the trigger element is active and when the <kbd>escape</kbd> key is pressed.</p>
+						<p>Note that this attribute does not work on an element with <code>data-toggle-radio-group="groupName"</code>.</p>
 					</dd>
 
 					<dt>
@@ -357,7 +367,7 @@ require("easy-toggle-state");</code></pre>
 					</h4>
 					<p>For asynchronous needs, you can initiate the magic with:</p>
 					<pre><code class="language-js">window.initEasyToggleState();</code></pre>
-					<p>Returns an array of initialized triggers.</p>
+					<p>Returns an array of initialized trigger elements.</p>
 				</section>
 				<section id="hooks">
 					<h4>
@@ -778,12 +788,52 @@ require("easy-toggle-state");</code></pre>
 						<button type="button" class="link-like codepen" title="Open this demo tooltip on CodePen" data-title="tooltip" data-demo="simple-tooltip-demo" data-css="tooltip">open in CodePen</button>
 					</div>
 				</section>
+				<section id="dblclick-tooltip">
+					<h4>
+						<a href="#dblclick-tooltip">Double-click tooltip</a>
+					</h4>
+<pre><code class="language-html line-numbers">&lt;span class="example-tooltip"
+	data-toggle-class="is-visible"
+	data-toggle-target-self=".tooltip"
+	data-toggle-target-only
+	data-toggle-event="dlclick"
+	data-toggle-outside
+	data-toggle-outside-event="click"
+	aria-describedby="tooltip_id"&gt;
+	Click twice on me
+	&lt;span class="tooltip"
+		id="tooltip_id"
+		role="tooltip"
+		aria-hidden="true"&gt;
+		Awesome tooltip
+	&lt;/span&gt;
+&lt;/span&gt;</code></pre>
+					<div class="demo" id="dblclick-tooltip-demo">
+						<span class="example-tooltip" data-toggle-class="is-visible" data-toggle-target-self=".tooltip" data-toggle-target-only data-toggle-event="dblclick" data-toggle-outside data-toggle-outside-event="click" aria-describedby="tooltip_id2">
+							Click twice on me
+							<span class="tooltip" id="tooltip_id2" role="tooltip" aria-hidden="true">Awesome tooltip</span>
+						</span>
+					</div>
+					<div class="text-right">
+						<a href="assets/css/tooltip.css" title="Download this tooltip demo stylesheet">download CSS</a>
+						-
+						<a href="assets/scss/tooltip.scss" title="Download this tooltip demo stylesheet in SCSS">SCSS</a>
+						-
+						<button type="button" class="link-like codepen" title="Open this demo tooltip on CodePen" data-title="double click tooltip" data-demo="dblclick-tooltip-demo" data-css="tooltip">open in CodePen</button>
+					</div>
+				</section>
 				<section id="tooltip-explanation">
 					<h4>
 						<a href="#tooltip-explanation">Explanation</a>
 					</h4>
 					<p>
-						Toggle <code class="language-css">.is-visible</code> class only on the target <code class="language-css">.tooltip</code> located inside this trigger, on <code class="language-js">mouseover</code> event, and toggle again when <code class="language-js">mouseover</code> is triggered outside this trigger.
+						Toggle <code class="language-css">.is-visible</code> class only on the target <code class="language-css">.tooltip</code> located inside this trigger.
+					</p>
+					<p>
+						In the simple tooltip example, toggle on <code class="language-js">mouseover</code> event, and toggle again when <code class="language-js">mouseover</code> is triggered outside of this trigger.
+					</p>
+					<p>
+						In the double-click example, toggle on <code class="language-js">dblclick</code> event, and, since the <code class="language-html">data-toggle-outside-event</code> is specified, toggle again when <code class="language-js">click</code> is triggered outside of this trigger.
 					</p>
 					<p>
 						As <code class="language-html">aria-hidden</code> attribute is set, its value change too.

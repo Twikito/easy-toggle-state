@@ -9,6 +9,7 @@ import {
 	HIDDEN,
 	IS_ACTIVE,
 	OUTSIDE,
+	OUTSIDE_EVENT,
 	RADIO_GROUP,
 	SELECTED,
 	TARGET_ONLY,
@@ -23,26 +24,47 @@ import retrieveGroupActiveElement from "../helpers/retrieve-group-active-element
 import retrieveTargets from "../helpers/retrieve-targets";
 
 /**
+ * Manage event listener on document
+ * @param {element} element - The element on which test if there event type specified
+ * @returns {undefined}
+ */
+const addEventListenerOnDocument = element => document.addEventListener(
+		element.getAttribute(OUTSIDE_EVENT) || element.getAttribute(EVENT) || "click",
+		documentEventHandler,
+		false
+	);
+
+/**
  * Toggle off all elements width 'data-toggle-outside' attribute
  * when reproducing specified or click event outside itself or its targets.
  * @param {event} event - Event triggered on document
  * @returns {undefined}
  */
 const documentEventHandler = event => {
-	const target = event.target;
+	const eTarget = event.target,
+		eType = event.type;
+	let insideTarget = false;
 
-	if (target.closest("[" + TARGET_STATE + '="true"]')) {
-		return;
+	$$(OUTSIDE)
+		.filter(element => element.getAttribute(OUTSIDE_EVENT) === eType ||
+				(element.getAttribute(EVENT) === eType && !element.hasAttribute(OUTSIDE_EVENT)) ||
+				(eType === "click" && !element.hasAttribute(EVENT) && !element.hasAttribute(OUTSIDE_EVENT)))
+		.forEach(element => {
+			const e = eTarget.closest("[" + TARGET_STATE + '="true"]');
+			if (e && e.easyToggleStateTrigger === element) {
+				insideTarget = true;
+			}
+			if (!insideTarget && element !== eTarget && element.isToggleActive) {
+				(element.hasAttribute(GROUP) || element.hasAttribute(RADIO_GROUP) ? manageGroup : manageToggle)(element);
+			}
+		});
+
+	if (!insideTarget) {
+		document.removeEventListener(eType, documentEventHandler, false);
 	}
 
-	$$(OUTSIDE).forEach(element => {
-		if (element !== target && element.isToggleActive) {
-			(element.hasAttribute(GROUP) || element.hasAttribute(RADIO_GROUP) ? manageGroup : manageToggle)(element);
-		}
-	});
-
-	if (target.hasAttribute(OUTSIDE) && target.isToggleActive) {
-		document.addEventListener(target.getAttribute(EVENT) || "click", documentEventHandler, false);
+	if (eTarget.hasAttribute(OUTSIDE) && eTarget.isToggleActive) {
+		addEventListenerOnDocument(eTarget);
 	}
 };
 
@@ -68,10 +90,8 @@ const manageTriggerOutside = element => {
 	}
 
 	if (element.isToggleActive) {
-		return document.addEventListener(element.getAttribute(EVENT) || "click", documentEventHandler, false);
+		return addEventListenerOnDocument(element);
 	}
-
-	return document.removeEventListener(element.getAttribute(EVENT) || "click", documentEventHandler, false);
 };
 
 /**
@@ -122,6 +142,7 @@ const manageTargets = (triggerElement, className, onLoadActive) => retrieveTarge
 
 		if (triggerElement.hasAttribute(OUTSIDE)) {
 			targetElement.setAttribute(TARGET_STATE, triggerElement.isToggleActive);
+			targetElement.easyToggleStateTrigger = triggerElement;
 		}
 
 		dispatchHook(targetElement, TOGGLE_AFTER);
