@@ -4,7 +4,7 @@
  * A tiny JavaScript library to easily toggle the state of any HTML element in any contexts.
  *
  * @author Matthieu Bué <https://twikito.com>
- * @version v1.9.6
+ * @version v1.10.0
  * @link https://twikito.github.io/easy-toggle-state/
  * @license MIT : https://github.com/Twikito/easy-toggle-state/blob/master/LICENSE
  * -------------------------------------------------------------------
