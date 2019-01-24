@@ -242,7 +242,7 @@
         eType = event.type;
     var insideTarget = false;
     $$(OUTSIDE).filter(function (element) {
-      return element.getAttribute(OUTSIDE_EVENT) === eType || element.getAttribute(EVENT) === eType && !element.hasAttribute(OUTSIDE_EVENT) || eType === 'click' && !element.hasAttribute(EVENT) && !element.hasAttribute(OUTSIDE_EVENT);
+      return element.getAttribute(OUTSIDE_EVENT) === eType || element.getAttribute(EVENT) === eType && !element.hasAttribute(OUTSIDE_EVENT) || eType === "click" && !element.hasAttribute(EVENT) && !element.hasAttribute(OUTSIDE_EVENT);
     }).forEach(function (element) {
       var e = eTarget.closest("[" + TARGET_STATE + '="true"]');
 

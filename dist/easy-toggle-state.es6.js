@@ -171,7 +171,11 @@
 	 * @param {element} element - The element on which test if there event type specified
 	 * @returns {undefined}
 	 */
-	const addEventListenerOnDocument = element => document.addEventListener(element.getAttribute(OUTSIDE_EVENT) || element.getAttribute(EVENT) || "click", documentEventHandler, false);
+	const addEventListenerOnDocument = element => document.addEventListener(
+			element.getAttribute(OUTSIDE_EVENT) || element.getAttribute(EVENT) || "click",
+			documentEventHandler,
+			false
+		);
 
 	/**
 	 * Toggle off all elements width 'data-toggle-outside' attribute
@@ -180,15 +184,14 @@
 	 * @returns {undefined}
 	 */
 	const documentEventHandler = event => {
-		const
-			eTarget = event.target,
+		const eTarget = event.target,
 			eType = event.type;
 		let insideTarget = false;
 
 		$$(OUTSIDE)
 			.filter(element => element.getAttribute(OUTSIDE_EVENT) === eType ||
-				(element.getAttribute(EVENT) === eType && !element.hasAttribute(OUTSIDE_EVENT)) ||
-				(eType === 'click' && !element.hasAttribute(EVENT) && !element.hasAttribute(OUTSIDE_EVENT)))
+					(element.getAttribute(EVENT) === eType && !element.hasAttribute(OUTSIDE_EVENT)) ||
+					(eType === "click" && !element.hasAttribute(EVENT) && !element.hasAttribute(OUTSIDE_EVENT)))
 			.forEach(element => {
 				const e = eTarget.closest("[" + TARGET_STATE + '="true"]');
 				if (e && e.easyToggleStateTrigger === element) {
@@ -199,7 +202,7 @@
 				}
 			});
 
-		if(!insideTarget) {
+		if (!insideTarget) {
 			document.removeEventListener(eType, documentEventHandler, false);
 		}
 
