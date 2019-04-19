@@ -85,6 +85,20 @@ nav ul ul {
 	padding-left: 10%;
 }
 
+nav ul ul a {
+	position: relative;
+}
+
+nav ul ul a::before {
+	position: absolute; left: -1em;
+	opacity: 0; content: '›'; pointer-events: none;
+	transition: inherit;
+}
+
+nav ul ul a.is-current::before {
+	opacity: 1;
+}
+
 @media (min-width: 961px) {
 	nav {
 		position: fixed; top: 0; left: 0; bottom: 0; z-index: 3;
