@@ -360,14 +360,24 @@ pre[class*="language-"],
 	color: var(--theme);
 }
 
-[id='download'] {
+.download-links {
 	display: flex; margin: 10% 0;
 	flex-flow: row wrap; justify-content: center; align-items: center;
 	text-align: center;
 }
-[id='download'] > * {
+.download-links > * {
 	margin: .5em;
 	flex: 0 1 15em;
+}
+
+.github {
+	display: inline-block; width: 1em; height: .96875em;
+	font-size: 1.25em;
+	fill: currentColor;
+}
+.github,
+.github + * {
+	vertical-align: middle;
 }
 
 .sr-only {
