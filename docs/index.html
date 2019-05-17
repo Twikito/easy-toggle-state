@@ -184,7 +184,7 @@ require("easy-toggle-state");</code></pre>
 				<h3>
 					<a href="#compatibility">Compatibility</a>
 				</h3>
-				<p>In addition of using <a href="//github.com/Twikito/easy-toggle-state/blob/master/dist/easy-toggle-state.min.js">ES5 version</a>, compatibility for Internet Explorer is provided by <a href="//polyfill.io/">polyfill.io</a> which supports back to <abbr title="Internet Explorer">IE</abbr> 7. It brings polyfills for <code class="language-js">Array.from</code>, <code class="language-js">Array.prototype.filter</code>, <code class="language-js">Element.prototype.closest</code> and more.</p>
+				<p>In addition of using <a href="//github.com/Twikito/easy-toggle-state/blob/master/dist/easy-toggle-state.min.js">ES5 version</a>, compatibility for Internet Explorer is provided by <a href="//polyfill.io/">polyfill.io</a> which supports back to <abbr title="Internet Explorer">IE</abbr> 7. It brings polyfills for <code class="language-js">Array.from</code>, <code class="language-js">Array.filter</code>, <code class="language-js">Element.closest</code> and more.</p>
 				<p>And before you ask, yes, you can <a href="//github.com/Financial-Times/polyfill-service#running-locally">run it locally</a>.</p>
 			</section>
 		</section>
@@ -199,7 +199,9 @@ require("easy-toggle-state");</code></pre>
 				<h3>
 					<a href="#recommendation">Recommendation</a>
 				</h3>
-				<p class="language-html">Although you could use any element you want, I recommend using only buttons or links as trigger elements. For links with a fake <code>href</code> value, such as <code>href="#"</code>, don’t forget to add <code>role="button"</code> attribute.</p>
+				<p>Although you could use any element you want, <strong>I strongly recommend using only buttons as trigger elements</strong>. It’s more accessible, and it’s meant to be used for this kind of thing. The <a href="#examples">following examples</a> will show you that.</p>
+				<p class="language-html">If you still want to use links with fake <code>href</code> values, such as <code>href="#"</code>, don’t forget to add <code>role="button"</code> attribute.</p>
+				<p>And please, don’t use divs or spans anymore.</p>
 			</section>
 			<section id="basics" class="language-html">
 				<h3>
@@ -394,7 +396,8 @@ require("easy-toggle-state");</code></pre>
 			<h2>
 				<a href="#examples">Examples</a>
 			</h2>
-			<p>Here are some demos to show you how this is powerful. Of course, <strong>these examples can be made in other ways</strong>.</p>
+			<p>Here are some demos to show you how this is powerful.</p>
+			<p>Of course, <strong>these examples can be made in other ways</strong>, with <em>Easy Toggle State</em> on not. For example, checkboxes, switchboxes and radio buttons can be made in pure <abbr title="Cascading StyleSheet">CSS</abbr> using natives inputs and labels.</p>
 			<section id="checkbox">
 				<h3>
 					<a href="#checkbox">Checkbox</a>
