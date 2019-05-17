@@ -129,4 +129,6 @@
 	};
 
 	[...document.querySelectorAll(".codepen")].forEach(button => button.addEventListener("click", clickEventHandler, false));
+
+	console.log("╭──╮\n│  │ EASY\n│  │ TOGGLE\n│◯│ STATE\n╰──╯");
 })();
