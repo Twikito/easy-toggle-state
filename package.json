@@ -44,7 +44,7 @@
 		"@babel/core": "^7.4.5",
 		"@babel/preset-env": "^7.4.5",
 		"cross-env": "^5.2.0",
-		"del-cli": "^1.1.0",
+		"del-cli": "^2.0.0",
 		"eslint": "^5.16.0",
 		"husky": "^2.3.0",
 		"lint-staged": "^8.1.7",
