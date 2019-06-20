@@ -115,9 +115,10 @@ const manageTriggerOff = (targetElement, triggerElement) => {
 		});
 	}
 
-	return triggerOffList.forEach(triggerOff => {
+	triggerOffList.forEach(triggerOff => {
 		triggerOff.removeEventListener("click", triggerOffHandler, false);
 	});
+	return triggerElement.focus();
 };
 
 /**
