@@ -1,18 +1,23 @@
 .example-switchbox {
+	position: relative;
 	display: inline-block;
 	width: 3em;
 	height: 1em;
 	padding: .125em;
+	overflow: hidden;
 	box-sizing: content-box;
 	border: 2px solid darkgrey;
 	outline: none;
 	border-radius: .75em;
 	background-color: white;
+	font-size: 1.25em;
 	vertical-align: middle;
 	cursor: pointer;
 	transition: .15s ease-out;
 }
 .example-switchbox::before {
+	position: relative;
+	z-index: 2;
 	display: block;
 	width: 1em;
 	height: 1em;
@@ -20,6 +25,31 @@
 	background-color: darkgrey;
 	content: '';
 	transition: .15s ease-out;
+}
+.example-switchbox + label {
+	vertical-align: middle;
+}
+.example-switchbox-yes,
+.example-switchbox-no {
+	position: absolute;
+	top: 50%;
+	z-index: 1;
+	transform: translateY(-50%);
+	font-size: .75em;
+	text-transform: uppercase;
+	pointer-events: none;
+	transition: inherit;
+}
+.example-switchbox-yes {
+	left: .75em;
+	color: white;
+	font-weight: bold;
+	opacity: 0;
+}
+.example-switchbox-no {
+	right: .75em;
+	color: darkgrey;
+	opacity: 1;
 }
 .example-switchbox:hover,
 .example-switchbox:focus {
@@ -31,19 +61,25 @@
 	background-color: var(--theme); /* You probably need to change this! */
 }
 
-.example-switchbox.is-checked {
+.example-switchbox.is-pressed {
 	border-color: var(--theme); /* You probably need to change this! */
 	background-color: var(--theme); /* You probably need to change this too! */
 }
-.example-switchbox.is-checked::before {
+.example-switchbox.is-pressed .example-switchbox-yes {
+	opacity: 1;
+}
+.example-switchbox.is-pressed .example-switchbox-no {
+	opacity: 0;
+}
+.example-switchbox.is-pressed::before {
 	transform: translateX(2em);
 	background-color: white;
 }
-.example-switchbox.is-checked:hover,
-.example-switchbox.is-checked:focus {
+.example-switchbox.is-pressed:hover,
+.example-switchbox.is-pressed:focus {
 	border-color: rgba(0,0,0,.35);
 }
-.example-switchbox.is-checked:hover::before,
-.example-switchbox.is-checked:focus::before {
+.example-switchbox.is-pressed:hover::before,
+.example-switchbox.is-pressed:focus::before {
 	background-color: white;
 }

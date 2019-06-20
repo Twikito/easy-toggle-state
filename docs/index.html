@@ -529,30 +529,30 @@ require("easy-toggle-state");</code></pre>
 					You want to display a switchbox, i.e. a box with a "ball" that moves on click on this box.
 					Even if you should use the <code class="language-html">&lt;input type="checkbox"&gt;</code> native component, in some case, you can’t.
 				</p>
-				<p>
-					In this example, the <abbr title="HyperText Markup Language">HTML</abbr> code is actually the same as a <a href="#checkbox-with-external-label">checkbox with an external label</a>, only <abbr title="Cascading StyleSheet">CSS</abbr> code changes.
-				</p>
 				<section id="switchbox-with-external-label">
 					<h4>
 						<a href="#switchbox-with-external-label">Switchbox with an external label</a>
 					</h4>
 <pre><code class="language-html line-numbers">&lt;button type="button"
 	class="example-switchbox"
-	data-toggle-class="is-checked"
+	data-toggle-class="is-pressed"
 	id="switchbox"
-	role="checkbox"
-	aria-checked="false"
+	aria-pressed="false"
 	title="Toggle this box"&gt;
+	&lt;span class="example-switchbox-yes" aria-hidden="true"&gt;yes&lt;/span&gt;
+	&lt;span class="example-switchbox-no" aria-hidden="true"&gt;no&lt;/span&gt;
 	&lt;span class="sr-only"&gt;Toggle&lt;/span&gt;
 &lt;/button&gt;
 &lt;label for="switchbox"&gt;
-	Awesome switchbox
+	Isn’t this awesome?
 &lt;/label&gt;</code></pre>
 					<div class="demo" id="switchbox-with-external-label-demo">
-						<button type="button" class="example-switchbox" data-toggle-class="is-checked" id="switchbox_1" role="checkbox" aria-checked="false" title="Toggle this box">
+						<button type="button" class="example-switchbox" data-toggle-class="is-pressed" id="switchbox_1" aria-pressed="false" title="Toggle this box">
+							<span class="example-switchbox-yes" aria-hidden="true">yes</span>
+							<span class="example-switchbox-no" aria-hidden="true">no</span>
 							<span class="sr-only">Toggle</span>
 						</button>
-						<label for="switchbox_1">Awesome switchbox</label>
+						<label for="switchbox_1">Isn’t this awesome?</label>
 					</div>
 					<div class="text-right">
 						<a href="assets/css/switchbox.css" title="Download this switchbox demo stylesheet">download CSS</a>
@@ -567,7 +567,10 @@ require("easy-toggle-state");</code></pre>
 						<a href="#switchbox-explanation">Explanation</a>
 					</h4>
 					<p>
-						Toggle <code class="language-css">.is-checked</code> class on click on the box. As <code class="language-html">aria-checked</code> attribute is set, its value changes too.
+						Toggle <code class="language-css">.is-pressed</code> class on click on the box. As <code class="language-html">aria-pressed</code> attribute is set, its value changes too.
+					</p>
+					<p>
+						The words "yes" and "no" are here to add more sense and to make this component more accessible by not rendering each state with only colors.
 					</p>
 					<p>
 						The CSS class <code class="language-css">.sr-only</code> is for <a href="https://snook.ca/archives/html_and_css/hiding-content-for-accessibility">hiding content for accessibility</a>.

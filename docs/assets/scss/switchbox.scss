@@ -1,18 +1,23 @@
 .example-switchbox {
+	position: relative;
 	display: inline-block;
 	width: 3em;
 	height: 1em;
 	padding: .125em;
+	overflow: hidden;
 	box-sizing: content-box;
 	border: 2px solid darkgrey;
 	outline: none;
 	border-radius: .75em;
 	background-color: white;
+	font-size: 1.25em;
 	vertical-align: middle;
 	cursor: pointer;
 	transition: .15s ease-out;
 
 	&::before {
+		position: relative;
+		z-index: 2;
 		display: block;
 		width: 1em;
 		height: 1em;
@@ -20,6 +25,35 @@
 		background-color: darkgrey;
 		content: '';
 		transition: .15s ease-out;
+	}
+
+	& + label {
+		vertical-align: middle;
+	}
+
+	&-yes,
+	&-no {
+		position: absolute;
+		top: 50%;
+		z-index: 1;
+		transform: translateY(-50%);
+		font-size: .75em;
+		text-transform: uppercase;
+		pointer-events: none;
+		transition: inherit;
+	}
+
+	&-yes {
+		left: .75em;
+		color: white;
+		font-weight: bold;
+		opacity: 0;
+	}
+
+	&-no {
+		right: .75em;
+		color: darkgrey;
+		opacity: 1;
 	}
 
 	&:hover,
@@ -32,7 +66,7 @@
 		}
 	}
 
-	&.is-checked {
+	&.is-pressed {
 		border-color: var(--theme); /* You probably need to change this! */
 		background-color: var(--theme); /* You probably need to change this too! */
 
@@ -49,5 +83,12 @@
 				background-color: white;
 			}
 		}
+	}
+
+	&.is-pressed &-yes {
+		opacity: 1;
+	}
+	&.is-pressed &-no {
+		opacity: 0;
 	}
 }
