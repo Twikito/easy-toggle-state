@@ -10,6 +10,7 @@ import {
 	IS_ACTIVE,
 	OUTSIDE,
 	OUTSIDE_EVENT,
+	PRESSED,
 	RADIO_GROUP,
 	SELECTED,
 	TARGET_ONLY,
@@ -186,6 +187,7 @@ const manageActiveByDefault = element => {
 		[CHECKED]: true,
 		[EXPANDED]: true,
 		[HIDDEN]: false,
+		[PRESSED]: true,
 		[SELECTED]: true
 	});
 
