@@ -43,6 +43,7 @@
 		IS_ACTIVE = dataset("is-active"),
 		OUTSIDE = dataset("outside"),
 		OUTSIDE_EVENT = dataset("outside-event"),
+		PRESSED = "aria-pressed",
 		RADIO_GROUP = dataset("radio-group"),
 		SELECTED = "aria-selected",
 		TARGET = dataset("target"),
@@ -92,6 +93,7 @@
 			[CHECKED]: element.isToggleActive,
 			[EXPANDED]: element.isToggleActive,
 			[HIDDEN]: !element.isToggleActive,
+			[PRESSED]: element.isToggleActive,
 			[SELECTED]: element.isToggleActive
 		}
 	) => Object.keys(config).forEach(key => element.hasAttribute(key) && element.setAttribute(key, config[key]));
@@ -257,9 +259,10 @@
 			});
 		}
 
-		return triggerOffList.forEach(triggerOff => {
+		triggerOffList.forEach(triggerOff => {
 			triggerOff.removeEventListener("click", triggerOffHandler, false);
 		});
+		return triggerElement.focus();
 	};
 
 	/**
@@ -329,6 +332,7 @@
 			[CHECKED]: true,
 			[EXPANDED]: true,
 			[HIDDEN]: false,
+			[PRESSED]: true,
 			[SELECTED]: true
 		});
 

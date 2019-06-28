@@ -83,6 +83,7 @@
       IS_ACTIVE = dataset("is-active"),
       OUTSIDE = dataset("outside"),
       OUTSIDE_EVENT = dataset("outside-event"),
+      PRESSED = "aria-pressed",
       RADIO_GROUP = dataset("radio-group"),
       SELECTED = "aria-selected",
       TARGET = dataset("target"),
@@ -133,7 +134,7 @@
   var manageAria = (function (element) {
     var _ref;
 
-    var config = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : (_ref = {}, _defineProperty(_ref, CHECKED, element.isToggleActive), _defineProperty(_ref, EXPANDED, element.isToggleActive), _defineProperty(_ref, HIDDEN, !element.isToggleActive), _defineProperty(_ref, SELECTED, element.isToggleActive), _ref);
+    var config = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : (_ref = {}, _defineProperty(_ref, CHECKED, element.isToggleActive), _defineProperty(_ref, EXPANDED, element.isToggleActive), _defineProperty(_ref, HIDDEN, !element.isToggleActive), _defineProperty(_ref, PRESSED, element.isToggleActive), _defineProperty(_ref, SELECTED, element.isToggleActive), _ref);
     return Object.keys(config).forEach(function (key) {
       return element.hasAttribute(key) && element.setAttribute(key, config[key]);
     });
@@ -315,9 +316,10 @@
       });
     }
 
-    return triggerOffList.forEach(function (triggerOff) {
+    triggerOffList.forEach(function (triggerOff) {
       triggerOff.removeEventListener("click", triggerOffHandler, false);
     });
+    return triggerElement.focus();
   };
   /**
    * Manage attributes and events of targets elements.
@@ -385,7 +387,7 @@
     dispatchHook(element, TOGGLE_BEFORE);
     var className = element.getAttribute(CLASS) || "is-active";
     element.isToggleActive = true;
-    manageAria(element, (_manageAria = {}, _defineProperty(_manageAria, CHECKED, true), _defineProperty(_manageAria, EXPANDED, true), _defineProperty(_manageAria, HIDDEN, false), _defineProperty(_manageAria, SELECTED, true), _manageAria));
+    manageAria(element, (_manageAria = {}, _defineProperty(_manageAria, CHECKED, true), _defineProperty(_manageAria, EXPANDED, true), _defineProperty(_manageAria, HIDDEN, false), _defineProperty(_manageAria, PRESSED, true), _defineProperty(_manageAria, SELECTED, true), _manageAria));
 
     if (!element.hasAttribute(TARGET_ONLY) && !element.classList.contains(className)) {
       element.classList.add(className);
