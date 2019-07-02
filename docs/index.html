@@ -341,6 +341,14 @@ require("easy-toggle-state");</code></pre>
 					</dd>
 
 					<dt>
+						<pre><code>data-toggle-modal</code></pre>
+					</dt>
+					<dd>
+						<p>Specify that the target is a modal, such as a <a href="#dialog">dialog</a> or a <a href="#lightbox">lightbox</a>. This way, when the target is active – open –, the focus is trapped inside this target. This means tabbing will only focus on focusable elements inside this target, letting anything outside be out of scope.</p>
+						<p>Be really careful when using this feature. A focus trap can be very annoying – and an accessibility fault – when used in a wrong way, so be sure your target is a modal component.</p>
+					</dd>
+
+					<dt>
 						<pre><code>data-toggle-trigger-off</code></pre>
 					</dt>
 					<dd>
@@ -1490,19 +1498,20 @@ require("easy-toggle-state");</code></pre>
 	data-toggle-class
 	data-toggle-target="#dialog"
 	data-toggle-target-only
-	data-toggle-escape&gt;
+	data-toggle-escape
+	data-toggle-modal&gt;
 	Click to see the awesomeness
 &lt;/button&gt;
 
 &lt;!-- This dialog anywhere you want in the page --&gt;
 &lt;div class="example-dialog" id="dialog"&gt;
 	&lt;section class="example-dialog-container"&gt;
-		&lt;!-- Your content here, like text or form. --&gt;
+		&lt;!-- Your content here, such as text or form. --&gt;
 		&lt;button type="button" data-toggle-trigger-off&gt;close&lt;/button&gt;
 	&lt;/section&gt;
 &lt;/div&gt;</code></pre>
 					<div class="demo" id="simple-dialog-demo">
-						<button type="button" class="example-dialog-trigger" data-toggle-class data-toggle-target="#dialog_1" data-toggle-target-only data-toggle-escape>Click to see the awesomeness</button>
+						<button type="button" class="example-dialog-trigger" data-toggle-class data-toggle-target="#dialog_1" data-toggle-target-only data-toggle-escape data-toggle-modal>Click to see the awesomeness</button>
 						<div class="example-dialog" id="dialog_1">
 							<section class="example-dialog-container">
 								<header class="example-dialog-header">
@@ -1510,10 +1519,13 @@ require("easy-toggle-state");</code></pre>
 								</header>
 								<div class="example-dialog-content">
 									<p>
-										<strong>Any content you want, like text or form.</strong>
+										<strong>Any content you want, such as text or form.</strong>
 									</p>
 									<p>
-										Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+										The following fake links are here to illustrate the focus trap inside this modal, thanks to <code class="language-html">data-toggle-modal</code> attribute on the trigger.
+									</p>
+									<p>
+										<a href="#">Lorem ipsum</a> dolor sit amet, consectetur adipisicing elit. Et quibusdam labore <a href="#">tempore repudiandae</a> minima earum adipisci, dolor distinctio <a href="#">facere</a> illo recusandae <a href="#">fuga</a> placeat amet <a href="#">corrupti</a> omnis ullam accusamus reprehenderit id.</p>
 									</p>
 								</div>
 								<footer class="example-dialog-footer">
@@ -1539,7 +1551,8 @@ require("easy-toggle-state");</code></pre>
 	data-toggle-class
 	data-toggle-target="#dialog"
 	data-toggle-target-only
-	data-toggle-escape&gt;
+	data-toggle-escape
+	data-toggle-modal&gt;
 	Click to see the awesomeness
 &lt;/button&gt;
 
@@ -1555,7 +1568,7 @@ require("easy-toggle-state");</code></pre>
 			Dialog title
 		&lt;/header&gt;
 		&lt;div id="dialogContent" class="example-dialog-content"&gt;
-			&lt;!-- Your content here, like text or form. --&gt;
+			&lt;!-- Your content here, such as text or form. --&gt;
 		&lt;/div&gt;
 		&lt;footer class="example-dialog-footer"&gt;
 			&lt;button type="button" data-toggle-trigger-off&gt;close&lt;/button&gt;
@@ -1563,7 +1576,7 @@ require("easy-toggle-state");</code></pre>
 	&lt;/section&gt;
 &lt;/div&gt;</code></pre>
 					<div class="demo" id="dialog-with-aria-demo">
-						<button type="button" class="example-dialog-trigger" data-toggle-class data-toggle-target="#dialog_2" data-toggle-target-only data-toggle-escape>Click to see the awesomeness</button>
+						<button type="button" class="example-dialog-trigger" data-toggle-class data-toggle-target="#dialog_2" data-toggle-target-only data-toggle-escape data-toggle-modal>Click to see the awesomeness</button>
 						<div class="example-dialog" id="dialog_2" role="dialog" aria-labelledby="dialogTitle" aria-describedby="dialogContent" aria-hidden="true">
 							<section class="example-dialog-container">
 								<header id="dialogTitle" class="example-dialog-header">
@@ -1571,10 +1584,13 @@ require("easy-toggle-state");</code></pre>
 								</header>
 								<div id="dialogContent" class="example-dialog-content">
 									<p>
-										<strong>Any content you want, like text or form.</strong>
+										<strong>Any content you want, such as text or form.</strong>
 									</p>
 									<p>
-										Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+										The following fake links are here to illustrate the focus trap inside this modal, thanks to <code class="language-html">data-toggle-modal</code> attribute on the trigger.
+									</p>
+									<p>
+										<a href="#">Lorem ipsum</a> dolor sit amet, consectetur adipisicing elit. Et quibusdam labore <a href="#">tempore repudiandae</a> minima earum adipisci, dolor distinctio <a href="#">facere</a> illo recusandae <a href="#">fuga</a> placeat amet <a href="#">corrupti</a> omnis ullam accusamus reprehenderit id.</p>
 									</p>
 								</div>
 								<footer class="example-dialog-footer">
@@ -1599,7 +1615,10 @@ require("easy-toggle-state");</code></pre>
 						Toggle <code class="language-css">.is-active</code> class – as default – on click on this element. Toggle the class on its target <code class="language-html">#dialog</code>, placed anywhere in the page – at the bottom for example –, at the same time. Press <kbd>escape</kbd> key to toggle off.
 					</p>
 					<p>
-						The attribute <code class="language-html">data-toggle-trigger-off</code> enable the “close” button to toggle off dialog’s state by clicking on it.
+						The attribute <code class="language-html">data-toggle-modal</code> specify that the target is a modal, and create a focus trap inside of it when active.
+					</p>
+					<p>
+						The attribute <code class="language-html">data-toggle-trigger-off</code> enable the “close” button to toggle off dialog’s state by clicking on it. <sup class="gotodef"><a href="#" title="Go to definition">[i]</a></sup>
 					</p>
 					<p>
 						As <code class="language-html">aria-hidden</code> attribute is set, its value changes too.
@@ -1623,7 +1642,8 @@ require("easy-toggle-state");</code></pre>
 	data-toggle-class
 	data-toggle-target-parent=".example-lightbox"
 	data-toggle-target-only
-	data-toggle-escape&gt;
+	data-toggle-escape
+	data-toggle-modal&gt;
 	&lt;img src="image.jpg" alt="desc"&gt;
 &lt;/a&gt;
 &lt;div class="example-lightbox" role="dialog" aria-hidden="true"&gt;
@@ -1639,7 +1659,7 @@ require("easy-toggle-state");</code></pre>
 	&lt;img class="example-lightbox-img" src="image-lg.jpg" alt="desc"&gt;
 &lt;/div&gt;</code></pre>
 					<div class="demo" id="simple-lightbox-demo">
-						<a href="https://rawgit.com/Twikito/easy-toggle-state/master/docs/assets/img/rp1.jpg" class="example-lightbox-trigger" title="Zoom" role="button" data-toggle-class data-toggle-target-parent=".example-lightbox" data-toggle-target-only data-toggle-escape>
+						<a href="https://rawgit.com/Twikito/easy-toggle-state/master/docs/assets/img/rp1.jpg" class="example-lightbox-trigger" title="Zoom" role="button" data-toggle-class data-toggle-target-parent=".example-lightbox" data-toggle-target-only data-toggle-escape data-toggle-modal>
 							<img src="https://rawgit.com/Twikito/easy-toggle-state/master/docs/assets/img/rp1_s.jpg" alt="Ready Player One">
 						</a>
 						<div class="example-lightbox" role="dialog" aria-hidden="true">
@@ -1664,7 +1684,10 @@ require("easy-toggle-state");</code></pre>
 						Toggle <code class="language-css">.is-active</code> class – as default – on click on this element. Toggle the class on its target <code class="language-html">.example-lightbox</code>, belonging to its parent container, at the same time. Press <kbd>escape</kbd> key to toggle off.
 					</p>
 					<p>
-						The attribute <code class="language-html">data-toggle-trigger-off</code> enable the “close” button and the opacified black background to toggle off lightbox state by clicking on them.
+						The attribute <code class="language-html">data-toggle-modal</code> specify that the target is a modal, and create a focus trap inside of it when active.
+					</p>
+					<p>
+						The attribute <code class="language-html">data-toggle-trigger-off</code> enable the “close” button and the backdrop – the opacified black background – to toggle off lightbox state by clicking on them.
 					</p>
 					<p>
 						As <code class="language-html">aria-hidden</code> attribute is set, its value changes too.
