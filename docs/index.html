@@ -1647,13 +1647,14 @@ require("easy-toggle-state");</code></pre>
 	&lt;img src="image.jpg" alt="desc"&gt;
 &lt;/a&gt;
 &lt;div class="example-lightbox" role="dialog" aria-hidden="true"&gt;
-	&lt;div class="example-lightbox-bg"
+	&lt;div class="example-lightbox-backdrop"
 		data-toggle-trigger-off&gt;
 	&lt;/div&gt;
 	&lt;button type="button"
 		class="example-lightbox-close"
 		data-toggle-trigger-off
-		title="close"&gt;
+		aria-label="Close"
+		title="Close this lightbox"&gt;
 		✖
 	&lt;/button&gt;
 	&lt;img class="example-lightbox-img" src="image-lg.jpg" alt="desc"&gt;
@@ -1663,8 +1664,8 @@ require("easy-toggle-state");</code></pre>
 							<img src="https://rawgit.com/Twikito/easy-toggle-state/master/docs/assets/img/rp1_s.jpg" alt="Ready Player One">
 						</a>
 						<div class="example-lightbox" role="dialog" aria-hidden="true">
-							<div class="example-lightbox-bg" data-toggle-trigger-off></div>
-							<button type="button" class="example-lightbox-close" data-toggle-trigger-off title="close">✖</button>
+							<div class="example-lightbox-backdrop" data-toggle-trigger-off></div>
+							<button type="button" class="example-lightbox-close" data-toggle-trigger-off aria-label="Close" title="Close this lightbox">✖</button>
 							<img class="example-lightbox-img" src="https://rawgit.com/Twikito/easy-toggle-state/master/docs/assets/img/rp1.jpg" alt="Ready Player One">
 						</div>
 					</div>
