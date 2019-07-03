@@ -41,6 +41,7 @@
 		GROUP = dataset("group"),
 		HIDDEN = "aria-hidden",
 		IS_ACTIVE = dataset("is-active"),
+		MODAL = dataset("modal"),
 		OUTSIDE = dataset("outside"),
 		OUTSIDE_EVENT = dataset("outside-event"),
 		PRESSED = "aria-pressed",
@@ -266,6 +267,42 @@
 	};
 
 	/**
+	 * Manage focus trap inside a target element:
+	 * When Tab key is pressed, if focus is outside of the container, give focus on first item ;
+	 * when Tab key is pressed, if focus is on last item, give focus on first one ;
+	 * when Shift + Tab keys are pressed, if focus is on first item, give focus on last one.
+	 * @param {event} event - Event triggered on keypress
+	 * @returns {undefined}
+	 */
+	const focusTrapHandler = event => {
+		const focusablesList = [...document.ETSFocusTrapContainer.querySelectorAll("a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]")];
+
+		if (!focusablesList.length || event.key !== "Tab") {
+			return;
+		}
+
+		const currentItem = event.target,
+			firstItem = focusablesList[0],
+			lastItem = focusablesList[focusablesList.length - 1];
+
+		// Outside focus trap container: focus on first
+		if (focusablesList.indexOf(currentItem) === -1) {
+			event.preventDefault();
+			return firstItem.focus();
+		}
+
+		if (event.shiftKey && currentItem === firstItem) {
+			event.preventDefault();
+			return lastItem.focus();
+		}
+
+		if (!event.shiftKey && currentItem === lastItem) {
+			event.preventDefault();
+			return firstItem.focus();
+		}
+	};
+
+	/**
 	 * Manage attributes and events of targets elements.
 	 * @param {node} triggerElement - The trigger element
 	 * @param {string} className - The class name to toggle
@@ -289,6 +326,16 @@
 			if (triggerElement.hasAttribute(OUTSIDE)) {
 				targetElement.setAttribute(TARGET_STATE, triggerElement.isToggleActive);
 				targetElement.easyToggleStateTrigger = triggerElement;
+			}
+
+			if (triggerElement.hasAttribute(MODAL)) {
+				if (targetElement.isToggleActive) {
+					document.ETSFocusTrapContainer = targetElement;
+					document.addEventListener("keydown", focusTrapHandler, false);
+				} else {
+					document.ETSFocusTrapContainer = null;
+					document.removeEventListener("keydown", focusTrapHandler, false);
+				}
 			}
 
 			dispatchHook(targetElement, TOGGLE_AFTER);
