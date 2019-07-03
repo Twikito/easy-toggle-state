@@ -208,7 +208,7 @@ require("easy-toggle-state");</code></pre>
 					<a href="#basics">Basics</a>
 				</h3>
 				<dl>
-					<dt>
+					<dt id="data-toggle-class">
 						<pre><code>&lt;foo data-toggle-class="class-name"&gt;</code></pre>
 					</dt>
 					<dd>
@@ -229,35 +229,35 @@ require("easy-toggle-state");</code></pre>
 				</h3>
 				<p>You can go further into selecting targets by using one of the following options that specify a scope within which targets can be selected.</p>
 				<dl>
-					<dt>
+					<dt id="data-toggle-target">
 						<pre><code>&lt;foo data-toggle-class="class-name" data-toggle-target="selector"&gt;</code></pre>
 					</dt>
 					<dd>
 						<p>Basic targeting: Toggle the class on the trigger element and all the target elements, defined by the selector, in the whole page. This attribute has <code>data-toggle-target-all</code> as alias.</p>
 					</dd>
 
-					<dt>
+					<dt id="data-toggle-target-parent">
 						<pre><code>&lt;foo data-toggle-class="class-name" data-toggle-target-parent="selector"&gt;</code></pre>
 					</dt>
 					<dd>
 						<p>Toggle the class on the trigger element and all the target elements, defined by the selector, belonging to its parent container.</p>
 					</dd>
 
-					<dt>
+					<dt id="data-toggle-target-target-self">
 						<pre><code>&lt;foo data-toggle-class="class-name" data-toggle-target-self="selector"&gt;</code></pre>
 					</dt>
 					<dd>
 						<p>Toggle the class on the trigger element and all the target elements, defined by the selector, within it.</p>
 					</dd>
 
-					<dt>
+					<dt id="data-toggle-target-previous">
 						<pre><code>&lt;foo data-toggle-class="class-name" data-toggle-target-previous&gt;</code></pre>
 					</dt>
 					<dd>
 						<p>Toggle the class on the trigger element and its previous adjacent element.</p>
 					</dd>
 
-					<dt>
+					<dt id="data-toggle-target-next">
 						<pre><code>&lt;foo data-toggle-class="class-name" data-toggle-target-next&gt;</code></pre>
 					</dt>
 					<dd>
@@ -271,21 +271,21 @@ require("easy-toggle-state");</code></pre>
 					<a href="#advanced">Advanced</a>
 				</h3>
 				<dl>
-					<dt>
+					<dt id="data-toggle-is-active">
 						<pre><code>data-toggle-is-active</code></pre>
 					</dt>
 					<dd>
 						<p>Specify a trigger element and its targets toggled as default, set during the <code class="language-js">onload</code> event. In this case, you should add the specified class name on each element, even if the script will check that for you.</p>
 					</dd>
 
-					<dt>
+					<dt id="data-toggle-group">
 						<pre><code>data-toggle-group="groupName"</code></pre>
 					</dt>
 					<dd>
 						<p>Specify if a trigger is a part of a group. Only one trigger of a group can be active at a time. It will actually behave like an accordion component.</p>
 					</dd>
 
-					<dt>
+					<dt id="data-toggle-radio-group">
 						<pre><code>data-toggle-radio-group="groupName"</code></pre>
 					</dt>
 					<dd>
@@ -294,14 +294,14 @@ require("easy-toggle-state");</code></pre>
 						<p>Note that a radio grouped trigger can’t have <code>data-toggle-outside</code> or <code>data-toggle-escape</code> behavior.</p>
 					</dd>
 
-					<dt>
+					<dt id="data-toggle-event">
 						<pre><code>data-toggle-event="event"</code></pre>
 					</dt>
 					<dd>
 						<p>Specify the event that will toggle the class, <code>mouseover</code> for example. <code>click</code> by default if not specified.</p>
 					</dd>
 
-					<dt>
+					<dt id="data-toggle-outside">
 						<pre><code>data-toggle-outside</code></pre>
 					</dt>
 					<dd>
@@ -309,7 +309,7 @@ require("easy-toggle-state");</code></pre>
 						<p>Note that this attribute does not work on an element with <code>data-toggle-radio-group="groupName"</code>.</p>
 					</dd>
 
-					<dt>
+					<dt id="data-toggle-outside-event">
 						<pre><code>data-toggle-outside-event="event"</code></pre>
 					</dt>
 					<dd>
@@ -317,14 +317,14 @@ require("easy-toggle-state");</code></pre>
 						<p>Note that this attribute only works when used in addition to <code>data-toggle-outside</code> attribute.</p>
 					</dd>
 
-					<dt>
+					<dt id="data-toggle-target-only">
 						<pre><code>data-toggle-target-only</code></pre>
 					</dt>
 					<dd>
 						<p>Toggle the class only on the target elements.</p>
 					</dd>
 
-					<dt>
+					<dt id="data-toggle-escape">
 						<pre><code>data-toggle-escape</code></pre>
 					</dt>
 					<dd>
@@ -332,7 +332,7 @@ require("easy-toggle-state");</code></pre>
 						<p>Note that this attribute does not work on an element with <code>data-toggle-radio-group="groupName"</code>.</p>
 					</dd>
 
-					<dt>
+					<dt id="data-toggle-arrows">
 						<pre><code>data-toggle-arrows</code></pre>
 					</dt>
 					<dd>
@@ -340,7 +340,7 @@ require("easy-toggle-state");</code></pre>
 						<p>Remember that this attribute must be used with <code>data-toggle-group</code> or <code>data-toggle-radio-group</code>.</p>
 					</dd>
 
-					<dt>
+					<dt id="data-toggle-modal">
 						<pre><code>data-toggle-modal</code></pre>
 					</dt>
 					<dd>
@@ -348,7 +348,7 @@ require("easy-toggle-state");</code></pre>
 						<p>Be really careful when using this feature. A focus trap can be very annoying – and an accessibility fault – when used in a wrong way, so be sure your target is a modal component.</p>
 					</dd>
 
-					<dt>
+					<dt id="data-toggle-trigger-off">
 						<pre><code>data-toggle-trigger-off</code></pre>
 					</dt>
 					<dd>
@@ -694,6 +694,7 @@ require("easy-toggle-state");</code></pre>
 		id="radio_1"
 		data-toggle-class="is-checked"
 		data-toggle-radio-group="radioGroup"
+		data-toggle-arrows
 		role="radio"
 		aria-checked="false"
 		title="Toggle this box"&gt;
@@ -706,6 +707,7 @@ require("easy-toggle-state");</code></pre>
 		id="radio_2"
 		data-toggle-class="is-checked"
 		data-toggle-radio-group="radioGroup"
+		data-toggle-arrows
 		role="radio"
 		aria-checked="false"
 		title="Toggle this box"&gt;
@@ -718,6 +720,7 @@ require("easy-toggle-state");</code></pre>
 		id="radio_3"
 		data-toggle-class="is-checked"
 		data-toggle-radio-group="radioGroup"
+		data-toggle-arrows
 		role="radio"
 		aria-checked="false"
 		title="Toggle this box"&gt;
@@ -728,20 +731,20 @@ require("easy-toggle-state");</code></pre>
 &lt;/div&gt;</code></pre>
 					<div class="demo" id="radio-with-aria-demo">
 						<div role="radiogroup">
-							<button type="button" class="example-radio" id="radio_7" data-toggle-class="is-checked" data-toggle-radio-group="radioGroup3" role="radio" aria-checked="false" title="Toggle this box">
+							<button type="button" class="example-radio" id="radio_7" data-toggle-class="is-checked" data-toggle-radio-group="radioGroup3" data-toggle-arrows role="radio" aria-checked="false" title="Toggle this box">
 								<span class="sr-only">Toggle</span>
 							</button>
-							<label for="radio_4">Option 1</label>
+							<label for="radio_7">Option 1</label>
 							<br>
-							<button type="button" class="example-radio" id="radio_8" data-toggle-class="is-checked" data-toggle-radio-group="radioGroup3" role="radio" aria-checked="false" title="Toggle this box">
+							<button type="button" class="example-radio" id="radio_8" data-toggle-class="is-checked" data-toggle-radio-group="radioGroup3" data-toggle-arrows role="radio" aria-checked="false" title="Toggle this box">
 								<span class="sr-only">Toggle</span>
 							</button>
-							<label for="radio_5">Option 2</label>
+							<label for="radio_8">Option 2</label>
 							<br>
-							<button type="button" class="example-radio" id="radio_9" data-toggle-class="is-checked" data-toggle-radio-group="radioGroup3" role="radio" aria-checked="false" title="Toggle this box">
+							<button type="button" class="example-radio" id="radio_9" data-toggle-class="is-checked" data-toggle-radio-group="radioGroup3" data-toggle-arrows role="radio" aria-checked="false" title="Toggle this box">
 								<span class="sr-only">Toggle</span>
 							</button>
-							<label for="radio_6">Option 3</label>
+							<label for="radio_9">Option 3</label>
 						</div>
 					</div>
 					<div class="text-right">
@@ -760,7 +763,7 @@ require("easy-toggle-state");</code></pre>
 						Toggle <code class="language-css">.is-checked</code> class on click on this element, but only one of the <code class="language-html">radioGroup</code> group at a time, and always keep one active. As <code class="language-html">aria-checked</code> attribute is set, its value changes too.
 					</p>
 					<p>
-						Thanks to <code class="language-html">data-toggle-arrows</code> attribute, you can navigate between options with arrow keys as soon as one option is focused.
+						Thanks to <code class="language-html">data-toggle-arrows</code><sup class="gotodef"><a href="#data-toggle-arrows" title="Go to definition">[?]</a></sup> attribute, you can navigate between options with arrow keys as soon as one option is focused.
 					</p>
 					<p>
 						The label is associated to the trigger by the <code class="language-html">for</code> attribute.
@@ -852,10 +855,10 @@ require("easy-toggle-state");</code></pre>
 						Toggle <code class="language-css">.is-visible</code> class only on the target <code class="language-css">.tooltip</code> located inside this trigger.
 					</p>
 					<p>
-						In the simple tooltip example, toggle on <code class="language-js">mouseover</code> event, and toggle again when <code class="language-js">mouseover</code> is triggered outside of this trigger.
+						In the simple tooltip example, toggle on <code class="language-js">mouseover</code> event, and toggle again when <code class="language-js">mouseover</code> outside of this trigger, as mentioned in <code class="language-html">data-toggle-event</code><sup class="gotodef"><a href="#data-toggle-event" title="Go to definition">[?]</a></sup> attribute.
 					</p>
 					<p>
-						In the double-click example, toggle on <code class="language-js">dblclick</code> event, and, since the <code class="language-html">data-toggle-outside-event</code> is specified, toggle again when <code class="language-js">click</code> is triggered outside of this trigger.
+						In the double-click example, toggle on <code class="language-js">dblclick</code> event, and, since the <code class="language-html">data-toggle-outside-event</code><sup class="gotodef"><a href="#data-toggle-outside-event" title="Go to definition">[?]</a></sup> attribute is specified, toggle again when <code class="language-js">click</code> is triggered outside of this trigger.
 					</p>
 					<p>
 						As <code class="language-html">aria-hidden</code> attribute is set, its value changes too.
@@ -1073,7 +1076,10 @@ require("easy-toggle-state");</code></pre>
 						The button toggles <code class="language-css">.is-open</code> class on itself and its target located inside its parent container. If there’s more than one button / panel, be careful to target a unique ID.
 					</p>
 					<p>
-						For an accordion, each trigger must be linked to the same group, here <code class="language-html">accordion</code>. This way, only one of this group can be opened at a time. The first panel is opened by default with <code class="language-html">data-toggle-is-active</code>. Thanks to <code class="language-html">data-toggle-arrows</code> attribute, you can also navigate between panels with arrow keys as soon as one tab is focused.
+						For an accordion, each trigger must be linked to the same group with <code class="language-html">data-toggle-group</code><sup class="gotodef"><a href="#data-toggle-group" title="Go to definition">[?]</a></sup> attribute, here <code class="language-html">accordion</code>. This way, only one of this group can be opened at a time. The first panel is opened by default with <code class="language-html">data-toggle-is-active</code><sup class="gotodef"><a href="#data-toggle-is-active" title="Go to definition">[?]</a></sup>.
+					</p>
+					<p>
+						Thanks to <code class="language-html">data-toggle-arrows</code><sup class="gotodef"><a href="#data-toggle-arrows" title="Go to definition">[?]</a></sup> attribute, you can also navigate between panels with arrow keys as soon as one tab is focused.
 					</p>
 					<p>
 						As <code class="language-html">aria-expanded</code> and <code class="language-html">aria-hidden</code> attributes are set, their value changes too.
@@ -1305,7 +1311,10 @@ require("easy-toggle-state");</code></pre>
 						Toggle <code class="language-css">.is-active</code> class – by default – on click on this element, but only one of the <code class="language-html">tabsGroup</code> group at a time, and always keep one active. Toggle the same class on the target element. As there’s more than one button / panel, be careful to target a unique ID.
 					</p>
 					<p>
-						Each trigger must be linked to the same group, here <code class="language-html">tabsGroup</code>. This way, only one of this group can be opened at a time. Since <code class="language-html">data-toggle-radio-group</code> is used instead of <code class="language-html">data-toggle-group</code>, this group will always keep one of its triggers active. The first panel is opened by default with <code class="language-html">data-toggle-is-active</code>. Thanks to <code class="language-html">data-toggle-arrows</code> attribute, you can also navigate between panels with arrow keys as soon as one tab is focused.
+						Each trigger must be linked to the same group, here <code class="language-html">tabsGroup</code>. This way, only one of this group can be opened at a time. Since <code class="language-html">data-toggle-radio-group</code><sup class="gotodef"><a href="#data-toggle-radio-group" title="Go to definition">[?]</a></sup> is used instead of <code class="language-html">data-toggle-group</code><sup class="gotodef"><a href="#data-toggle-group" title="Go to definition">[?]</a></sup>, this group will always keep one of its triggers active. The first panel is opened by default with <code class="language-html">data-toggle-is-active</code><sup class="gotodef"><a href="#data-toggle-is-active" title="Go to definition">[?]</a></sup>.
+					</p>
+					<p>
+						Thanks to <code class="language-html">data-toggle-arrows</code><sup class="gotodef"><a href="#data-toggle-arrows" title="Go to definition">[?]</a></sup> attribute, you can also navigate between panels with arrow keys as soon as one tab is focused.
 					</p>
 					<p>
 						As <code class="language-html">aria-selected</code> and <code class="language-html">aria-hidden</code> attributes are set, their value changes too.
@@ -1465,10 +1474,13 @@ require("easy-toggle-state");</code></pre>
 						<a href="#dropdown-explanation">Explanation</a>
 					</h4>
 					<p>
-						Toggle <code class="language-html">.is-open</code> class on click on this element. Toggle the class on its target, the next adjacent element, at the same time. Click outside of the trigger or its target, or press <kbd>escape</kbd> key to toggle off.
+						Toggle <code class="language-html">.is-open</code> class on click on this element. At the same time, toggle the class on its target, the next adjacent element, thanks to <code class="language-html">data-toggle-target-next</code><sup class="gotodef"><a href="#data-toggle-target-next" title="Go to definition">[?]</a></sup> attribute.
 					</p>
 					<p>
-						You could also add <code class="language-html">data-toggle-trigger-off</code> attribute on each option button to toggle off dropdown’s state by clicking on them.
+						The attributes <code class="language-html">data-toggle-outside</code><sup class="gotodef"><a href="#data-toggle-outside" title="Go to definition">[?]</a></sup> and <code class="language-html">data-toggle-escape</code><sup class="gotodef"><a href="#data-toggle-escape" title="Go to definition">[?]</a></sup> means you can click outside of the trigger or its target, or press <kbd>escape</kbd> key to toggle off.
+					</p>
+					<p>
+						You could also add <code class="language-html">data-toggle-trigger-off</code><sup class="gotodef"><a href="#data-toggle-trigger-off" title="Go to definition">[?]</a></sup> attribute on each option button to toggle off dropdown’s state by clicking on them.
 					</p>
 					<p>
 						As <code class="language-html">aria-expanded</code> and <code class="language-html">aria-hidden</code> attributes are set, their value change too.
@@ -1612,13 +1624,13 @@ require("easy-toggle-state");</code></pre>
 						<a href="#dialog-explanation">Explanation</a>
 					</h4>
 					<p>
-						Toggle <code class="language-css">.is-active</code> class – as default – on click on this element. Toggle the class on its target <code class="language-html">#dialog</code>, placed anywhere in the page – at the bottom for example –, at the same time. Press <kbd>escape</kbd> key to toggle off.
+						Toggle <code class="language-css">.is-active</code> class – as default – on click on this element. Toggle the class on its target <code class="language-html">#dialog</code>, placed anywhere in the page – at the bottom for example –, at the same time. Press <kbd>escape</kbd> key to toggle off, thanks to <code class="language-html">data-toggle-escape</code><sup class="gotodef"><a href="#data-toggle-escape" title="Go to definition">[?]</a></sup> attribute.
 					</p>
 					<p>
-						The attribute <code class="language-html">data-toggle-modal</code> specify that the target is a modal, and create a focus trap inside of it when active.
+						The attribute <code class="language-html">data-toggle-modal</code><sup class="gotodef"><a href="#data-toggle-modal" title="Go to definition">[?]</a></sup> specify that the target is a modal, and create a focus trap inside of it when active.
 					</p>
 					<p>
-						The attribute <code class="language-html">data-toggle-trigger-off</code> enable the “close” button to toggle off dialog’s state by clicking on it. <sup class="gotodef"><a href="#" title="Go to definition">[i]</a></sup>
+						The attribute <code class="language-html">data-toggle-trigger-off</code><sup class="gotodef"><a href="#data-toggle-trigger-off" title="Go to definition">[?]</a></sup> enable the “close” button to toggle off dialog’s state by clicking on it.
 					</p>
 					<p>
 						As <code class="language-html">aria-hidden</code> attribute is set, its value changes too.
@@ -1682,13 +1694,13 @@ require("easy-toggle-state");</code></pre>
 						<a href="#lightbox-explanation">Explanation</a>
 					</h4>
 					<p>
-						Toggle <code class="language-css">.is-active</code> class – as default – on click on this element. Toggle the class on its target <code class="language-html">.example-lightbox</code>, belonging to its parent container, at the same time. Press <kbd>escape</kbd> key to toggle off.
+						Toggle <code class="language-css">.is-active</code> class – as default – on click on this element. Toggle the class on its target <code class="language-html">.example-lightbox</code>, belonging to its parent container, at the same time. Press <kbd>escape</kbd> key to toggle off, thanks to <code class="language-html">data-toggle-escape</code><sup class="gotodef"><a href="#data-toggle-escape" title="Go to definition">[?]</a></sup> attribute.
 					</p>
 					<p>
-						The attribute <code class="language-html">data-toggle-modal</code> specify that the target is a modal, and create a focus trap inside of it when active.
+						The attribute <code class="language-html">data-toggle-modal</code><sup class="gotodef"><a href="#data-toggle-modal" title="Go to definition">[?]</a></sup> specify that the target is a modal, and create a focus trap inside of it when active.
 					</p>
 					<p>
-						The attribute <code class="language-html">data-toggle-trigger-off</code> enable the “close” button and the backdrop – the opacified black background – to toggle off lightbox state by clicking on them.
+						The attribute <code class="language-html">data-toggle-trigger-off</code><sup class="gotodef"><a href="#data-toggle-trigger-off" title="Go to definition">[?]</a></sup> enable the “close” button and the backdrop – the opacified black background – to toggle off lightbox state by clicking on them.
 					</p>
 					<p>
 						As <code class="language-html">aria-hidden</code> attribute is set, its value changes too.
@@ -1740,10 +1752,10 @@ require("easy-toggle-state");</code></pre>
 						<a href="#navigation-icon-explanation">Explanation</a>
 					</h4>
 					<p>
-						Toggle <code class="language-html">.is-active</code> class – by default – on click on this element. <code class="language-html">data-toggle-escape</code> attribute means you can press <kbd>escape</kbd> key to toggle off.
+						Toggle <code class="language-html">.is-active</code> class – by default – on click on this element. <code class="language-html">data-toggle-escape</code><sup class="gotodef"><a href="#data-toggle-escape" title="Go to definition">[?]</a></sup> attribute means you can press <kbd>escape</kbd> key to toggle off.
 					</p>
 					<p>
-						You will probably add <code class="language-html">data-toggle-target</code> attribute with the ID of your navigation bar to toggle it at the same time. Here is <a href="//codepen.io/Twikito/pen/VdJVop">an example of navigation management</a>.
+						You will probably add <code class="language-html">data-toggle-target</code><sup class="gotodef"><a href="#data-toggle-target" title="Go to definition">[?]</a></sup> attribute with the ID of your navigation bar to toggle it at the same time. Here is <a href="//codepen.io/Twikito/pen/VdJVop">an example of navigation management</a>.
 					</p>
 					<p>
 						The <code class="language-html">focusable="false"</code> attribute on <code class="language-html">&lt;svg&gt;</code> is there to prevent the icon itself from receiving focus in IE/Edge, because otherwise the button will have two Tab stops.
