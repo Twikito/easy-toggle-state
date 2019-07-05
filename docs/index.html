@@ -92,51 +92,149 @@
 			</div>
 		</div>
 
-		<a class="nav-link" href="#navigation" title="Go to navigation">
-			<svg width="1em" viewBox="0 0 100 100" role="img" focusable="false">
-				<title>Navigation icon</title>
-				<rect class="top-bar" x="0" y="15" width="100" height="12"/>
-				<rect class="mid-bar" x="0" y="44" width="100" height="12"/>
-				<rect class="bot-bar" x="0" y="73" width="100" height="12"/>
-			</svg>
-			<span class="sr-only">Go to navigation</span>
+		<a class="nav-link" role="button" href="#navigation" title="Open navigation" data-toggle-class data-toggle-target="#navigation">
+			<span class="icon">
+				<svg width="1em" viewBox="0 0 100 100" role="img" focusable="false">
+					<title>Navigation icon</title>
+					<rect class="top-bar" x="0" y="15" width="100" height="12"/>
+					<rect class="mid-bar" x="0" y="44" width="100" height="12"/>
+					<rect class="bot-bar" x="0" y="73" width="100" height="12"/>
+				</svg>
+				<span class="sr-only">Go to navigation</span>
+			</span>
 		</a>
 
 		<nav id="navigation">
 			<ul>
-				<li><a href="#download">Direct download</a></li>
-				<li><a href="#why">Why?</a></li>
-				<li><a href="#quickstart">Quickstart</a>
+				<li><a data-toggle-trigger-off href="#download">Direct download</a></li>
+				<li><a data-toggle-trigger-off href="#why">Why?</a></li>
+				<li><a data-toggle-trigger-off href="#quickstart">Quickstart</a>
 					<ul>
-						<li><a href="#quickstart-manually">Manually</a></li>
-						<li><a href="#quickstart-npm">With npm</a></li>
-						<li><a href="#compatibility">Compatibility</a></li>
+						<li><a data-toggle-trigger-off href="#quickstart-manually">Manually</a></li>
+						<li><a data-toggle-trigger-off href="#quickstart-npm">With npm</a></li>
+						<li><a data-toggle-trigger-off href="#compatibility">Compatibility</a></li>
 					</ul>
 				</li>
-				<li><a href="#how-to-use">How to use</a>
+				<li><a data-toggle-trigger-off href="#how-to-use">How to use</a>
 					<ul>
-						<li><a href="#recommendation">Recommen<wbr>dation</a></li>
-						<li><a href="#basics">Basics</a></li>
-						<li><a href="#targeting">Targeting</a></li>
-						<li><a href="#advanced">Advanced</a></li>
-						<li><a href="#a11y">Accessibility</a></li>
-						<li><a href="#expert">Expert</a></li>
+						<li><a data-toggle-trigger-off href="#recommendation">Recommen<wbr>dation</a></li>
+						<li><a data-toggle-trigger-off href="#basics">Basics</a>
+							<ul>
+								<li><a data-toggle-trigger-off href="#data-toggle-class">data-toggle-class</a></li>
+								<li><a data-toggle-trigger-off href="#data-toggle-target-">data-toggle-target</a></li>
+							</ul>
+						</li>
+						<li><a data-toggle-trigger-off href="#targeting">Targeting</a>
+							<ul>
+								<li><a data-toggle-trigger-off href="#data-toggle-target">data-toggle-target</a></li>
+								<li><a data-toggle-trigger-off href="#data-toggle-target-parent">data-toggle-target-parent</a></li>
+								<li><a data-toggle-trigger-off href="#data-toggle-target-self">data-toggle-target-self</a></li>
+								<li><a data-toggle-trigger-off href="#data-toggle-target-previous">data-toggle-target-previous</a></li>
+								<li><a data-toggle-trigger-off href="#data-toggle-target-next">data-toggle-target-next</a></li>
+							</ul>
+						</li>
+						<li><a data-toggle-trigger-off href="#advanced">Advanced</a>
+							<ul>
+								<li><a data-toggle-trigger-off href="#data-toggle-is-active">data-toggle-is-active</a></li>
+								<li><a data-toggle-trigger-off href="#data-toggle-group">data-toggle-group</a></li>
+								<li><a data-toggle-trigger-off href="#data-toggle-radio-group">data-toggle-radio-group</a></li>
+								<li><a data-toggle-trigger-off href="#data-toggle-event">data-toggle-event</a></li>
+								<li><a data-toggle-trigger-off href="#data-toggle-outside">data-toggle-outside</a></li>
+								<li><a data-toggle-trigger-off href="#data-toggle-outside-event">data-toggle-outside-event</a></li>
+								<li><a data-toggle-trigger-off href="#data-toggle-target-only">data-toggle-target-only</a></li>
+								<li><a data-toggle-trigger-off href="#data-toggle-escape">data-toggle-escape</a></li>
+								<li><a data-toggle-trigger-off href="#data-toggle-arrows">data-toggle-arrows</a></li>
+								<li><a data-toggle-trigger-off href="#data-toggle-modal">data-toggle-modal</a></li>
+								<li><a data-toggle-trigger-off href="#data-toggle-trigger-off">data-toggle-trigger-off</a></li>
+							</ul>
+						</li>
+						<li><a data-toggle-trigger-off href="#a11y">Accessibility</a></li>
+						<li><a data-toggle-trigger-off href="#expert">Expert</a>
+							<ul>
+								<li><a data-toggle-trigger-off href="#custom-prefix">Custom prefix</a></li>
+								<li><a data-toggle-trigger-off href="#asynchronous">Asynchronous needs</a></li>
+								<li><a data-toggle-trigger-off href="#hooks">Hooks</a></li>
+							</ul>
+						</li>
 					</ul>
 				</li>
-				<li><a href="#examples">Examples</a>
+				<li><a data-toggle-trigger-off href="#examples">Examples</a>
 					<ul>
-						<li><a href="#checkbox">Checkbox</a></li>
-						<li><a href="#switchbox">Switchbox</a></li>
-						<li><a href="#radio">Radio buttons</a></li>
-						<li><a href="#tooltip">Tooltip</a></li>
-						<li><a href="#collapsible-panel">Collapsible panel / accordion</a></li>
-						<li><a href="#tabs">Tabs</a></li>
-						<li><a href="#dropdown">Dropdown</a></li>
-						<li><a href="#dialog">Dialog</a></li>
-						<li><a href="#lightbox">Lightbox</a></li>
-						<li><a href="#navigation-icon">Navigation icon</a></li>
+						<li><a data-toggle-trigger-off href="#checkbox">Checkbox</a>
+							<ul>
+								<li><a data-toggle-trigger-off href="#simple-checkbox">Simple checkbox</a></li>
+								<li><a data-toggle-trigger-off href="#checkbox-with-aria">Checkbox with ARIA</a></li>
+								<li><a data-toggle-trigger-off href="#checkbox-with-external-label">Checkbox with external label</a></li>
+								<li><a data-toggle-trigger-off href="#checkbox-with-internal-label">Checkbox with internal label</a></li>
+								<li><a data-toggle-trigger-off href="#checkbox-explanation">Explanation</a></li>
+							</ul>
+						</li>
+						<li><a data-toggle-trigger-off href="#switchbox">Switchbox</a>
+							<ul>
+								<li><a data-toggle-trigger-off href="#switchbox-with-external-label">Switchbox with external label</a></li>
+								<li><a data-toggle-trigger-off href="#switchbox-explanation">Explanation</a></li>
+							</ul>
+						</li>
+						<li><a data-toggle-trigger-off href="#radio">Radio buttons</a>
+							<ul>
+								<li><a data-toggle-trigger-off href="#simple-radio">Simple radio buttons</a></li>
+								<li><a data-toggle-trigger-off href="#radio-with-arrows">Radio buttons and arrow keys</a></li>
+								<li><a data-toggle-trigger-off href="#radio-with-aria">Radio buttons with ARIA</a></li>
+								<li><a data-toggle-trigger-off href="#radio-explanation">Explanation</a></li>
+							</ul>
+						</li>
+						<li><a data-toggle-trigger-off href="#tooltip">Tooltip</a>
+							<ul>
+								<li><a data-toggle-trigger-off href="#simple-tooltip">Simple tooltip</a></li>
+								<li><a data-toggle-trigger-off href="#dblclick-tooltip">Double-click tooltip</a></li>
+								<li><a data-toggle-trigger-off href="#tooltip-explanation">Explanation</a></li>
+							</ul>
+						</li>
+						<li><a data-toggle-trigger-off href="#collapsible-panel">Collapsible panel / accordion</a>
+							<ul>
+								<li><a data-toggle-trigger-off href="#simple-collapsible-panel">Simple collapsible panel</a></li>
+								<li><a data-toggle-trigger-off href="#collapsible-panel-with-escape">Collapsible panel and escape key</a></li>
+								<li><a data-toggle-trigger-off href="#collapsible-panel-with-aria">Collapsible panel with ARIA</a></li>
+								<li><a data-toggle-trigger-off href="#accordion">Accordion</a></li>
+								<li><a data-toggle-trigger-off href="#collapsible-panel-explanation">Explanation</a></li>
+							</ul>
+						</li>
+						<li><a data-toggle-trigger-off href="#tabs">Tabs</a>
+							<ul>
+								<li><a data-toggle-trigger-off href="#simple-tabs">Simple tabs</a></li>
+								<li><a data-toggle-trigger-off href="#tabs-with-arrows">Tabs and arrow keys</a></li>
+								<li><a data-toggle-trigger-off href="#tabs-with-aria">Tabs with ARIA</a></li>
+								<li><a data-toggle-trigger-off href="#tabs-explanation">Explanation</a></li>
+							</ul>
+						</li>
+						<li><a data-toggle-trigger-off href="#dropdown">Dropdown</a>
+							<ul>
+								<li><a data-toggle-trigger-off href="#simple-dropdown">Simple dropdown</a></li>
+								<li><a data-toggle-trigger-off href="#dropdown-with-aria">Dropdown with ARIA</a></li>
+								<li><a data-toggle-trigger-off href="#dropdown-explanation">Explanation</a></li>
+							</ul>
+						</li>
+						<li><a data-toggle-trigger-off href="#dialog">Dialog</a>
+							<ul>
+								<li><a data-toggle-trigger-off href="#simple-dialog">Simple dialog</a></li>
+								<li><a data-toggle-trigger-off href="#dialog-with-aria">Dialog with ARIA</a></li>
+								<li><a data-toggle-trigger-off href="#dialog-explanation">Explanation</a></li>
+							</ul>
+						</li>
+						<li><a data-toggle-trigger-off href="#lightbox">Lightbox</a>
+							<ul>
+								<li><a data-toggle-trigger-off href="#simple-lightbox">Simple lightbox</a></li>
+								<li><a data-toggle-trigger-off href="#lightbox-explanation">Explanation</a></li>
+							</ul>
+						</li>
+						<li><a data-toggle-trigger-off href="#navigation-icon">Navigation icon</a>
+							<ul>
+								<li><a data-toggle-trigger-off href="#simple-navigation-icon">Simple navigation icon</a></li>
+								<li><a data-toggle-trigger-off href="#navigation-icon-explanation">Explanation</a></li>
+							</ul>
+						</li>
 					</ul>
-				<li><a href="#contribution">Contribution</a></li>
+				<li><a data-toggle-trigger-off href="#contribution">Contribution</a></li>
 			</ul>
 		</nav>
 
@@ -166,7 +264,9 @@
 					<li><a href="#download">Direct download</a></li>
 					<li>Choose another version: <a href="//github.com/Twikito/easy-toggle-state/tree/master/dist">ES5 or ES6</a>.</li>
 				</ul>
-				<p>Then, <strong>add the script into your page</strong>, and it’s done.</p>
+				<p>Then, <strong>add the script into your page</strong>:</p>
+				<pre><code class="language-html">&lt;script src="./your-path/easy-toggle-state.es6.min.js"&gt;&lt;/script&gt;</code></pre>
+				<p>and it’s done.</p>
 			</section>
 			<section id="quickstart-npm">
 				<h3>
@@ -208,19 +308,23 @@ require("easy-toggle-state");</code></pre>
 					<a href="#basics">Basics</a>
 				</h3>
 				<dl>
-					<dt id="data-toggle-class">
-						<pre><code>&lt;foo data-toggle-class="class-name"&gt;</code></pre>
-					</dt>
-					<dd>
-						<p>A CSS class to toggle each time a click is triggered on this element. If empty, the <code>is-active</code> class is used.</p>
-					</dd>
+					<div id="data-toggle-class">
+						<dt>
+							<pre><code>&lt;foo data-toggle-class="class-name"&gt;</code></pre>
+						</dt>
+						<dd>
+							<p>A CSS class to toggle each time a click is triggered on this element. If empty, the <code>is-active</code> class is used.</p>
+						</dd>
+					</div>
 
-					<dt>
-						<pre><code>&lt;foo data-toggle-class="class-name" data-toggle-target="selector"&gt;</code></pre>
-					</dt>
-					<dd>
-						<p>Toggle the class on the trigger element and all the target elements, defined by the selector, in the page. This attribute has <code>data-toggle-target-all</code> as alias.</p>
-					</dd>
+					<div id="data-toggle-target-">
+						<dt>
+							<pre><code>&lt;foo data-toggle-class="class-name" data-toggle-target="selector"&gt;</code></pre>
+						</dt>
+						<dd>
+							<p>Toggle the class on the trigger element and all the target elements, defined by the selector, in the page. This attribute has <code>data-toggle-target-all</code> as alias.</p>
+						</dd>
+					</div>
 				</dl>
 			</section>
 			<section id="targeting" class="language-html">
@@ -229,40 +333,50 @@ require("easy-toggle-state");</code></pre>
 				</h3>
 				<p>You can go further into selecting targets by using one of the following options that specify a scope within which targets can be selected.</p>
 				<dl>
-					<dt id="data-toggle-target">
-						<pre><code>&lt;foo data-toggle-class="class-name" data-toggle-target="selector"&gt;</code></pre>
-					</dt>
-					<dd>
-						<p>Basic targeting: Toggle the class on the trigger element and all the target elements, defined by the selector, in the whole page. This attribute has <code>data-toggle-target-all</code> as alias.</p>
-					</dd>
+					<div id="data-toggle-target">
+						<dt>
+							<pre><code>&lt;foo data-toggle-class="class-name" data-toggle-target="selector"&gt;</code></pre>
+						</dt>
+						<dd>
+							<p>Basic targeting: Toggle the class on the trigger element and all the target elements, defined by the selector, in the whole page. This attribute has <code>data-toggle-target-all</code> as alias.</p>
+						</dd>
+					</div>
 
-					<dt id="data-toggle-target-parent">
-						<pre><code>&lt;foo data-toggle-class="class-name" data-toggle-target-parent="selector"&gt;</code></pre>
-					</dt>
-					<dd>
-						<p>Toggle the class on the trigger element and all the target elements, defined by the selector, belonging to its parent container.</p>
-					</dd>
+					<div id="data-toggle-target-parent">
+						<dt>
+							<pre><code>&lt;foo data-toggle-class="class-name" data-toggle-target-parent="selector"&gt;</code></pre>
+						</dt>
+						<dd>
+							<p>Toggle the class on the trigger element and all the target elements, defined by the selector, belonging to its parent container.</p>
+						</dd>
+					</div>
 
-					<dt id="data-toggle-target-target-self">
-						<pre><code>&lt;foo data-toggle-class="class-name" data-toggle-target-self="selector"&gt;</code></pre>
-					</dt>
-					<dd>
-						<p>Toggle the class on the trigger element and all the target elements, defined by the selector, within it.</p>
-					</dd>
+					<div id="data-toggle-target-self">
+						<dt>
+							<pre><code>&lt;foo data-toggle-class="class-name" data-toggle-target-self="selector"&gt;</code></pre>
+						</dt>
+						<dd>
+							<p>Toggle the class on the trigger element and all the target elements, defined by the selector, within it.</p>
+						</dd>
+					</div>
 
-					<dt id="data-toggle-target-previous">
-						<pre><code>&lt;foo data-toggle-class="class-name" data-toggle-target-previous&gt;</code></pre>
-					</dt>
-					<dd>
-						<p>Toggle the class on the trigger element and its previous adjacent element.</p>
-					</dd>
+					<div id="data-toggle-target-previous">
+						<dt>
+							<pre><code>&lt;foo data-toggle-class="class-name" data-toggle-target-previous&gt;</code></pre>
+						</dt>
+						<dd>
+							<p>Toggle the class on the trigger element and its previous adjacent element.</p>
+						</dd>
+					</div>
 
-					<dt id="data-toggle-target-next">
-						<pre><code>&lt;foo data-toggle-class="class-name" data-toggle-target-next&gt;</code></pre>
-					</dt>
-					<dd>
-						<p>Toggle the class on the trigger element and its next adjacent element.</p>
-					</dd>
+					<div id="data-toggle-target-next">
+						<dt>
+							<pre><code>&lt;foo data-toggle-class="class-name" data-toggle-target-next&gt;</code></pre>
+						</dt>
+						<dd>
+							<p>Toggle the class on the trigger element and its next adjacent element.</p>
+						</dd>
+					</div>
 				</dl>
 			</section>
 
@@ -271,90 +385,112 @@ require("easy-toggle-state");</code></pre>
 					<a href="#advanced">Advanced</a>
 				</h3>
 				<dl>
-					<dt id="data-toggle-is-active">
-						<pre><code>data-toggle-is-active</code></pre>
-					</dt>
-					<dd>
-						<p>Specify a trigger element and its targets toggled as default, set during the <code class="language-js">onload</code> event. In this case, you should add the specified class name on each element, even if the script will check that for you.</p>
-					</dd>
+					<div id="data-toggle-is-active">
+						<dt>
+							<pre><code>data-toggle-is-active</code></pre>
+						</dt>
+						<dd>
+							<p>Specify a trigger element and its targets toggled as default, set during the <code class="language-js">onload</code> event. In this case, you should add the specified class name on each element, even if the script will check that for you.</p>
+						</dd>
+					</div>
 
-					<dt id="data-toggle-group">
-						<pre><code>data-toggle-group="groupName"</code></pre>
-					</dt>
-					<dd>
-						<p>Specify if a trigger is a part of a group. Only one trigger of a group can be active at a time. It will actually behave like an accordion component.</p>
-					</dd>
+					<div id="data-toggle-group">
+						<dt>
+							<pre><code>data-toggle-group="groupName"</code></pre>
+						</dt>
+						<dd>
+							<p>Specify if a trigger is a part of a group. Only one trigger of a group can be active at a time. It will actually behave like an accordion component.</p>
+						</dd>
+					</div>
 
-					<dt id="data-toggle-radio-group">
-						<pre><code>data-toggle-radio-group="groupName"</code></pre>
-					</dt>
-					<dd>
-						<p>Specify if a trigger is a part of a radio group. Only one trigger of a radio group can be active at a time.</p>
-						<p>Unlike a simple group as seen above, as soon as a trigger is activated, <strong>a radio group will always keep one trigger active</strong>. It will actually behave like radio buttons or tabs component.</p>
-						<p>Note that a radio grouped trigger can’t have <code>data-toggle-outside</code> or <code>data-toggle-escape</code> behavior.</p>
-					</dd>
+					<div id="data-toggle-radio-group">
+						<dt>
+							<pre><code>data-toggle-radio-group="groupName"</code></pre>
+						</dt>
+						<dd>
+							<p>Specify if a trigger is a part of a radio group. Only one trigger of a radio group can be active at a time.</p>
+							<p>Unlike a simple group as seen above, as soon as a trigger is activated, <strong>a radio group will always keep one trigger active</strong>. It will actually behave like radio buttons or tabs component.</p>
+							<p>Note that a radio grouped trigger can’t have <code>data-toggle-outside</code> or <code>data-toggle-escape</code> behavior.</p>
+						</dd>
+					</div>
 
-					<dt id="data-toggle-event">
-						<pre><code>data-toggle-event="event"</code></pre>
-					</dt>
-					<dd>
-						<p>Specify the event that will toggle the class, <code>mouseover</code> for example. <code>click</code> by default if not specified.</p>
-					</dd>
+					<div id="data-toggle-event">
+						<dt>
+							<pre><code>data-toggle-event="event"</code></pre>
+						</dt>
+						<dd>
+							<p>Specify the event that will toggle the class, <code>mouseover</code> for example. <code>click</code> by default if not specified.</p>
+						</dd>
+					</div>
 
-					<dt id="data-toggle-outside">
-						<pre><code>data-toggle-outside</code></pre>
-					</dt>
-					<dd>
-						<p>Toggle off the class when the event is triggered again outside of the trigger element. The event will be the same as <code>data-toggle-event</code> value, or <code>click</code> by default.</p>
-						<p>Note that this attribute does not work on an element with <code>data-toggle-radio-group="groupName"</code>.</p>
-					</dd>
+					<div id="data-toggle-outside">
+						<dt>
+							<pre><code>data-toggle-outside</code></pre>
+						</dt>
+						<dd>
+							<p>Toggle off the class when the event is triggered again outside of the trigger element. The event will be the same as <code>data-toggle-event</code> value, or <code>click</code> by default.</p>
+							<p>Note that this attribute does not work on an element with <code>data-toggle-radio-group="groupName"</code>.</p>
+						</dd>
+					</div>
 
-					<dt id="data-toggle-outside-event">
-						<pre><code>data-toggle-outside-event="event"</code></pre>
-					</dt>
-					<dd>
-						<p>When using <code>data-toggle-outside</code> attribute, add this attribute to use a specific event for that behavior.</p>
-						<p>Note that this attribute only works when used in addition to <code>data-toggle-outside</code> attribute.</p>
-					</dd>
+					<div id="data-toggle-outside-event">
+						<dt>
+							<pre><code>data-toggle-outside-event="event"</code></pre>
+						</dt>
+						<dd>
+							<p>When using <code>data-toggle-outside</code> attribute, add this attribute to use a specific event for that behavior.</p>
+							<p>Note that this attribute only works when used in addition to <code>data-toggle-outside</code> attribute.</p>
+						</dd>
+					</div>
 
-					<dt id="data-toggle-target-only">
-						<pre><code>data-toggle-target-only</code></pre>
-					</dt>
-					<dd>
-						<p>Toggle the class only on the target elements.</p>
-					</dd>
+					<div id="data-toggle-target-only">
+						<dt>
+							<pre><code>data-toggle-target-only</code></pre>
+						</dt>
+						<dd>
+							<p>Toggle the class only on the target elements.</p>
+						</dd>
+					</div>
 
-					<dt id="data-toggle-escape">
-						<pre><code>data-toggle-escape</code></pre>
-					</dt>
-					<dd>
-						<p>Toggle the class when the trigger element is active and when the <kbd>escape</kbd> key is pressed.</p>
-						<p>Note that this attribute does not work on an element with <code>data-toggle-radio-group="groupName"</code>.</p>
-					</dd>
+					<div id="data-toggle-escape">
+						<dt>
+							<pre><code>data-toggle-escape</code></pre>
+						</dt>
+						<dd>
+							<p>Toggle the class when the trigger element is active and when the <kbd>escape</kbd> key is pressed.</p>
+							<p>Note that this attribute does not work on an element with <code>data-toggle-radio-group="groupName"</code>.</p>
+						</dd>
+					</div>
 
-					<dt id="data-toggle-arrows">
-						<pre><code>data-toggle-arrows</code></pre>
-					</dt>
-					<dd>
-						<p>Specify that when a grouped trigger is focused, you can navigate between other triggers of the same group with arrows <kbd title="arrow up">&uarr;</kbd> <kbd title="arrow right">&rarr;</kbd> <kbd title="arrow down">&darr;</kbd> <kbd title="arrow left">&larr;</kbd>, <kbd>home</kbd> and <kbd>end</kbd> keys.</p>
-						<p>Remember that this attribute must be used with <code>data-toggle-group</code> or <code>data-toggle-radio-group</code>.</p>
-					</dd>
+					<div id="data-toggle-arrows">
+						<dt>
+							<pre><code>data-toggle-arrows</code></pre>
+						</dt>
+						<dd>
+							<p>Specify that when a grouped trigger is focused, you can navigate between other triggers of the same group with arrows <kbd title="arrow up">&uarr;</kbd> <kbd title="arrow right">&rarr;</kbd> <kbd title="arrow down">&darr;</kbd> <kbd title="arrow left">&larr;</kbd>, <kbd>home</kbd> and <kbd>end</kbd> keys.</p>
+							<p>Remember that this attribute must be used with <code>data-toggle-group</code> or <code>data-toggle-radio-group</code>.</p>
+						</dd>
+					</div>
 
-					<dt id="data-toggle-modal">
-						<pre><code>data-toggle-modal</code></pre>
-					</dt>
-					<dd>
-						<p>Specify that the target is a modal, such as a <a href="#dialog">dialog</a> or a <a href="#lightbox">lightbox</a>. This way, when the target is active – open –, the focus is trapped inside this target. This means tabbing will only focus on focusable elements inside this target, letting anything outside be out of scope.</p>
-						<p>Be really careful when using this feature. A focus trap can be very annoying – and an accessibility fault – when used in a wrong way, so be sure your target is a modal component.</p>
-					</dd>
+					<div id="data-toggle-modal">
+						<dt>
+							<pre><code>data-toggle-modal</code></pre>
+						</dt>
+						<dd>
+							<p>Specify that the target is a modal, such as a <a href="#dialog">dialog</a> or a <a href="#lightbox">lightbox</a>. This way, when the target is active – open –, the focus is trapped inside this target. This means tabbing will only focus on focusable elements inside this target, letting anything outside be out of scope.</p>
+							<p>Be really careful when using this feature. A focus trap can be very annoying – and an accessibility fault – when used in a wrong way, so be sure your target is a modal component.</p>
+						</dd>
+					</div>
 
-					<dt id="data-toggle-trigger-off">
-						<pre><code>data-toggle-trigger-off</code></pre>
-					</dt>
-					<dd>
-						<p>Add this attribute to an element inside a target to enable it to toggle the state of this target. For example, a close button inside a modal.</p>
-						<p>Remember that this attribute must be used on an element <strong>inside a target</strong>.</p>
-					</dd>
+					<div id="data-toggle-trigger-off">
+						<dt>
+							<pre><code>data-toggle-trigger-off</code></pre>
+						</dt>
+						<dd>
+							<p>Add this attribute to an element inside a target to enable it to toggle the state of this target. For example, a close button inside a modal.</p>
+							<p>Remember that this attribute must be used on an element <strong>inside a target</strong>.</p>
+						</dd>
+					</div>
 				</dl>
 			</section>
 
@@ -370,9 +506,9 @@ require("easy-toggle-state");</code></pre>
 				<h3>
 					<a href="#expert">Expert</a>
 				</h3>
-				<section id="prefix">
+				<section id="custom-prefix">
 					<h4>
-						<a href="#prefix">Custom prefix</a>
+						<a href="#custom-prefix">Custom prefix</a>
 					</h4>
 					<p>You can change the prefix <code>toggle</code> in <code>data-toggle-class</code> and every attributes to prevent conflict with another <abbr title="JavaScript">JS</abbr> library. To do so, add this attribute to your <code>&lt;html&gt;</code> element with your new prefix:</p>
 					<pre><code class="language-html">&lt;html data-easy-toggle-state-custom-prefix="my-prefix"&gt;</code></pre>
