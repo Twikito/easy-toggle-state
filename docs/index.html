@@ -151,8 +151,8 @@
 						<li><a data-toggle-trigger-off href="#a11y">Accessibility</a></li>
 						<li><a data-toggle-trigger-off href="#expert">Expert</a>
 							<ul>
+								<li><a data-toggle-trigger-off href="#initialization">Manual initialization</a></li>
 								<li><a data-toggle-trigger-off href="#custom-prefix">Custom prefix</a></li>
-								<li><a data-toggle-trigger-off href="#asynchronous">Asynchronous needs</a></li>
 								<li><a data-toggle-trigger-off href="#hooks">Hooks</a></li>
 							</ul>
 						</li>
@@ -506,6 +506,14 @@ require("easy-toggle-state");</code></pre>
 				<h3>
 					<a href="#expert">Expert</a>
 				</h3>
+				<section id="initialization">
+					<h4>
+						<a href="#initialization">Manual initialization</a>
+					</h4>
+					<p>For asynchronous needs, you can initiate the magic with:</p>
+					<pre><code class="language-js">window.initEasyToggleState();</code></pre>
+					<p>Returns an array of initialized trigger elements.</p>
+				</section>
 				<section id="custom-prefix">
 					<h4>
 						<a href="#custom-prefix">Custom prefix</a>
@@ -513,14 +521,6 @@ require("easy-toggle-state");</code></pre>
 					<p>You can change the prefix <code>toggle</code> in <code>data-toggle-class</code> and every attributes to prevent conflict with another <abbr title="JavaScript">JS</abbr> library. To do so, add this attribute to your <code>&lt;html&gt;</code> element with your new prefix:</p>
 					<pre><code class="language-html">&lt;html data-easy-toggle-state-custom-prefix="my-prefix"&gt;</code></pre>
 					<p>It will so be set to all attributes like <code>data-my-prefix-class</code>.</p>
-				</section>
-				<section id="asynchronous">
-					<h4>
-						<a href="#asynchronous">Asynchronous needs</a>
-					</h4>
-					<p>For asynchronous needs, you can initiate the magic with:</p>
-					<pre><code class="language-js">window.initEasyToggleState();</code></pre>
-					<p>Returns an array of initialized trigger elements.</p>
 				</section>
 				<section id="hooks">
 					<h4>
