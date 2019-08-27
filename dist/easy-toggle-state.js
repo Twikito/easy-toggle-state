@@ -333,7 +333,7 @@
 
 
   var focusTrapHandler = function focusTrapHandler(event) {
-    var focusablesList = _toConsumableArray(document.ETSFocusTrapContainer.querySelectorAll("a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]"));
+    var focusablesList = _toConsumableArray(document.ETSFocusTrapContainer.querySelectorAll("a[href], area[href], input:not([type='hidden']):not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]"));
 
     if (!focusablesList.length || event.key !== "Tab") {
       return;
