@@ -560,8 +560,6 @@
           case "End":
             newElement = groupList[groupList.length - 1];
             break;
-
-          default:
         }
 
         newElement.focus();
