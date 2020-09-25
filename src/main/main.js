@@ -2,6 +2,8 @@ import {
 	ARROWS,
 	CHECKED,
 	CLASS,
+	CLASS_TARGET,
+	CLASS_TRIGGER,
 	ESCAPE,
 	EVENT,
 	EXPANDED,
@@ -14,7 +16,12 @@ import {
 	PRESSED,
 	RADIO_GROUP,
 	SELECTED,
-	TARGET_ONLY,
+	TARGET,
+	TARGET_ALL,
+	TARGET_NEXT,
+	TARGET_PARENT,
+	TARGET_PREVIOUS,
+	TARGET_SELF,
 	TARGET_STATE,
 	TRIGGER_OFF
 } from "../constants/constants";
@@ -22,8 +29,10 @@ import { TOGGLE_AFTER, TOGGLE_BEFORE } from "../constants/events";
 import $$ from "../helpers/retrieve-query-selector-all";
 import dispatchHook from "../helpers/dispatch-hook";
 import manageAria from "../helpers/manage-aria";
+import retrieveClassList from "../helpers/retrieve-class-list";
 import retrieveGroupActiveElement from "../helpers/retrieve-group-active-element";
 import retrieveTargets from "../helpers/retrieve-targets";
+import toggleClassList from "../helpers/toggle-class-list";
 
 /**
  * Manage event listener on document
@@ -161,22 +170,20 @@ const focusTrapHandler = event => {
 /**
  * Manage attributes and events of targets elements.
  * @param {node} triggerElement - The trigger element
- * @param {string} className - The class name to toggle
+ * @param {array} classListForTarget - The class list to toggle
  * @param {boolean} onLoadActive - A flag for active by default
  * @returns {undefined}
  */
-const manageTargets = (triggerElement, className, onLoadActive) => retrieveTargets(triggerElement).forEach(targetElement => {
+const manageTargets = (triggerElement, classListForTarget, onLoadActive) => retrieveTargets(triggerElement).forEach(targetElement => {
 		dispatchHook(targetElement, TOGGLE_BEFORE);
 
 		targetElement.isToggleActive = !targetElement.isToggleActive;
 		manageAria(targetElement);
 
-		if (onLoadActive && !targetElement.classList.contains(className)) {
-			targetElement.classList.add(className);
-		}
-
-		if (!onLoadActive) {
-			targetElement.classList.toggle(className);
+		if (onLoadActive) {
+			targetElement.classList.add(...classListForTarget);
+		} else {
+			toggleClassList(targetElement, classListForTarget);
 		}
 
 		if (triggerElement.hasAttribute(OUTSIDE)) {
@@ -207,17 +214,14 @@ const manageTargets = (triggerElement, className, onLoadActive) => retrieveTarge
 const manageToggle = element => {
 	dispatchHook(element, TOGGLE_BEFORE);
 
-	const className = element.getAttribute(CLASS) || "is-active";
+	const classList = retrieveClassList(element);
+	toggleClassList(element, classList.trigger);
 	element.isToggleActive = !element.isToggleActive;
 	manageAria(element);
 
-	if (!element.hasAttribute(TARGET_ONLY)) {
-		element.classList.toggle(className);
-	}
-
 	dispatchHook(element, TOGGLE_AFTER);
 
-	manageTargets(element, className, false);
+	manageTargets(element, classList.target, false);
 	return manageTriggerOutside(element);
 };
 
@@ -229,7 +233,8 @@ const manageToggle = element => {
 const manageActiveByDefault = element => {
 	dispatchHook(element, TOGGLE_BEFORE);
 
-	const className = element.getAttribute(CLASS) || "is-active";
+	const classList = retrieveClassList(element);
+	element.classList.add(...classList.trigger);
 	element.isToggleActive = true;
 	manageAria(element, {
 		[CHECKED]: true,
@@ -239,13 +244,9 @@ const manageActiveByDefault = element => {
 		[SELECTED]: true
 	});
 
-	if (!element.hasAttribute(TARGET_ONLY) && !element.classList.contains(className)) {
-		element.classList.add(className);
-	}
-
 	dispatchHook(element, TOGGLE_AFTER);
 
-	manageTargets(element, className, true);
+	manageTargets(element, classList.target, true);
 	return manageTriggerOutside(element);
 };
 
@@ -275,6 +276,13 @@ const manageGroup = element => {
  * @returns {array} - An array of initialized triggers
  */
 export default () => {
+
+	/** Warn if there some CLASS_TARGET triggers with no specified target. */
+	[...document.querySelectorAll(`[${CLASS_TARGET}]:not([${TARGET}]):not([${TARGET_ALL}]):not([${TARGET_NEXT}]):not([${TARGET_PREVIOUS}]):not([${TARGET_PARENT}]):not([${TARGET_SELF}])`)]
+		.forEach(element => {
+			console.warn(`This trigger has the attribute '${CLASS_TARGET}', but no specified target\n`, element);
+		});
+
 
 	/** Active by default management. */
 	$$(IS_ACTIVE)
@@ -340,7 +348,7 @@ export default () => {
 				const activeElement = document.activeElement;
 				if (
 					["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "Home", "End"].indexOf(event.key) === -1 ||
-					!activeElement.hasAttribute(CLASS) ||
+					(!activeElement.hasAttribute(CLASS) && !activeElement.hasAttribute(CLASS_TRIGGER) && !activeElement.hasAttribute(CLASS_TARGET)) ||
 					!activeElement.hasAttribute(ARROWS)
 				) {
 					return;
