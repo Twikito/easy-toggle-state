@@ -18,7 +18,7 @@ module.exports = {
 		"array-element-newline": [
 			"error",
 			{
-				"multiline": true
+				"ArrayExpression": "consistent"
 			}
 		],
 		"arrow-body-style": "error",
@@ -204,7 +204,12 @@ module.exports = {
 		"no-underscore-dangle": "error",
 		"no-unmodified-loop-condition": "error",
 		"no-unneeded-ternary": "error",
-		"no-unused-expressions": "error",
+		"no-unused-expressions": [
+			"error",
+			{
+				"allowShortCircuit": true
+			}
+		],
 		"no-use-before-define": "off",
 		"no-useless-call": "error",
 		"no-useless-computed-key": "error",
