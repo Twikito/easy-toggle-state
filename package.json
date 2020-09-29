@@ -1,7 +1,7 @@
 {
 	"name": "easy-toggle-state",
 	"version": "1.12.7",
-	"description": "A tiny JavaScript library to easily toggle the state of any HTML element in any contexts.",
+	"description": "A tiny JavaScript library to easily toggle the state of any HTML element in any contexts, and create UI components in no time.",
 	"main": "dist/easy-toggle-state.es6.js",
 	"scripts": {
 		"filesize-for-doc": "node tasks/generate-file-size.js",
@@ -33,8 +33,17 @@
 	},
 	"keywords": [
 		"toggle",
-		"event",
-		"accessibility"
+		"switch",
+		"accessibility",
+		"ui components",
+		"dropdown",
+		"modal",
+		"tooltip",
+		"navigation button",
+		"lightbox",
+		"tabs",
+		"checkbox",
+		"radio"
 	],
 	"author": "Matthieu Bué <https://twikito.com>",
 	"license": "MIT",
