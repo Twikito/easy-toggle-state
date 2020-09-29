@@ -4,6 +4,7 @@
 	"description": "A tiny JavaScript library to easily toggle the state of any HTML element in any contexts.",
 	"main": "dist/easy-toggle-state.es6.js",
 	"scripts": {
+		"filesize-for-doc": "node tasks/generate-file-size.js",
 		"precommit": "lint-staged",
 		"lint": "eslint src",
 		"lint:fix": "eslint --fix src",
@@ -15,7 +16,7 @@
 		"bundle:es6:min": "cross-env NODE_ENV=es6 OUT_STYLE=min rollup -c",
 		"bundle:es5": "cross-env NODE_ENV=es5 rollup -c",
 		"bundle:es5:min": "cross-env NODE_ENV=es5 OUT_STYLE=min rollup -c",
-		"build": "npm run test && npm run clean && npm-run-all -p bundle:**"
+		"build": "npm run test && npm run clean && npm-run-all -p bundle:** && npm run filesize-for-doc"
 	},
 	"lint-staged": {
 		"src/**/*.js": [
