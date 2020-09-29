@@ -1,6 +1,6 @@
 # [![Easy Toggle State](https://raw.githubusercontent.com/Twikito/easy-toggle-state/master/logo.png)](https://twikito.github.io/easy-toggle-state/)
 
-__A tiny JavaScript library to easily toggle the state of any HTML element in any context, and create UI components in no time.__
+__A tiny JavaScript library to easily toggle the state of any HTML element in any contexts, and create UI components in no time.__
 
 Dropdown, navigation button, tooltip, collapsible panel, lightbox, tabs, switch like above…
 UI components made in minutes without worried about JavaScript. Only set a few HTML attributes, and code the rest with your CSS skills.
