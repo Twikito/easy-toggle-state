@@ -1,7 +1,7 @@
 /**
  * -------------------------------------------------------------------
  * easy-toggle-state
- * A tiny JavaScript library to easily toggle the state of any HTML element in any contexts.
+ * A tiny JavaScript library to easily toggle the state of any HTML element in any contexts, and create UI components in no time.
  *
  * @author Matthieu Bué <https://twikito.com>
  * @version v1.12.7
@@ -35,6 +35,9 @@
 	const ARROWS = dataset("arrows"),
 		CHECKED = "aria-checked",
 		CLASS = dataset("class"),
+		CLASS_TARGET = dataset("class-on-target"),
+		CLASS_TRIGGER = dataset("class-on-trigger"),
+		DEFAULT_CLASS = "is-active",
 		ESCAPE = dataset("escape"),
 		EVENT = dataset("event"),
 		EXPANDED = "aria-expanded",
@@ -50,7 +53,6 @@
 		TARGET = dataset("target"),
 		TARGET_ALL = dataset("target-all"),
 		TARGET_NEXT = dataset("target-next"),
-		TARGET_ONLY = dataset("target-only"),
 		TARGET_PARENT = dataset("target-parent"),
 		TARGET_PREVIOUS = dataset("target-previous"),
 		TARGET_SELF = dataset("target-self"),
@@ -66,12 +68,30 @@
 	/**
 	 * Retrieve all trigger elements with a specific attribute, or all nodes in a specific scope.
 	 * @param {string} selector - A string that contains a selector
-	 * @param {node} [node] - An element in which to make the selection
+	 * @param {node} node - An element in which to make the selection
 	 * @returns {array} - An array of elements
 	 */
 	const $$ = (selector, node) => {
 		const scope = selector ? `[${selector}]` : "";
-		return node ? [...node.querySelectorAll(scope)] : [...document.querySelectorAll(`[${CLASS}]${scope}`.trim())];
+
+		if (node) {
+			return [...node.querySelectorAll(scope)];
+		}
+
+		const query = [
+			`[${CLASS}]${scope}`,
+			`[${CLASS_TRIGGER}]${scope}`,
+			`[${CLASS_TARGET}][${TARGET}]${scope}`,
+			`[${CLASS_TARGET}][${TARGET_ALL}]${scope}`,
+			`[${CLASS_TARGET}][${TARGET_NEXT}]${scope}`,
+			`[${CLASS_TARGET}][${TARGET_PREVIOUS}]${scope}`,
+			`[${CLASS_TARGET}][${TARGET_PARENT}]${scope}`,
+			`[${CLASS_TARGET}][${TARGET_SELF}]${scope}`
+		]
+			.join()
+			.trim();
+
+		return [...document.querySelectorAll(query)];
 	};
 
 	/**
@@ -99,6 +119,64 @@
 		}
 	) => Object.keys(config).forEach(key => element.hasAttribute(key) && element.setAttribute(key, config[key]));
 
+	const warningText = (classItem, attribute, isTarget = false) => `This trigger has the class name '${classItem}' filled in both attributes '${CLASS}' and '${attribute}'. As a result, this class will be toggled ${isTarget && 'on its target(s)'} twice at the same time.`;
+
+	/**
+	 * Retrieve an array of class names from an attribute value.
+	 * @param {node} element - The trigger element on which get the attribute
+	 * @param {string} attribute - The attribute on which get class names
+	 * @returns {array} - An array of class names
+	 */
+	const classFromAttribute = (element, attribute) => (element.getAttribute(attribute) || '').split(' ').filter(Boolean);
+
+	/**
+	 * Retrieve class lists for trigger and target elements.
+	 * @param {node} element - The trigger element on which get all class names
+	 * @returns {object} - An object with two arrays with trigger and target class lists
+	 */
+	const retrieveClassList = (element) => {
+		if (element.hasAttribute(CLASS) && element.getAttribute(CLASS) && (element.hasAttribute(CLASS_TRIGGER) || element.hasAttribute(CLASS_TARGET))) {
+			const triggerClassArray = classFromAttribute(element, CLASS_TRIGGER);
+			const targetClassArray = classFromAttribute(element, CLASS_TARGET);
+
+			/** Warn if there repetition class name between CLASS and CLASS_TRIGGER or CLASS and CLASS_TARGET */
+			classFromAttribute(element, CLASS)
+				.forEach(classItem => {
+					if (triggerClassArray.includes(classItem)) {
+						console.warn(
+							warningText(classItem, CLASS_TRIGGER),
+							element
+						);
+					}
+					if (targetClassArray.includes(classItem)) {
+						console.warn(
+							warningText(classItem, CLASS_TARGET, true),
+							element
+						);
+					}
+				});
+		}
+
+		/** Get class list for trigger and targets from attributes */
+		const lists = [CLASS, CLASS_TRIGGER, CLASS_TARGET].reduce(
+			(acc, val) => {
+				const list = classFromAttribute(element, val);
+				(val === CLASS || val === CLASS_TRIGGER) && acc.trigger.push(...list);
+				(val === CLASS || val === CLASS_TARGET) && acc.target.push(...list);
+				return acc;
+			},
+			{
+				trigger: [],
+				target: []
+			}
+		);
+
+		!lists.trigger.length && lists.trigger.push(DEFAULT_CLASS);
+		!lists.target.length && lists.target.push(DEFAULT_CLASS);
+
+		return lists;
+	};
+
 	/**
 	 * Retrieve all active elements of a group.
 	 * @param {node} element - An element of a group
@@ -107,6 +185,18 @@
 	const retrieveGroupActiveElement = element => {
 		const type = element.hasAttribute(GROUP) ? GROUP : RADIO_GROUP;
 		return $$(`${type}="${element.getAttribute(type)}"`).filter(groupElement => groupElement.isToggleActive);
+	};
+
+	/**
+	 * Test a selector.
+	 * @param {string} selector - The selector corresponding to the targets list
+	 * @param {string} attribute - The selector scope, set by the user
+	 * @returns {undefined}
+	 */
+	const testSelector = (selector, attribute) => {
+		if (!selector) {
+			console.warn(`You should fill the attribute '${attribute}' with a selector`);
+		}
 	};
 
 	/**
@@ -119,7 +209,7 @@
 
 		/** Test if there's no match for a selector */
 		if (targetList.length === 0) {
-			console.warn(`There's no match for the selector '${selector}' for this trigger`);
+			console.warn(`There's no match with the selector '${selector}' for this trigger`);
 			return [];
 		}
 
@@ -129,7 +219,7 @@
 			matches.forEach(match => {
 				const result = [...targetList].filter(target => target.id === match.slice(1));
 				if (result.length > 1) {
-					console.warn(`There's ${result.length} matches for the selector '${match}' for this trigger`);
+					console.warn(`There's ${result.length} matches with the selector '${match}' for this trigger`);
 				}
 			});
 		}
@@ -145,16 +235,19 @@
 	const retrieveTargets = element => {
 		if (element.hasAttribute(TARGET) || element.hasAttribute(TARGET_ALL)) {
 			const selector = element.getAttribute(TARGET) || element.getAttribute(TARGET_ALL);
+			testSelector(selector, element.hasAttribute(TARGET) ? TARGET : TARGET_ALL);
 			return testTargets(selector, document.querySelectorAll(selector));
 		}
 
 		if (element.hasAttribute(TARGET_PARENT)) {
 			const selector = element.getAttribute(TARGET_PARENT);
+			testSelector(selector, TARGET_PARENT);
 			return testTargets(selector, element.parentElement.querySelectorAll(selector));
 		}
 
 		if (element.hasAttribute(TARGET_SELF)) {
 			const selector = element.getAttribute(TARGET_SELF);
+			testSelector(selector, TARGET_SELF);
 			return testTargets(selector, element.querySelectorAll(selector));
 		}
 
@@ -168,6 +261,16 @@
 
 		return [];
 	};
+
+	/**
+	 * Toggle each class in list on the element.
+	 * @param {node} element - An element on which toggle each class
+	 * @param {array} list - An array of classlist to toggle
+	 * @returns {undefined}
+	 */
+	const toggleClassList = (element, list) => list.forEach(listItem => {
+		element.classList.toggle(listItem);
+	});
 
 	/**
 	 * Manage event listener on document
@@ -305,22 +408,20 @@
 	/**
 	 * Manage attributes and events of targets elements.
 	 * @param {node} triggerElement - The trigger element
-	 * @param {string} className - The class name to toggle
+	 * @param {array} classListForTarget - The class list to toggle
 	 * @param {boolean} onLoadActive - A flag for active by default
 	 * @returns {undefined}
 	 */
-	const manageTargets = (triggerElement, className, onLoadActive) => retrieveTargets(triggerElement).forEach(targetElement => {
+	const manageTargets = (triggerElement, classListForTarget, onLoadActive) => retrieveTargets(triggerElement).forEach(targetElement => {
 			dispatchHook(targetElement, TOGGLE_BEFORE);
 
 			targetElement.isToggleActive = !targetElement.isToggleActive;
 			manageAria(targetElement);
 
-			if (onLoadActive && !targetElement.classList.contains(className)) {
-				targetElement.classList.add(className);
-			}
-
-			if (!onLoadActive) {
-				targetElement.classList.toggle(className);
+			if (onLoadActive) {
+				targetElement.classList.add(...classListForTarget);
+			} else {
+				toggleClassList(targetElement, classListForTarget);
 			}
 
 			if (triggerElement.hasAttribute(OUTSIDE)) {
@@ -351,17 +452,14 @@
 	const manageToggle = element => {
 		dispatchHook(element, TOGGLE_BEFORE);
 
-		const className = element.getAttribute(CLASS) || "is-active";
+		const classList = retrieveClassList(element);
+		toggleClassList(element, classList.trigger);
 		element.isToggleActive = !element.isToggleActive;
 		manageAria(element);
 
-		if (!element.hasAttribute(TARGET_ONLY)) {
-			element.classList.toggle(className);
-		}
-
 		dispatchHook(element, TOGGLE_AFTER);
 
-		manageTargets(element, className, false);
+		manageTargets(element, classList.target, false);
 		return manageTriggerOutside(element);
 	};
 
@@ -373,7 +471,8 @@
 	const manageActiveByDefault = element => {
 		dispatchHook(element, TOGGLE_BEFORE);
 
-		const className = element.getAttribute(CLASS) || "is-active";
+		const classList = retrieveClassList(element);
+		element.classList.add(...classList.trigger);
 		element.isToggleActive = true;
 		manageAria(element, {
 			[CHECKED]: true,
@@ -383,13 +482,9 @@
 			[SELECTED]: true
 		});
 
-		if (!element.hasAttribute(TARGET_ONLY) && !element.classList.contains(className)) {
-			element.classList.add(className);
-		}
-
 		dispatchHook(element, TOGGLE_AFTER);
 
-		manageTargets(element, className, true);
+		manageTargets(element, classList.target, true);
 		return manageTriggerOutside(element);
 	};
 
@@ -419,6 +514,13 @@
 	 * @returns {array} - An array of initialized triggers
 	 */
 	const init = () => {
+
+		/** Warn if there some CLASS_TARGET triggers with no specified target. */
+		[...document.querySelectorAll(`[${CLASS_TARGET}]:not([${TARGET}]):not([${TARGET_ALL}]):not([${TARGET_NEXT}]):not([${TARGET_PREVIOUS}]):not([${TARGET_PARENT}]):not([${TARGET_SELF}])`)]
+			.forEach(element => {
+				console.warn(`This trigger has the attribute '${CLASS_TARGET}', but no specified target\n`, element);
+			});
+
 
 		/** Active by default management. */
 		$$(IS_ACTIVE)
@@ -484,7 +586,7 @@
 					const activeElement = document.activeElement;
 					if (
 						["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "Home", "End"].indexOf(event.key) === -1 ||
-						!activeElement.hasAttribute(CLASS) ||
+						(!activeElement.hasAttribute(CLASS) && !activeElement.hasAttribute(CLASS_TRIGGER) && !activeElement.hasAttribute(CLASS_TARGET)) ||
 						!activeElement.hasAttribute(ARROWS)
 					) {
 						return;
