@@ -5,6 +5,8 @@
 	"main": "dist/easy-toggle-state.es6.js",
 	"scripts": {
 		"filesize-for-doc": "node tasks/generate-file-size.js",
+		"start-doc": "browser-sync start --server --files 'docs/**/*.*' --startPath '/docs'",
+
 		"precommit": "lint-staged",
 		"lint": "eslint src",
 		"lint:fix": "eslint --fix src",
@@ -44,6 +46,7 @@
 	"devDependencies": {
 		"@babel/core": "^7.7.4",
 		"@babel/preset-env": "^7.7.4",
+		"browser-sync": "^2.26.12",
 		"cross-env": "^7.0.0",
 		"del-cli": "^3.0.0",
 		"eslint": "^7.9.0",
