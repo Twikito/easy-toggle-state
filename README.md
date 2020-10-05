@@ -2,7 +2,7 @@
 
 __A tiny JavaScript library to easily toggle the state of any HTML element in any contexts, and create UI components in no time.__
 
-Dropdown, navigation button, tooltip, collapsible panel, lightbox, tabs, switch like above…
+Dropdown, navigation button, tooltip, collapsible panel, lightbox, tabs, switches…
 UI components made in minutes without worried about JavaScript. Only set a few HTML attributes, and code the rest with your CSS skills.
 
 [![npm version](https://badge.fury.io/js/easy-toggle-state.svg?style=flat-square)](https://badge.fury.io/js/easy-toggle-state)
@@ -28,6 +28,7 @@ Several quick start options are available:
 
 - [Direct download](https://rawgit.com/Twikito/easy-toggle-state/master/dist/easy-toggle-state.es6.js)
 - Choose another version: [ES5 or ES6](https://github.com/Twikito/easy-toggle-state/tree/master/dist)
+- [Link from cdnjs](https://cdnjs.com/libraries/easy-toggle-state)
 - Install with [npm](https://www.npmjs.com/package/easy-toggle-state): `npm install easy-toggle-state`
 
 ## Documentation
