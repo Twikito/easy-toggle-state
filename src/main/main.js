@@ -281,14 +281,17 @@ const manageGroup = element => {
  */
 export default () => {
 
-	/** Warn if there some CLASS_TARGET triggers with no specified target. */
+	/**
+	 * Warn if there some CLASS_TARGET triggers with no specified target.
+	 */
 	[...document.querySelectorAll(`[${CLASS_TARGET}]:not([${TARGET}]):not([${TARGET_ALL}]):not([${TARGET_NEXT}]):not([${TARGET_PREVIOUS}]):not([${TARGET_PARENT}]):not([${TARGET_SELF}])`)]
 		.forEach(element => {
 			console.warn(`This trigger has the attribute '${CLASS_TARGET}', but no specified target\n`, element);
 		});
 
-
-	/** Active by default management. */
+	/**
+	 * Active by default management.
+	 */
 	$$(IS_ACTIVE)
 		.filter(trigger => !trigger[namespacedProp('isDefaultInitialized')])
 		.forEach(trigger => {
@@ -305,7 +308,9 @@ export default () => {
 			trigger[namespacedProp('isDefaultInitialized')] = true;
 		});
 
-	/** Set specified or click event on each trigger element. */
+	/**
+	 * Set specified or click event on each trigger element.
+	 */
 	const triggerList = $$().filter(trigger => !trigger[namespacedProp('isInitialized')]);
 	triggerList.forEach(trigger => {
 		trigger.addEventListener(
@@ -319,7 +324,9 @@ export default () => {
 		trigger.isETSInit = true;
 	});
 
-	/** Escape key management. */
+	/**
+	 * Escape key management.
+	 */
 	if ($$(ESCAPE).length > 0 && !document[namespacedProp('isEscapeKeyInitialized')]) {
 		document.addEventListener(
 			"keydown",
@@ -344,7 +351,9 @@ export default () => {
 		document[namespacedProp('isEscapeKeyInitialized')] = true;
 	}
 
-	/** Arrows key management. */
+	/**
+	 * Arrows key management.
+	 */
 	if ($$(ARROWS).length > 0 && !document[namespacedProp('isArrowKeysInitialized')]) {
 		document.addEventListener(
 			"keydown",
