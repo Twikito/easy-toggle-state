@@ -136,7 +136,10 @@ module.exports = {
 		"no-extra-label": "error",
 		"no-extra-parens": "off",
 		"no-floating-decimal": "error",
-		"no-implicit-coercion": "error",
+		"no-implicit-coercion": [
+			2,
+			{ "allow": ["!!"] }
+		],
 		"no-implicit-globals": "error",
 		"no-implied-eval": "error",
 		"no-inline-comments": "error",
@@ -244,7 +247,7 @@ module.exports = {
 		"prefer-destructuring": "off",
 		"prefer-numeric-literals": "error",
 		"prefer-promise-reject-errors": "error",
-		"prefer-reflect": "error",
+		"prefer-reflect": "off",
 		"prefer-rest-params": "error",
 		"prefer-spread": "error",
 		"prefer-template": "off",
