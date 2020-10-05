@@ -22,6 +22,7 @@
 				section = document.querySelector(link.hash),
 				scrollY = window.scrollY + 1;
 
+			section &&
 			section.offsetTop <= scrollY &&
 			section.offsetTop + section.offsetHeight > scrollY
 				? link.classList.add("is-current")
