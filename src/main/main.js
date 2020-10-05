@@ -276,6 +276,31 @@ const manageGroup = element => {
 };
 
 /**
+ * Check if a trigger element is active.
+ * @param {node} element - A trigger element
+ * @returns {boolean} - The active state of the trigger element
+ */
+export const isActive = element => !!element[namespacedProp('isActive')];
+
+/**
+ * Unbind toggling management from an element list.
+ * @param {node} elementList - An element, or element list, on which remove the toggling management
+ * @returns {node} - Same element, or element list
+ */
+export const unbind = elementList => {
+	(elementList[Symbol.iterator] ? [...elementList] : [elementList]).forEach(element => {
+		element[namespacedProp('unbind')] && element[namespacedProp('unbind')]();
+	});
+	return elementList;
+};
+
+/**
+ * Unbind toggling management from all initialized elements in the page.
+ * @returns {nodeList} - A list of unbinded triggers
+ */
+export const unbindAll = () => unbind($$().filter(trigger => trigger[namespacedProp('isInitialized')]));
+
+/**
  * Initialization.
  * @returns {array} - An array of initialized triggers
  */
@@ -313,15 +338,17 @@ export default () => {
 	 */
 	const triggerList = $$().filter(trigger => !trigger[namespacedProp('isInitialized')]);
 	triggerList.forEach(trigger => {
-		trigger.addEventListener(
-			trigger.getAttribute(EVENT) || "click",
-			event => {
-				event.preventDefault();
-				(trigger.hasAttribute(GROUP) || trigger.hasAttribute(RADIO_GROUP) ? manageGroup : manageToggle)(trigger);
-			},
-			false
-		);
-		trigger.isETSInit = true;
+		const handler = event => {
+			event.preventDefault();
+			(trigger.hasAttribute(GROUP) || trigger.hasAttribute(RADIO_GROUP) ? manageGroup : manageToggle)(trigger);
+		}
+		const eventName = trigger.getAttribute(EVENT) || "click";
+		trigger.addEventListener(eventName, handler, false);
+		trigger[namespacedProp('unbind')] = () => {
+			trigger.removeEventListener(eventName, handler, false);
+			trigger[namespacedProp('isInitialized')] = false;
+		}
+		trigger[namespacedProp('isInitialized')] = true;
 	});
 
 	/**

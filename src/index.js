@@ -1,9 +1,16 @@
-import init from "./main/main";
+import initialize, { isActive, unbind, unbindAll } from "./main/main";
 
-const onLoad = () => {
-	init();
-	document.removeEventListener("DOMContentLoaded", onLoad);
+const handler = () => {
+	initialize();
+	document.removeEventListener("DOMContentLoaded", handler);
 };
+document.addEventListener("DOMContentLoaded", handler);
 
-document.addEventListener("DOMContentLoaded", onLoad);
-window.initEasyToggleState = init;
+window.easyToggleState = Object.assign(
+	initialize,
+	{
+		isActive,
+		unbind,
+		unbindAll
+	}
+);
