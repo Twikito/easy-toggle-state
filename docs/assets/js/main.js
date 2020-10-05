@@ -42,7 +42,8 @@ fetch('filesize.json')
 	.then(response => response.json())
 	.then(json => {
 		['es6.min.js', 'es6.js'].forEach(element => {
-			document.querySelector(`[data-file-size='${element}']`).innerHTML = Math.round(json[element]/10)/100;
+			document.querySelector(`[data-file-size='${element}']`).innerHTML = Math.round(json[element].default/10)/100;
+			document.querySelector(`[data-file-size='${element}.gzip']`).innerHTML = Math.round(json[element].gzipped/10)/100;
 		});
 	});
 
