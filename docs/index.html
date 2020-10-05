@@ -110,14 +110,15 @@
 				<li><a data-toggle-trigger-off href="#why">Why?</a></li>
 				<li><a data-toggle-trigger-off href="#quickstart">Quickstart</a>
 					<ul>
-						<li><a data-toggle-trigger-off href="#quickstart-manually">Manually</a></li>
-						<li><a data-toggle-trigger-off href="#quickstart-npm">With npm</a></li>
-						<li><a data-toggle-trigger-off href="#compatibility">Compatibility</a></li>
+						<li><a data-toggle-trigger-off href="#quickstart-locally">Locally</a></li>
+						<li><a data-toggle-trigger-off href="#quickstart-cdn">From CDN</a></li>
+						<li><a data-toggle-trigger-off href="#quickstart-npm">With NPM</a></li>
+						<li><a data-toggle-trigger-off href="#compatibility">About compatibility</a></li>
 					</ul>
 				</li>
 				<li><a data-toggle-trigger-off href="#how-to-use">How to use</a>
 					<ul>
-						<li><a data-toggle-trigger-off href="#recommendation">Recommen<wbr>dation</a></li>
+						<li><a data-toggle-trigger-off href="#recommendation">First recommen<wbr>dation</a></li>
 						<li><a data-toggle-trigger-off href="#basics">Basics</a>
 							<ul>
 								<li><a data-toggle-trigger-off href="#data-toggle-class-">data-toggle-class</a></li>
@@ -132,7 +133,6 @@
 								<li><a data-toggle-trigger-off href="#data-toggle-target-previous">data-toggle-target-previous</a></li>
 								<li><a data-toggle-trigger-off href="#data-toggle-target-next">data-toggle-target-next</a></li>
 							</ul>
-						</li>
 						</li>
 						<li><a data-toggle-trigger-off href="#toggling">Toggling</a>
 							<ul>
@@ -160,7 +160,12 @@
 							<ul>
 								<li><a data-toggle-trigger-off href="#custom-prefix">Custom prefix</a></li>
 								<li><a data-toggle-trigger-off href="#toggling-combination">Toggling combination</a></li>
-								<li><a data-toggle-trigger-off href="#initialization">Manual initialization</a></li>
+							</ul>
+						</li>
+						<li><a data-toggle-trigger-off href="#api">API</a>
+							<ul>
+								<li><a data-toggle-trigger-off href="#api-bundle">API using the bundle</a></li>
+								<li><a data-toggle-trigger-off href="#api-esmodule">API using ES module</a></li>
 								<li><a data-toggle-trigger-off href="#hooks">Hooks</a></li>
 							</ul>
 						</li>
@@ -264,33 +269,47 @@
 			<h2>
 				<a href="#quickstart">Quickstart</a>
 			</h2>
-			<section id="quickstart-manually">
+			<section id="quickstart-locally">
 				<h3>
-					<a href="#quickstart-manually">Manually</a>
+					<a href="#quickstart-locally">Locally</a>
 				</h3>
 				<ul>
 					<li><a href="#download">Direct download</a></li>
-					<li>Choose another version: <a href="//github.com/Twikito/easy-toggle-state/tree/master/dist">ES5 or ES6</a>.</li>
+					<li>Or choose another version: <a href="//github.com/Twikito/easy-toggle-state/tree/master/dist">ES5 or ES6</a></li>
 				</ul>
-				<p>Then, <strong>add the script into your page</strong>:</p>
+				<p>Then, add the script into your page:</p>
 				<pre><code class="language-html">&lt;script src="./your-path/easy-toggle-state.es6.min.js"&gt;&lt;/script&gt;</code></pre>
 				<p>and it’s done.</p>
 			</section>
+			<section id="quickstart-cdn">
+				<h3>
+					<a href="#quickstart-cdn">From <abbr title="Content Delivery Network">CDN</abbr></a>
+				</h3>
+				<p><em>Easy Toggle State</em> is available on cdnjs, so you can link it directly from there instead of using it locally.</p>
+				<p>Go check <a href="//cdnjs.com/libraries/easy-toggle-state">easy-toggle-state on cdnjs</a>.</p>
+			</section>
 			<section id="quickstart-npm">
 				<h3>
-					<a href="#quickstart-npm">With npm</a>
+					<a href="#quickstart-npm">With <abbr title="Node Package Manager">NPM</abbr></a>
 				</h3>
-				<p>Install with <a href="//www.npmjs.com/package/easy-toggle-state">npm</a>:</p>
+				<p>Install with <a href="//www.npmjs.com/package/easy-toggle-state"><abbr title="Node Package Manager">npm</abbr></a>:</p>
 				<pre><code>npm install easy-toggle-state</code></pre>
-				<p>Then load <em>Easy Toggle State</em> into your application, inside your main <abbr title="JavaScript">JS</abbr> file:</p>
-				<pre><code class="language-js">import "easy-toggle-state";
-// or
-require("easy-toggle-state");</code></pre>
- 				<p>and the magic happens!</p>
+				<p>Then use <em>Easy Toggle State</em> into your application, inside your <abbr title="JavaScript">JS</abbr> file:</p>
+				<pre><code class="language-js">import easyToggle from "easy-toggle-state";
+easyToggle();</code></pre>
+				<p>For example, you could make sure your <abbr title="Document Object Model">DOM</abbr> is fully loaded before initializing <em>Easy Toggle State</em> in your page. To do so:</p>
+				<pre><code class="language-js">import easyToggle from "easy-toggle-state";
+
+const handler = () => {
+	easyToggle();
+	document.removeEventListener("DOMContentLoaded", handler);
+};
+document.addEventListener("DOMContentLoaded", handler);</code></pre>
+				<p>Refer to the <a href="#api">API section</a> to learn more about what you can do.</p>
 			</section>
 			<section id="compatibility">
 				<h3>
-					<a href="#compatibility">Compatibility</a>
+					<a href="#compatibility">About compatibility</a>
 				</h3>
 				<p>In addition to using <a href="//github.com/Twikito/easy-toggle-state/blob/master/dist/easy-toggle-state.min.js">ES5 version</a>, compatibility for Internet Explorer is provided by <a href="//polyfill.io/">polyfill.io</a> which supports back to <abbr title="Internet Explorer">IE</abbr> 7. It brings polyfills for <code class="language-js">Array.from</code>, <code class="language-js">Array.filter</code>, <code class="language-js">Element.closest</code> and more.</p>
 				<p>And before you ask, yes, you can <a href="//github.com/Financial-Times/polyfill-service#running-locally">run it locally</a>.</p>
@@ -306,7 +325,7 @@ require("easy-toggle-state");</code></pre>
 
 			<section id="recommendation">
 				<h3>
-					<a href="#recommendation">Recommendation</a>
+					<a href="#recommendation">First recommendation</a>
 				</h3>
 				<p>Although you could use any element you want, <strong>I strongly recommend using only buttons as trigger elements</strong>. It’s more accessible, and it’s meant to be used for this kind of thing. The <a href="#examples">following examples</a> will show you that.</p>
 				<p class="language-html">If you still want to use links with fake <code>href</code> values, such as <code>href="#"</code>, don’t forget to add <code>role="button"</code> attribute.</p>
@@ -566,7 +585,7 @@ require("easy-toggle-state");</code></pre>
 						<a href="#toggling-combination">Toggling combination</a>
 					</h4>
 					<p>You can combine all toggling attributes. This way, <em>Easy Toggle State</em> is compatible with any <abbr title="Cascading StyleSheet">CSS</abbr> framwork.</p>
-<pre><code class="language-html line-numbers">&lt;foo
+<pre><code class="language-html">&lt;foo
 	data-toggle-class="is-open"
 	data-toggle-class-on-trigger="text-white font-bold bg-blue"
 	data-toggle-class-on-target="text-gray bg-white"
@@ -577,21 +596,98 @@ require("easy-toggle-state");</code></pre>
 						<li><code>is-open</code>, <code>text-gray</code>, <code>bg-white</code> classes on the target, the element <code>#plop</code></li>
 					</ul>
 				</section>
-				<section id="initialization">
+			</section>
+
+			<section id="api" class="language-html">
+				<h3>
+					<a href="#api"><abbr title="Application Programming Interface">API</abbr></a>
+				</h3>
+				<section id="api-bundle">
 					<h4>
-						<a href="#initialization">Manual initialization</a>
+						<a href="#api-bundle"><abbr title="Application Programming Interface">API</abbr> using the bundle (locally or from <abbr title="Content Delivery Network">CDN</abbr>)</a>
 					</h4>
-					<p>For asynchronous needs, you can initiate the magic with:</p>
-					<pre><code class="language-js">window.initEasyToggleState();</code></pre>
-					<p>Returns an array of initialized trigger elements.</p>
+					<section id="api-bundle-initialization">
+						<h5>
+							<a href="#api-bundle-initialization">initialization</a>
+						</h5>
+						<p>Initialize all trigger elements not yet binded.</p>
+						<pre><code class="language-js">window.easyToggleState();</code></pre>
+						<p>No parameter. Returns an <i>Array</i> of newly initialized trigger elements.</p>
+					</section>
+					<section id="api-bundle-unbind">
+						<h5>
+							<a href="#api-bundle-unbind">unbind</a>
+						</h5>
+						<p>Unbind a trigger element, or a trigger element list.</p>
+						<pre><code class="language-js">window.easyToggleState.unbind( Node || NodeList );</code></pre>
+						<p>Takes a <i>Node</i> or a <i>NodeList</i> as parameter. Returns the same <i>Node</i> or <i>NodeList</i>.</p>
+					</section>
+					<section id="api-bundle-unbindall">
+						<h5>
+							<a href="#api-bundle-unbindall">unbindAll</a>
+						</h5>
+						<p>Unbind all trigger elements.</p>
+						<pre><code class="language-js">window.easyToggleState.unbindAll();</code></pre>
+						<p>No parameter. Returns a <i>NodeList</i> of all newly unbinded trigger elements.</p>
+					</section>
+					<section id="api-bundle-isactive">
+						<h5>
+							<a href="#api-bundle-isactive">isActive</a>
+						</h5>
+						<p>Get the state of a trigger element.</p>
+						<pre><code class="language-js">window.easyToggleState.isActive( Node );</code></pre>
+						<p>Takes a <i>Node</i> as parameter. Returns a <i>boolean</i>.</p>
+					</section>
+				</section>
+				<section id="api-esmodule">
+					<h4>
+						<a href="#api-esmodule"><abbr title="Application Programming Interface">API</abbr> using <abbr title="ECMAScript">ES</abbr> module</a>
+					</h4>
+					<section id="api-esmodule-initialization">
+						<h5>
+							<a href="#api-esmodule-initialization">initialization</a>
+						</h5>
+						<p>Initialize all trigger elements not yet binded.</p>
+						<pre><code class="language-js">import initialize from "easy-toggle-state";
+initialize();</code></pre>
+						<p>No parameter. Returns an <i>Array</i> of newly initialized trigger elements.</p>
+					</section>
+					<section id="api-esmodule-unbind">
+						<h5>
+							<a href="#api-esmodule-unbind">unbind</a>
+						</h5>
+						<p>Unbind a trigger element, or a trigger element list.</p>
+						<pre><code class="language-js">import { unbind } from "easy-toggle-state";
+unbind( Node || NodeList );</code></pre>
+						<p>Takes a <i>Node</i> or a <i>NodeList</i> as parameter. Returns the same <i>Node</i> or <i>NodeList</i>.</p>
+					</section>
+					<section id="api-esmodule-unbindall">
+						<h5>
+							<a href="#api-esmodule-unbindall">unbindAll</a>
+						</h5>
+						<p>Unbind all trigger elements.</p>
+						<pre><code class="language-js">import { unbindAll } from "easy-toggle-state";
+unbindAll();</code></pre>
+						<p>No parameter. Returns a <i>NodeList</i> of all newly unbinded trigger elements.</p>
+					</section>
+					<section id="api-esmodule-isactive">
+						<h5>
+							<a href="#api-esmodule-isactive">isActive</a>
+						</h5>
+						<p>Get the state of a trigger element.</p>
+						<pre><code class="language-js">import { isActive } from "easy-toggle-state";
+isActive( Node );</code></pre>
+						<p>Takes a <i>Node</i> as parameter. Returns a <i>boolean</i>.</p>
+					</section>
 				</section>
 				<section id="hooks">
 					<h4>
 						<a href="#hooks">Hooks</a>
 					</h4>
-					<p>You can also add some hooks: each trigger and target element fires a <code>toggleBefore</code> event before and a <code>toggleAfter</code> event after toggling its state, so you can add event listeners on these events, and test the active state with <code>isToggleActive</code> property. For example:</p>
-					<pre><code class="language-js">document.querySelector("#myTrigger").addEventListener("toggleAfter", (event) => {
-	console.log(`Active: ${event.target.isToggleActive}`);
+					<p>You can also add some hooks: each trigger and target element fires a <code>toggleBefore</code> event before and a <code>toggleAfter</code> event after toggling its state, so you can add event listeners on these events, and test the active state.</p>
+					<p>For example:</p>
+					<pre><code class="language-js">document.querySelector("#myTrigger").addEventListener("toggleAfter", event => {
+	console.log(`Active: ${window.easyToggleState.isActive(event.target)}`);
 }, false);</code></pre>
 				</section>
 			</section>
@@ -1723,7 +1819,7 @@ require("easy-toggle-state");</code></pre>
 						<div class="example-dialog" id="dialog_1">
 							<section class="example-dialog-container">
 								<header class="example-dialog-header">
-									<h5>Dialog title</h5>
+									Dialog title
 								</header>
 								<div class="example-dialog-content">
 									<p>
@@ -1733,7 +1829,7 @@ require("easy-toggle-state");</code></pre>
 										The following fake links are here to illustrate the focus trap inside this modal, thanks to <code class="language-html">data-toggle-modal</code> attribute on the trigger.
 									</p>
 									<p>
-										<a href="#">Lorem ipsum</a> dolor sit amet, consectetur adipisicing elit. Et quibusdam labore <a href="#">tempore repudiandae</a> minima earum adipisci, dolor distinctio <a href="#">facere</a> illo recusandae <a href="#">fuga</a> placeat amet <a href="#">corrupti</a> omnis ullam accusamus reprehenderit id.</p>
+										<a href="#">Lorem ipsum</a> dolor sit amet, consectetur adipisicing elit. Et quibusdam labore <a href="#">tempore repudiandae</a> minima earum adipisci, dolor distinctio <a href="#">facere</a> illo recusandae <a href="#">fuga</a> placeat amet <a href="#">corrupti</a> omnis ullam accusamus reprehenderit id.
 									</p>
 								</div>
 								<footer class="example-dialog-footer">
@@ -1787,7 +1883,7 @@ require("easy-toggle-state");</code></pre>
 						<div class="example-dialog" id="dialog_2" role="dialog" aria-labelledby="dialogTitle" aria-describedby="dialogContent" aria-hidden="true">
 							<section class="example-dialog-container">
 								<header id="dialogTitle" class="example-dialog-header">
-									<h5>Dialog title</h5>
+									Dialog title
 								</header>
 								<div id="dialogContent" class="example-dialog-content">
 									<p>
@@ -1797,7 +1893,7 @@ require("easy-toggle-state");</code></pre>
 										The following fake links are here to illustrate the focus trap inside this modal, thanks to <code class="language-html">data-toggle-modal</code> attribute on the trigger.
 									</p>
 									<p>
-										<a href="#">Lorem ipsum</a> dolor sit amet, consectetur adipisicing elit. Et quibusdam labore <a href="#">tempore repudiandae</a> minima earum adipisci, dolor distinctio <a href="#">facere</a> illo recusandae <a href="#">fuga</a> placeat amet <a href="#">corrupti</a> omnis ullam accusamus reprehenderit id.</p>
+										<a href="#">Lorem ipsum</a> dolor sit amet, consectetur adipisicing elit. Et quibusdam labore <a href="#">tempore repudiandae</a> minima earum adipisci, dolor distinctio <a href="#">facere</a> illo recusandae <a href="#">fuga</a> placeat amet <a href="#">corrupti</a> omnis ullam accusamus reprehenderit id.
 									</p>
 								</div>
 								<footer class="example-dialog-footer">

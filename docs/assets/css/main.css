@@ -162,7 +162,7 @@ nav a.is-current + ul {
 	}
 }
 
-h1, h2, h3, h4 {
+h1, h2, h3, h4, h5 {
 	margin: .5em 0;
 	font-family: 'Roboto Slab'; font-weight: 500;
 }
@@ -194,9 +194,16 @@ h4 {
 	font-size: 1.25em;
 }
 
+h5 {
+	display: inline-block; padding: 0 .25em 0 2em; margin: 2em 0 0;
+	background-color: #f6f8fa;
+	font-size: 1em;
+}
+
 h2 a,
 h3 a,
-h4 a {
+h4 a,
+h5 a {
 	position: relative;
 	display: inline-block;
 	text-decoration: none; color: inherit;
@@ -204,7 +211,8 @@ h4 a {
 
 h2 a::before,
 h3 a::before,
-h4 a::before {
+h4 a::before,
+h5 a::before {
 	position: absolute; right: 100%;
 	display: inline-block; margin-left: -100%;
 	content: '#'; opacity: 0; visibility: hidden;
@@ -215,7 +223,9 @@ h2 a:focus::before,
 h3 a:hover::before,
 h3 a:focus::before,
 h4 a:hover::before,
-h4 a:focus::before {
+h4 a:focus::before,
+h5 a:hover::before,
+h5 a:focus::before {
 	opacity: 1; visibility: visible;
 }
 
@@ -443,7 +453,7 @@ pre::-webkit-scrollbar {
 }
 .download-links > * {
 	margin: .5em;
-	flex: 0 1 15em;
+	flex: 0 1 17em;
 }
 
 .github {
