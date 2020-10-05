@@ -29,6 +29,7 @@ import { TOGGLE_AFTER, TOGGLE_BEFORE } from "../constants/events";
 import $$ from "../helpers/retrieve-query-selector-all";
 import dispatchHook from "../helpers/dispatch-hook";
 import manageAria from "../helpers/manage-aria";
+import namespacedProp from "../helpers/retrieve-namespaced-property";
 import retrieveClassList from "../helpers/retrieve-class-list";
 import retrieveGroupActiveElement from "../helpers/retrieve-group-active-element";
 import retrieveTargets from "../helpers/retrieve-targets";
@@ -65,7 +66,7 @@ const documentEventHandler = event => {
 			if (e && e.easyToggleStateTrigger === element) {
 				insideTarget = true;
 			}
-			if (!insideTarget && element !== eTarget && element.isToggleActive) {
+			if (!insideTarget && element !== eTarget && element[namespacedProp('isActive')]) {
 				(element.hasAttribute(GROUP) || element.hasAttribute(RADIO_GROUP) ? manageGroup : manageToggle)(element);
 			}
 		});
@@ -74,7 +75,7 @@ const documentEventHandler = event => {
 		document.removeEventListener(eType, documentEventHandler, false);
 	}
 
-	if (eTarget.hasAttribute(OUTSIDE) && eTarget.isToggleActive) {
+	if (eTarget.hasAttribute(OUTSIDE) && eTarget[namespacedProp('isActive')]) {
 		addEventListenerOnDocument(eTarget);
 	}
 };
@@ -100,7 +101,7 @@ const manageTriggerOutside = element => {
 		return console.warn(`You can't use '${OUTSIDE}' on a radio grouped trigger`);
 	}
 
-	if (element.isToggleActive) {
+	if (element[namespacedProp('isActive')]) {
 		return addEventListenerOnDocument(element);
 	}
 };
@@ -118,7 +119,7 @@ const manageTriggerOff = (targetElement, triggerElement) => {
 		return;
 	}
 
-	if (triggerElement.isToggleActive) {
+	if (triggerElement[namespacedProp('isActive')]) {
 		return triggerOffList.forEach(triggerOff => {
 			triggerOff.targetElement = triggerElement;
 			triggerOff.addEventListener("click", triggerOffHandler, false);
@@ -177,7 +178,7 @@ const focusTrapHandler = event => {
 const manageTargets = (triggerElement, classListForTarget, onLoadActive) => retrieveTargets(triggerElement).forEach(targetElement => {
 		dispatchHook(targetElement, TOGGLE_BEFORE);
 
-		targetElement.isToggleActive = !targetElement.isToggleActive;
+		targetElement[namespacedProp('isActive')] = !targetElement[namespacedProp('isActive')];
 		manageAria(targetElement);
 
 		if (onLoadActive) {
@@ -187,7 +188,7 @@ const manageTargets = (triggerElement, classListForTarget, onLoadActive) => retr
 		}
 
 		if (triggerElement.hasAttribute(OUTSIDE)) {
-			targetElement.setAttribute(TARGET_STATE, triggerElement.isToggleActive);
+			targetElement.setAttribute(TARGET_STATE, triggerElement[namespacedProp('isActive')]);
 			targetElement.easyToggleStateTrigger = triggerElement;
 		}
 
@@ -216,7 +217,7 @@ const manageToggle = element => {
 
 	const classList = retrieveClassList(element);
 	toggleClassList(element, classList.trigger);
-	element.isToggleActive = !element.isToggleActive;
+	element[namespacedProp('isActive')] = !element[namespacedProp('isActive')];
 	manageAria(element);
 
 	dispatchHook(element, TOGGLE_AFTER);
@@ -235,7 +236,7 @@ const manageActiveByDefault = element => {
 
 	const classList = retrieveClassList(element);
 	element.classList.add(...classList.trigger);
-	element.isToggleActive = true;
+	element[namespacedProp('isActive')] = true;
 	manageAria(element, {
 		[CHECKED]: true,
 		[EXPANDED]: true,
@@ -286,7 +287,7 @@ export default () => {
 
 	/** Active by default management. */
 	$$(IS_ACTIVE)
-		.filter(trigger => !trigger.isETSDefInit)
+		.filter(trigger => !trigger[namespacedProp('isDefaultInitialized')])
 		.forEach(trigger => {
 			if (!trigger.hasAttribute(GROUP) && !trigger.hasAttribute(RADIO_GROUP)) {
 				return manageActiveByDefault(trigger);
@@ -298,11 +299,11 @@ export default () => {
 			}
 
 			manageActiveByDefault(trigger);
-			trigger.isETSDefInit = true;
+			trigger[namespacedProp('isDefaultInitialized')] = true;
 		});
 
 	/** Set specified or click event on each trigger element. */
-	const triggerList = $$().filter(trigger => !trigger.isETSInit);
+	const triggerList = $$().filter(trigger => !trigger[namespacedProp('isInitialized')]);
 	triggerList.forEach(trigger => {
 		trigger.addEventListener(
 			trigger.getAttribute(EVENT) || "click",
@@ -316,7 +317,7 @@ export default () => {
 	});
 
 	/** Escape key management. */
-	if ($$(ESCAPE).length > 0 && !document.isETSEscInit) {
+	if ($$(ESCAPE).length > 0 && !document[namespacedProp('isEscapeKeyInitialized')]) {
 		document.addEventListener(
 			"keydown",
 			event => {
@@ -324,7 +325,7 @@ export default () => {
 					return;
 				}
 				$$(ESCAPE).forEach(trigger => {
-					if (!trigger.isToggleActive) {
+					if (!trigger[namespacedProp('isActive')]) {
 						return;
 					}
 
@@ -337,11 +338,11 @@ export default () => {
 			},
 			false
 		);
-		document.isETSEscInit = true;
+		document[namespacedProp('isEscapeKeyInitialized')] = true;
 	}
 
 	/** Arrows key management. */
-	if ($$(ARROWS).length > 0 && !document.isETSArrInit) {
+	if ($$(ARROWS).length > 0 && !document[namespacedProp('isArrowKeysInitialized')]) {
 		document.addEventListener(
 			"keydown",
 			event => {
@@ -394,7 +395,7 @@ export default () => {
 			},
 			false
 		);
-		document.isETSArrInit = true;
+		document[namespacedProp('isArrowKeysInitialized')] = true;
 	}
 
 	return triggerList;
