@@ -1,8 +1,32 @@
 {
 	"name": "easy-toggle-state",
 	"version": "1.13.0",
+	"license": "MIT",
 	"description": "A tiny JavaScript library to easily toggle the state of any HTML element in any contexts, and create UI components in no time.",
 	"main": "dist/easy-toggle-state.es6.js",
+	"keywords": [
+		"toggle",
+		"switch",
+		"accessibility",
+		"ui components",
+		"dropdown",
+		"modal",
+		"tooltip",
+		"navigation button",
+		"lightbox",
+		"tabs",
+		"checkbox",
+		"radio"
+	],
+	"author": "Matthieu Bué <https://twikito.com>",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Twikito/easy-toggle-state.git"
+	},
+	"bugs": {
+		"url": "https://github.com/Twikito/easy-toggle-state/issues"
+	},
+	"homepage": "https://twikito.github.io/easy-toggle-state/",
 	"scripts": {
 		"filesize-for-doc": "node tasks/generate-file-size.js",
 		"start-doc": "browser-sync start --server --files 'docs/**/*.*' --startPath '/docs'",
@@ -26,30 +50,6 @@
 			"git add"
 		]
 	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/Twikito/easy-toggle-state.git"
-	},
-	"keywords": [
-		"toggle",
-		"switch",
-		"accessibility",
-		"ui components",
-		"dropdown",
-		"modal",
-		"tooltip",
-		"navigation button",
-		"lightbox",
-		"tabs",
-		"checkbox",
-		"radio"
-	],
-	"author": "Matthieu Bué <https://twikito.com>",
-	"license": "MIT",
-	"bugs": {
-		"url": "https://github.com/Twikito/easy-toggle-state/issues"
-	},
-	"homepage": "https://twikito.github.io/easy-toggle-state/",
 	"dependencies": {},
 	"devDependencies": {
 		"@babel/core": "^7.7.4",
