@@ -147,6 +147,15 @@
   });
 
   /**
+   * Add a namespace for element properties.
+   * @param {string} property - The property aadded on any element
+   * @returns {string} - The property with the namespace
+   */
+  var namespacedProp = (function (property) {
+    return "easyToggleState_".concat(property);
+  });
+
+  /**
    * Aria attributes toggle manager.
    * @param {node} element - Current element with aria attributes to manage.
    * @param {json} [config] - List of aria attributes and value to assign.
@@ -156,7 +165,7 @@
   var manageAria = (function (element) {
     var _ref;
 
-    var config = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : (_ref = {}, _defineProperty(_ref, CHECKED, element.isToggleActive), _defineProperty(_ref, EXPANDED, element.isToggleActive), _defineProperty(_ref, HIDDEN, !element.isToggleActive), _defineProperty(_ref, PRESSED, element.isToggleActive), _defineProperty(_ref, SELECTED, element.isToggleActive), _ref);
+    var config = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : (_ref = {}, _defineProperty(_ref, CHECKED, element[namespacedProp('isActive')]), _defineProperty(_ref, EXPANDED, element[namespacedProp('isActive')]), _defineProperty(_ref, HIDDEN, !element[namespacedProp('isActive')]), _defineProperty(_ref, PRESSED, element[namespacedProp('isActive')]), _defineProperty(_ref, SELECTED, element[namespacedProp('isActive')]), _ref);
     return Object.keys(config).forEach(function (key) {
       return element.hasAttribute(key) && element.setAttribute(key, config[key]);
     });
@@ -228,7 +237,7 @@
   var retrieveGroupActiveElement = (function (element) {
     var type = element.hasAttribute(GROUP) ? GROUP : RADIO_GROUP;
     return $$("".concat(type, "=\"").concat(element.getAttribute(type), "\"")).filter(function (groupElement) {
-      return groupElement.isToggleActive;
+      return groupElement[namespacedProp('isActive')];
     });
   });
 
@@ -328,6 +337,9 @@
     });
   });
 
+  /** Need to use a map for some event handler to ensure to have the same signature */
+
+  var HANDLER_MAP = {};
   /**
    * Manage event listener on document
    * @param {element} element - The element on which test if there event type specified
@@ -358,7 +370,7 @@
         insideTarget = true;
       }
 
-      if (!insideTarget && element !== eTarget && element.isToggleActive) {
+      if (!insideTarget && element !== eTarget && element[namespacedProp('isActive')]) {
         (element.hasAttribute(GROUP) || element.hasAttribute(RADIO_GROUP) ? manageGroup : manageToggle)(element);
       }
     });
@@ -367,7 +379,7 @@
       document.removeEventListener(eType, documentEventHandler, false);
     }
 
-    if (eTarget.hasAttribute(OUTSIDE) && eTarget.isToggleActive) {
+    if (eTarget.hasAttribute(OUTSIDE) && eTarget[namespacedProp('isActive')]) {
       addEventListenerOnDocument(eTarget);
     }
   };
@@ -397,7 +409,7 @@
       return console.warn("You can't use '".concat(OUTSIDE, "' on a radio grouped trigger"));
     }
 
-    if (element.isToggleActive) {
+    if (element[namespacedProp('isActive')]) {
       return addEventListenerOnDocument(element);
     }
   };
@@ -416,7 +428,7 @@
       return;
     }
 
-    if (triggerElement.isToggleActive) {
+    if (triggerElement[namespacedProp('isActive')]) {
       return triggerOffList.forEach(function (triggerOff) {
         triggerOff.targetElement = triggerElement;
         triggerOff.addEventListener("click", triggerOffHandler, false);
@@ -433,36 +445,38 @@
    * When Tab key is pressed, if focus is outside of the container, give focus on first item ;
    * when Tab key is pressed, if focus is on last item, give focus on first one ;
    * when Shift + Tab keys are pressed, if focus is on first item, give focus on last one.
-   * @param {event} event - Event triggered on keypress
+   * @param {node} targetElement - The focus trap container
    * @returns {undefined}
    */
 
 
-  var focusTrapHandler = function focusTrapHandler(event) {
-    var focusablesList = _toConsumableArray(document.ETSFocusTrapContainer.querySelectorAll("a[href], area[href], input:not([type='hidden']):not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]"));
+  var focusTrapHandler = function focusTrapHandler(targetElement) {
+    return function (event) {
+      var focusablesList = _toConsumableArray(targetElement.querySelectorAll("a[href], area[href], input:not([type='hidden']):not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]"));
 
-    if (!focusablesList.length || event.key !== "Tab") {
-      return;
-    }
+      if (!focusablesList.length || event.key !== "Tab") {
+        return;
+      }
 
-    var currentItem = event.target,
-        firstItem = focusablesList[0],
-        lastItem = focusablesList[focusablesList.length - 1]; // Outside focus trap container: focus on first
+      var currentItem = event.target,
+          firstItem = focusablesList[0],
+          lastItem = focusablesList[focusablesList.length - 1]; // Outside focus trap container: focus on first
 
-    if (focusablesList.indexOf(currentItem) === -1) {
-      event.preventDefault();
-      return firstItem.focus();
-    }
+      if (focusablesList.indexOf(currentItem) === -1) {
+        event.preventDefault();
+        return firstItem.focus();
+      }
 
-    if (event.shiftKey && currentItem === firstItem) {
-      event.preventDefault();
-      return lastItem.focus();
-    }
+      if (event.shiftKey && currentItem === firstItem) {
+        event.preventDefault();
+        return lastItem.focus();
+      }
 
-    if (!event.shiftKey && currentItem === lastItem) {
-      event.preventDefault();
-      return firstItem.focus();
-    }
+      if (!event.shiftKey && currentItem === lastItem) {
+        event.preventDefault();
+        return firstItem.focus();
+      }
+    };
   };
   /**
    * Manage attributes and events of targets elements.
@@ -476,7 +490,7 @@
   var manageTargets = function manageTargets(triggerElement, classListForTarget, onLoadActive) {
     return retrieveTargets(triggerElement).forEach(function (targetElement) {
       dispatchHook(targetElement, TOGGLE_BEFORE);
-      targetElement.isToggleActive = !targetElement.isToggleActive;
+      targetElement[namespacedProp('isActive')] = !targetElement[namespacedProp('isActive')];
       manageAria(targetElement);
 
       if (onLoadActive) {
@@ -488,17 +502,17 @@
       }
 
       if (triggerElement.hasAttribute(OUTSIDE)) {
-        targetElement.setAttribute(TARGET_STATE, triggerElement.isToggleActive);
+        targetElement.setAttribute(TARGET_STATE, triggerElement[namespacedProp('isActive')]);
         targetElement.easyToggleStateTrigger = triggerElement;
       }
 
       if (triggerElement.hasAttribute(MODAL)) {
-        if (targetElement.isToggleActive) {
-          document.ETSFocusTrapContainer = targetElement;
-          document.addEventListener("keydown", focusTrapHandler, false);
+        if (targetElement[namespacedProp('isActive')]) {
+          HANDLER_MAP[targetElement] = focusTrapHandler(targetElement);
+          document.addEventListener("keydown", HANDLER_MAP[targetElement], false);
         } else {
-          document.ETSFocusTrapContainer = null;
-          document.removeEventListener("keydown", focusTrapHandler, false);
+          document.removeEventListener("keydown", HANDLER_MAP[targetElement], false);
+          delete HANDLER_MAP[targetElement];
         }
       }
 
@@ -517,7 +531,7 @@
     dispatchHook(element, TOGGLE_BEFORE);
     var classList = retrieveClassList(element);
     toggleClassList(element, classList.trigger);
-    element.isToggleActive = !element.isToggleActive;
+    element[namespacedProp('isActive')] = !element[namespacedProp('isActive')];
     manageAria(element);
     dispatchHook(element, TOGGLE_AFTER);
     manageTargets(element, classList.target, false);
@@ -538,7 +552,7 @@
 
     (_element$classList = element.classList).add.apply(_element$classList, _toConsumableArray(classList.trigger));
 
-    element.isToggleActive = true;
+    element[namespacedProp('isActive')] = true;
     manageAria(element, (_manageAria = {}, _defineProperty(_manageAria, CHECKED, true), _defineProperty(_manageAria, EXPANDED, true), _defineProperty(_manageAria, HIDDEN, false), _defineProperty(_manageAria, PRESSED, true), _defineProperty(_manageAria, SELECTED, true), _manageAria));
     dispatchHook(element, TOGGLE_AFTER);
     manageTargets(element, classList.target, true);
@@ -568,21 +582,56 @@
     }
   };
   /**
+   * Check if a trigger element is active.
+   * @param {node} element - A trigger element
+   * @returns {boolean} - The active state of the trigger element
+   */
+
+
+  var isActive = function isActive(element) {
+    return !!element[namespacedProp('isActive')];
+  };
+  /**
+   * Unbind toggling management from an element list.
+   * @param {node} elementList - An element, or element list, on which remove the toggling management
+   * @returns {node} - Same element, or element list
+   */
+
+  var unbind = function unbind(elementList) {
+    (elementList[Symbol.iterator] ? _toConsumableArray(elementList) : [elementList]).forEach(function (element) {
+      element[namespacedProp('unbind')] && element[namespacedProp('unbind')]();
+    });
+    return elementList;
+  };
+  /**
+   * Unbind toggling management from all initialized elements in the page.
+   * @returns {nodeList} - A list of unbinded triggers
+   */
+
+  var unbindAll = function unbindAll() {
+    return unbind($$().filter(function (trigger) {
+      return trigger[namespacedProp('isInitialized')];
+    }));
+  };
+  /**
    * Initialization.
    * @returns {array} - An array of initialized triggers
    */
 
-
-  var init = (function () {
-    /** Warn if there some CLASS_TARGET triggers with no specified target. */
+  var initialize = (function () {
+    /**
+     * Warn if there some CLASS_TARGET triggers with no specified target.
+     */
     _toConsumableArray(document.querySelectorAll("[".concat(CLASS_TARGET, "]:not([").concat(TARGET, "]):not([").concat(TARGET_ALL, "]):not([").concat(TARGET_NEXT, "]):not([").concat(TARGET_PREVIOUS, "]):not([").concat(TARGET_PARENT, "]):not([").concat(TARGET_SELF, "])"))).forEach(function (element) {
       console.warn("This trigger has the attribute '".concat(CLASS_TARGET, "', but no specified target\n"), element);
     });
-    /** Active by default management. */
+    /**
+     * Active by default management.
+     */
 
 
     $$(IS_ACTIVE).filter(function (trigger) {
-      return !trigger.isETSDefInit;
+      return !trigger[namespacedProp('isDefaultInitialized')];
     }).forEach(function (trigger) {
       if (!trigger.hasAttribute(GROUP) && !trigger.hasAttribute(RADIO_GROUP)) {
         return manageActiveByDefault(trigger);
@@ -593,30 +642,43 @@
       }
 
       manageActiveByDefault(trigger);
-      trigger.isETSDefInit = true;
+      trigger[namespacedProp('isDefaultInitialized')] = true;
     });
-    /** Set specified or click event on each trigger element. */
+    /**
+     * Set specified or click event on each trigger element.
+     */
 
     var triggerList = $$().filter(function (trigger) {
-      return !trigger.isETSInit;
+      return !trigger[namespacedProp('isInitialized')];
     });
     triggerList.forEach(function (trigger) {
-      trigger.addEventListener(trigger.getAttribute(EVENT) || "click", function (event) {
+      var handler = function handler(event) {
         event.preventDefault();
         (trigger.hasAttribute(GROUP) || trigger.hasAttribute(RADIO_GROUP) ? manageGroup : manageToggle)(trigger);
-      }, false);
-      trigger.isETSInit = true;
-    });
-    /** Escape key management. */
+      };
 
-    if ($$(ESCAPE).length > 0 && !document.isETSEscInit) {
+      var eventName = trigger.getAttribute(EVENT) || "click";
+      trigger.addEventListener(eventName, handler, false);
+
+      trigger[namespacedProp('unbind')] = function () {
+        trigger.removeEventListener(eventName, handler, false);
+        trigger[namespacedProp('isInitialized')] = false;
+      };
+
+      trigger[namespacedProp('isInitialized')] = true;
+    });
+    /**
+     * Escape key management.
+     */
+
+    if ($$(ESCAPE).length > 0 && !document[namespacedProp('isEscapeKeyInitialized')]) {
       document.addEventListener("keydown", function (event) {
         if (!(event.key === "Escape") && !(event.key === "Esc")) {
           return;
         }
 
         $$(ESCAPE).forEach(function (trigger) {
-          if (!trigger.isToggleActive) {
+          if (!trigger[namespacedProp('isActive')]) {
             return;
           }
 
@@ -627,12 +689,14 @@
           return (trigger.hasAttribute(GROUP) ? manageGroup : manageToggle)(trigger);
         });
       }, false);
-      document.isETSEscInit = true;
+      document[namespacedProp('isEscapeKeyInitialized')] = true;
     }
-    /** Arrows key management. */
+    /**
+     * Arrows key management.
+     */
 
 
-    if ($$(ARROWS).length > 0 && !document.isETSArrInit) {
+    if ($$(ARROWS).length > 0 && !document[namespacedProp('isArrowKeysInitialized')]) {
       document.addEventListener("keydown", function (event) {
         var activeElement = document.activeElement;
 
@@ -671,18 +735,22 @@
         newElement.focus();
         return newElement.dispatchEvent(new Event(newElement.getAttribute(EVENT) || "click"));
       }, false);
-      document.isETSArrInit = true;
+      document[namespacedProp('isArrowKeysInitialized')] = true;
     }
 
     return triggerList;
   });
 
-  var onLoad = function onLoad() {
-    init();
-    document.removeEventListener("DOMContentLoaded", onLoad);
+  var handler = function handler() {
+    initialize();
+    document.removeEventListener("DOMContentLoaded", handler);
   };
 
-  document.addEventListener("DOMContentLoaded", onLoad);
-  window.initEasyToggleState = init;
+  document.addEventListener("DOMContentLoaded", handler);
+  window.easyToggleState = Object.assign(initialize, {
+    isActive: isActive,
+    unbind: unbind,
+    unbindAll: unbindAll
+  });
 
 }());
