@@ -35,6 +35,9 @@ import retrieveGroupActiveElement from "../helpers/retrieve-group-active-element
 import retrieveTargets from "../helpers/retrieve-targets";
 import toggleClassList from "../helpers/toggle-class-list";
 
+/** Need to use a map for some event handler to ensure to have the same signature */
+const HANDLER_MAP = {};
+
 /**
  * Manage event listener on document
  * @param {element} element - The element on which test if there event type specified
@@ -137,11 +140,11 @@ const manageTriggerOff = (targetElement, triggerElement) => {
  * When Tab key is pressed, if focus is outside of the container, give focus on first item ;
  * when Tab key is pressed, if focus is on last item, give focus on first one ;
  * when Shift + Tab keys are pressed, if focus is on first item, give focus on last one.
- * @param {event} event - Event triggered on keypress
+ * @param {node} targetElement - The focus trap container
  * @returns {undefined}
  */
-const focusTrapHandler = event => {
-	const focusablesList = [...document.ETSFocusTrapContainer.querySelectorAll("a[href], area[href], input:not([type='hidden']):not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]")];
+const focusTrapHandler = targetElement => event => {
+	const focusablesList = [...targetElement.querySelectorAll("a[href], area[href], input:not([type='hidden']):not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]")];
 
 	if (!focusablesList.length || event.key !== "Tab") {
 		return;
@@ -193,12 +196,12 @@ const manageTargets = (triggerElement, classListForTarget, onLoadActive) => retr
 		}
 
 		if (triggerElement.hasAttribute(MODAL)) {
-			if (targetElement.isToggleActive) {
-				document.ETSFocusTrapContainer = targetElement;
-				document.addEventListener("keydown", focusTrapHandler, false);
+			if (targetElement[namespacedProp('isActive')]) {
+				HANDLER_MAP[targetElement] = focusTrapHandler(targetElement);
+				document.addEventListener("keydown", HANDLER_MAP[targetElement], false);
 			} else {
-				document.ETSFocusTrapContainer = null;
-				document.removeEventListener("keydown", focusTrapHandler, false);
+				document.removeEventListener("keydown", HANDLER_MAP[targetElement], false);
+				delete HANDLER_MAP[targetElement];
 			}
 		}
 
