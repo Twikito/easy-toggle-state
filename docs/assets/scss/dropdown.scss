@@ -21,12 +21,13 @@
 
 		&::after {
 			display: inline-block;
-			content: "\25be";
+			transform: rotate(90deg);
+			content: "➜";
 			transition: transform .25s ease-out;
 		}
 
 		&.is-open::after {
-			transform: rotate(180deg);
+			transform: rotate(-90deg);
 		}
 	}
 
