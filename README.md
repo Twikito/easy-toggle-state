@@ -5,12 +5,18 @@ __A tiny JavaScript library to easily toggle the state of any HTML element in an
 Dropdown, navigation button, tooltip, collapsible panel, lightbox, tabs, switches…
 UI components made in minutes without worried about JavaScript. Only set a few HTML attributes, and code the rest with your CSS skills.
 
-[![npm version](https://badge.fury.io/js/easy-toggle-state.svg?style=flat-square)](https://badge.fury.io/js/easy-toggle-state)
-[![dependencies Status](https://david-dm.org/Twikito/easy-toggle-state/status.svg?style=flat-square)](https://david-dm.org/Twikito/easy-toggle-state)
-[![devDependencies Status](https://david-dm.org/Twikito/easy-toggle-state/dev-status.svg?style=flat-square)](https://david-dm.org/Twikito/easy-toggle-state?type=dev)
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
-[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat-square)](https://github.com/Twikito/easy-toggle-state/issues)
-[![GitHub license](https://img.shields.io/github/license/Twikito/easy-toggle-state.svg?style=flat-square)](https://github.com/Twikito/easy-toggle-state/blob/master/LICENSE)
+See some examples in [the documentation](https://twikito.github.io/easy-toggle-state/#examples).
+
+## Status
+
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/Twikito/easy-toggle-state?style=flat-square)](https://github.com/Twikito/easy-toggle-state/releases)
+[![npm](https://img.shields.io/npm/v/easy-toggle-state?style=flat-square)](https://www.npmjs.com/package/easy-toggle-state)
+[![Cdnjs](https://img.shields.io/cdnjs/v/easy-toggle-state?style=flat-square)](https://cdnjs.com/libraries/easy-toggle-state)
+[![npm bundle size](https://img.shields.io/bundlephobia/min/easy-toggle-state?style=flat-square)](https://github.com/Twikito/easy-toggle-state/blob/master/dist/easy-toggle-state.es6.min.js)
+[![npm bundle size](https://img.shields.io/bundlephobia/minzip/easy-toggle-state?style=flat-square)](https://github.com/Twikito/easy-toggle-state/blob/master/dist/easy-toggle-state.es6.min.js)
+
+[![David](https://img.shields.io/david/Twikito/easy-toggle-state?style=flat-square)](https://david-dm.org/Twikito/easy-toggle-state)
+[![David](https://img.shields.io/david/dev/Twikito/easy-toggle-state?style=flat-square)](https://david-dm.org/Twikito/easy-toggle-state?type=dev)
 
 ## Why?
 
