@@ -23,7 +23,7 @@
 		display: block;
 		color: var(--theme); /* You probably need to change this! */
 		opacity: 0;
-		content: "✔";
+		content: "✖";
 		transition: opacity .15s ease-out;
 	}
 
