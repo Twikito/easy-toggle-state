@@ -65,8 +65,8 @@ const documentEventHandler = event => {
 				(element.getAttribute(EVENT) === eType && !element.hasAttribute(OUTSIDE_EVENT)) ||
 				(eType === "click" && !element.hasAttribute(EVENT) && !element.hasAttribute(OUTSIDE_EVENT)))
 		.forEach(element => {
-			const e = eTarget.closest("[" + TARGET_STATE + '="true"]');
-			if (e && e.easyToggleStateTrigger === element) {
+			const e = eTarget.closest(`[${TARGET_STATE}="true"]`);
+			if (e && e[namespacedProp('trigger')] === element) {
 				insideTarget = true;
 			}
 			if (!insideTarget && element !== eTarget && !element.contains(eTarget) && element[namespacedProp('isActive')]) {
@@ -194,7 +194,7 @@ const manageTargets = (triggerElement, classListForTarget, onLoadActive) => retr
 
 		if (triggerElement.hasAttribute(OUTSIDE)) {
 			targetElement.setAttribute(TARGET_STATE, triggerElement[namespacedProp('isActive')]);
-			targetElement.easyToggleStateTrigger = triggerElement;
+			targetElement[namespacedProp('trigger')] = triggerElement;
 		}
 
 		if (triggerElement.hasAttribute(MODAL)) {
