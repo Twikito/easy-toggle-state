@@ -57,8 +57,8 @@ export default (element) => {
 		}
 	);
 
-	!lists.trigger.length && lists.trigger.push(DEFAULT_CLASS);
-	!lists.target.length && lists.target.push(DEFAULT_CLASS);
+	!lists.trigger.length && (element.hasAttribute(CLASS) || element.hasAttribute(CLASS_TRIGGER)) && lists.trigger.push(DEFAULT_CLASS);
+	!lists.target.length && (element.hasAttribute(CLASS) || element.hasAttribute(CLASS_TARGET)) && lists.target.push(DEFAULT_CLASS);
 
 	return lists;
 };
