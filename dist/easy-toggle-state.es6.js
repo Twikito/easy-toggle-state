@@ -178,8 +178,8 @@
 			}
 		);
 
-		!lists.trigger.length && lists.trigger.push(DEFAULT_CLASS);
-		!lists.target.length && lists.target.push(DEFAULT_CLASS);
+		!lists.trigger.length && (element.hasAttribute(CLASS) || element.hasAttribute(CLASS_TRIGGER)) && lists.trigger.push(DEFAULT_CLASS);
+		!lists.target.length && (element.hasAttribute(CLASS) || element.hasAttribute(CLASS_TARGET)) && lists.target.push(DEFAULT_CLASS);
 
 		return lists;
 	};
@@ -309,11 +309,11 @@
 					(element.getAttribute(EVENT) === eType && !element.hasAttribute(OUTSIDE_EVENT)) ||
 					(eType === "click" && !element.hasAttribute(EVENT) && !element.hasAttribute(OUTSIDE_EVENT)))
 			.forEach(element => {
-				const e = eTarget.closest("[" + TARGET_STATE + '="true"]');
-				if (e && e.easyToggleStateTrigger === element) {
+				const e = eTarget.closest(`[${TARGET_STATE}="true"]`);
+				if (e && e[namespacedProp('trigger')] === element) {
 					insideTarget = true;
 				}
-				if (!insideTarget && element !== eTarget && element[namespacedProp('isActive')]) {
+				if (!insideTarget && element !== eTarget && !element.contains(eTarget) && element[namespacedProp('isActive')]) {
 					(element.hasAttribute(GROUP) || element.hasAttribute(RADIO_GROUP) ? manageGroup : manageToggle)(element);
 				}
 			});
@@ -322,7 +322,9 @@
 			document.removeEventListener(eType, documentEventHandler, false);
 		}
 
-		if (eTarget.hasAttribute(OUTSIDE) && eTarget[namespacedProp('isActive')]) {
+		// eTarget may be an element inside a trigger
+		const newTarget = eTarget.closest(`[${CLASS}][${OUTSIDE}],[${CLASS_TRIGGER}][${OUTSIDE}],[${CLASS_TARGET}][${OUTSIDE}]`);
+		if (newTarget && newTarget[namespacedProp('isActive')]) {
 			addEventListenerOnDocument(eTarget);
 		}
 	};
@@ -436,7 +438,7 @@
 
 			if (triggerElement.hasAttribute(OUTSIDE)) {
 				targetElement.setAttribute(TARGET_STATE, triggerElement[namespacedProp('isActive')]);
-				targetElement.easyToggleStateTrigger = triggerElement;
+				targetElement[namespacedProp('trigger')] = triggerElement;
 			}
 
 			if (triggerElement.hasAttribute(MODAL)) {
