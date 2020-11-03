@@ -69,7 +69,7 @@ const documentEventHandler = event => {
 			if (e && e.easyToggleStateTrigger === element) {
 				insideTarget = true;
 			}
-			if (!insideTarget && element !== eTarget && element[namespacedProp('isActive')]) {
+			if (!insideTarget && element !== eTarget && !element.contains(eTarget) && element[namespacedProp('isActive')]) {
 				(element.hasAttribute(GROUP) || element.hasAttribute(RADIO_GROUP) ? manageGroup : manageToggle)(element);
 			}
 		});
@@ -78,7 +78,9 @@ const documentEventHandler = event => {
 		document.removeEventListener(eType, documentEventHandler, false);
 	}
 
-	if (eTarget.hasAttribute(OUTSIDE) && eTarget[namespacedProp('isActive')]) {
+	// eTarget may be an element inside a trigger
+	const newTarget = eTarget.closest(`[${CLASS}][${OUTSIDE}],[${CLASS_TRIGGER}][${OUTSIDE}],[${CLASS_TARGET}][${OUTSIDE}]`);
+	if (newTarget && newTarget[namespacedProp('isActive')]) {
 		addEventListenerOnDocument(eTarget);
 	}
 };
