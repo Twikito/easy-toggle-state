@@ -456,7 +456,7 @@ document.addEventListener("DOMContentLoaded", handler);</code></pre>
 							<pre><code>data-toggle-is-active</code></pre>
 						</dt>
 						<dd>
-							<p>Specify a trigger element and its targets toggled as default, set during the <code class="language-js">onload</code> event. In this case, you should add the specified class name on each element, even if the script will check that for you.</p>
+							<p>Specify a trigger element and its targets to be active by default. As a consequence, they will be toggled once on script execution.</p>
 						</dd>
 					</div>
 
@@ -1290,14 +1290,14 @@ isActive( Node );</code></pre>
 	data-toggle-arrows
 	data-toggle-is-active
 	aria-controls="panel_1"
-	aria-expanded="true"&gt;
+	aria-expanded="false"&gt;
 	Click here
 &lt;/button&gt;
 &lt;div class="example-collapsible-panel"
 	id="panel_1"
 	role="region"
 	aria-labelledby="buttonForPanel_1"
-	aria-hidden="false"&gt;
+	aria-hidden="true"&gt;
 	&lt;div class="example-collapsible-panel-content"&gt;
 		Lorem ipsum dolor sit amet&hellip;
 	&lt;/div&gt;
@@ -1328,10 +1328,10 @@ isActive( Node );</code></pre>
 
 &lt;!-- … --&gt;</code></pre>
 					<div class="demo" id="accordion-demo">
-						<button type="button" class="example-collapsible-button" id="buttonForPanel_1" data-toggle-class="is-open" data-toggle-target-parent="#panel_1" data-toggle-group="accordion" data-toggle-escape data-toggle-arrows data-toggle-is-active aria-controls="panel_1" aria-expanded="true">
+						<button type="button" class="example-collapsible-button" id="buttonForPanel_1" data-toggle-class="is-open" data-toggle-target-parent="#panel_1" data-toggle-group="accordion" data-toggle-escape data-toggle-arrows data-toggle-is-active aria-controls="panel_1" aria-expanded="false">
 							Click here
 						</button>
-						<div class="example-collapsible-panel" id="panel_1" role="region" aria-labelledby="buttonForPanel_1" aria-hidden="false">
+						<div class="example-collapsible-panel" id="panel_1" role="region" aria-labelledby="buttonForPanel_1" aria-hidden="true">
 							<div class="example-collapsible-panel-content">
 								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam semper faucibus odio, vitae faucibus dui tempor in. Duis vitae luctus mi. Phasellus ultrices rhoncus lectus, non vehicula tortor sodales id.
 							</div>
@@ -1535,7 +1535,7 @@ isActive( Node );</code></pre>
 		data-toggle-arrows
 		data-toggle-is-active
 		role="tab"
-		aria-selected="true"
+		aria-selected="false"
 		aria-controls="tabPanel_1"&gt;
 		tab 1
 	&lt;/button&gt;
@@ -1556,7 +1556,7 @@ isActive( Node );</code></pre>
 	id="tabPanel_1"
 	role="tabpanel"
 	aria-labelledby="tab_1"
-	aria-hidden="false"&gt;
+	aria-hidden="true"&gt;
 	Panel 1&lt;br&gt;
 	Lorem ipsum dolor sit amet&hellip;
 &lt;/div&gt;
@@ -1571,11 +1571,11 @@ isActive( Node );</code></pre>
 &lt;!-- … --&gt;</code></pre>
 					<div class="demo" id="tabs-with-aria-demo">
 						<div class="example-tabs" role="tablist">
-							<button type="button" id="tab_4" data-toggle-class data-toggle-target="#tabPanel_4" data-toggle-radio-group="tabsGroup_2" data-toggle-arrows data-toggle-is-active role="tab" aria-selected="true" aria-controls="tabPanel_4">tab 1</button>
+							<button type="button" id="tab_4" data-toggle-class data-toggle-target="#tabPanel_4" data-toggle-radio-group="tabsGroup_2" data-toggle-arrows data-toggle-is-active role="tab" aria-selected="false" aria-controls="tabPanel_4">tab 1</button>
 							<button type="button" id="tab_5" data-toggle-class data-toggle-target="#tabPanel_5" data-toggle-radio-group="tabsGroup_2" data-toggle-arrows role="tab" aria-selected="false" aria-controls="tabPanel_5">tab 2</button>
 							<button type="button" id="tab_6" data-toggle-class data-toggle-target="#tabPanel_6" data-toggle-radio-group="tabsGroup_2" data-toggle-arrows role="tab" aria-selected="false" aria-controls="tabPanel_6">tab 3</button>
 						</div>
-						<div class="example-tab-panel" id="tabPanel_4" role="tabpanel" aria-labelledby="tab_4" aria-hidden="false">
+						<div class="example-tab-panel" id="tabPanel_4" role="tabpanel" aria-labelledby="tab_4" aria-hidden="true">
 							Panel 1<br>
 							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam semper faucibus odio, vitae faucibus dui tempor in. Duis vitae luctus mi. Phasellus ultrices rhoncus lectus, non vehicula tortor sodales id.
 						</div>
@@ -2086,7 +2086,7 @@ isActive( Node );</code></pre>
 		</div>
 	</footer>
 
-	<script src="https://rawgit.com/Twikito/easy-toggle-state/master/dist/easy-toggle-state.es6.min.js"></script>
+	<script src="../dist/easy-toggle-state.es6.min.js"></script>
 	<script src="assets/js/prism.js"></script>
 	<script src="assets/js/main.js"></script>
 </body>

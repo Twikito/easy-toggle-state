@@ -1,21 +1,16 @@
 import {
 	ARROWS,
-	CHECKED,
 	CLASS,
 	CLASS_TARGET,
 	CLASS_TRIGGER,
 	ESCAPE,
 	EVENT,
-	EXPANDED,
 	GROUP,
-	HIDDEN,
 	IS_ACTIVE,
 	MODAL,
 	OUTSIDE,
 	OUTSIDE_EVENT,
-	PRESSED,
 	RADIO_GROUP,
-	SELECTED,
 	TARGET,
 	TARGET_ALL,
 	TARGET_NEXT,
@@ -232,31 +227,6 @@ const manageToggle = element => {
 };
 
 /**
- * Toggle elements set to be active by default.
- * @param {node} element - The element to activate on page load
- * @returns {undefined}
- */
-const manageActiveByDefault = element => {
-	dispatchHook(element, TOGGLE_BEFORE);
-
-	const classList = retrieveClassList(element);
-	element.classList.add(...classList.trigger);
-	element[namespacedProp('isActive')] = true;
-	manageAria(element, {
-		[CHECKED]: true,
-		[EXPANDED]: true,
-		[HIDDEN]: false,
-		[PRESSED]: true,
-		[SELECTED]: true
-	});
-
-	dispatchHook(element, TOGGLE_AFTER);
-
-	manageTargets(element, classList.target, true);
-	return manageTriggerOutside(element);
-};
-
-/**
  * Toggle elements of a same group.
  * @param {node} element - The element to test if it's in a group
  * @returns {undefined}
@@ -323,7 +293,7 @@ export default () => {
 		.filter(trigger => !trigger[namespacedProp('isDefaultInitialized')])
 		.forEach(trigger => {
 			if (!trigger.hasAttribute(GROUP) && !trigger.hasAttribute(RADIO_GROUP)) {
-				return manageActiveByDefault(trigger);
+				return manageToggle(trigger);
 			}
 
 			if (retrieveGroupActiveElement(trigger).length > 0) {
@@ -331,7 +301,7 @@ export default () => {
 						trigger.getAttribute(RADIO_GROUP)}' must not have more than one trigger with '${IS_ACTIVE}'`);
 			}
 
-			manageActiveByDefault(trigger);
+			manageToggle(trigger);
 			trigger[namespacedProp('isDefaultInitialized')] = true;
 		});
 
