@@ -85,7 +85,7 @@ const documentEventHandler = event => {
  * @param {event} event - Event triggered on element with 'trigger-off' attribute
  * @returns {undefined}
  */
-const triggerOffHandler = event => manageToggle(event.currentTarget.targetElement);
+const triggerOffHandler = event => manageToggle(event.currentTarget[namespacedProp('target')]);
 
 /**
  * Manage event ouside trigger or target elements.
@@ -121,7 +121,7 @@ const manageTriggerOff = (targetElement, triggerElement) => {
 
 	if (triggerElement[namespacedProp('isActive')]) {
 		return triggerOffList.forEach(triggerOff => {
-			triggerOff.targetElement = triggerElement;
+			triggerOff[namespacedProp('target')] = triggerElement;
 			triggerOff.addEventListener("click", triggerOffHandler, false);
 		});
 	}
