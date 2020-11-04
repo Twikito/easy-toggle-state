@@ -292,15 +292,10 @@ export default () => {
 	$$(IS_ACTIVE)
 		.filter(trigger => !trigger[namespacedProp('isDefaultInitialized')])
 		.forEach(trigger => {
-			if (!trigger.hasAttribute(GROUP) && !trigger.hasAttribute(RADIO_GROUP)) {
-				return manageToggle(trigger);
-			}
-
-			if (retrieveGroupActiveElement(trigger).length > 0) {
+			if ((trigger.hasAttribute(GROUP) || trigger.hasAttribute(RADIO_GROUP)) && retrieveGroupActiveElement(trigger).length > 0) {
 				return console.warn(`Toggle group '${trigger.getAttribute(GROUP) ||
 						trigger.getAttribute(RADIO_GROUP)}' must not have more than one trigger with '${IS_ACTIVE}'`);
 			}
-
 			manageToggle(trigger);
 			trigger[namespacedProp('isDefaultInitialized')] = true;
 		});
