@@ -334,7 +334,7 @@
 	 * @param {event} event - Event triggered on element with 'trigger-off' attribute
 	 * @returns {undefined}
 	 */
-	const triggerOffHandler = event => manageToggle(event.currentTarget.targetElement);
+	const triggerOffHandler = event => manageToggle(event.currentTarget[namespacedProp('target')]);
 
 	/**
 	 * Manage event ouside trigger or target elements.
@@ -362,7 +362,7 @@
 	 * @returns {undefined}
 	 */
 	const manageTriggerOff = (targetElement, triggerElement) => {
-		const triggerOffList = $$(TRIGGER_OFF, targetElement);
+		const triggerOffList = $$(TRIGGER_OFF, targetElement).filter(triggerOff => !triggerOff.getAttribute(TRIGGER_OFF) || targetElement.matches(triggerOff.getAttribute(TRIGGER_OFF)));
 
 		if (triggerOffList.length === 0) {
 			return;
@@ -370,7 +370,7 @@
 
 		if (triggerElement[namespacedProp('isActive')]) {
 			return triggerOffList.forEach(triggerOff => {
-				triggerOff.targetElement = triggerElement;
+				triggerOff[namespacedProp('target')] = triggerElement;
 				triggerOff.addEventListener("click", triggerOffHandler, false);
 			});
 		}
@@ -476,31 +476,6 @@
 	};
 
 	/**
-	 * Toggle elements set to be active by default.
-	 * @param {node} element - The element to activate on page load
-	 * @returns {undefined}
-	 */
-	const manageActiveByDefault = element => {
-		dispatchHook(element, TOGGLE_BEFORE);
-
-		const classList = retrieveClassList(element);
-		element.classList.add(...classList.trigger);
-		element[namespacedProp('isActive')] = true;
-		manageAria(element, {
-			[CHECKED]: true,
-			[EXPANDED]: true,
-			[HIDDEN]: false,
-			[PRESSED]: true,
-			[SELECTED]: true
-		});
-
-		dispatchHook(element, TOGGLE_AFTER);
-
-		manageTargets(element, classList.target, true);
-		return manageTriggerOutside(element);
-	};
-
-	/**
 	 * Toggle elements of a same group.
 	 * @param {node} element - The element to test if it's in a group
 	 * @returns {undefined}
@@ -566,16 +541,11 @@
 		$$(IS_ACTIVE)
 			.filter(trigger => !trigger[namespacedProp('isDefaultInitialized')])
 			.forEach(trigger => {
-				if (!trigger.hasAttribute(GROUP) && !trigger.hasAttribute(RADIO_GROUP)) {
-					return manageActiveByDefault(trigger);
-				}
-
-				if (retrieveGroupActiveElement(trigger).length > 0) {
+				if ((trigger.hasAttribute(GROUP) || trigger.hasAttribute(RADIO_GROUP)) && retrieveGroupActiveElement(trigger).length > 0) {
 					return console.warn(`Toggle group '${trigger.getAttribute(GROUP) ||
 						trigger.getAttribute(RADIO_GROUP)}' must not have more than one trigger with '${IS_ACTIVE}'`);
 				}
-
-				manageActiveByDefault(trigger);
+				manageToggle(trigger);
 				trigger[namespacedProp('isDefaultInitialized')] = true;
 			});
 

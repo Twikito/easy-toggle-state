@@ -394,7 +394,7 @@
 
 
   var triggerOffHandler = function triggerOffHandler(event) {
-    return manageToggle(event.currentTarget.targetElement);
+    return manageToggle(event.currentTarget[namespacedProp('target')]);
   };
   /**
    * Manage event ouside trigger or target elements.
@@ -425,7 +425,9 @@
 
 
   var manageTriggerOff = function manageTriggerOff(targetElement, triggerElement) {
-    var triggerOffList = $$(TRIGGER_OFF, targetElement);
+    var triggerOffList = $$(TRIGGER_OFF, targetElement).filter(function (triggerOff) {
+      return !triggerOff.getAttribute(TRIGGER_OFF) || targetElement.matches(triggerOff.getAttribute(TRIGGER_OFF));
+    });
 
     if (triggerOffList.length === 0) {
       return;
@@ -433,7 +435,7 @@
 
     if (triggerElement[namespacedProp('isActive')]) {
       return triggerOffList.forEach(function (triggerOff) {
-        triggerOff.targetElement = triggerElement;
+        triggerOff[namespacedProp('target')] = triggerElement;
         triggerOff.addEventListener("click", triggerOffHandler, false);
       });
     }
@@ -541,27 +543,6 @@
     return manageTriggerOutside(element);
   };
   /**
-   * Toggle elements set to be active by default.
-   * @param {node} element - The element to activate on page load
-   * @returns {undefined}
-   */
-
-
-  var manageActiveByDefault = function manageActiveByDefault(element) {
-    var _element$classList, _manageAria;
-
-    dispatchHook(element, TOGGLE_BEFORE);
-    var classList = retrieveClassList(element);
-
-    (_element$classList = element.classList).add.apply(_element$classList, _toConsumableArray(classList.trigger));
-
-    element[namespacedProp('isActive')] = true;
-    manageAria(element, (_manageAria = {}, _defineProperty(_manageAria, CHECKED, true), _defineProperty(_manageAria, EXPANDED, true), _defineProperty(_manageAria, HIDDEN, false), _defineProperty(_manageAria, PRESSED, true), _defineProperty(_manageAria, SELECTED, true), _manageAria));
-    dispatchHook(element, TOGGLE_AFTER);
-    manageTargets(element, classList.target, true);
-    return manageTriggerOutside(element);
-  };
-  /**
    * Toggle elements of a same group.
    * @param {node} element - The element to test if it's in a group
    * @returns {undefined}
@@ -636,15 +617,11 @@
     $$(IS_ACTIVE).filter(function (trigger) {
       return !trigger[namespacedProp('isDefaultInitialized')];
     }).forEach(function (trigger) {
-      if (!trigger.hasAttribute(GROUP) && !trigger.hasAttribute(RADIO_GROUP)) {
-        return manageActiveByDefault(trigger);
-      }
-
-      if (retrieveGroupActiveElement(trigger).length > 0) {
+      if ((trigger.hasAttribute(GROUP) || trigger.hasAttribute(RADIO_GROUP)) && retrieveGroupActiveElement(trigger).length > 0) {
         return console.warn("Toggle group '".concat(trigger.getAttribute(GROUP) || trigger.getAttribute(RADIO_GROUP), "' must not have more than one trigger with '").concat(IS_ACTIVE, "'"));
       }
 
-      manageActiveByDefault(trigger);
+      manageToggle(trigger);
       trigger[namespacedProp('isDefaultInitialized')] = true;
     });
     /**
