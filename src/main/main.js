@@ -113,7 +113,7 @@ const manageTriggerOutside = element => {
  * @returns {undefined}
  */
 const manageTriggerOff = (targetElement, triggerElement) => {
-	const triggerOffList = $$(TRIGGER_OFF, targetElement);
+	const triggerOffList = $$(TRIGGER_OFF, targetElement).filter(triggerOff => !triggerOff.getAttribute(TRIGGER_OFF) || targetElement.matches(triggerOff.getAttribute(TRIGGER_OFF)));
 
 	if (triggerOffList.length === 0) {
 		return;
