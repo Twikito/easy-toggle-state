@@ -78,6 +78,16 @@ nav::-webkit-scrollbar-track {
 	background-color: transparent;
 }
 
+nav::-webkit-scrollbar-thumb:horizontal:hover,
+nav::-webkit-scrollbar-thumb:vertical:hover {
+	background-color: darkgrey;
+}
+
+nav::-webkit-scrollbar-thumb:horizontal:active,
+nav::-webkit-scrollbar-thumb:vertical:active {
+	background-color: grey;
+}
+
 nav ul {
 	list-style: none;
 }
