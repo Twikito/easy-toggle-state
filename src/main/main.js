@@ -121,13 +121,20 @@ const manageTriggerOff = (targetElement, triggerElement) => {
 
 	if (triggerElement[namespacedProp('isActive')]) {
 		return triggerOffList.forEach(triggerOff => {
-			triggerOff[namespacedProp('target')] = triggerElement;
-			triggerOff.addEventListener("click", triggerOffHandler, false);
+			// Do not override if another reference is already set
+			if (!triggerOff[namespacedProp('target')]) {
+				triggerOff[namespacedProp('target')] = triggerElement;
+				triggerOff.addEventListener("click", triggerOffHandler, false);
+			}
 		});
 	}
 
 	triggerOffList.forEach(triggerOff => {
-		triggerOff.removeEventListener("click", triggerOffHandler, false);
+		// Remove reference only if it equals current trigger
+		if (triggerOff[namespacedProp('target')] === triggerElement) {
+			triggerOff[namespacedProp('target')] = null;
+			triggerOff.removeEventListener("click", triggerOffHandler, false);
+		}
 	});
 	return triggerElement.focus();
 };
