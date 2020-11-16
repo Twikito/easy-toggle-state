@@ -1,6 +1,6 @@
 {
 	"name": "easy-toggle-state",
-	"version": "1.15.0",
+	"version": "1.15.1",
 	"license": "MIT",
 	"description": "A tiny JavaScript library to easily toggle the state of any HTML element in any contexts, and create UI components in no time.",
 	"main": "src/main/main.js",
