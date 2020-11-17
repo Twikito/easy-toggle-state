@@ -20,12 +20,14 @@
 }
 .example-checkbox::before {
 	display: block;
+	transform: scale(0);
 	color: var(--theme); /* You probably need to change this! */
 	opacity: 0;
 	content: "✖";
-	transition: opacity .15s ease-out;
+	transition: .15s ease-out;
 }
 .example-checkbox.is-checked::before {
+	transform: scale(1);
 	opacity: 1;
 }
 
