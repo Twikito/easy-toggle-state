@@ -69,7 +69,7 @@
 				<strong>A tiny JavaScript library to easily toggle the state of any <abbr title="HyperText Markup Language">HTML</abbr> element, and create <abbr title="User Interface">UI</abbr> components in no time.</strong>
 			</p>
 			<p>
-				Dropdown, navigation button, tooltip, collapsible panel, lightbox, tabs, switch like above&hellip;<br>
+				Dropdown, navigation button, tooltip, collapsible panel, lightbox, tabs, switch like above to change theme&hellip;<br>
 				<abbr title="User Interface">UI</abbr> components made in minutes without worried about JavaScript. Only set a few <abbr title="HyperText Markup Language">HTML</abbr> attributes, and code the rest with your <abbr title="Cascading StyleSheet">CSS</abbr> skills.
 			</p>
 
@@ -278,7 +278,7 @@
 				</h3>
 				<p>
 					You want to display a checkbox, i.e. a box with a checkmark that appears on click on this box.
-					Even if you should use the <code class="language-html">&lt;input type="checkbox"&gt;</code> native component, in some case, you can’t.
+					Even if you should use the <code class="language-html">&lt;input type="checkbox"&gt;</code> native component, in some cases, you can’t.
 				</p>
 				<section id="simple-checkbox">
 					<h4>
@@ -400,7 +400,7 @@
 				</h3>
 				<p>
 					You want to display a switchbox, i.e. a box with a "ball" that moves on click on this box.
-					Even if you should use the <code class="language-html">&lt;input type="checkbox"&gt;</code> native component, in some case, you can’t.
+					Even if you should use the <code class="language-html">&lt;input type="checkbox"&gt;</code> native component, in some cases, you can’t.
 				</p>
 				<section id="switchbox-with-external-label">
 					<h4>
@@ -457,7 +457,7 @@
 				</h3>
 				<p>
 					You want to display some radio buttons, i.e. some circles which are filled on click on them, only one at a time.
-					Even if you should use the <code class="language-html">&lt;input type="radio"&gt;</code> native component, in some case, you can’t.
+					Even if you should use the <code class="language-html">&lt;input type="radio"&gt;</code> native component, in some cases, you can’t.
 				</p>
 				<section id="simple-radio">
 					<h4>
@@ -735,7 +735,7 @@
 				</h3>
 				<p>
 					You want to create a collapsible panel, i.e. a frame, with some content, that can be collapsed on click on a button.
-					Even if you should use <code class="language-html">&lt;details&gt;</code> and <code class="language-html">&lt;summary&gt;</code> HTML elements, in some case, you can’t.
+					Even if you should use <code class="language-html">&lt;details&gt;</code> and <code class="language-html">&lt;summary&gt;</code> HTML elements, in some cases, you can’t.
 				</p>
 				<section id="simple-collapsible-panel">
 					<h4>
@@ -1189,7 +1189,7 @@
 				<h3>
 					<a href="#dropdown">Dropdown</a>
 				</h3>
-				<p>You want to create a dropdown, i.e. a list of choices that appears when you click on a button. Of course you should use <code class="language-html">&lt;select&gt;</code> and <code class="language-html">&lt;option&gt;</code> HTML elements, but in some case, you can’t.</p>
+				<p>You want to create a dropdown, i.e. a list of choices that appears when you click on a button. Of course you should use <code class="language-html">&lt;select&gt;</code> and <code class="language-html">&lt;option&gt;</code> HTML elements, but in some cases, you can’t.</p>
 				<section id="simple-dropdown">
 					<h4>
 						<a href="#simple-dropdown">Simple dropdown</a>
@@ -1362,7 +1362,7 @@
 					You want to create a dialog, i.e. an information or form box displayed in front of all page content on click on a trigger.
 				</p>
 				<p>
-					Even if you should use <code class="language-html">&lt;dialog&gt;</code> HTML element, in some case, you can’t.
+					Even if you should use <code class="language-html">&lt;dialog&gt;</code> HTML element, in some cases, you can’t.
 				</p>
 				<section id="simple-dialog">
 					<h4>
@@ -1827,7 +1827,7 @@ document.addEventListener("DOMContentLoaded", handler);</code></pre>
 
 					<div id="data-toggle-group">
 						<dt>
-							<pre><code>data-toggle-group="group"</code></pre>
+							<pre><code>data-toggle-group="name"</code></pre>
 						</dt>
 						<dd>
 							<p>Specify if a trigger is a part of a group. Only one trigger of a group can be active at a time. It will actually behave like an accordion component.</p>
@@ -1836,7 +1836,7 @@ document.addEventListener("DOMContentLoaded", handler);</code></pre>
 
 					<div id="data-toggle-radio-group">
 						<dt>
-							<pre><code>data-toggle-radio-group="group"</code></pre>
+							<pre><code>data-toggle-radio-group="name"</code></pre>
 						</dt>
 						<dd>
 							<p>Specify if a trigger is a part of a radio group. Only one trigger of a radio group can be active at a time.</p>
@@ -1943,7 +1943,7 @@ document.addEventListener("DOMContentLoaded", handler);</code></pre>
 					<h4>
 						<a href="#custom-prefix">Custom prefix</a>
 					</h4>
-					<p>You can change the prefix <code>toggle</code> in <code>data-toggle-class</code> and every attributes to prevent conflict with another <abbr title="JavaScript">JS</abbr> library. To do so, add this attribute to your <code>&lt;html&gt;</code> element with your new prefix:</p>
+					<p>You can change the prefix <code>toggle</code> in <code>data-toggle-class</code> and other attributes to prevent conflict with another <abbr title="JavaScript">JS</abbr> library. To do so, add this attribute to your <code>&lt;html&gt;</code> element with your new prefix:</p>
 					<pre><code class="language-html">&lt;html data-easy-toggle-state-custom-prefix="my-prefix"&gt;</code></pre>
 					<p>It will so be set to all attributes like <code>data-my-prefix-class</code>.</p>
 				</section>
