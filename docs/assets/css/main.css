@@ -336,6 +336,10 @@ pre::-webkit-scrollbar {
 	padding: 1em; margin: .5em 0;
 }
 
+.md-link {
+	color: inherit;
+}
+
 .wrapper {
 	max-width: 90rem; margin: 0 auto; padding: 0 5vw;
 }

@@ -286,7 +286,7 @@
 					</h4>
 <pre><code class="language-html line-numbers">&lt;button type="button"
 	class="example-checkbox"
-	data-toggle-class="is-checked"&gt;
+	[data-toggle-class](#data-toggle-class)="is-checked"&gt;
 &lt;/button&gt;</code></pre>
 					<div class="demo" id="simple-checkbox-demo">
 						<button type="button" class="example-checkbox" data-toggle-class="is-checked"></button>
@@ -305,9 +305,9 @@
 					</h4>
 <pre><code class="language-html line-numbers">&lt;button type="button"
 	class="example-checkbox"
-	data-toggle-class="is-checked"
+	[data-toggle-class](#data-toggle-class)="is-checked"
 	role="checkbox"
-	aria-checked="false"
+	[aria-checked](#a11y)="false"
 	title="Toggle this box"&gt;
 	&lt;span class="sr-only"&gt;Toggle&lt;/span&gt;
 &lt;/button&gt;</code></pre>
@@ -330,10 +330,10 @@
 					</h4>
 <pre><code class="language-html line-numbers">&lt;button type="button"
 	class="example-checkbox"
-	data-toggle-class="is-checked"
+	[data-toggle-class](#data-toggle-class)="is-checked"
 	id="checkbox"
 	role="checkbox"
-	aria-checked="false"
+	[aria-checked](#a11y)="false"
 	title="Toggle this box"&gt;
 	&lt;span class="sr-only"&gt;Toggle&lt;/span&gt;
 &lt;/button&gt;
@@ -360,10 +360,10 @@
 					</h4>
 <pre><code class="language-html line-numbers">&lt;button type="button"
 	class="example-checkbox-container"
-	data-toggle-class="is-checked"
-	data-toggle-target-self=".example-checkbox"
+	[data-toggle-class](#data-toggle-class)="is-checked"
+	[data-toggle-target-self](#data-toggle-target-self)=".example-checkbox"
 	role="checkbox"
-	aria-checked="false"&gt;
+	[aria-checked](#a11y)="false"&gt;
 	&lt;span class="example-checkbox" aria-hidden="true"&gt;&lt;/span&gt;
 	Awesome checkbox
 &lt;/button&gt;</code></pre>
@@ -408,9 +408,9 @@
 					</h4>
 <pre><code class="language-html line-numbers">&lt;button type="button"
 	class="example-switchbox"
-	data-toggle-class="is-pressed"
+	[data-toggle-class](#data-toggle-class)="is-pressed"
 	id="switchbox"
-	aria-pressed="false"
+	[aria-pressed](#a11y)="false"
 	title="Toggle this box"&gt;
 	&lt;span class="example-switchbox-yes" aria-hidden="true"&gt;yes&lt;/span&gt;
 	&lt;span class="example-switchbox-no" aria-hidden="true"&gt;no&lt;/span&gt;
@@ -466,22 +466,22 @@
 <pre><code class="language-html line-numbers">&lt;button type="button"
 	class="example-radio"
 	id="radio_1"
-	data-toggle-class="is-checked"
-	data-toggle-radio-group="radioGroup"&gt;
+	[data-toggle-class](#data-toggle-class)="is-checked"
+	[data-toggle-radio-group](#data-toggle-radio-group)="radioGroup"&gt;
 &lt;/button&gt;
 &lt;label for="radio_1"&gt;Option 1&lt;/label&gt;&lt;br&gt;
 &lt;button type="button"
 	class="example-radio"
 	id="radio_2"
-	data-toggle-class="is-checked"
-	data-toggle-radio-group="radioGroup"&gt;
+	[data-toggle-class](#data-toggle-class)="is-checked"
+	[data-toggle-radio-group](#data-toggle-radio-group)="radioGroup"&gt;
 &lt;/button&gt;
 &lt;label for="radio_2"&gt;Option 2&lt;/label&gt;&lt;br&gt;
 &lt;button type="button"
 	class="example-radio"
 	id="radio_3"
-	data-toggle-class="is-checked"
-	data-toggle-radio-group="radioGroup"&gt;
+	[data-toggle-class](#data-toggle-class)="is-checked"
+	[data-toggle-radio-group](#data-toggle-radio-group)="radioGroup"&gt;
 &lt;/button&gt;
 &lt;label for="radio_3"&gt;Option 3&lt;/label&gt;</code></pre>
 					<div class="demo" id="simple-radio-demo">
@@ -509,25 +509,25 @@
 <pre><code class="language-html line-numbers">&lt;button type="button"
 	class="example-radio"
 	id="radio_1"
-	data-toggle-class="is-checked"
-	data-toggle-radio-group="radioGroup"
-	data-toggle-arrows&gt;
+	[data-toggle-class](#data-toggle-class)="is-checked"
+	[data-toggle-radio-group](#data-toggle-radio-group)="radioGroup"
+	[data-toggle-arrows](#data-toggle-arrows)&gt;
 &lt;/button&gt;
 &lt;label for="radio_1"&gt;Option 1&lt;/label&gt;&lt;br&gt;
 &lt;button type="button"
 	class="example-radio"
 	id="radio_2"
-	data-toggle-class="is-checked"
-	data-toggle-radio-group="radioGroup"
-	data-toggle-arrows&gt;
+	[data-toggle-class](#data-toggle-class)="is-checked"
+	[data-toggle-radio-group](#data-toggle-radio-group)="radioGroup"
+	[data-toggle-arrows](#data-toggle-arrows)&gt;
 &lt;/button&gt;
 &lt;label for="radio_2"&gt;Option 2&lt;/label&gt;&lt;br&gt;
 &lt;button type="button"
 	class="example-radio"
 	id="radio_3"
-	data-toggle-class="is-checked"
-	data-toggle-radio-group="radioGroup"
-	data-toggle-arrows&gt;
+	[data-toggle-class](#data-toggle-class)="is-checked"
+	[data-toggle-radio-group](#data-toggle-radio-group)="radioGroup"
+	[data-toggle-arrows](#data-toggle-arrows)&gt;
 &lt;/button&gt;
 &lt;label for="radio_3"&gt;Option 3&lt;/label&gt;</code></pre>
 					<div class="demo" id="radio-with-arrows-demo">
@@ -557,11 +557,11 @@
 	&lt;button type="button"
 		class="example-radio"
 		id="radio_1"
-		data-toggle-class="is-checked"
-		data-toggle-radio-group="radioGroup"
-		data-toggle-arrows
+		[data-toggle-class](#data-toggle-class)="is-checked"
+		[data-toggle-radio-group](#data-toggle-radio-group)="radioGroup"
+		[data-toggle-arrows](#data-toggle-arrows)
 		role="radio"
-		aria-checked="false"
+		[aria-checked](#a11y)="false"
 		title="Toggle this box"&gt;
 		&lt;span class="sr-only"&gt;Toggle&lt;/span&gt;
 	&lt;/button&gt;
@@ -570,11 +570,11 @@
 	&lt;button type="button"
 		class="example-radio"
 		id="radio_2"
-		data-toggle-class="is-checked"
-		data-toggle-radio-group="radioGroup"
-		data-toggle-arrows
+		[data-toggle-class](#data-toggle-class)="is-checked"
+		[data-toggle-radio-group](#data-toggle-radio-group)="radioGroup"
+		[data-toggle-arrows](#data-toggle-arrows)
 		role="radio"
-		aria-checked="false"
+		[aria-checked](#a11y)="false"
 		title="Toggle this box"&gt;
 		&lt;span class="sr-only"&gt;Toggle&lt;/span&gt;
 	&lt;/button&gt;
@@ -583,11 +583,11 @@
 	&lt;button type="button"
 		class="example-radio"
 		id="radio_3"
-		data-toggle-class="is-checked"
-		data-toggle-radio-group="radioGroup"
-		data-toggle-arrows
+		[data-toggle-class](#data-toggle-class)="is-checked"
+		[data-toggle-radio-group](#data-toggle-radio-group)="radioGroup"
+		[data-toggle-arrows](#data-toggle-arrows)
 		role="radio"
-		aria-checked="false"
+		[aria-checked](#a11y)="false"
 		title="Toggle this box"&gt;
 		&lt;span class="sr-only"&gt;Toggle&lt;/span&gt;
 	&lt;/button&gt;
@@ -650,16 +650,16 @@
 						<a href="#simple-tooltip">Simple tooltip</a>
 					</h4>
 <pre><code class="language-html line-numbers">&lt;span class="example-tooltip"
-	data-toggle-class-on-target="is-visible"
-	data-toggle-target-self=".tooltip"
-	data-toggle-event="mouseover"
-	data-toggle-outside
+	[data-toggle-class-on-target](#data-toggle-class-on-target)="is-visible"
+	[data-toggle-target-self](#data-toggle-target-self)=".tooltip"
+	[data-toggle-event](#data-toggle-event)="mouseover"
+	[data-toggle-outside](#data-toggle-outside)
 	aria-describedby="tooltip_id"&gt;
 	Hover me
 	&lt;span class="tooltip"
 		id="tooltip_id"
 		role="tooltip"
-		aria-hidden="true"&gt;
+		[aria-hidden](#a11y)="true"&gt;
 		Awesome tooltip
 	&lt;/span&gt;
 &lt;/span&gt;</code></pre>
@@ -682,17 +682,17 @@
 						<a href="#dblclick-tooltip">Double-click tooltip</a>
 					</h4>
 <pre><code class="language-html line-numbers">&lt;span class="example-tooltip"
-	data-toggle-class-on-target="is-visible"
-	data-toggle-target-self=".tooltip"
-	data-toggle-event="dblclick"
-	data-toggle-outside
-	data-toggle-outside-event="click"
+	[data-toggle-class-on-target](#data-toggle-class-on-target)="is-visible"
+	[data-toggle-target-self](#data-toggle-target-self)=".tooltip"
+	[data-toggle-event](#data-toggle-event)="dblclick"
+	[data-toggle-outside](#data-toggle-outside)
+	[data-toggle-outside-event](#data-toggle-outside-event)="click"
 	aria-describedby="tooltip_id"&gt;
 	Click twice on me
 	&lt;span class="tooltip"
 		id="tooltip_id"
 		role="tooltip"
-		aria-hidden="true"&gt;
+		[aria-hidden](#a11y)="true"&gt;
 		Awesome tooltip
 	&lt;/span&gt;
 &lt;/span&gt;</code></pre>
@@ -743,8 +743,8 @@
 					</h4>
 <pre><code class="language-html line-numbers">&lt;button type="button"
 	class="example-collapsible-button"
-	data-toggle-class="is-open"
-	data-toggle-target-next&gt;
+	[data-toggle-class](#data-toggle-class)="is-open"
+	[data-toggle-target-next](#data-toggle-target-next)&gt;
 	Click here
 &lt;/button&gt;
 &lt;div class="example-collapsible-panel"&gt;
@@ -776,9 +776,9 @@
 					</h4>
 <pre><code class="language-html line-numbers">&lt;button type="button"
 	class="example-collapsible-button"
-	data-toggle-class="is-open"
-	data-toggle-target-next
-	data-toggle-escape&gt;
+	[data-toggle-class](#data-toggle-class)="is-open"
+	[data-toggle-target-next](#data-toggle-target-next)
+	[data-toggle-escape](#data-toggle-escape)&gt;
 	Click here
 &lt;/button&gt;
 &lt;div class="example-collapsible-panel"&gt;
@@ -811,18 +811,18 @@
 <pre><code class="language-html line-numbers">&lt;button type="button"
 	class="example-collapsible-button"
 	id="buttonForPanel"
-	data-toggle-class="is-open"
-	data-toggle-target-parent="#panel"
-	data-toggle-escape
+	[data-toggle-class](#data-toggle-class)="is-open"
+	[data-toggle-target-parent](#data-toggle-target-parent)="#panel"
+	[data-toggle-escape](#data-toggle-escape)
 	aria-controls="panel"
-	aria-expanded="false"&gt;
+	[aria-expanded](#a11y)="false"&gt;
 	Click here
 &lt;/button&gt;
 &lt;div class="example-collapsible-panel"
 	id="panel"
 	role="region"
 	aria-labelledby="buttonForPanel"
-	aria-hidden="true"&gt;
+	[aria-hidden](#a11y)="true"&gt;
 	&lt;div class="example-collapsible-panel-content"&gt;
 		Lorem ipsum dolor sit amet&hellip;
 	&lt;/div&gt;
@@ -853,21 +853,21 @@
 &lt;button type="button"
 	class="example-collapsible-button"
 	id="buttonForPanel_1"
-	data-toggle-class="is-open"
-	data-toggle-target-parent="#panel_1"
-	data-toggle-group="accordion"
-	data-toggle-escape
-	data-toggle-arrows
-	data-toggle-is-active
+	[data-toggle-class](#data-toggle-class)="is-open"
+	[data-toggle-target-parent](#data-toggle-target-parent)="#panel_1"
+	[data-toggle-group](#data-toggle-group)="accordion"
+	[data-toggle-escape](#data-toggle-escape)
+	[data-toggle-arrows](#data-toggle-arrows)
+	[data-toggle-is-active](#data-toggle-is-active)
 	aria-controls="panel_1"
-	aria-expanded="false"&gt;
+	[aria-expanded](#a11y)="false"&gt;
 	Click here
 &lt;/button&gt;
 &lt;div class="example-collapsible-panel"
 	id="panel_1"
 	role="region"
 	aria-labelledby="buttonForPanel_1"
-	aria-hidden="true"&gt;
+	[aria-hidden](#a11y)="true"&gt;
 	&lt;div class="example-collapsible-panel-content"&gt;
 		Lorem ipsum dolor sit amet&hellip;
 	&lt;/div&gt;
@@ -877,20 +877,20 @@
 &lt;button type="button"
 	class="example-collapsible-button"
 	id="buttonForPanel_2"
-	data-toggle-class="is-open"
-	data-toggle-target-parent="#panel_2"
-	data-toggle-group="accordion"
-	data-toggle-escape
-	data-toggle-arrows
+	[data-toggle-class](#data-toggle-class)="is-open"
+	[data-toggle-target-parent](#data-toggle-target-parent)="#panel_2"
+	[data-toggle-group](#data-toggle-group)="accordion"
+	[data-toggle-escape](#data-toggle-escape)
+	[data-toggle-arrows](#data-toggle-arrows)
 	aria-controls="panel_2"
-	aria-expanded="false"&gt;
+	[aria-expanded](#a11y)="false"&gt;
 	Click here
 &lt;/button&gt;
 &lt;div class="example-collapsible-panel"
 	id="panel_2"
 	role="region"
 	aria-labelledby="buttonForPanel_2"
-	aria-hidden="true"&gt;
+	[aria-hidden](#a11y)="true"&gt;
 	&lt;div class="example-collapsible-panel-content"&gt;
 		In in erat blandit ante mollis tincidunt&hellip;
 	&lt;/div&gt;
@@ -961,22 +961,22 @@
 					</h4>
 <pre><code class="language-html line-numbers">&lt;div class="example-tabs"&gt;
 	&lt;button type="button"
-		data-toggle-class
-		data-toggle-target="#tabPanel_1"
-		data-toggle-radio-group="tabsGroup"
-		data-toggle-is-active&gt;
+		[data-toggle-class](#data-toggle-class)
+		[data-toggle-target](#data-toggle-target)="#tabPanel_1"
+		[data-toggle-radio-group](#data-toggle-radio-group)="tabsGroup"
+		[data-toggle-is-active](#data-toggle-is-active)&gt;
 		tab 1
 	&lt;/button&gt;
 	&lt;button type="button"
-		data-toggle-class
-		data-toggle-target="#tabPanel_2"
-		data-toggle-radio-group="tabsGroup"&gt;
+		[data-toggle-class](#data-toggle-class)
+		[data-toggle-target](#data-toggle-target)="#tabPanel_2"
+		[data-toggle-radio-group](#data-toggle-radio-group)="tabsGroup"&gt;
 		tab 2
 	&lt;/button&gt;
 	&lt;button type="button"
-		data-toggle-class
-		data-toggle-target="#tabPanel_3"
-		data-toggle-radio-group="tabsGroup"&gt;
+		[data-toggle-class](#data-toggle-class)
+		[data-toggle-target](#data-toggle-target)="#tabPanel_3"
+		[data-toggle-radio-group](#data-toggle-radio-group)="tabsGroup"&gt;
 		tab 3
 	&lt;/button&gt;
 &lt;/div&gt;
@@ -1025,18 +1025,18 @@
 					</h4>
 <pre><code class="language-html line-numbers">&lt;div class="example-tabs"&gt;
 	&lt;button type="button"
-		data-toggle-class
-		data-toggle-target="#tabPanel_1"
-		data-toggle-radio-group="tabsGroup"
-		data-toggle-arrows
-		data-toggle-is-active&gt;
+		[data-toggle-class](#data-toggle-class)
+		[data-toggle-target](#data-toggle-target)="#tabPanel_1"
+		[data-toggle-radio-group](#data-toggle-radio-group)="tabsGroup"
+		[data-toggle-arrows](#data-toggle-arrows)
+		[data-toggle-is-active](#data-toggle-is-active)&gt;
 		tab 1
 	&lt;/button&gt;
 	&lt;button type="button"
-		data-toggle-class
-		data-toggle-target="#tabPanel_2"
-		data-toggle-radio-group="tabsGroup"
-		data-toggle-arrows&gt;
+		[data-toggle-class](#data-toggle-class)
+		[data-toggle-target](#data-toggle-target)="#tabPanel_2"
+		[data-toggle-radio-group](#data-toggle-radio-group)="tabsGroup"
+		[data-toggle-arrows](#data-toggle-arrows)&gt;
 		tab 2
 	&lt;/button&gt;
 	&lt;!-- … --&gt;
@@ -1099,24 +1099,24 @@
 <pre><code class="language-html line-numbers">&lt;div class="example-tabs" role="tablist"&gt;
 	&lt;button type="button"
 		id="tab_1"
-		data-toggle-class
-		data-toggle-target="#tabPanel_1"
-		data-toggle-radio-group="tabsGroup"
-		data-toggle-arrows
-		data-toggle-is-active
+		[data-toggle-class](#data-toggle-class)
+		[data-toggle-target](#data-toggle-target)="#tabPanel_1"
+		[data-toggle-radio-group](#data-toggle-radio-group)="tabsGroup"
+		[data-toggle-arrows](#data-toggle-arrows)
+		[data-toggle-is-active](#data-toggle-is-active)
 		role="tab"
-		aria-selected="false"
+		[aria-selected](#a11y)="false"
 		aria-controls="tabPanel_1"&gt;
 		tab 1
 	&lt;/button&gt;
 	&lt;button type="button"
 		id="tab_2"
-		data-toggle-class
-		data-toggle-target="#tabPanel_2"
-		data-toggle-radio-group="tabsGroup"
-		data-toggle-arrows
+		[data-toggle-class](#data-toggle-class)
+		[data-toggle-target](#data-toggle-target)="#tabPanel_2"
+		[data-toggle-radio-group](#data-toggle-radio-group)="tabsGroup"
+		[data-toggle-arrows](#data-toggle-arrows)
 		role="tab"
-		aria-selected="false"
+		[aria-selected](#a11y)="false"
 		aria-controls="tabPanel_2"&gt;
 		tab 2
 	&lt;/button&gt;
@@ -1126,7 +1126,7 @@
 	id="tabPanel_1"
 	role="tabpanel"
 	aria-labelledby="tab_1"
-	aria-hidden="true"&gt;
+	[aria-hidden](#a11y)="true"&gt;
 	Panel 1&lt;br&gt;
 	Lorem ipsum dolor sit amet&hellip;
 &lt;/div&gt;
@@ -1134,7 +1134,7 @@
 	id="tabPanel_2"
 	role="tabpanel"
 	aria-labelledby="tab_2"
-	aria-hidden="true"&gt;
+	[aria-hidden](#a11y)="true"&gt;
 	Panel 2&lt;br&gt;
 	In in erat blandit ante mollis tincidunt&hellip;
 &lt;/div&gt;
@@ -1197,10 +1197,10 @@
 <pre><code class="language-html line-numbers">&lt;div class="example-dropdown"&gt;
 	&lt;button type="button"
 		class="example-dropdown-button"
-		data-toggle-class="is-open"
-		data-toggle-target-next
-		data-toggle-outside
-		data-toggle-escape&gt;
+		[data-toggle-class](#data-toggle-class)="is-open"
+		[data-toggle-target-next](#data-toggle-target-next)
+		[data-toggle-outside](#data-toggle-outside)
+		[data-toggle-escape](#data-toggle-escape)&gt;
 		Select something here
 	&lt;/button&gt;
 	&lt;ul class="example-dropdown-list"&gt;
@@ -1264,21 +1264,21 @@
 <pre><code class="language-html line-numbers">&lt;div class="example-dropdown"&gt;
 	&lt;button type="button"
 		class="example-dropdown-button"
-		data-toggle-class="is-open"
-		data-toggle-target-next
-		data-toggle-outside
-		data-toggle-escape
+		[data-toggle-class](#data-toggle-class)="is-open"
+		[data-toggle-target-next](#data-toggle-target-next)
+		[data-toggle-outside](#data-toggle-outside)
+		[data-toggle-escape](#data-toggle-escape)
 		id="dropdownButton"
 		aria-haspopup="listbox"
 		aria-controls="dropdownList"
-		aria-expanded="false"&gt;
+		[aria-expanded](#a11y)="false"&gt;
 		Select something here
 	&lt;/button&gt;
 	&lt;ul class="example-dropdown-list"
 		id="dropdownList"
 		role="listbox"
 		aria-labelledby="dropdownButton"
-		aria-hidden="true"&gt;
+		[aria-hidden](#a11y)="true"&gt;
 		&lt;li&gt;
 			&lt;button type="button"&gt;Lorem ipsum dolor&lt;/button&gt;
 		&lt;/li&gt;
@@ -1370,10 +1370,10 @@
 					</h4>
 <pre><code class="language-html line-numbers">&lt;button type="button"
 	class="example-dialog-trigger"
-	data-toggle-class-on-target
-	data-toggle-target="#dialog"
-	data-toggle-escape
-	data-toggle-modal&gt;
+	[data-toggle-class-on-target](#data-toggle-class-on-target)
+	[data-toggle-target](#data-toggle-target)="#dialog"
+	[data-toggle-escape](#data-toggle-escape)
+	[data-toggle-modal](#data-toggle-modal)&gt;
 	Click to see the awesomeness
 &lt;/button&gt;
 
@@ -1381,7 +1381,7 @@
 &lt;div class="example-dialog" id="dialog"&gt;
 	&lt;section class="example-dialog-container"&gt;
 		&lt;!-- Your content here, such as text or form. --&gt;
-		&lt;button type="button" data-toggle-trigger-off&gt;close&lt;/button&gt;
+		&lt;button type="button" [data-toggle-trigger-off](#data-toggle-trigger-off)&gt;close&lt;/button&gt;
 	&lt;/section&gt;
 &lt;/div&gt;</code></pre>
 					<div class="demo" id="simple-dialog-demo">
@@ -1422,10 +1422,10 @@
 					</h4>
 <pre><code class="language-html line-numbers">&lt;button type="button"
 	class="example-dialog-trigger"
-	data-toggle-class-on-target
-	data-toggle-target="#dialog"
-	data-toggle-escape
-	data-toggle-modal&gt;
+	[data-toggle-class-on-target](#data-toggle-class-on-target)
+	[data-toggle-target](#data-toggle-target)="#dialog"
+	[data-toggle-escape](#data-toggle-escape)
+	[data-toggle-modal](#data-toggle-modal)&gt;
 	Click to see the awesomeness
 &lt;/button&gt;
 
@@ -1435,7 +1435,7 @@
 	role="dialog"
 	aria-labelledby="dialogTitle"
 	aria-describedby="dialogContent"
-	aria-hidden="true"&gt;
+	[aria-hidden](#a11y)="true"&gt;
 	&lt;section class="example-dialog-container"&gt;
 		&lt;header id="dialogTitle" class="example-dialog-header"&gt;
 			Dialog title
@@ -1444,7 +1444,7 @@
 			&lt;!-- Your content here, such as text or form. --&gt;
 		&lt;/div&gt;
 		&lt;footer class="example-dialog-footer"&gt;
-			&lt;button type="button" data-toggle-trigger-off&gt;close&lt;/button&gt;
+			&lt;button type="button" [data-toggle-trigger-off](#data-toggle-trigger-off)&gt;close&lt;/button&gt;
 		&lt;/footer&gt;
 	&lt;/section&gt;
 &lt;/div&gt;</code></pre>
@@ -1512,19 +1512,19 @@
 	href="image-lg.jpg"
 	title="Zoom"
 	role="button"
-	data-toggle-class-on-target
-	data-toggle-target-parent=".example-lightbox"
-	data-toggle-escape
-	data-toggle-modal&gt;
+	[data-toggle-class-on-target](#data-toggle-class-on-target)
+	[data-toggle-target-parent](#data-toggle-target-parent)=".example-lightbox"
+	[data-toggle-escape](#data-toggle-escape)
+	[data-toggle-modal](#data-toggle-modal)&gt;
 	&lt;img src="image.jpg" alt="desc"&gt;
 &lt;/a&gt;
 &lt;div class="example-lightbox" role="dialog" aria-hidden="true"&gt;
 	&lt;div class="example-lightbox-backdrop"
-		data-toggle-trigger-off&gt;
+		[data-toggle-trigger-off](#data-toggle-trigger-off)&gt;
 	&lt;/div&gt;
 	&lt;button type="button"
 		class="example-lightbox-close"
-		data-toggle-trigger-off
+		[data-toggle-trigger-off](#data-toggle-trigger-off)
 		aria-label="Close"
 		title="Close this lightbox"&gt;
 		✖
@@ -1580,8 +1580,8 @@
 <pre><code class="language-html line-numbers">&lt;button type="button"
 	class="example-nav-trigger"
 	title="Navigation"
-	data-toggle-class
-	data-toggle-escape&gt;
+	[data-toggle-class](#data-toggle-class)
+	[data-toggle-escape](#data-toggle-escape)&gt;
 	&lt;svg width="1em" class="example-nav-trigger-icon" role="img" focusable="false" viewBox="0 0 100 100"&gt;
 		&lt;title&gt;Navigation icon&lt;/title&gt;
 		&lt;rect class="top-bar" x="0" y="15" width="100" height="12"/&gt;
@@ -1953,10 +1953,10 @@ document.addEventListener("DOMContentLoaded", handler);</code></pre>
 					</h4>
 					<p>You can combine all toggling attributes. This way, <em>Easy Toggle State</em> is compatible with any <abbr title="Cascading StyleSheet">CSS</abbr> framwork.</p>
 <pre><code class="language-html">&lt;foo
-	data-toggle-class="is-open"
-	data-toggle-class-on-trigger="text-white font-bold bg-blue"
-	data-toggle-class-on-target="text-gray bg-white"
-	data-toggle-target="#plop"&gt;</code></pre>
+	[data-toggle-class](#data-toggle-class)="is-open"
+	[data-toggle-class-on-trigger](#data-toggle-class-on-trigger)="text-white font-bold bg-blue"
+	[data-toggle-class-on-target](#data-toggle-class-on-target)="text-gray bg-white"
+	[data-toggle-target](#data-toggle-target)="#plop"&gt;</code></pre>
 					<p>With the combination, a click on the trigger element will toggle:</p>
 					<ul>
 						<li><code>is-open</code>, <code>text-white</code>, <code>font-bold</code>, <code>bg-blue</code> classes on this trigger</li>
