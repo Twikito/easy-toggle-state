@@ -337,7 +337,23 @@ pre::-webkit-scrollbar {
 }
 
 .md-link {
+	position: relative;
 	color: inherit;
+	text-decoration: none;
+}
+.md-link:hover,
+.md-link:focus {
+	text-decoration: underline;
+}
+.md-link::before {
+	position: absolute; left: -2em; top: 50%;
+	transform: translateY(-50%);
+	color: black; font-size: .675em;
+	opacity: .25; content: '[?]';
+}
+.md-link:hover::before,
+.md-link:focus::before {
+	opacity: 1;
 }
 
 .wrapper {
