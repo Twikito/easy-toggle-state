@@ -3,7 +3,7 @@ The data-toggle-class-on-target attribute tells this button
 to toggle the class `is-active` only on its target.
 
 The data-toggle-target attribute tells to look inside the whole page
-for a target element matching `#dialog_apAVdGBkcJ` selector.
+for a target element matching `#dialog_Q6szN` selector.
 
 The data-toggle-escape attribute tells that you can use
 the escape key to toggle back off this trigger.
@@ -15,13 +15,13 @@ and create a focus trap inside of it when active.
 	type="button"
 	class="example-dialog-trigger"
 	data-toggle-class-on-target
-	data-toggle-target="#dialog_apAVdGBkcJ"
+	data-toggle-target="#dialog_Q6szN"
 	data-toggle-escape
 	data-toggle-modal>
 	Click to see the awesomeness
 </button>
 
-<div class="example-dialog" id="dialog_apAVdGBkcJ">
+<div class="example-dialog" id="dialog_Q6szN">
 	<section class="example-dialog-container">
 		<header class="example-dialog-header">
 			<h5>Dialog title</h5>

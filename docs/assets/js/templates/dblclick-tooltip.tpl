@@ -18,13 +18,13 @@ tells you can use the `click` event outside to toggle back off this trigger.
 	data-toggle-event="dblclick"
 	data-toggle-outside
 	data-toggle-outside-event="click"
-	aria-describedby="bywVkoZnxk">
+	aria-describedby="tooltip_TxAOd">
 	Click twice on me
 
 	<!-- As the aria-hidden attribute is set on this target, its value changes too. -->
 	<span
 		class="tooltip"
-		id="bywVkoZnxk"
+		id="tooltip_TxAOd"
 		role="tooltip"
 		aria-hidden="true">
 		Awesome tooltip

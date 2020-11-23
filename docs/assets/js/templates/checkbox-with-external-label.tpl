@@ -7,7 +7,7 @@ As the aria-checked attribute is set, its value changes too.
 	type="button"
 	class="example-checkbox"
 	data-toggle-class="is-checked"
-	id="F93IoYKkzs"
+	id="checkbox_64JrG"
 	role="checkbox"
 	aria-checked="false"
 	title="Toggle this box">
@@ -18,4 +18,4 @@ As the aria-checked attribute is set, its value changes too.
 </button>
 
 <!-- The label is associated to the trigger by the for attribute. -->
-<label for="F93IoYKkzs">Awesome checkbox</label>
+<label for="checkbox_64JrG">Awesome checkbox</label>

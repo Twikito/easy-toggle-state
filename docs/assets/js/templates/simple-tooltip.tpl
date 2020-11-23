@@ -17,13 +17,13 @@ outside to toggle back off this trigger.
 	data-toggle-target-self=".tooltip"
 	data-toggle-event="mouseover"
 	data-toggle-outside
-	aria-describedby="wvrk7BpJVI">
+	aria-describedby="tooltip_3BHED">
 	Hover me
 
 	<!-- As the aria-hidden attribute is set on this target, its value changes too. -->
 	<span
 		class="tooltip"
-		id="wvrk7BpJVI"
+		id="tooltip_3BHED"
 		role="tooltip"
 		aria-hidden="true">
 		Awesome tooltip

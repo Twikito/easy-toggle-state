@@ -7,7 +7,7 @@ As `aria-pressed` attribute is set, its value changes too.
 	type="button"
 	class="example-switchbox"
 	data-toggle-class="is-pressed"
-	id="MtzR7ev1xO"
+	id="switchbox_V2VVB"
 	aria-pressed="false"
 	title="Toggle this box">
 
@@ -24,4 +24,4 @@ As `aria-pressed` attribute is set, its value changes too.
 </button>
 
 <!-- The label is associated to the trigger by the for attribute. -->
-<label for="MtzR7ev1xO">Isn't this awesome?</label>
+<label for="switchbox_V2VVB">Isn't this awesome?</label>
