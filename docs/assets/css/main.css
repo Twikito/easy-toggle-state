@@ -41,7 +41,7 @@ button,
 }
 
 button {
-	font: inherit;
+	font: inherit; color: inherit;
 	cursor: pointer;
 }
 
@@ -204,6 +204,10 @@ h4 {
 	font-size: 1.25em;
 }
 
+[id="examples"] h4 {
+	font-size: 1em;
+}
+
 [id="api"] h5 {
 	display: inline-block; padding: 0 .25em 0 2em; margin: 2em 0 0;
 	background-color: #f6f8fa;
@@ -264,7 +268,7 @@ hr {
 }
 
 section {
-	margin: 0 0 10%;
+	margin: 0 0 15%;
 }
 section section section {
 	margin: 0 0 5%;
@@ -311,14 +315,18 @@ footer a {
 	color: inherit;
 }
 
+.small {
+	font-size: .875em;
+}
+
 .big {
 	font-size: 1.25em;
 }
 
-pre[class*="language-"],
-.demo {
-	background: #f6f8fa;
+pre[class*="language-"][class*="line-numbers"] {
+	font-size: calc(1.6 / 1.8 * 1em); /* 16px */
 }
+
 :not(pre) > code[class*="language-"] {
 	padding: .05em .25em;
 	border-radius: .15em;
@@ -331,13 +339,44 @@ pre::-webkit-scrollbar {
 	height: .5rem;
 }
 
+.demo-container,
+pre[class*="language-"],
+.code-toolbar {
+	background: #f6f8fa;
+}
+
+.demo-container {
+	position: relative;
+}
+
 .demo {
 	position: relative;
 	padding: 1em; margin: .5em 0;
+	border: 1px solid gainsboro;
+}
+
+.code-container {
+	display: none;
+}
+
+.code-container.is-active {
+	display: block;
+}
+
+.show-code {
+	position: absolute; right: 0; bottom: 0; z-index: 1;
+	display: inline-block; padding: 0 .5em;
+	border: solid gainsboro; border-width: 1px 0 0 1px;
+	background: white;
+}
+.show-code:not(.is-active) .show-code-hide {
+	display: none;
+}
+.show-code.is-active .show-code-show {
+	display: none;
 }
 
 .md-link {
-	position: relative;
 	color: inherit;
 	text-decoration: none;
 }
@@ -345,15 +384,22 @@ pre::-webkit-scrollbar {
 .md-link:focus {
 	text-decoration: underline;
 }
-.md-link::before {
+.attr-name .md-link {
+	position: relative;
+}
+.attr-name .md-link::before {
 	position: absolute; left: -2em; top: 50%;
 	transform: translateY(-50%);
 	color: black; font-size: .675em;
 	opacity: .25; content: '[?]';
 }
-.md-link:hover::before,
-.md-link:focus::before {
+.attr-name .md-link:hover::before,
+.attr-name .md-link:focus::before {
 	opacity: 1;
+}
+
+.code-toolbar {
+	padding: .5em;
 }
 
 .wrapper {

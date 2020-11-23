@@ -29,6 +29,7 @@
 	"homepage": "https://twikito.github.io/easy-toggle-state/",
 	"scripts": {
 		"filesize-for-doc": "node tasks/generate-file-size.js",
+		"demos-for-doc": "node tasks/generate-demo-database.js",
 		"start-doc": "browser-sync start --server --files 'docs/**/*.*' --startPath '/docs'",
 		"precommit": "lint-staged",
 		"lint": "eslint src",

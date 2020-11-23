@@ -89,7 +89,7 @@ fetch('filesize.json')
 		const forDemo = dedent`
 			/* For demo */
 			:root {
-				--theme: #00b074;
+				--theme: #00885a;
 			}
 			body {
 				padding: 2em;
@@ -105,7 +105,7 @@ fetch('filesize.json')
 		return `${css}${forDemo}`;
 	}
 
-	const clickEventHandler = async (event) => {
+	const clickCodePenHandler = async (event) => {
 		const data = {
 			"title"       : `Example of ${event.target.dataset.title} with Easy Toggle State`,
 			"layout"      : "left",
@@ -140,7 +140,68 @@ fetch('filesize.json')
 		document.body.removeChild(form);
 	};
 
-	[...document.querySelectorAll(".codepen")].forEach(button => button.addEventListener("click", clickEventHandler, false));
+	const template = document.querySelector("#demo-template");
+
+	fetch('assets/js/demos.json')
+		.then(response => response.json())
+		.then(demos => {
+
+			[...document.querySelectorAll("[data-template]")].forEach(element => {
+
+				const demoId = element.getAttribute("data-template");
+				element.setAttribute("id", demoId);
+
+				const demoCode = atob(demos[demoId].demo);
+
+				let clone = document.importNode(template.content, true);
+
+				const link = clone.querySelector("h4 a");
+				link.setAttribute("href", `#${demoId}`);
+				link.innerHTML = demos[demoId].title;
+
+				const demoContainer = clone.querySelector(".demo");
+				demoContainer.setAttribute("id", `${demoId}-demo`);
+				demoContainer.innerHTML = demoCode;
+
+				const showCode = clone.querySelector(".show-code");
+				showCode.setAttribute("data-toggle-target", `#${demoId}-code`);
+
+				const codeContainer = clone.querySelector(".code-container");
+				codeContainer.setAttribute("id", `${demoId}-code`);
+
+				let parsedCode = demoCode;
+				parsedCode = parsedCode.replaceAll(/data-toggle-(\w-?)+/g, str => `[${str}](#${str})`);
+				parsedCode = parsedCode.replaceAll(/aria-(checked|expanded|hidden|pressed|selected)/g, str => `[${str}](#a11y)`);
+
+				const code = clone.querySelector(".code-container code");
+				code.textContent = parsedCode;
+
+				const dlCss = clone.querySelector(".dl-css");
+				dlCss.setAttribute("href", `assets/css/${demos[demoId].styles}.css`);
+				dlCss.setAttribute("title", `Download this ${demos[demoId].category} demo stylesheet`);
+
+				const dlScss = clone.querySelector(".dl-scss");
+				dlScss.setAttribute("href", `assets/scss/${demos[demoId].styles}.scss`);
+				dlScss.setAttribute("title", `Download this ${demos[demoId].category} demo stylesheet in SCSS`);
+
+				const codePenBtn = clone.querySelector(".codepen");
+				codePenBtn.setAttribute("title", `Open this ${demos[demoId].category} demo on CodePen`);
+				codePenBtn.setAttribute("data-title", demos[demoId]['codepen-title']);
+				codePenBtn.setAttribute("data-demo", `${demoId}-demo`);
+				codePenBtn.setAttribute("data-css", demos[demoId].styles);
+				codePenBtn.addEventListener("click", clickCodePenHandler, false);
+
+				element.innerHTML = "";
+				element.appendChild(clone);
+			});
+		})
+		.then(() => {
+			window.easyToggleState();
+			window.Prism.highlightAll();
+		});
+
+// ---
 
 	console.log("╭──╮\n│  │ EASY\n│  │ TOGGLE\n│◯│ STATE\n╰──╯");
+
 })();

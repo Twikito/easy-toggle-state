@@ -6,7 +6,9 @@
 	<title>Easy Toggle State, a tiny JS library to create UI components in no time</title>
 	<meta name="description" content="A tiny JavaScript library to easily toggle the state of any HTML element, and create UI components in no time">
 
+	<link rel="preload" as="fetch" type="application/json" href="assets/js/demos.json">
 	<link rel="preload" as="script" type="text/javascript" href="https://rawgit.com/Twikito/easy-toggle-state/master/dist/easy-toggle-state.es6.min.js">
+	<link rel="preload" as="script" type="text/javascript" href="assets/js/prism.js">
 	<link rel="preload" as="image" type="image/jpeg" href="https://rawgit.com/Twikito/easy-toggle-state/master/docs/assets/img/rp1.jpg">
 	<link rel="preload" as="image" type="image/jpeg" href="https://rawgit.com/Twikito/easy-toggle-state/master/docs/assets/img/rp1_s.jpg">
 
@@ -49,6 +51,33 @@
 	<link rel="stylesheet" href="assets/css/navigation-icon.css">
 </head>
 <body>
+
+	<template id="demo-template">
+		<h4>
+			<a href=""></a>
+		</h4>
+		<div class="demo-container">
+			<div class="demo" id="">
+				<!-- demo -->
+			</div>
+			<button type="button" class="link-like small show-code" data-toggle-class data-toggle-target="">
+				<span class="show-code-show">show</span>
+				<span class="show-code-hide">hide</span>
+				code
+			</button>
+		</div>
+		<div class="code-container" id="">
+<pre><code class="language-html line-numbers"></code></pre>
+			<div class="text-right small code-toolbar">
+				<a class="dl-css" href="" title="">download CSS</a>
+				-
+				<a class="dl-scss" href="" title="">SCSS</a>
+				-
+				<button type="button" class="link-like codepen" title="" data-title="" data-demo="" data-css="">open in CodePen</button>
+			</div>
+		</div>
+	</template>
+
 	<header id="header">
 		<h1>
 			<span class="logo">
@@ -114,15 +143,13 @@
 							<ul>
 								<li><a data-toggle-trigger-off="#navigation" href="#simple-checkbox">Simple checkbox</a></li>
 								<li><a data-toggle-trigger-off="#navigation" href="#checkbox-with-aria">Checkbox with ARIA</a></li>
-								<li><a data-toggle-trigger-off="#navigation" href="#checkbox-with-external-label">Checkbox with external label</a></li>
 								<li><a data-toggle-trigger-off="#navigation" href="#checkbox-with-internal-label">Checkbox with internal label</a></li>
-								<li><a data-toggle-trigger-off="#navigation" href="#checkbox-explanation">Explanation</a></li>
+								<li><a data-toggle-trigger-off="#navigation" href="#checkbox-with-external-label">Checkbox with external label</a></li>
 							</ul>
 						</li>
 						<li><a data-toggle-trigger-off="#navigation" href="#switchbox">Switchbox</a>
 							<ul>
 								<li><a data-toggle-trigger-off="#navigation" href="#switchbox-with-external-label">Switchbox with external label</a></li>
-								<li><a data-toggle-trigger-off="#navigation" href="#switchbox-explanation">Explanation</a></li>
 							</ul>
 						</li>
 						<li><a data-toggle-trigger-off="#navigation" href="#radio">Radio buttons</a>
@@ -130,14 +157,12 @@
 								<li><a data-toggle-trigger-off="#navigation" href="#simple-radio">Simple radio buttons</a></li>
 								<li><a data-toggle-trigger-off="#navigation" href="#radio-with-arrows">Radio buttons and arrow keys</a></li>
 								<li><a data-toggle-trigger-off="#navigation" href="#radio-with-aria">Radio buttons with ARIA</a></li>
-								<li><a data-toggle-trigger-off="#navigation" href="#radio-explanation">Explanation</a></li>
 							</ul>
 						</li>
 						<li><a data-toggle-trigger-off="#navigation" href="#tooltip">Tooltip</a>
 							<ul>
 								<li><a data-toggle-trigger-off="#navigation" href="#simple-tooltip">Simple tooltip</a></li>
 								<li><a data-toggle-trigger-off="#navigation" href="#dblclick-tooltip">Double-click tooltip</a></li>
-								<li><a data-toggle-trigger-off="#navigation" href="#tooltip-explanation">Explanation</a></li>
 							</ul>
 						</li>
 						<li><a data-toggle-trigger-off="#navigation" href="#collapsible-panel">Collapsible panel / accordion</a>
@@ -146,7 +171,6 @@
 								<li><a data-toggle-trigger-off="#navigation" href="#collapsible-panel-with-escape">Collapsible panel and escape key</a></li>
 								<li><a data-toggle-trigger-off="#navigation" href="#collapsible-panel-with-aria">Collapsible panel with ARIA</a></li>
 								<li><a data-toggle-trigger-off="#navigation" href="#accordion">Accordion</a></li>
-								<li><a data-toggle-trigger-off="#navigation" href="#collapsible-panel-explanation">Explanation</a></li>
 							</ul>
 						</li>
 						<li><a data-toggle-trigger-off="#navigation" href="#tabs">Tabs</a>
@@ -154,33 +178,28 @@
 								<li><a data-toggle-trigger-off="#navigation" href="#simple-tabs">Simple tabs</a></li>
 								<li><a data-toggle-trigger-off="#navigation" href="#tabs-with-arrows">Tabs and arrow keys</a></li>
 								<li><a data-toggle-trigger-off="#navigation" href="#tabs-with-aria">Tabs with ARIA</a></li>
-								<li><a data-toggle-trigger-off="#navigation" href="#tabs-explanation">Explanation</a></li>
 							</ul>
 						</li>
 						<li><a data-toggle-trigger-off="#navigation" href="#dropdown">Dropdown</a>
 							<ul>
 								<li><a data-toggle-trigger-off="#navigation" href="#simple-dropdown">Simple dropdown</a></li>
 								<li><a data-toggle-trigger-off="#navigation" href="#dropdown-with-aria">Dropdown with ARIA</a></li>
-								<li><a data-toggle-trigger-off="#navigation" href="#dropdown-explanation">Explanation</a></li>
 							</ul>
 						</li>
 						<li><a data-toggle-trigger-off="#navigation" href="#dialog">Dialog</a>
 							<ul>
 								<li><a data-toggle-trigger-off="#navigation" href="#simple-dialog">Simple dialog</a></li>
 								<li><a data-toggle-trigger-off="#navigation" href="#dialog-with-aria">Dialog with ARIA</a></li>
-								<li><a data-toggle-trigger-off="#navigation" href="#dialog-explanation">Explanation</a></li>
 							</ul>
 						</li>
 						<li><a data-toggle-trigger-off="#navigation" href="#lightbox">Lightbox</a>
 							<ul>
 								<li><a data-toggle-trigger-off="#navigation" href="#simple-lightbox">Simple lightbox</a></li>
-								<li><a data-toggle-trigger-off="#navigation" href="#lightbox-explanation">Explanation</a></li>
 							</ul>
 						</li>
 						<li><a data-toggle-trigger-off="#navigation" href="#navigation-icon">Navigation icon</a>
 							<ul>
 								<li><a data-toggle-trigger-off="#navigation" href="#simple-navigation-icon">Simple navigation icon</a></li>
-								<li><a data-toggle-trigger-off="#navigation" href="#navigation-icon-explanation">Explanation</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -280,118 +299,10 @@
 					You want to display a checkbox, i.e. a box with a checkmark that appears on click on this box.
 					Even if you should use the <code class="language-html">&lt;input type="checkbox"&gt;</code> native component, in some cases, you can’t.
 				</p>
-				<section id="simple-checkbox">
-					<h4>
-						<a href="#simple-checkbox">Simple checkbox</a>
-					</h4>
-<pre><code class="language-html line-numbers">&lt;button type="button"
-	class="example-checkbox"
-	[data-toggle-class](#data-toggle-class)="is-checked"&gt;
-&lt;/button&gt;</code></pre>
-					<div class="demo" id="simple-checkbox-demo">
-						<button type="button" class="example-checkbox" data-toggle-class="is-checked"></button>
-					</div>
-					<div class="text-right">
-						<a href="assets/css/checkbox.css" title="Download this checkbox demo stylesheet">download CSS</a>
-						-
-						<a href="assets/scss/checkbox.scss" title="Download this checkbox demo stylesheet in SCSS">SCSS</a>
-						-
-						<button type="button" class="link-like codepen" title="Open this checkbox demo on CodePen" data-title="a simple checkbox" data-demo="simple-checkbox-demo" data-css="checkbox">open in CodePen</button>
-					</div>
-				</section>
-				<section id="checkbox-with-aria">
-					<h4>
-						<a href="#checkbox-with-aria">Checkbox with <abbr title="Accessible Rich Internet Applications">ARIA</abbr> attributes for accessibility</a>
-					</h4>
-<pre><code class="language-html line-numbers">&lt;button type="button"
-	class="example-checkbox"
-	[data-toggle-class](#data-toggle-class)="is-checked"
-	role="checkbox"
-	[aria-checked](#a11y)="false"
-	title="Toggle this box"&gt;
-	&lt;span class="sr-only"&gt;Toggle&lt;/span&gt;
-&lt;/button&gt;</code></pre>
-					<div class="demo" id="checkbox-with-aria-demo">
-						<button type="button" class="example-checkbox" data-toggle-class="is-checked" role="checkbox" aria-checked="false" title="Toggle this box">
-							<span class="sr-only">Toggle</span>
-						</button>
-					</div>
-					<div class="text-right">
-						<a href="assets/css/checkbox.css" title="Download this checkbox demo stylesheet">download CSS</a>
-						-
-						<a href="assets/scss/checkbox.scss" title="Download this checkbox demo stylesheet in SCSS">SCSS</a>
-						-
-						<button type="button" class="link-like codepen" title="Open this checkbox demo on CodePen" data-title="a checkbox with aria" data-demo="checkbox-with-aria-demo" data-css="checkbox">open in CodePen</button>
-					</div>
-				</section>
-				<section id="checkbox-with-external-label">
-					<h4>
-						<a href="#checkbox-with-external-label">Checkbox with external label</a>
-					</h4>
-<pre><code class="language-html line-numbers">&lt;button type="button"
-	class="example-checkbox"
-	[data-toggle-class](#data-toggle-class)="is-checked"
-	id="checkbox"
-	role="checkbox"
-	[aria-checked](#a11y)="false"
-	title="Toggle this box"&gt;
-	&lt;span class="sr-only"&gt;Toggle&lt;/span&gt;
-&lt;/button&gt;
-&lt;label for="checkbox"&gt;
-	Awesome checkbox
-&lt;/label&gt;</code></pre>
-					<div class="demo" id="checkbox-with-external-label-demo">
-						<button type="button" class="example-checkbox" data-toggle-class="is-checked" id="checkbox_1" role="checkbox" aria-checked="false" title="Toggle this box">
-							<span class="sr-only">Toggle</span>
-						</button>
-						<label for="checkbox_1">Awesome checkbox</label>
-					</div>
-					<div class="text-right">
-						<a href="assets/css/checkbox.css" title="Download this checkbox demo stylesheet">download CSS</a>
-						-
-						<a href="assets/scss/checkbox.scss" title="Download this checkbox demo stylesheet in SCSS">SCSS</a>
-						-
-						<button type="button" class="link-like codepen" title="Open this checkbox demo on CodePen" data-title="a checkbox with external label" data-demo="checkbox-with-external-label-demo" data-css="checkbox">open in CodePen</button>
-					</div>
-				</section>
-				<section id="checkbox-with-internal-label">
-					<h4>
-						<a href="#checkbox-with-internal-label">Checkbox with internal label</a>
-					</h4>
-<pre><code class="language-html line-numbers">&lt;button type="button"
-	class="example-checkbox-container"
-	[data-toggle-class](#data-toggle-class)="is-checked"
-	[data-toggle-target-self](#data-toggle-target-self)=".example-checkbox"
-	role="checkbox"
-	[aria-checked](#a11y)="false"&gt;
-	&lt;span class="example-checkbox" aria-hidden="true"&gt;&lt;/span&gt;
-	Awesome checkbox
-&lt;/button&gt;</code></pre>
-					<div class="demo" id="checkbox-with-internal-label-demo">
-						<button type="button" class="example-checkbox-container" data-toggle-class="is-checked" data-toggle-target-self=".example-checkbox" role="checkbox" aria-checked="false">
-							<span class="example-checkbox" aria-hidden="true"></span>
-							Awesome checkbox
-						</button>
-					</div>
-					<div class="text-right">
-						<a href="assets/css/checkbox.css" title="Download this checkbox demo stylesheet">download CSS</a>
-						-
-						<a href="assets/scss/checkbox.scss" title="Download this checkbox demo stylesheet in SCSS">SCSS</a>
-						-
-						<button type="button" class="link-like codepen" title="Open this checkbox demo on CodePen" data-title="a checkbox with internal label" data-demo="checkbox-with-internal-label-demo" data-css="checkbox">open in CodePen</button>
-					</div>
-				</section>
-				<section id="checkbox-explanation">
-					<h4>
-						<a href="#checkbox-explanation">Explanation</a>
-					</h4>
-					<p>
-						Toggle <code class="language-css">.is-checked</code> class on click on the box. As <code class="language-html">aria-checked</code> attribute is set, its value changes too.
-					</p>
-					<p>
-						The CSS class <code class="language-css">.sr-only</code> is for <a href="https://snook.ca/archives/html_and_css/hiding-content-for-accessibility">hiding content for accessibility</a>.
-					</p>
-				</section>
+				<section data-template="simple-checkbox"><i>Loading demo…</i></section>
+				<section data-template="checkbox-with-aria"><i>Loading demo…</i></section>
+				<section data-template="checkbox-with-internal-label"><i>Loading demo…</i></section>
+				<section data-template="checkbox-with-external-label"><i>Loading demo…</i></section>
 			</section>
 
 			<section id="switchbox">
@@ -402,53 +313,7 @@
 					You want to display a switchbox, i.e. a box with a "ball" that moves on click on this box.
 					Even if you should use the <code class="language-html">&lt;input type="checkbox"&gt;</code> native component, in some cases, you can’t.
 				</p>
-				<section id="switchbox-with-external-label">
-					<h4>
-						<a href="#switchbox-with-external-label">Switchbox with an external label</a>
-					</h4>
-<pre><code class="language-html line-numbers">&lt;button type="button"
-	class="example-switchbox"
-	[data-toggle-class](#data-toggle-class)="is-pressed"
-	id="switchbox"
-	[aria-pressed](#a11y)="false"
-	title="Toggle this box"&gt;
-	&lt;span class="example-switchbox-yes"&gt;yes&lt;/span&gt;
-	&lt;span class="example-switchbox-no"&gt;no&lt;/span&gt;
-	&lt;span class="sr-only"&gt;Toggle&lt;/span&gt;
-&lt;/button&gt;
-&lt;label for="switchbox"&gt;
-	Isn’t this awesome?
-&lt;/label&gt;</code></pre>
-					<div class="demo" id="switchbox-with-external-label-demo">
-						<button type="button" class="example-switchbox" data-toggle-class="is-pressed" id="switchbox_1" aria-pressed="false" title="Toggle this box">
-							<span class="example-switchbox-yes">yes</span>
-							<span class="example-switchbox-no">no</span>
-							<span class="sr-only">Toggle</span>
-						</button>
-						<label for="switchbox_1">Isn’t this awesome?</label>
-					</div>
-					<div class="text-right">
-						<a href="assets/css/switchbox.css" title="Download this switchbox demo stylesheet">download CSS</a>
-						-
-						<a href="assets/scss/switchbox.scss" title="Download this switchbox demo stylesheet in SCSS">SCSS</a>
-						-
-						<button type="button" class="link-like codepen" title="Open this switchbox demo on CodePen" data-title="a switchbox with an external label" data-demo="switchbox-with-external-label-demo" data-css="switchbox">open in CodePen</button>
-					</div>
-				</section>
-				<section id="switchbox-explanation">
-					<h4>
-						<a href="#switchbox-explanation">Explanation</a>
-					</h4>
-					<p>
-						Toggle <code class="language-css">.is-pressed</code> class on click on the box. As <code class="language-html">aria-pressed</code> attribute is set, its value changes too.
-					</p>
-					<p>
-						The words “yes” and “no” are here to add more sense and to make this component more accessible by not rendering each state with only colors.
-					</p>
-					<p>
-						The CSS class <code class="language-css">.sr-only</code> is for <a href="https://snook.ca/archives/html_and_css/hiding-content-for-accessibility">hiding content for accessibility</a>.
-					</p>
-				</section>
+				<section data-template="switchbox-with-external-label"><i>Loading demo…</i></section>
 			</section>
 
 			<section id="radio">
@@ -459,274 +324,23 @@
 					You want to display some radio buttons, i.e. some circles which are filled on click on them, only one at a time.
 					Even if you should use the <code class="language-html">&lt;input type="radio"&gt;</code> native component, in some cases, you can’t.
 				</p>
-				<section id="simple-radio">
-					<h4>
-						<a href="#simple-radio">Simple radio buttons</a>
-					</h4>
-<pre><code class="language-html line-numbers">&lt;button type="button"
-	class="example-radio"
-	id="radio_1"
-	[data-toggle-class](#data-toggle-class)="is-checked"
-	[data-toggle-radio-group](#data-toggle-radio-group)="radioGroup"&gt;
-&lt;/button&gt;
-&lt;label for="radio_1"&gt;Option 1&lt;/label&gt;&lt;br&gt;
-&lt;button type="button"
-	class="example-radio"
-	id="radio_2"
-	[data-toggle-class](#data-toggle-class)="is-checked"
-	[data-toggle-radio-group](#data-toggle-radio-group)="radioGroup"&gt;
-&lt;/button&gt;
-&lt;label for="radio_2"&gt;Option 2&lt;/label&gt;&lt;br&gt;
-&lt;button type="button"
-	class="example-radio"
-	id="radio_3"
-	[data-toggle-class](#data-toggle-class)="is-checked"
-	[data-toggle-radio-group](#data-toggle-radio-group)="radioGroup"&gt;
-&lt;/button&gt;
-&lt;label for="radio_3"&gt;Option 3&lt;/label&gt;</code></pre>
-					<div class="demo" id="simple-radio-demo">
-						<button type="button" class="example-radio" id="radio_1" data-toggle-class="is-checked" data-toggle-radio-group="radioGroup1"></button>
-						<label for="radio_1">Option 1</label>
-						<br>
-						<button type="button" class="example-radio" id="radio_2" data-toggle-class="is-checked" data-toggle-radio-group="radioGroup1"></button>
-						<label for="radio_2">Option 2</label>
-						<br>
-						<button type="button" class="example-radio" id="radio_3" data-toggle-class="is-checked" data-toggle-radio-group="radioGroup1"></button>
-						<label for="radio_3">Option 3</label>
-					</div>
-					<div class="text-right">
-						<a href="assets/css/radio.css" title="Download this radio demo stylesheet">download CSS</a>
-						-
-						<a href="assets/scss/radio.scss" title="Download this radio demo stylesheet in SCSS">SCSS</a>
-						-
-						<button type="button" class="link-like codepen" title="Open this radio demo on CodePen" data-title="simple radio buttons" data-demo="simple-radio-demo" data-css="radio">open in CodePen</button>
-					</div>
-				</section>
-				<section id="radio-with-arrows">
-					<h4>
-						<a href="#radio-with-arrows">Radio buttons with arrow keys support</a>
-					</h4>
-<pre><code class="language-html line-numbers">&lt;button type="button"
-	class="example-radio"
-	id="radio_1"
-	[data-toggle-class](#data-toggle-class)="is-checked"
-	[data-toggle-radio-group](#data-toggle-radio-group)="radioGroup"
-	[data-toggle-arrows](#data-toggle-arrows)&gt;
-&lt;/button&gt;
-&lt;label for="radio_1"&gt;Option 1&lt;/label&gt;&lt;br&gt;
-&lt;button type="button"
-	class="example-radio"
-	id="radio_2"
-	[data-toggle-class](#data-toggle-class)="is-checked"
-	[data-toggle-radio-group](#data-toggle-radio-group)="radioGroup"
-	[data-toggle-arrows](#data-toggle-arrows)&gt;
-&lt;/button&gt;
-&lt;label for="radio_2"&gt;Option 2&lt;/label&gt;&lt;br&gt;
-&lt;button type="button"
-	class="example-radio"
-	id="radio_3"
-	[data-toggle-class](#data-toggle-class)="is-checked"
-	[data-toggle-radio-group](#data-toggle-radio-group)="radioGroup"
-	[data-toggle-arrows](#data-toggle-arrows)&gt;
-&lt;/button&gt;
-&lt;label for="radio_3"&gt;Option 3&lt;/label&gt;</code></pre>
-					<div class="demo" id="radio-with-arrows-demo">
-						<button type="button" class="example-radio" id="radio_4" data-toggle-class="is-checked" data-toggle-radio-group="radioGroup2" data-toggle-arrows></button>
-						<label for="radio_4">Option 1</label>
-						<br>
-						<button type="button" class="example-radio" id="radio_5" data-toggle-class="is-checked" data-toggle-radio-group="radioGroup2" data-toggle-arrows></button>
-						<label for="radio_5">Option 2</label>
-						<br>
-						<button type="button" class="example-radio" id="radio_6" data-toggle-class="is-checked" data-toggle-radio-group="radioGroup2" data-toggle-arrows></button>
-						<label for="radio_6">Option 3</label>
-					</div>
-					<div class="text-right">
-						<a href="assets/css/radio.css" title="Download this radio demo stylesheet">download CSS</a>
-						-
-						<a href="assets/scss/radio.scss" title="Download this radio demo stylesheet in SCSS">SCSS</a>
-						-
-						<button type="button" class="link-like codepen" title="Open this radio demo on CodePen" data-title="radio buttons with arrow keys support" data-demo="radio-with-arrows-demo" data-css="radio">open in CodePen</button>
-					</div>
-				</section>
-				<section id="radio-with-aria">
-					<h4>
-						<a href="#radio-with-aria">Radio buttons with <abbr title="Accessible Rich Internet Applications">ARIA</abbr> attributes for accessibility</a>
-					</h4>
-<pre><code class="language-html line-numbers">&lt;div role="radiogroup"&gt;
-
-	&lt;button type="button"
-		class="example-radio"
-		id="radio_1"
-		[data-toggle-class](#data-toggle-class)="is-checked"
-		[data-toggle-radio-group](#data-toggle-radio-group)="radioGroup"
-		[data-toggle-arrows](#data-toggle-arrows)
-		role="radio"
-		[aria-checked](#a11y)="false"
-		title="Toggle this box"&gt;
-		&lt;span class="sr-only"&gt;Toggle&lt;/span&gt;
-	&lt;/button&gt;
-	&lt;label for="radio_1"&gt;Option 1&lt;/label&gt;&lt;br&gt;
-
-	&lt;button type="button"
-		class="example-radio"
-		id="radio_2"
-		[data-toggle-class](#data-toggle-class)="is-checked"
-		[data-toggle-radio-group](#data-toggle-radio-group)="radioGroup"
-		[data-toggle-arrows](#data-toggle-arrows)
-		role="radio"
-		[aria-checked](#a11y)="false"
-		title="Toggle this box"&gt;
-		&lt;span class="sr-only"&gt;Toggle&lt;/span&gt;
-	&lt;/button&gt;
-	&lt;label for="radio_2"&gt;Option 2&lt;/label&gt;&lt;br&gt;
-
-	&lt;button type="button"
-		class="example-radio"
-		id="radio_3"
-		[data-toggle-class](#data-toggle-class)="is-checked"
-		[data-toggle-radio-group](#data-toggle-radio-group)="radioGroup"
-		[data-toggle-arrows](#data-toggle-arrows)
-		role="radio"
-		[aria-checked](#a11y)="false"
-		title="Toggle this box"&gt;
-		&lt;span class="sr-only"&gt;Toggle&lt;/span&gt;
-	&lt;/button&gt;
-	&lt;label for="radio_3"&gt;Option 3&lt;/label&gt;
-
-&lt;/div&gt;</code></pre>
-					<div class="demo" id="radio-with-aria-demo">
-						<div role="radiogroup">
-							<button type="button" class="example-radio" id="radio_7" data-toggle-class="is-checked" data-toggle-radio-group="radioGroup3" data-toggle-arrows role="radio" aria-checked="false" title="Toggle this box">
-								<span class="sr-only">Toggle</span>
-							</button>
-							<label for="radio_7">Option 1</label>
-							<br>
-							<button type="button" class="example-radio" id="radio_8" data-toggle-class="is-checked" data-toggle-radio-group="radioGroup3" data-toggle-arrows role="radio" aria-checked="false" title="Toggle this box">
-								<span class="sr-only">Toggle</span>
-							</button>
-							<label for="radio_8">Option 2</label>
-							<br>
-							<button type="button" class="example-radio" id="radio_9" data-toggle-class="is-checked" data-toggle-radio-group="radioGroup3" data-toggle-arrows role="radio" aria-checked="false" title="Toggle this box">
-								<span class="sr-only">Toggle</span>
-							</button>
-							<label for="radio_9">Option 3</label>
-						</div>
-					</div>
-					<div class="text-right">
-						<a href="assets/css/radio.css" title="Download this radio demo stylesheet">download CSS</a>
-						-
-						<a href="assets/scss/radio.scss" title="Download this radio demo stylesheet in SCSS">SCSS</a>
-						-
-						<button type="button" class="link-like codepen" title="Open this radio demo on CodePen" data-title="radio buttons with aria" data-demo="radio-with-aria-demo" data-css="radio">open in CodePen</button>
-					</div>
-				</section>
-				<section id="radio-explanation">
-					<h4>
-						<a href="#radio-explanation">Explanation</a>
-					</h4>
-					<p>
-						Toggle <code class="language-css">.is-checked</code> class on click on this element, but only one of the <code class="language-html">radioGroup</code> group at a time, and always keep one active. As <code class="language-html">aria-checked</code> attribute is set, its value changes too.
-					</p>
-					<p>
-						Thanks to <code class="language-html">data-toggle-arrows</code><sup class="gotodef"><a href="#data-toggle-arrows" title="Go to definition">[?]</a></sup> attribute, you can navigate between options with arrow keys as soon as one option is focused.
-					</p>
-					<p>
-						The label is associated to the trigger by the <code class="language-html">for</code> attribute.
-					</p>
-					<p>
-						The CSS class <code class="language-css">.sr-only</code> is for <a href="https://snook.ca/archives/html_and_css/hiding-content-for-accessibility">hiding content for accessibility</a>.
-					</p>
-				</section>
+				<section data-template="simple-radio"><i>Loading demo…</i></section>
+				<section data-template="radio-with-arrows"><i>Loading demo…</i></section>
+				<section data-template="radio-with-aria"><i>Loading demo…</i></section>
 			</section>
 
 			<section id="tooltip">
 				<h3>
 					<a href="#tooltip">Tooltip</a>
 				</h3>
-				<p>You want to put a tooltip on a text, i.e. show an element when hovering this text, and hide it when the cursor leaves this text.</p>
-				<p>In most of cases, tooltips are not a good idea for displaying information, and are not accessible to all, screen readers for instance, so please consider not using it, or only for trivial contents.</p>
-				<section id="simple-tooltip">
-					<h4>
-						<a href="#simple-tooltip">Simple tooltip</a>
-					</h4>
-<pre><code class="language-html line-numbers">&lt;span class="example-tooltip"
-	[data-toggle-class-on-target](#data-toggle-class-on-target)="is-visible"
-	[data-toggle-target-self](#data-toggle-target-self)=".tooltip"
-	[data-toggle-event](#data-toggle-event)="mouseover"
-	[data-toggle-outside](#data-toggle-outside)
-	aria-describedby="tooltip_id"&gt;
-	Hover me
-	&lt;span class="tooltip"
-		id="tooltip_id"
-		role="tooltip"
-		[aria-hidden](#a11y)="true"&gt;
-		Awesome tooltip
-	&lt;/span&gt;
-&lt;/span&gt;</code></pre>
-					<div class="demo" id="simple-tooltip-demo">
-						<span class="example-tooltip" data-toggle-class-on-target="is-visible" data-toggle-target-self=".tooltip" data-toggle-event="mouseover" data-toggle-outside aria-describedby="tooltip_id">
-							Hover me
-							<span class="tooltip" id="tooltip_id" role="tooltip" aria-hidden="true">Awesome tooltip</span>
-						</span>
-					</div>
-					<div class="text-right">
-						<a href="assets/css/tooltip.css" title="Download this tooltip demo stylesheet">download CSS</a>
-						-
-						<a href="assets/scss/tooltip.scss" title="Download this tooltip demo stylesheet in SCSS">SCSS</a>
-						-
-						<button type="button" class="link-like codepen" title="Open this demo tooltip on CodePen" data-title="tooltip" data-demo="simple-tooltip-demo" data-css="tooltip">open in CodePen</button>
-					</div>
-				</section>
-				<section id="dblclick-tooltip">
-					<h4>
-						<a href="#dblclick-tooltip">Double-click tooltip</a>
-					</h4>
-<pre><code class="language-html line-numbers">&lt;span class="example-tooltip"
-	[data-toggle-class-on-target](#data-toggle-class-on-target)="is-visible"
-	[data-toggle-target-self](#data-toggle-target-self)=".tooltip"
-	[data-toggle-event](#data-toggle-event)="dblclick"
-	[data-toggle-outside](#data-toggle-outside)
-	[data-toggle-outside-event](#data-toggle-outside-event)="click"
-	aria-describedby="tooltip_id"&gt;
-	Click twice on me
-	&lt;span class="tooltip"
-		id="tooltip_id"
-		role="tooltip"
-		[aria-hidden](#a11y)="true"&gt;
-		Awesome tooltip
-	&lt;/span&gt;
-&lt;/span&gt;</code></pre>
-					<div class="demo" id="dblclick-tooltip-demo">
-						<span class="example-tooltip" data-toggle-class-on-target="is-visible" data-toggle-target-self=".tooltip" data-toggle-event="dblclick" data-toggle-outside data-toggle-outside-event="click" aria-describedby="tooltip_id2">
-							Click twice on me
-							<span class="tooltip" id="tooltip_id2" role="tooltip" aria-hidden="true">Awesome tooltip</span>
-						</span>
-					</div>
-					<div class="text-right">
-						<a href="assets/css/tooltip.css" title="Download this tooltip demo stylesheet">download CSS</a>
-						-
-						<a href="assets/scss/tooltip.scss" title="Download this tooltip demo stylesheet in SCSS">SCSS</a>
-						-
-						<button type="button" class="link-like codepen" title="Open this demo tooltip on CodePen" data-title="double click tooltip" data-demo="dblclick-tooltip-demo" data-css="tooltip">open in CodePen</button>
-					</div>
-				</section>
-				<section id="tooltip-explanation">
-					<h4>
-						<a href="#tooltip-explanation">Explanation</a>
-					</h4>
-					<p>
-						Toggle <code class="language-css">.is-visible</code> class only on the target <code class="language-css">.tooltip</code> located inside this trigger.
-					</p>
-					<p>
-						In the simple tooltip example, toggle on <code class="language-js">mouseover</code> event, and toggle again when <code class="language-js">mouseover</code> outside of this trigger, as mentioned in <code class="language-html">data-toggle-event</code><sup class="gotodef"><a href="#data-toggle-event" title="Go to definition">[?]</a></sup> attribute.
-					</p>
-					<p>
-						In the double-click example, toggle on <code class="language-js">dblclick</code> event, and, since the <code class="language-html">data-toggle-outside-event</code><sup class="gotodef"><a href="#data-toggle-outside-event" title="Go to definition">[?]</a></sup> attribute is specified, toggle again when <code class="language-js">click</code> is triggered outside of this trigger.
-					</p>
-					<p>
-						As <code class="language-html">aria-hidden</code> attribute is set, its value changes too.
-					</p>
-				</section>
+				<p>
+					You want to put a tooltip on a text, i.e. show an element when hovering this text, and hide it when the cursor leaves this text.
+				</p>
+				<p>
+					In most of cases, tooltips are not a good idea for displaying information, and are not accessible to all, screen readers for instance, so please consider not using it, or only for trivial contents.
+				</p>
+				<section data-template="simple-tooltip"><i>Loading demo…</i></section>
+				<section data-template="dblclick-tooltip"><i>Loading demo…</i></section>
 			</section>
 
 			<section id="collapsible-panel">
@@ -737,452 +351,22 @@
 					You want to create a collapsible panel, i.e. a frame, with some content, that can be collapsed on click on a button.
 					Even if you should use <code class="language-html">&lt;details&gt;</code> and <code class="language-html">&lt;summary&gt;</code> HTML elements, in some cases, you can’t.
 				</p>
-				<section id="simple-collapsible-panel">
-					<h4>
-						<a href="#simple-collapsible-panel">Simple collapsible panel</a>
-					</h4>
-<pre><code class="language-html line-numbers">&lt;button type="button"
-	class="example-collapsible-button"
-	[data-toggle-class](#data-toggle-class)="is-open"
-	[data-toggle-target-next](#data-toggle-target-next)&gt;
-	Click here
-&lt;/button&gt;
-&lt;div class="example-collapsible-panel"&gt;
-	&lt;div class="example-collapsible-panel-content"&gt;
-		Lorem ipsum dolor sit amet&hellip;
-	&lt;/div&gt;
-&lt;/div&gt;</code></pre>
-					<div class="demo" id="simple-collapsible-panel-demo">
-						<button type="button" class="example-collapsible-button" data-toggle-class="is-open" data-toggle-target-next>
-							Click here
-						</button>
-						<div class="example-collapsible-panel">
-							<div class="example-collapsible-panel-content">
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-							</div>
-						</div>
-					</div>
-					<div class="text-right">
-						<a href="assets/css/collapsible-panel.css" title="Download this collapsible panel demo stylesheet">download CSS</a>
-						-
-						<a href="assets/scss/collapsible-panel.scss" title="Download this collapsible panel demo stylesheet in SCSS">SCSS</a>
-						-
-						<button type="button" class="link-like codepen" title="Open this collapsible panel demo on CodePen" data-title="collapsible panel" data-demo="simple-collapsible-panel-demo" data-css="collapsible-panel">open in CodePen</button>
-					</div>
-				</section>
-				<section id="collapsible-panel-with-escape">
-					<h4>
-						<a href="#collapsible-panel-with-escape">Collapsible panel with escape key support</a>
-					</h4>
-<pre><code class="language-html line-numbers">&lt;button type="button"
-	class="example-collapsible-button"
-	[data-toggle-class](#data-toggle-class)="is-open"
-	[data-toggle-target-next](#data-toggle-target-next)
-	[data-toggle-escape](#data-toggle-escape)&gt;
-	Click here
-&lt;/button&gt;
-&lt;div class="example-collapsible-panel"&gt;
-	&lt;div class="example-collapsible-panel-content"&gt;
-		Lorem ipsum dolor sit amet&hellip;
-	&lt;/div&gt;
-&lt;/div&gt;</code></pre>
-					<div class="demo" id="collapsible-panel-with-escape-demo">
-						<button type="button" class="example-collapsible-button" data-toggle-class="is-open" data-toggle-target-next data-toggle-escape>
-							Click here
-						</button>
-						<div class="example-collapsible-panel">
-							<div class="example-collapsible-panel-content">
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-							</div>
-						</div>
-					</div>
-					<div class="text-right">
-						<a href="assets/css/collapsible-panel.css" title="Download this collapsible panel demo stylesheet">download CSS</a>
-						-
-						<a href="assets/scss/collapsible-panel.scss" title="Download this collapsible panel demo stylesheet in SCSS">SCSS</a>
-						-
-						<button type="button" class="link-like codepen" title="Open this collapsible panel demo on CodePen" data-title="collapsible panel" data-demo="collapsible-panel-with-escape-demo" data-css="collapsible-panel">open in CodePen</button>
-					</div>
-				</section>
-				<section id="collapsible-panel-with-aria">
-					<h4>
-						<a href="#simple-collapsible-panel-with-aria">Collapsible panel with <abbr title="Accessible Rich Internet Applications">ARIA</abbr> attributes for accessibility</a>
-					</h4>
-<pre><code class="language-html line-numbers">&lt;button type="button"
-	class="example-collapsible-button"
-	id="buttonForPanel"
-	[data-toggle-class](#data-toggle-class)="is-open"
-	[data-toggle-target-parent](#data-toggle-target-parent)="#panel"
-	[data-toggle-escape](#data-toggle-escape)
-	aria-controls="panel"
-	[aria-expanded](#a11y)="false"&gt;
-	Click here
-&lt;/button&gt;
-&lt;div class="example-collapsible-panel"
-	id="panel"
-	role="region"
-	aria-labelledby="buttonForPanel"
-	[aria-hidden](#a11y)="true"&gt;
-	&lt;div class="example-collapsible-panel-content"&gt;
-		Lorem ipsum dolor sit amet&hellip;
-	&lt;/div&gt;
-&lt;/div&gt;</code></pre>
-					<div class="demo" id="collapsible-panel-with-aria-demo">
-						<button type="button" class="example-collapsible-button" id="buttonForPanel" data-toggle-class="is-open" data-toggle-target-parent="#panel" data-toggle-escape aria-controls="panel" aria-expanded="false">
-							Click here
-						</button>
-						<div class="example-collapsible-panel" id="panel" role="region" aria-labelledby="buttonForPanel" aria-hidden="true">
-							<div class="example-collapsible-panel-content">
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-							</div>
-						</div>
-					</div>
-					<div class="text-right">
-						<a href="assets/css/collapsible-panel.css" title="Download this collapsible panel demo stylesheet">download CSS</a>
-						-
-						<a href="assets/scss/collapsible-panel.scss" title="Download this collapsible panel demo stylesheet in SCSS">SCSS</a>
-						-
-						<button type="button" class="link-like codepen" title="Open this collapsible panel demo on CodePen" data-title="collapsible panel with aria" data-demo="collapsible-panel-with-aria-demo" data-css="collapsible-panel">open in CodePen</button>
-					</div>
-				</section>
-				<section id="accordion">
-					<h4>
-						<a href="#accordion">Accordion</a>
-					</h4>
-<pre><code class="language-html line-numbers">&lt;!-- First panel, opened by default --&gt;
-&lt;button type="button"
-	class="example-collapsible-button"
-	id="buttonForPanel_1"
-	[data-toggle-class](#data-toggle-class)="is-open"
-	[data-toggle-target-parent](#data-toggle-target-parent)="#panel_1"
-	[data-toggle-group](#data-toggle-group)="accordion"
-	[data-toggle-escape](#data-toggle-escape)
-	[data-toggle-arrows](#data-toggle-arrows)
-	[data-toggle-is-active](#data-toggle-is-active)
-	aria-controls="panel_1"
-	[aria-expanded](#a11y)="false"&gt;
-	Click here
-&lt;/button&gt;
-&lt;div class="example-collapsible-panel"
-	id="panel_1"
-	role="region"
-	aria-labelledby="buttonForPanel_1"
-	[aria-hidden](#a11y)="true"&gt;
-	&lt;div class="example-collapsible-panel-content"&gt;
-		Lorem ipsum dolor sit amet&hellip;
-	&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;!-- Second panel --&gt;
-&lt;button type="button"
-	class="example-collapsible-button"
-	id="buttonForPanel_2"
-	[data-toggle-class](#data-toggle-class)="is-open"
-	[data-toggle-target-parent](#data-toggle-target-parent)="#panel_2"
-	[data-toggle-group](#data-toggle-group)="accordion"
-	[data-toggle-escape](#data-toggle-escape)
-	[data-toggle-arrows](#data-toggle-arrows)
-	aria-controls="panel_2"
-	[aria-expanded](#a11y)="false"&gt;
-	Click here
-&lt;/button&gt;
-&lt;div class="example-collapsible-panel"
-	id="panel_2"
-	role="region"
-	aria-labelledby="buttonForPanel_2"
-	[aria-hidden](#a11y)="true"&gt;
-	&lt;div class="example-collapsible-panel-content"&gt;
-		In in erat blandit ante mollis tincidunt&hellip;
-	&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;!-- … --&gt;</code></pre>
-					<div class="demo" id="accordion-demo">
-						<button type="button" class="example-collapsible-button" id="buttonForPanel_1" data-toggle-class="is-open" data-toggle-target-parent="#panel_1" data-toggle-group="accordion" data-toggle-escape data-toggle-arrows data-toggle-is-active aria-controls="panel_1" aria-expanded="false">
-							Click here
-						</button>
-						<div class="example-collapsible-panel" id="panel_1" role="region" aria-labelledby="buttonForPanel_1" aria-hidden="true">
-							<div class="example-collapsible-panel-content">
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam semper faucibus odio, vitae faucibus dui tempor in. Duis vitae luctus mi. Phasellus ultrices rhoncus lectus, non vehicula tortor sodales id.
-							</div>
-						</div>
-						<button type="button" class="example-collapsible-button" id="buttonForPanel_2" data-toggle-class="is-open" data-toggle-target-parent="#panel_2" data-toggle-group="accordion" data-toggle-escape data-toggle-arrows aria-controls="panel_2" aria-expanded="false">
-							Click here
-						</button>
-						<div class="example-collapsible-panel" id="panel_2" role="region" aria-labelledby="buttonForPanel_2" aria-hidden="true">
-							<div class="example-collapsible-panel-content">
-								In in erat blandit ante mollis tincidunt. Quisque ac tempus nisi, a ultricies metus. Suspendisse et quam nec mauris feugiat luctus. Curabitur porta sem vitae nulla congue malesuada.
-							</div>
-						</div>
-						<button type="button" class="example-collapsible-button" id="buttonForPanel_3" data-toggle-class="is-open" data-toggle-target-parent="#panel_3" data-toggle-group="accordion" data-toggle-escape data-toggle-arrows aria-controls="panel_3" aria-expanded="false">
-							Click here
-						</button>
-						<div class="example-collapsible-panel" id="panel_3" role="region" aria-labelledby="buttonForPanel_3" aria-hidden="true">
-							<div class="example-collapsible-panel-content">
-								Nam posuere tortor a augue vulputate, at blandit ipsum tincidunt. Donec dictum eros ligula, id congue justo porta eget. Aliquam vel erat venenatis, ornare nisi vel, convallis libero.
-							</div>
-						</div>
-					</div>
-					<div class="text-right">
-						<a href="assets/css/collapsible-panel.css" title="Download this accordion demo stylesheet">download CSS</a>
-						-
-						<a href="assets/scss/collapsible-panel.scss" title="Download this accordion demo stylesheet in SCSS">SCSS</a>
-						-
-						<button type="button" class="link-like codepen" title="Open this accordion demo on CodePen" data-title="an accordion" data-demo="accordion-demo" data-css="collapsible-panel">open in CodePen</button>
-					</div>
-				</section>
-				<section id="collapsible-panel-explanation">
-					<h4>
-						<a href="#collapsible-panel-explanation">Explanation</a>
-					</h4>
-					<p>
-						The button toggles <code class="language-css">.is-open</code> class on itself and its target located inside its parent container. If there’s more than one button / panel, be careful to target a unique ID.
-					</p>
-					<p>
-						For an accordion, each trigger must be linked to the same group with <code class="language-html">data-toggle-group</code><sup class="gotodef"><a href="#data-toggle-group" title="Go to definition">[?]</a></sup> attribute, here <code class="language-html">accordion</code>. This way, only one of this group can be opened at a time. The first panel is opened by default with <code class="language-html">data-toggle-is-active</code><sup class="gotodef"><a href="#data-toggle-is-active" title="Go to definition">[?]</a></sup>.
-					</p>
-					<p>
-						Thanks to <code class="language-html">data-toggle-arrows</code><sup class="gotodef"><a href="#data-toggle-arrows" title="Go to definition">[?]</a></sup> attribute, you can also navigate between panels with arrow keys as soon as one tab is focused.
-					</p>
-					<p>
-						As <code class="language-html">aria-expanded</code> and <code class="language-html">aria-hidden</code> attributes are set, their value changes too.
-					</p>
-				</section>
+				<section data-template="simple-collapsible-panel"><i>Loading demo…</i></section>
+				<section data-template="collapsible-panel-with-escape"><i>Loading demo…</i></section>
+				<section data-template="collapsible-panel-with-aria"><i>Loading demo…</i></section>
+				<section data-template="accordion"><i>Loading demo…</i></section>
 			</section>
 
 			<section id="tabs">
 				<h3>
 					<a href="#tabs">Tabs</a>
 				</h3>
-				<p>You want to create some tabs, i.e. some panels visualizable by clicking on their associated button.</p>
-				<section id="simple-tabs">
-					<h4>
-						<a href="#simple-tabs">Simple tabs</a>
-					</h4>
-<pre><code class="language-html line-numbers">&lt;div class="example-tabs"&gt;
-	&lt;button type="button"
-		[data-toggle-class](#data-toggle-class)
-		[data-toggle-target](#data-toggle-target)="#tabPanel_1"
-		[data-toggle-radio-group](#data-toggle-radio-group)="tabsGroup"
-		[data-toggle-is-active](#data-toggle-is-active)&gt;
-		tab 1
-	&lt;/button&gt;
-	&lt;button type="button"
-		[data-toggle-class](#data-toggle-class)
-		[data-toggle-target](#data-toggle-target)="#tabPanel_2"
-		[data-toggle-radio-group](#data-toggle-radio-group)="tabsGroup"&gt;
-		tab 2
-	&lt;/button&gt;
-	&lt;button type="button"
-		[data-toggle-class](#data-toggle-class)
-		[data-toggle-target](#data-toggle-target)="#tabPanel_3"
-		[data-toggle-radio-group](#data-toggle-radio-group)="tabsGroup"&gt;
-		tab 3
-	&lt;/button&gt;
-&lt;/div&gt;
-&lt;div class="example-tab-panel" id="tabPanel_1"&gt;
-	Panel 1&lt;br&gt;
-	Lorem ipsum dolor sit amet&hellip;
-&lt;/div&gt;
-&lt;div class="example-tab-panel" id="tabPanel_2"&gt;
-	Panel 2&lt;br&gt;
-	In in erat blandit ante mollis tincidunt&hellip;
-&lt;/div&gt;
-&lt;div class="example-tab-panel" id="tabPanel_3"&gt;
-	Panel 3&lt;br&gt;
-	Nam posuere tortor a augue vulputate&hellip;
-&lt;/div&gt;</code></pre>
-					<div class="demo" id="simple-tabs-demo">
-						<div class="example-tabs">
-							<button type="button" data-toggle-class data-toggle-target="#tabPanel_1" data-toggle-radio-group="tabsGroup_1" data-toggle-is-active>tab 1</button>
-							<button type="button" data-toggle-class data-toggle-target="#tabPanel_2" data-toggle-radio-group="tabsGroup_1">tab 2</button>
-							<button type="button" data-toggle-class data-toggle-target="#tabPanel_3" data-toggle-radio-group="tabsGroup_1">tab 3</button>
-						</div>
-						<div class="example-tab-panel" id="tabPanel_1">
-							Panel 1<br>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam semper faucibus odio, vitae faucibus dui tempor in. Duis vitae luctus mi. Phasellus ultrices rhoncus lectus, non vehicula tortor sodales id.
-						</div>
-						<div class="example-tab-panel" id="tabPanel_2">
-							Panel 2<br>
-							In in erat blandit ante mollis tincidunt. Quisque ac tempus nisi, a ultricies metus. Suspendisse et quam nec mauris feugiat luctus. Curabitur porta sem vitae nulla congue malesuada.
-						</div>
-						<div class="example-tab-panel" id="tabPanel_3">
-							Panel 3<br>
-							Nam posuere tortor a augue vulputate, at blandit ipsum tincidunt. Donec dictum eros ligula, id congue justo porta eget. Aliquam vel erat venenatis, ornare nisi vel, convallis libero.
-						</div>
-					</div>
-					<div class="text-right">
-						<a href="assets/css/tabs.css" title="Download this tabs demo stylesheet">download CSS</a>
-						-
-						<a href="assets/scss/tabs.scss" title="Download this tabs demo stylesheet in SCSS">SCSS</a>
-						-
-						<button type="button" class="link-like codepen" title="Open this tabs demo on CodePen" data-title="tabs" data-demo="simple-tabs-demo" data-css="tabs">open in CodePen</button>
-					</div>
-				</section>
-				<section id="tabs-with-arrows">
-					<h4>
-						<a href="#tabs-with-arrows">Tabs with arrow keys support</a>
-					</h4>
-<pre><code class="language-html line-numbers">&lt;div class="example-tabs"&gt;
-	&lt;button type="button"
-		[data-toggle-class](#data-toggle-class)
-		[data-toggle-target](#data-toggle-target)="#tabPanel_1"
-		[data-toggle-radio-group](#data-toggle-radio-group)="tabsGroup"
-		[data-toggle-arrows](#data-toggle-arrows)
-		[data-toggle-is-active](#data-toggle-is-active)&gt;
-		tab 1
-	&lt;/button&gt;
-	&lt;button type="button"
-		[data-toggle-class](#data-toggle-class)
-		[data-toggle-target](#data-toggle-target)="#tabPanel_2"
-		[data-toggle-radio-group](#data-toggle-radio-group)="tabsGroup"
-		[data-toggle-arrows](#data-toggle-arrows)&gt;
-		tab 2
-	&lt;/button&gt;
-	&lt;!-- … --&gt;
-&lt;/div&gt;
-&lt;div class="example-tab-panel" id="tabPanel_1"&gt;
-	Panel 1&lt;br&gt;
-	Lorem ipsum dolor sit amet&hellip;
-&lt;/div&gt;
-&lt;div class="example-tab-panel" id="tabPanel_2"&gt;
-	Panel 2&lt;br&gt;
-	In in erat blandit ante mollis tincidunt&hellip;
-&lt;/div&gt;
-&lt;!-- … --&gt;</code></pre>
-					<div class="demo" id="tabs-with-arrows-demo">
-						<div class="example-tabs">
-							<button type="button" data-toggle-class data-toggle-target="#tabPanel_10" data-toggle-radio-group="tabsGroup_3" data-toggle-arrows data-toggle-is-active>tab 1</button>
-							<button type="button" data-toggle-class data-toggle-target="#tabPanel_11" data-toggle-radio-group="tabsGroup_3" data-toggle-arrows>tab 2</button>
-							<button type="button" data-toggle-class data-toggle-target="#tabPanel_12" data-toggle-radio-group="tabsGroup_3" data-toggle-arrows>tab 3</button>
-							<button type="button" data-toggle-class data-toggle-target="#tabPanel_13" data-toggle-radio-group="tabsGroup_3" data-toggle-arrows>tab 4</button>
-							<button type="button" data-toggle-class data-toggle-target="#tabPanel_14" data-toggle-radio-group="tabsGroup_3" data-toggle-arrows>tab 5</button>
-							<button type="button" data-toggle-class data-toggle-target="#tabPanel_15" data-toggle-radio-group="tabsGroup_3" data-toggle-arrows>tab 6</button>
-						</div>
-						<div class="example-tab-panel" id="tabPanel_10">
-							Panel 1<br>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam semper faucibus odio, vitae faucibus dui tempor in. Duis vitae luctus mi. Phasellus ultrices rhoncus lectus, non vehicula tortor sodales id.
-						</div>
-						<div class="example-tab-panel" id="tabPanel_11">
-							Panel 2<br>
-							In in erat blandit ante mollis tincidunt. Quisque ac tempus nisi, a ultricies metus. Suspendisse et quam nec mauris feugiat luctus. Curabitur porta sem vitae nulla congue malesuada.
-						</div>
-						<div class="example-tab-panel" id="tabPanel_12">
-							Panel 3<br>
-							Nam posuere tortor a augue vulputate, at blandit ipsum tincidunt. Donec dictum eros ligula, id congue justo porta eget. Aliquam vel erat venenatis, ornare nisi vel, convallis libero.
-						</div>
-						<div class="example-tab-panel" id="tabPanel_13">
-							Panel 4<br>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam semper faucibus odio, vitae faucibus dui tempor in. Duis vitae luctus mi. Phasellus ultrices rhoncus lectus, non vehicula tortor sodales id.
-						</div>
-						<div class="example-tab-panel" id="tabPanel_14">
-							Panel 5<br>
-							In in erat blandit ante mollis tincidunt. Quisque ac tempus nisi, a ultricies metus. Suspendisse et quam nec mauris feugiat luctus. Curabitur porta sem vitae nulla congue malesuada.
-						</div>
-						<div class="example-tab-panel" id="tabPanel_15">
-							Panel 6<br>
-							Nam posuere tortor a augue vulputate, at blandit ipsum tincidunt. Donec dictum eros ligula, id congue justo porta eget. Aliquam vel erat venenatis, ornare nisi vel, convallis libero.
-						</div>
-					</div>
-					<div class="text-right">
-						<a href="assets/css/tabs.css" title="Download this tabs demo stylesheet">download CSS</a>
-						-
-						<a href="assets/scss/tabs.scss" title="Download this tabs demo stylesheet in SCSS">SCSS</a>
-						-
-						<button type="button" class="link-like codepen" title="Open this tabs demo on CodePen" data-title="tabs" data-demo="tabs-with-arrows-demo" data-css="tabs">open in CodePen</button>
-					</div>
-				</section>
-				<section id="tabs-with-aria">
-					<h4>
-						<a href="#tabs-with-aria">Tabs with <abbr title="Accessible Rich Internet Applications">ARIA</abbr> attributes for accessibility</a>
-					</h4>
-<pre><code class="language-html line-numbers">&lt;div class="example-tabs" role="tablist"&gt;
-	&lt;button type="button"
-		id="tab_1"
-		[data-toggle-class](#data-toggle-class)
-		[data-toggle-target](#data-toggle-target)="#tabPanel_1"
-		[data-toggle-radio-group](#data-toggle-radio-group)="tabsGroup"
-		[data-toggle-arrows](#data-toggle-arrows)
-		[data-toggle-is-active](#data-toggle-is-active)
-		role="tab"
-		[aria-selected](#a11y)="false"
-		aria-controls="tabPanel_1"&gt;
-		tab 1
-	&lt;/button&gt;
-	&lt;button type="button"
-		id="tab_2"
-		[data-toggle-class](#data-toggle-class)
-		[data-toggle-target](#data-toggle-target)="#tabPanel_2"
-		[data-toggle-radio-group](#data-toggle-radio-group)="tabsGroup"
-		[data-toggle-arrows](#data-toggle-arrows)
-		role="tab"
-		[aria-selected](#a11y)="false"
-		aria-controls="tabPanel_2"&gt;
-		tab 2
-	&lt;/button&gt;
-	&lt;!-- … --&gt;
-&lt;/div&gt;
-&lt;div class="example-tab-panel"
-	id="tabPanel_1"
-	role="tabpanel"
-	aria-labelledby="tab_1"
-	[aria-hidden](#a11y)="true"&gt;
-	Panel 1&lt;br&gt;
-	Lorem ipsum dolor sit amet&hellip;
-&lt;/div&gt;
-&lt;div class="example-tab-panel"
-	id="tabPanel_2"
-	role="tabpanel"
-	aria-labelledby="tab_2"
-	[aria-hidden](#a11y)="true"&gt;
-	Panel 2&lt;br&gt;
-	In in erat blandit ante mollis tincidunt&hellip;
-&lt;/div&gt;
-&lt;!-- … --&gt;</code></pre>
-					<div class="demo" id="tabs-with-aria-demo">
-						<div class="example-tabs" role="tablist">
-							<button type="button" id="tab_4" data-toggle-class data-toggle-target="#tabPanel_4" data-toggle-radio-group="tabsGroup_2" data-toggle-arrows data-toggle-is-active role="tab" aria-selected="false" aria-controls="tabPanel_4">tab 1</button>
-							<button type="button" id="tab_5" data-toggle-class data-toggle-target="#tabPanel_5" data-toggle-radio-group="tabsGroup_2" data-toggle-arrows role="tab" aria-selected="false" aria-controls="tabPanel_5">tab 2</button>
-							<button type="button" id="tab_6" data-toggle-class data-toggle-target="#tabPanel_6" data-toggle-radio-group="tabsGroup_2" data-toggle-arrows role="tab" aria-selected="false" aria-controls="tabPanel_6">tab 3</button>
-						</div>
-						<div class="example-tab-panel" id="tabPanel_4" role="tabpanel" aria-labelledby="tab_4" aria-hidden="true">
-							Panel 1<br>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam semper faucibus odio, vitae faucibus dui tempor in. Duis vitae luctus mi. Phasellus ultrices rhoncus lectus, non vehicula tortor sodales id.
-						</div>
-						<div class="example-tab-panel" id="tabPanel_5" role="tabpanel" aria-labelledby="tab_5" aria-hidden="true">
-							Panel 2<br>
-							In in erat blandit ante mollis tincidunt. Quisque ac tempus nisi, a ultricies metus. Suspendisse et quam nec mauris feugiat luctus. Curabitur porta sem vitae nulla congue malesuada.
-						</div>
-						<div class="example-tab-panel" id="tabPanel_6" role="tabpanel" aria-labelledby="tab_6" aria-hidden="true">
-							Panel 3<br>
-							Nam posuere tortor a augue vulputate, at blandit ipsum tincidunt. Donec dictum eros ligula, id congue justo porta eget. Aliquam vel erat venenatis, ornare nisi vel, convallis libero.
-						</div>
-					</div>
-					<div class="text-right">
-						<a href="assets/css/tabs.css" title="Download this tabs demo stylesheet">download CSS</a>
-						-
-						<a href="assets/scss/tabs.scss" title="Download this tabs demo stylesheet in SCSS">SCSS</a>
-						-
-						<button type="button" class="link-like codepen" title="Open this tabs demo on CodePen" data-title="tabs with aria" data-demo="tabs-with-aria-demo" data-css="tabs">open in CodePen</button>
-					</div>
-				</section>
-				<section id="tabs-explanation">
-					<h4>
-						<a href="#tabs-explanation">Explanation</a>
-					</h4>
-					<p>
-						Toggle <code class="language-css">.is-active</code> class – by default – on click on this element, but only one of the <code class="language-html">tabsGroup</code> group at a time, and always keep one active. Toggle the same class on the target element. As there’s more than one button / panel, be careful to target a unique ID.
-					</p>
-					<p>
-						Each trigger must be linked to the same group, here <code class="language-html">tabsGroup</code>. This way, only one of this group can be opened at a time. Since <code class="language-html">data-toggle-radio-group</code><sup class="gotodef"><a href="#data-toggle-radio-group" title="Go to definition">[?]</a></sup> is used instead of <code class="language-html">data-toggle-group</code><sup class="gotodef"><a href="#data-toggle-group" title="Go to definition">[?]</a></sup>, this group will always keep one of its triggers active. The first panel is opened by default with <code class="language-html">data-toggle-is-active</code><sup class="gotodef"><a href="#data-toggle-is-active" title="Go to definition">[?]</a></sup>.
-					</p>
-					<p>
-						Thanks to <code class="language-html">data-toggle-arrows</code><sup class="gotodef"><a href="#data-toggle-arrows" title="Go to definition">[?]</a></sup> attribute, you can also navigate between panels with arrow keys as soon as one tab is focused.
-					</p>
-					<p>
-						As <code class="language-html">aria-selected</code> and <code class="language-html">aria-hidden</code> attributes are set, their value changes too.
-					</p>
-				</section>
+				<p>
+					You want to create some tabs, i.e. some panels visualizable by clicking on their associated button.
+				</p>
+				<section data-template="simple-tabs"><i>Loading demo…</i></section>
+				<section data-template="tabs-with-arrows"><i>Loading demo…</i></section>
+				<section data-template="tabs-with-aria"><i>Loading demo…</i></section>
 			</section>
 
 			<section id="dropdown">
@@ -1190,168 +374,8 @@
 					<a href="#dropdown">Dropdown</a>
 				</h3>
 				<p>You want to create a dropdown, i.e. a list of choices that appears when you click on a button. Of course you should use <code class="language-html">&lt;select&gt;</code> and <code class="language-html">&lt;option&gt;</code> HTML elements, but in some cases, you can’t.</p>
-				<section id="simple-dropdown">
-					<h4>
-						<a href="#simple-dropdown">Simple dropdown</a>
-					</h4>
-<pre><code class="language-html line-numbers">&lt;div class="example-dropdown"&gt;
-	&lt;button type="button"
-		class="example-dropdown-button"
-		[data-toggle-class](#data-toggle-class)="is-open"
-		[data-toggle-target-next](#data-toggle-target-next)
-		[data-toggle-outside](#data-toggle-outside)
-		[data-toggle-escape](#data-toggle-escape)&gt;
-		Select something here
-	&lt;/button&gt;
-	&lt;ul class="example-dropdown-list"&gt;
-		&lt;li&gt;
-			&lt;button type="button"&gt;Lorem ipsum dolor&lt;/button&gt;
-		&lt;/li&gt;
-		&lt;!-- Several options --&gt;
-	&lt;/ul&gt;
-&lt;/div&gt;</code></pre>
-					<div class="demo" id="dropdown-demo">
-						<div class="example-dropdown">
-							<button type="button" class="example-dropdown-button" data-toggle-class="is-open" data-toggle-target-next data-toggle-outside data-toggle-escape>
-								Select something here
-							</button>
-							<ul class="example-dropdown-list">
-								<li>
-									<button type="button">Lorem ipsum dolor</button>
-								</li>
-								<li>
-									<button type="button">Consectetur adipiscing elit</button>
-								</li>
-								<li>
-									<button type="button">Ut bibendum nisi</button>
-								</li>
-								<li>
-									<button type="button">A tincidunt velit</button>
-								</li>
-								<li>
-									<button type="button">Duis egestas purus</button>
-								</li>
-								<li>
-									<button type="button">In sapien porta</button>
-								</li>
-								<li>
-									<button type="button">Pellentesque</button>
-								</li>
-								<li>
-									<button type="button">Condimentum risus</button>
-								</li>
-								<li>
-									<button type="button">Fringilla augue sed</button>
-								</li>
-								<li>
-									<button type="button">Nunc fermentum</button>
-								</li>
-							</ul>
-						</div>
-					</div>
-					<div class="text-right">
-						<a href="assets/css/dropdown.css" title="Download this dropdown demo stylesheet">download CSS</a>
-						-
-						<a href="assets/scss/dropdown.scss" title="Download this dropdown demo stylesheet in SCSS">SCSS</a>
-						-
-						<button type="button" class="link-like codepen" title="Open this dropdown demo on CodePen" data-title="a dropdown" data-demo="dropdown-demo" data-css="dropdown">open in CodePen</button>
-					</div>
-				</section>
-				<section id="dropdown-with-aria">
-					<h4>
-						<a href="#dropdown-with-aria">Dropdown with <abbr title="Accessible Rich Internet Applications">ARIA</abbr> attributes for accessibility</a>
-					</h4>
-<pre><code class="language-html line-numbers">&lt;div class="example-dropdown"&gt;
-	&lt;button type="button"
-		class="example-dropdown-button"
-		[data-toggle-class](#data-toggle-class)="is-open"
-		[data-toggle-target-next](#data-toggle-target-next)
-		[data-toggle-outside](#data-toggle-outside)
-		[data-toggle-escape](#data-toggle-escape)
-		id="dropdownButton"
-		aria-haspopup="listbox"
-		aria-controls="dropdownList"
-		[aria-expanded](#a11y)="false"&gt;
-		Select something here
-	&lt;/button&gt;
-	&lt;ul class="example-dropdown-list"
-		id="dropdownList"
-		role="listbox"
-		aria-labelledby="dropdownButton"
-		[aria-hidden](#a11y)="true"&gt;
-		&lt;li&gt;
-			&lt;button type="button"&gt;Lorem ipsum dolor&lt;/button&gt;
-		&lt;/li&gt;
-		&lt;!-- Several options --&gt;
-	&lt;/ul&gt;
-&lt;/div&gt;</code></pre>
-					<div class="demo" id="dropdown-with-aria-demo">
-						<div class="example-dropdown">
-							<button type="button" class="example-dropdown-button" data-toggle-class="is-open" data-toggle-target-next data-toggle-outside data-toggle-escape id="dropdownButton" aria-haspopup="listbox" aria-controls="dropdownList" aria-expanded="false">
-								Select something here
-							</button>
-							<ul class="example-dropdown-list" id="dropdownList" role="listbox" aria-labelledby="dropdownButton" aria-hidden="true">
-								<li>
-									<button type="button" role="option">Lorem ipsum dolor</button>
-								</li>
-								<li>
-									<button type="button" role="option">Consectetur adipiscing elit</button>
-								</li>
-								<li>
-									<button type="button" role="option">Ut bibendum nisi</button>
-								</li>
-								<li>
-									<button type="button" role="option">A tincidunt velit</button>
-								</li>
-								<li>
-									<button type="button" role="option">Duis egestas purus</button>
-								</li>
-								<li>
-									<button type="button" role="option">In sapien porta</button>
-								</li>
-								<li>
-									<button type="button" role="option">Pellentesque</button>
-								</li>
-								<li>
-									<button type="button" role="option">Condimentum risus</button>
-								</li>
-								<li>
-									<button type="button" role="option">Fringilla augue sed</button>
-								</li>
-								<li>
-									<button type="button" role="option">Nunc fermentum</button>
-								</li>
-							</ul>
-						</div>
-					</div>
-					<div class="text-right">
-						<a href="assets/css/dropdown.css" title="Download this dropdown demo stylesheet">download CSS</a>
-						-
-						<a href="assets/scss/dropdown.scss" title="Download this dropdown demo stylesheet in SCSS">SCSS</a>
-						-
-						<button type="button" class="link-like codepen" title="Open this dropdown demo on CodePen" data-title="a dropdown with aria" data-demo="dropdown-with-aria-demo" data-css="dropdown">open in CodePen</button>
-					</div>
-				</section>
-				<section id="dropdown-explanation">
-					<h4>
-						<a href="#dropdown-explanation">Explanation</a>
-					</h4>
-					<p>
-						Toggle <code class="language-html">.is-open</code> class on click on this element. At the same time, toggle the class on its target, the next adjacent element, thanks to <code class="language-html">data-toggle-target-next</code><sup class="gotodef"><a href="#data-toggle-target-next" title="Go to definition">[?]</a></sup> attribute.
-					</p>
-					<p>
-						The attributes <code class="language-html">data-toggle-outside</code><sup class="gotodef"><a href="#data-toggle-outside" title="Go to definition">[?]</a></sup> and <code class="language-html">data-toggle-escape</code><sup class="gotodef"><a href="#data-toggle-escape" title="Go to definition">[?]</a></sup> means you can click outside of the trigger or its target, or press <kbd>escape</kbd> key to toggle off.
-					</p>
-					<p>
-						You could also add <code class="language-html">data-toggle-trigger-off</code><sup class="gotodef"><a href="#data-toggle-trigger-off" title="Go to definition">[?]</a></sup> attribute on each option button to toggle off dropdown’s state by clicking on them.
-					</p>
-					<p>
-						As <code class="language-html">aria-expanded</code> and <code class="language-html">aria-hidden</code> attributes are set, their value change too.
-					</p>
-					<p>
-						<strong>Note</strong>: You can not change the value of the trigger by clicking on an option with this script. <em>Easy Toggle State</em> only deals with changing state. You will have to do this by yourself.
-					</p>
-				</section>
+				<section data-template="simple-dropdown"><i>Loading demo…</i></section>
+				<section data-template="dropdown-with-aria"><i>Loading demo…</i></section>
 			</section>
 
 			<section id="dialog">
@@ -1364,139 +388,8 @@
 				<p>
 					Even if you should use <code class="language-html">&lt;dialog&gt;</code> HTML element, in some cases, you can’t.
 				</p>
-				<section id="simple-dialog">
-					<h4>
-						<a href="#simple-dialog">Simple dialog</a>
-					</h4>
-<pre><code class="language-html line-numbers">&lt;button type="button"
-	class="example-dialog-trigger"
-	[data-toggle-class-on-target](#data-toggle-class-on-target)
-	[data-toggle-target](#data-toggle-target)="#dialog"
-	[data-toggle-escape](#data-toggle-escape)
-	[data-toggle-modal](#data-toggle-modal)&gt;
-	Click to see the awesomeness
-&lt;/button&gt;
-
-&lt;!-- This dialog anywhere you want in the page --&gt;
-&lt;div class="example-dialog" id="dialog"&gt;
-	&lt;section class="example-dialog-container"&gt;
-		&lt;!-- Your content here, such as text or form. --&gt;
-		&lt;button type="button" [data-toggle-trigger-off](#data-toggle-trigger-off)&gt;close&lt;/button&gt;
-	&lt;/section&gt;
-&lt;/div&gt;</code></pre>
-					<div class="demo" id="simple-dialog-demo">
-						<button type="button" class="example-dialog-trigger" data-toggle-class-on-target data-toggle-target="#dialog_1" data-toggle-escape data-toggle-modal>Click to see the awesomeness</button>
-						<div class="example-dialog" id="dialog_1">
-							<section class="example-dialog-container">
-								<header class="example-dialog-header">
-									<h5>Dialog title</h5>
-								</header>
-								<div class="example-dialog-content">
-									<p>
-										<strong>Any content you want, such as text or form.</strong>
-									</p>
-									<p>
-										The following fake links are here to illustrate the focus trap inside this modal, thanks to <code class="language-html">data-toggle-modal</code> attribute on the trigger.
-									</p>
-									<p>
-										<a href="#">Lorem ipsum</a> dolor sit amet, consectetur adipisicing elit. Et quibusdam labore <a href="#">tempore repudiandae</a> minima earum adipisci, dolor distinctio <a href="#">facere</a> illo recusandae <a href="#">fuga</a> placeat amet <a href="#">corrupti</a> omnis ullam accusamus reprehenderit id.
-									</p>
-								</div>
-								<footer class="example-dialog-footer">
-									<button type="button" data-toggle-trigger-off>close</button>
-								</footer>
-							</section>
-						</div>
-					</div>
-					<div class="text-right">
-						<a href="assets/css/dialog.css" title="Download this dialog demo stylesheet">download CSS</a>
-						-
-						<a href="assets/scss/dialog.scss" title="Download this dialog demo stylesheet in SCSS">SCSS</a>
-						-
-						<button type="button" class="link-like codepen" title="Open this dialog demo on CodePen" data-title="a dialog" data-demo="simple-dialog-demo" data-css="dialog">open in CodePen</button>
-					</div>
-				</section>
-				<section id="dialog-with-aria">
-					<h4>
-						<a href="#dialog-with-aria">Dialog with <abbr title="Accessible Rich Internet Applications">ARIA</abbr> attributes for accessibility</a>
-					</h4>
-<pre><code class="language-html line-numbers">&lt;button type="button"
-	class="example-dialog-trigger"
-	[data-toggle-class-on-target](#data-toggle-class-on-target)
-	[data-toggle-target](#data-toggle-target)="#dialog"
-	[data-toggle-escape](#data-toggle-escape)
-	[data-toggle-modal](#data-toggle-modal)&gt;
-	Click to see the awesomeness
-&lt;/button&gt;
-
-&lt;!-- This dialog anywhere you want in the page --&gt;
-&lt;div class="example-dialog"
-	id="dialog"
-	role="dialog"
-	aria-labelledby="dialogTitle"
-	aria-describedby="dialogContent"
-	[aria-hidden](#a11y)="true"&gt;
-	&lt;section class="example-dialog-container"&gt;
-		&lt;header id="dialogTitle" class="example-dialog-header"&gt;
-			Dialog title
-		&lt;/header&gt;
-		&lt;div id="dialogContent" class="example-dialog-content"&gt;
-			&lt;!-- Your content here, such as text or form. --&gt;
-		&lt;/div&gt;
-		&lt;footer class="example-dialog-footer"&gt;
-			&lt;button type="button" [data-toggle-trigger-off](#data-toggle-trigger-off)&gt;close&lt;/button&gt;
-		&lt;/footer&gt;
-	&lt;/section&gt;
-&lt;/div&gt;</code></pre>
-					<div class="demo" id="dialog-with-aria-demo">
-						<button type="button" class="example-dialog-trigger" data-toggle-class-on-target data-toggle-target="#dialog_2" data-toggle-escape data-toggle-modal>Click to see the awesomeness</button>
-						<div class="example-dialog" id="dialog_2" role="dialog" aria-labelledby="dialogTitle" aria-describedby="dialogContent" aria-hidden="true">
-							<section class="example-dialog-container">
-								<header id="dialogTitle" class="example-dialog-header">
-									<h5>Dialog title</h5>
-								</header>
-								<div id="dialogContent" class="example-dialog-content">
-									<p>
-										<strong>Any content you want, such as text or form.</strong>
-									</p>
-									<p>
-										The following fake links are here to illustrate the focus trap inside this modal, thanks to <code class="language-html">data-toggle-modal</code> attribute on the trigger.
-									</p>
-									<p>
-										<a href="#">Lorem ipsum</a> dolor sit amet, consectetur adipisicing elit. Et quibusdam labore <a href="#">tempore repudiandae</a> minima earum adipisci, dolor distinctio <a href="#">facere</a> illo recusandae <a href="#">fuga</a> placeat amet <a href="#">corrupti</a> omnis ullam accusamus reprehenderit id.
-									</p>
-								</div>
-								<footer class="example-dialog-footer">
-									<button type="button" data-toggle-trigger-off>close</button>
-								</footer>
-							</section>
-						</div>
-					</div>
-					<div class="text-right">
-						<a href="assets/css/dialog.css" title="Download this dialog demo stylesheet">download CSS</a>
-						-
-						<a href="assets/scss/dialog.scss" title="Download this dialog demo stylesheet in SCSS">SCSS</a>
-						-
-						<button type="button" class="link-like codepen" title="Open this dialog demo on CodePen" data-title="a dialog with aria" data-demo="dialog-with-aria-demo" data-css="dialog">open in CodePen</button>
-					</div>
-				</section>
-				<section id="dialog-explanation">
-					<h4>
-						<a href="#dialog-explanation">Explanation</a>
-					</h4>
-					<p>
-						Toggle <code class="language-css">.is-active</code> class – as default – on click on this element. Toggle the class on its target <code class="language-html">#dialog</code>, placed anywhere in the page – at the bottom for example –, at the same time. Press <kbd>escape</kbd> key to toggle off, thanks to <code class="language-html">data-toggle-escape</code><sup class="gotodef"><a href="#data-toggle-escape" title="Go to definition">[?]</a></sup> attribute.
-					</p>
-					<p>
-						The attribute <code class="language-html">data-toggle-modal</code><sup class="gotodef"><a href="#data-toggle-modal" title="Go to definition">[?]</a></sup> specify that the target is a modal, and create a focus trap inside of it when active.
-					</p>
-					<p>
-						The attribute <code class="language-html">data-toggle-trigger-off</code><sup class="gotodef"><a href="#data-toggle-trigger-off" title="Go to definition">[?]</a></sup> enable the “close” button to toggle off dialog’s state by clicking on it.
-					</p>
-					<p>
-						As <code class="language-html">aria-hidden</code> attribute is set, its value changes too.
-					</p>
-				</section>
+				<section data-template="simple-dialog"><i>Loading demo…</i></section>
+				<section data-template="dialog-with-aria"><i>Loading demo…</i></section>
 			</section>
 
 			<section id="lightbox">
@@ -1504,68 +397,7 @@
 					<a href="#lightbox">Lightbox</a>
 				</h3>
 				<p>You want to create a lightbox, i.e. a box displayed in front of all page content to see a larger version of an image.</p>
-				<section id="simple-lightbox">
-					<h4>
-						<a href="#simple-lightbox">Simple lightbox</a>
-					</h4>
-<pre><code class="language-html line-numbers">&lt;a class="example-lightbox-trigger"
-	href="image-lg.jpg"
-	title="Zoom"
-	role="button"
-	[data-toggle-class-on-target](#data-toggle-class-on-target)
-	[data-toggle-target-parent](#data-toggle-target-parent)=".example-lightbox"
-	[data-toggle-escape](#data-toggle-escape)
-	[data-toggle-modal](#data-toggle-modal)&gt;
-	&lt;img src="image.jpg" alt="desc"&gt;
-&lt;/a&gt;
-&lt;div class="example-lightbox" role="dialog" aria-hidden="true"&gt;
-	&lt;div class="example-lightbox-backdrop"
-		[data-toggle-trigger-off](#data-toggle-trigger-off)&gt;
-	&lt;/div&gt;
-	&lt;button type="button"
-		class="example-lightbox-close"
-		[data-toggle-trigger-off](#data-toggle-trigger-off)
-		aria-label="Close"
-		title="Close this lightbox"&gt;
-		✖
-	&lt;/button&gt;
-	&lt;img class="example-lightbox-img" src="image-lg.jpg" alt="desc"&gt;
-&lt;/div&gt;</code></pre>
-					<div class="demo" id="simple-lightbox-demo">
-						<a href="https://rawgit.com/Twikito/easy-toggle-state/master/docs/assets/img/rp1.jpg" class="example-lightbox-trigger" title="Zoom" role="button" data-toggle-class-on-target data-toggle-target-parent=".example-lightbox" data-toggle-escape data-toggle-modal>
-							<img src="https://rawgit.com/Twikito/easy-toggle-state/master/docs/assets/img/rp1_s.jpg" alt="Ready Player One">
-						</a>
-						<div class="example-lightbox" role="dialog" aria-hidden="true">
-							<div class="example-lightbox-backdrop" data-toggle-trigger-off></div>
-							<button type="button" class="example-lightbox-close" data-toggle-trigger-off aria-label="Close" title="Close this lightbox">✖</button>
-							<img class="example-lightbox-img" src="https://rawgit.com/Twikito/easy-toggle-state/master/docs/assets/img/rp1.jpg" alt="Ready Player One">
-						</div>
-					</div>
-					<div class="text-right">
-						<a href="assets/css/lightbox.css" title="Download this lightbox demo stylesheet">download CSS</a>
-						-
-						<a href="assets/scss/lightbox.scss" title="Download this lightbox demo stylesheet in SCSS">SCSS</a>
-						-
-						<button type="button" class="link-like codepen" title="Open this lightbox demo on CodePen" data-title="a lightbox" data-demo="simple-lightbox-demo" data-css="lightbox">open in CodePen</button>
-					</div>
-				</section>
-				<section id="lightbox-explanation">
-					<h4>
-						<a href="#lightbox-explanation">Explanation</a>
-					</h4>
-					<p>
-						Toggle <code class="language-css">.is-active</code> class – as default – on click on this element. Toggle the class on its target <code class="language-html">.example-lightbox</code>, belonging to its parent container, at the same time. Press <kbd>escape</kbd> key to toggle off, thanks to <code class="language-html">data-toggle-escape</code><sup class="gotodef"><a href="#data-toggle-escape" title="Go to definition">[?]</a></sup> attribute.
-					</p>
-					<p>
-						The attribute <code class="language-html">data-toggle-modal</code><sup class="gotodef"><a href="#data-toggle-modal" title="Go to definition">[?]</a></sup> specify that the target is a modal, and create a focus trap inside of it when active.
-					</p>
-					<p>
-						The attribute <code class="language-html">data-toggle-trigger-off</code><sup class="gotodef"><a href="#data-toggle-trigger-off" title="Go to definition">[?]</a></sup> enable the “close” button and the backdrop – the opacified black background – to toggle off lightbox state by clicking on them.
-					</p>
-					<p>
-						As <code class="language-html">aria-hidden</code> attribute is set, its value changes too.
-					</p>
-				</section>
+				<section data-template="simple-lightbox"><i>Loading demo…</i></section>
 			</section>
 
 			<section id="navigation-icon">
@@ -1573,57 +405,7 @@
 					<a href="#navigation-icon">Navigation icon</a>
 				</h3>
 				<p>You want to create a navigation icon, i.e. an icon that represents a button you can click on to make a navigation menu visible.</p>
-				<section id="simple-navigation-icon">
-					<h4>
-						<a href="#simple-navigation-icon">Simple navigation icon</a>
-					</h4>
-<pre><code class="language-html line-numbers">&lt;button type="button"
-	class="example-nav-trigger"
-	title="Navigation"
-	[data-toggle-class](#data-toggle-class)
-	[data-toggle-escape](#data-toggle-escape)&gt;
-	&lt;svg width="1em" class="example-nav-trigger-icon" role="img" focusable="false" viewBox="0 0 100 100"&gt;
-		&lt;title&gt;Navigation icon&lt;/title&gt;
-		&lt;rect class="top-bar" x="0" y="15" width="100" height="12"/&gt;
-		&lt;rect class="mid-bar" x="0" y="44" width="100" height="12"/&gt;
-		&lt;rect class="bot-bar" x="0" y="73" width="100" height="12"/&gt;
-	&lt;/svg&gt;
-&lt;/button&gt;</code></pre>
-					<div class="demo" id="simple-navigation-icon-demo">
-						<button type="button" class="example-nav-trigger" data-toggle-class data-toggle-escape title="Navigation">
-							<svg width="1em" class="example-nav-trigger-icon" viewBox="0 0 100 100" role="img" focusable="false">
-								<title>Navigation icon</title>
-								<rect class="top-bar" x="0" y="15" width="100" height="12"/>
-								<rect class="mid-bar" x="0" y="44" width="100" height="12"/>
-								<rect class="bot-bar" x="0" y="73" width="100" height="12"/>
-							</svg>
-						</button>
-					</div>
-					<div class="text-right">
-						<a href="assets/css/navigation-icon.css" title="Download this navigation icon demo stylesheet">download CSS</a>
-						-
-						<a href="assets/scss/navigation-icon.scss" title="Download this navigation icon demo stylesheet in SCSS">SCSS</a>
-						-
-						<button type="button" class="link-like codepen" title="Open this navigation icon demo on CodePen" data-title="a navigation icon" data-demo="simple-navigation-icon-demo" data-css="navigation-icon">open in CodePen</button>
-					</div>
-				</section>
-				<section id="navigation-icon-explanation">
-					<h4>
-						<a href="#navigation-icon-explanation">Explanation</a>
-					</h4>
-					<p>
-						Toggle <code class="language-html">.is-active</code> class – by default – on click on this element. <code class="language-html">data-toggle-escape</code><sup class="gotodef"><a href="#data-toggle-escape" title="Go to definition">[?]</a></sup> attribute means you can press <kbd>escape</kbd> key to toggle off.
-					</p>
-					<p>
-						You will probably add <code class="language-html">data-toggle-target</code><sup class="gotodef"><a href="#data-toggle-target" title="Go to definition">[?]</a></sup> attribute with the ID of your navigation bar to toggle it at the same time. Here is <a href="//codepen.io/Twikito/pen/VdJVop">an example of navigation management</a>.
-					</p>
-					<p>
-						The <code class="language-html">focusable="false"</code> attribute on <code class="language-html">&lt;svg&gt;</code> is there to prevent the icon itself from receiving focus in IE/Edge, because otherwise the button will have two Tab stops.
-					</p>
-					<p>
-						Consider adding some <abbr title="Accessible Rich Internet Applications">ARIA</abbr> attributes for accessibility. Refer to other examples above.
-					</p>
-				</section>
+				<section data-template="simple-navigation-icon"><i>Loading demo…</i></section>
 			</section>
 
 		</section>
