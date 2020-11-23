@@ -7,13 +7,23 @@
 	justify-content: space-between;
 	align-content: center;
 	box-sizing: border-box;
-	border: none;
+	border: 2px solid transparent;
+	outline: none;
 	background-color: white;
 	text-align: left;
+}
+.example-collapsible-button:hover,
+.example-collapsible-button:focus {
+	border-color: var(--theme);
+	color: var(--theme);
 }
 .example-collapsible-button.is-open {
 	background-color: var(--theme); /* You probably need to change this! */
 	color: white;
+}
+.example-collapsible-button.is-open:hover,
+.example-collapsible-button.is-open:focus {
+	border-color: rgba(0,0,0,.75);
 }
 .example-collapsible-button::after {
 	font-size: 1.5em;

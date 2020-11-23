@@ -9,13 +9,25 @@
 		justify-content: space-between;
 		align-content: center;
 		box-sizing: border-box;
-		border: none;
+		border: 2px solid transparent;
+		outline: none;
 		background-color: white;
 		text-align: left;
+
+		&:hover,
+		&:focus {
+			border-color: var(--theme); /* You probably need to change this! */
+			color: var(--theme); /* You probably need to change this! */
+		}
 
 		&.is-open {
 			background-color: var(--theme); /* You probably need to change this! */
 			color: white;
+
+			&:hover,
+			&:focus {
+				border-color: rgba(0,0,0,.5);  /* You probably need to change this! */
+			}
 		}
 
 		&::after {
