@@ -56,14 +56,15 @@
 }
 .example-lightbox-close {
 	position: absolute;
-	top: .5em;
+	top: .25em;
 	right: .5em;
 	z-index: 2;
 	padding: 0;
 	background: none;
 	border: none;
 	color: white;
-	font-size: 2em;
+	font-size: 3em;
+	font-weight: bold;
 	line-height: 1;
 }
 .example-lightbox-img {
