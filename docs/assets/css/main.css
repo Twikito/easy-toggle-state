@@ -209,7 +209,7 @@ h4 {
 }
 
 [id="api"] h5 {
-	display: inline-block; padding: 0 .25em 0 2em; margin: 2em 0 0;
+	display: inline-block; padding: 0 .25em 0 2em; margin: 0;
 	background-color: #f6f8fa;
 	font-size: 1em;
 }
@@ -274,26 +274,6 @@ section section section {
 	margin: 0 0 5%;
 }
 
-dl {
-	margin: 5% 0;
-}
-
-dl div {
-	padding: 1em 0;
-}
-
-dl div:last-child {
-	padding-bottom: 0;
-}
-
-dd {
-	margin-left: 1em; padding-bottom: 2.5%;
-}
-
-dl div:last-child dd {
-	padding-bottom: 0;
-}
-
 kbd {
 	display: inline-block; padding: 0 .5em;
 	border: solid 1px #ccc; border-top-color: #fff; border-bottom-color: #ddd; border-radius: .25em; box-shadow: 0 2px 0 #aaa, 0 2px .125em #ccc;
@@ -313,6 +293,10 @@ footer {
 
 footer a {
 	color: inherit;
+}
+
+.m-b {
+	margin-bottom: 10%;
 }
 
 .small {
