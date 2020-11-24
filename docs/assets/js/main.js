@@ -181,8 +181,8 @@ fetch('filesize.json')
 				codeContainer.setAttribute("id", `${demoId}-code`);
 
 				let parsedCode = demoCode;
-				parsedCode = parsedCode.replaceAll(/data-toggle-(\w-?)+/g, str => `[${str}](#${str})`);
-				parsedCode = parsedCode.replaceAll(/aria-(checked|expanded|hidden|pressed|selected)/g, str => `[${str}](#a11y)`);
+				parsedCode = parsedCode.replace(/data-toggle-(\w-?)+/g, str => `[${str}](#${str})`);
+				parsedCode = parsedCode.replace(/aria-(checked|expanded|hidden|pressed|selected)/g, str => `[${str}](#a11y)`);
 
 				const code = clone.querySelector(".code-container code");
 				code.textContent = parsedCode;
