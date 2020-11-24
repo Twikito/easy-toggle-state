@@ -1,9 +1,6 @@
 .example-dropdown {
 	position: relative;
 	display: inline-block;
-	z-index: 1;
-	transform-style: preserve-3d;
-	perspective: 1000px;
 }
 .example-dropdown-button {
 	display: inline-block;
@@ -40,7 +37,7 @@
 	overflow: auto;
 	padding: 0;
 	margin: 0;
-	transform: rotateX(-20deg);
+	transform: translateY(-1em);
 	transform-origin: center top;
 	background-color: white;
 	perspective: 1000px;
@@ -51,7 +48,7 @@
 	transition: .25s ease-in;
 }
 .example-dropdown-list.is-open {
-	transform: rotateX(0);
+	transform: translateY(0);
 	visibility: visible;
 	opacity: 1;
 	transition-timing-function: ease-out;
