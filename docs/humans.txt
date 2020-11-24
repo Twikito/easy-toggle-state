@@ -19,5 +19,5 @@
 
 	Language: English
 	Doctype: HTML5, CSS3, ES6
-	IDE: Sublime Text
+	IDE: Visual Studio Code
 	Build with: hands, fingers, brain, open mind, love and coffee
