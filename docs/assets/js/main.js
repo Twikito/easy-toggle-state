@@ -163,6 +163,17 @@ fetch('filesize.json')
 				demoContainer.setAttribute("id", `${demoId}-demo`);
 				demoContainer.innerHTML = demoCode;
 
+				if (demos[demoId].category === "dropdown") {
+					const dropdownTrigger = clone.querySelector(".demo [data-toggle-class]");
+					[...clone.querySelectorAll(".demo [data-toggle-trigger-off]")].forEach(element => {
+						element.addEventListener("click", e => {
+							dropdownTrigger.innerHTML = element.innerHTML;
+							console.log(dropdownTrigger);
+							console.log(element.innerHTML);
+						}, false);
+					});
+				}
+
 				const showCode = clone.querySelector(".show-code");
 				showCode.setAttribute("data-toggle-target", `#${demoId}-code`);
 
