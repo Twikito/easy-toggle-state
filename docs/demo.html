@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>A demo page to illustrate Easy Toggle State library</title>
+	<meta name="description" content="A tiny JavaScript library to easily toggle the state of any HTML element, and create UI components in no time">
+
+	<link rel="preload" as="script" type="text/javascript" href="https://rawgit.com/Twikito/easy-toggle-state/master/dist/easy-toggle-state.es6.min.js">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="assets/favicons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="assets/favicons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="assets/favicons/favicon-16x16.png">
+	<link rel="manifest" href="assets/favicons/site.webmanifest">
+	<link rel="mask-icon" href="assets/favicons/safari-pinned-tab.svg" color="#009d64">
+	<link rel="shortcut icon" href="assets/favicons/favicon.ico">
+	<meta name="msapplication-TileColor" content="#009d64">
+	<meta name="msapplication-config" content="assets/favicons/browserconfig.xml">
+	<meta name="theme-color" content="#009d64">
+
+	<meta property="og:title" content="A demo page to illustrate Easy Toggle State library">
+	<meta property="og:description" content="Dropdown, navigation button, tooltip, collapsible panel, lightbox, tabs, switches made in minutes without worried about JavaScript.">
+	<meta property="og:url" content="https://twikito.github.io/easy-toggle-state/demo.html">
+	<meta property="og:type" content="website">
+	<meta property="og:locale" content="en_en">
+	<meta property="og:image" content="https://rawgit.com/Twikito/easy-toggle-state/master/docs/assets/favicons/og-image.jpg">
+	<meta property="og:image:width" content="279">
+	<meta property="og:image:height" content="279">
+
+	<meta name="twitter:card" content="summary">
+
+	<link rel="author" href="//github.com/Twikito">
+	<link rel="author" type="text/plain" href="humans.txt">
+
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@350;500&family=Quicksand:wght@500&display=swap">
+	<link rel="stylesheet" href="assets/css/demo.css">
+</head>
+<body>
+	<button type="button" class="nav-trigger" data-toggle-class data-toggle-escape data-toggle-target=".nav-menu" title="Navigation">
+		<svg width="1em" class="nav-trigger-icon" viewBox="0 0 100 100" role="img" focusable="false">
+			<title>Navigation icon</title>
+			<rect class="top-bar" x="0" y="15" width="100" height="12"/>
+			<rect class="mid-bar" x="0" y="44" width="100" height="12"/>
+			<rect class="bot-bar" x="0" y="73" width="100" height="12"/>
+		</svg>
+	</button>
+
+	<div class="header flex-space-between">
+		<div></div>
+
+		<h1>
+			<span class="title-long">Easy Toggle State demo page</span>
+			<span class="title-short"><abbr title="Easy Toggle State">ETS</abbr> demo page</span>
+		</h1>
+
+		<div>
+			<button type="button" class="switch" data-toggle-class-on-trigger data-toggle-class-on-target="🌚" data-toggle-target="html" title="Switch theme">
+				<span class="switch-bullet">
+					<span class="switch-off">🌞</span>
+					<span class="switch-on">🌚</span>
+				</span>
+			</button>
+		</div>
+	</div>
+
+	<nav class="nav-menu">
+		<ul class="nav-list">
+			<li><a href="#" data-toggle-trigger-off=".nav-menu">Home</a></li>
+			<li><a href="#" data-toggle-trigger-off=".nav-menu">Blog</a></li>
+			<li><a href="#" data-toggle-trigger-off=".nav-menu">About</a></li>
+			<li><a href="#" data-toggle-trigger-off=".nav-menu">Contact</a></li>
+		</ul>
+		<div class="nav-menu-backdrop" data-toggle-trigger-off=".nav-menu"></div>
+	</nav>
+
+	<main class="wrapper">
+		<header class="head">
+			<h2>This is a demo page to showcase some examples using Easy Toggle State library in a real use case</h2>
+		</header>
+
+		<aside class="bio">
+			<a href="assets/img/dc-avatar.jpg" class="avatar lightbox-trigger" title="Zoom" role="button" data-toggle-class-on-target data-toggle-target-parent=".lightbox" data-toggle-escape data-toggle-modal>
+				<img src="assets/img/dc-avatar_s.jpg" alt="Dead Cells">
+			</a>
+			<div class="lightbox" role="dialog" aria-hidden="true">
+				<div class="lightbox-backdrop" data-toggle-trigger-off=".lightbox" aria-hidden="true"></div>
+				<button type="button" class="lightbox-close" data-toggle-trigger-off=".lightbox" aria-label="Close" title="Close this lightbox">
+					&times;
+				</button>
+				<img class="lightbox-img" src="assets/img/dc-avatar.jpg" alt="Dead Cells">
+			</div>
+			<p class="size-small">All images here are only for illustration purpose. They are from one of the best video games ever: Dead Cells.</p>
+			<p class="size-small"><button type="button" class="link-like w-caret" data-toggle-class data-toggle-target=".more">Learn more</button></p>
+			<p class="size-small more"><a href="//deadcells.com/" title="Dead Cells - Rogue-lite metroidvania with some souls-lite combat on top! Kill, die, learn, repeat." target="_blank">Dead Cells</a> is a rogue-lite, Castlevania-inspired action-platformer, allowing you to explore a sprawling, ever-changing castle… assuming you’re able to fight your way past its keepers.</p>
+			<p class="size-small">Reiciendis sit molestias non minima ipsa doloribus rem officiis consequatur at aperiam enim quis earum atque voluptatem, velit consectetur nisi nesciunt quae.</p>
+		</aside>
+
+		<article class="article">
+			<p class="strong">In this page, each interactible element is managed with the library, without any JavaScript more. To easily see all of them, you may like to <button type="button" class="link-like" data-toggle-class-on-trigger data-toggle-class-on-target="🤯" data-toggle-target="html">reveale all triggers</button>.</p>
+			<p class="strong"><a href="/docs/#demo">Back to the documentation</a></p>
+			<div class="slideshow">
+				<div class="slideshow-slides">
+					<div class="slideshow-slide" id="dc1"role="tabpanel" aria-labelledby="dc1-dot" aria-hidden="true">
+						<a href="assets/img/dc1.jpg" class="lightbox-trigger" title="Zoom" role="button" data-toggle-class-on-target data-toggle-target="#lightbox-dc1" data-toggle-escape data-toggle-modal>
+							<img src="assets/img/dc1.jpg" alt="Dead Cells">
+						</a>
+					</div>
+					<div class="slideshow-slide" id="dc2"role="tabpanel" aria-labelledby="dc2-dot" aria-hidden="true">
+						<a href="assets/img/dc2.jpg" class="lightbox-trigger" title="Zoom" role="button" data-toggle-class-on-target data-toggle-target="#lightbox-dc2" data-toggle-escape data-toggle-modal>
+							<img src="assets/img/dc2.jpg" alt="Dead Cells">
+						</a>
+					</div>
+					<div class="slideshow-slide" id="dc3"role="tabpanel" aria-labelledby="dc3-dot" aria-hidden="true">
+						<a href="assets/img/dc3.jpg" class="lightbox-trigger" title="Zoom" role="button" data-toggle-class-on-target data-toggle-target="#lightbox-dc3" data-toggle-escape data-toggle-modal>
+							<img src="assets/img/dc3.jpg" alt="Dead Cells">
+						</a>
+					</div>
+					<div class="slideshow-slide" id="dc4"role="tabpanel" aria-labelledby="dc4-dot" aria-hidden="true">
+						<a href="assets/img/dc4.jpg" class="lightbox-trigger" title="Zoom" role="button" data-toggle-class-on-target data-toggle-target="#lightbox-dc4" data-toggle-escape data-toggle-modal>
+							<img src="assets/img/dc4.jpg" alt="Dead Cells">
+						</a>
+					</div>
+					<div class="slideshow-slide" id="dc5"role="tabpanel" aria-labelledby="dc5-dot" aria-hidden="true">
+						<a href="assets/img/dc5.jpg" class="lightbox-trigger" title="Zoom" role="button" data-toggle-class-on-target data-toggle-target="#lightbox-dc5" data-toggle-escape data-toggle-modal>
+							<img src="assets/img/dc5.jpg" alt="Dead Cells">
+						</a>
+					</div>
+				</div>
+				<ul class="slideshow-dots">
+					<li>
+						<button type="button" class="slideshow-dot" id="dc1-dot" data-toggle-class data-toggle-target="#dc1" data-toggle-radio-group="slideshow" data-toggle-arrows data-toggle-is-active role="tab" aria-selected="false" aria-controls="dc1">1</button>
+					</li>
+					<li>
+						<button type="button" class="slideshow-dot" id="dc2-dot" data-toggle-class data-toggle-target="#dc2" data-toggle-radio-group="slideshow" data-toggle-arrows role="tab" aria-selected="false" aria-controls="dc2">2</button>
+					</li>
+					<li>
+						<button type="button" class="slideshow-dot" id="dc3-dot" data-toggle-class data-toggle-target="#dc3" data-toggle-radio-group="slideshow" data-toggle-arrows role="tab" aria-selected="false" aria-controls="dc3">3</button>
+					</li>
+					<li>
+						<button type="button" class="slideshow-dot" id="dc4-dot" data-toggle-class data-toggle-target="#dc4" data-toggle-radio-group="slideshow" data-toggle-arrows role="tab" aria-selected="false" aria-controls="dc4">4</button>
+					</li>
+					<li>
+						<button type="button" class="slideshow-dot" id="dc5-dot" data-toggle-class data-toggle-target="#dc5" data-toggle-radio-group="slideshow" data-toggle-arrows role="tab" aria-selected="false" aria-controls="dc5">5</button>
+					</li>
+				</ul>
+				<div id="lightbox-dc1" class="lightbox" role="dialog" aria-hidden="true">
+					<div class="lightbox-backdrop" data-toggle-trigger-off="#lightbox-dc1" aria-hidden="true"></div>
+					<button type="button" class="lightbox-close" data-toggle-trigger-off="#lightbox-dc1" aria-label="Close" title="Close this lightbox">
+						&times;
+					</button>
+					<img class="lightbox-img" src="assets/img/dc1.jpg" alt="Dead Cells">
+				</div>
+				<div id="lightbox-dc2" class="lightbox" role="dialog" aria-hidden="true">
+					<div class="lightbox-backdrop" data-toggle-trigger-off="#lightbox-dc2" aria-hidden="true"></div>
+					<button type="button" class="lightbox-close" data-toggle-trigger-off="#lightbox-dc2" aria-label="Close" title="Close this lightbox">
+						&times;
+					</button>
+					<img class="lightbox-img" src="assets/img/dc2.jpg" alt="Dead Cells">
+				</div>
+				<div id="lightbox-dc3" class="lightbox" role="dialog" aria-hidden="true">
+					<div class="lightbox-backdrop" data-toggle-trigger-off="#lightbox-dc3" aria-hidden="true"></div>
+					<button type="button" class="lightbox-close" data-toggle-trigger-off="#lightbox-dc3" aria-label="Close" title="Close this lightbox">
+						&times;
+					</button>
+					<img class="lightbox-img" src="assets/img/dc3.jpg" alt="Dead Cells">
+				</div>
+				<div id="lightbox-dc4" class="lightbox" role="dialog" aria-hidden="true">
+					<div class="lightbox-backdrop" data-toggle-trigger-off="#lightbox-dc4" aria-hidden="true"></div>
+					<button type="button" class="lightbox-close" data-toggle-trigger-off="#lightbox-dc4" aria-label="Close" title="Close this lightbox">
+						&times;
+					</button>
+					<img class="lightbox-img" src="assets/img/dc4.jpg" alt="Dead Cells">
+				</div>
+				<div id="lightbox-dc5" class="lightbox" role="dialog" aria-hidden="true">
+					<div class="lightbox-backdrop" data-toggle-trigger-off="#lightbox-dc5" aria-hidden="true"></div>
+					<button type="button" class="lightbox-close" data-toggle-trigger-off="#lightbox-dc5" aria-label="Close" title="Close this lightbox">
+						&times;
+					</button>
+					<img class="lightbox-img" src="assets/img/dc5.jpg" alt="Dead Cells">
+				</div>
+			</div>
+
+			<p>Provident voluptatum unde esse laudantium illum alias ratione eveniet praesentium dolorem, odio molestiae facilis facere ipsam suscipit doloremque! Quasi aliquam consequatur nobis voluptate hic nihil iste recusandae voluptates sequi pariatur.</p>
+
+			<div class="tabs-container">
+				<div class="tabs" role="tablist">
+					<button type="button" id="tab_1_KldSY" data-toggle-class data-toggle-target="#tabPanel_1_KldSY" data-toggle-radio-group="tabsGroup_jWIl4" data-toggle-arrows data-toggle-is-active role="tab" aria-selected="false" aria-controls="tabPanel_1_KldSY">
+						Description
+					</button>
+					<button type="button" id="tab_1_aKNv5" data-toggle-class data-toggle-target="#tabPanel_2_aKNv5" data-toggle-radio-group="tabsGroup_jWIl4" data-toggle-arrows role="tab" aria-selected="false" aria-controls="tabPanel_2_aKNv5">
+						Technical informations
+					</button>
+					<button type="button" id="tab_3_cUJnt" data-toggle-class data-toggle-target="#tabPanel_3_cUJnt" data-toggle-radio-group="tabsGroup_jWIl4" data-toggle-arrows role="tab" aria-selected="false" aria-controls="tabPanel_3_cUJnt">
+						Reviews
+					</button>
+				</div>
+				<div class="tab-panel" id="tabPanel_1_KldSY" role="tabpanel" aria-labelledby="tab_1_KldSY" aria-hidden="true">
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem sit ab, eligendi neque, omnis aliquam veniam doloribus fugit iusto repudiandae esse libero mollitia in et minima! Tenetur soluta nisi sed.</p>
+					<p>Alias aperiam laborum, incidunt commodi enim magnam earum sequi quibusdam id architecto dolorum, expedita ratione impedit dolore? Sint, maiores sunt necessitatibus recusandae placeat dolore aliquam in vero nemo, vitae voluptatibus!</p>
+					<p>Culpa, dignissimos labore non quo, fuga nostrum obcaecati harum saepe reprehenderit quis nisi esse repellendus possimus ab iste cupiditate! Maiores earum vero tempora minima molestiae voluptates laudantium nemo, illo quibusdam!</p>
+					<p>Voluptatem magni consequatur non dolorum debitis, iusto quam quo ex, vero voluptas expedita ad nobis sit perspiciatis temporibus praesentium vitae nam laudantium sint veniam eos repudiandae id quas ullam! Minima.</p>
+				</div>
+				<div class="tab-panel" id="tabPanel_2_aKNv5" role="tabpanel" aria-labelledby="tab_1_aKNv5" aria-hidden="true">
+					<ul>
+						<li>Lorem, ipsum.</li>
+						<li>Necessitatibus, sunt!</li>
+						<li>Sunt, illo.</li>
+						<li>Aut, incidunt?</li>
+						<li>Quae, odio.</li>
+						<li>Magni, unde.</li>
+						<li>Quam, aliquam.</li>
+						<li>Unde, quasi?</li>
+						<li>Ipsam, est.</li>
+						<li>Quos, rem.</li>
+					</ul>
+				</div>
+				<div class="tab-panel" id="tabPanel_3_cUJnt" role="tabpanel" aria-labelledby="tab_3_cUJnt" aria-hidden="true">
+					<p><strong>Jacky C.: ★★★★☆</strong><br>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, quidem nihil ducimus dolorum consequuntur quod quibusdam in temporibus enim aperiam eum fugit minima dolores minus architecto nemo explicabo sed! Reprehenderit.</p>
+					<p><strong>Emilia C.: ★★★★★</strong><br>Mollitia consectetur laborum et iste itaque eaque blanditiis enim pariatur facere veritatis omnis ullam, doloremque similique odio impedit soluta optio beatae nihil vel facilis doloribus cupiditate architecto. Nisi, illum perferendis!</p>
+					<p><strong>Anya T.: ★★☆☆☆</strong><br>Quo dolore repellendus enim eius! Neque ipsa numquam commodi molestiae facilis ipsam voluptate, vitae in debitis natus odit non dicta laudantium dignissimos quisquam ea eveniet atque doloribus nostrum! Aut, debitis.</p>
+					<p><strong>Kirsten S.: ★★★★★</strong><br>Cumque pariatur sint nesciunt nostrum incidunt ullam ratione consequatur, excepturi magni nihil repellat vitae ipsa eius quam doloribus, et adipisci amet officia, natus unde dolor. Laudantium, veniam. Facilis, fugiat? Quas.</p>
+					<p><strong>David H.: ★★★☆☆</strong><br>Nulla, non aliquam voluptatibus delectus earum quisquam dicta velit ab dolorem tenetur libero totam est repellat sit deserunt aperiam itaque rerum eum natus doloremque, amet veniam provident? Tempore, praesentium quis.</p>
+				</div>
+			</div>
+
+			<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officiis, neque voluptas quas recusandae numquam dolore at mollitia? Eum quam eius, harum odio in ducimus ipsum quia aut. Aliquid, ullam quia?</p>
+
+		</article>
+
+		<aside class="aside">
+			<div class="aside-content">
+				<p class="size-small">December 7, 2020<br><a href="#">42 comments</a></p>
+			</div>
+			<div class="aside-content">
+				<p class="size-small"><a href="#">tag</a>, <a href="#">another tag</a>, <a href="#">lorem</a>, <a href="#">ipsum</a>, <a href="#">dolor</a>, <a href="#">sit amet</a>, <a href="#">consectetur</a>, <a href="#">adipiscing</a></p>
+			</div>
+			<div class="aside-content aside-sticky">
+				<p class="size-small align-center">Like whart you see?</p>
+				<p class="size-small align-center">
+					<button type="button" class="cta" data-toggle-class-on-target data-toggle-target="#dialog_sG4aI" data-toggle-escape data-toggle-modal>
+						Subscribe!
+					</button>
+				</p>
+			</div>
+		</aside>
+	</main>
+
+	<footer class="footer">
+		<p class="size-small">
+			Proudly made
+			under&nbsp;<a href="//github.com/Twikito/easy-toggle-state/blob/master/LICENSE">MIT&nbsp;license</a>
+			on&nbsp;<a href="//github.com/Twikito/easy-toggle-state" title="View Easy Toggle State on GitHub">GitHub</a>
+			by&nbsp;<a href="//twikito.com">Matthieu&nbsp;Bué</a>.
+			Illustrations &copy; Motion Twin
+		</p>
+	</footer>
+
+	<div class="dialog" id="dialog_sG4aI" role="dialog" aria-labelledby="dialogTitle" aria-describedby="dialogContent" aria-hidden="true">
+		<section class="dialog-container">
+			<header id="dialogTitle" class="dialog-header">
+				<h3>Subscribe to our awesome newsletter</h3>
+			</header>
+			<div id="dialogContent" class="dialog-content">
+				<p>Once a week, we send our tips and tricks. Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+				<div class="p-like">
+					<label for="dJdn5I">Your email address</label>
+					<input type="email" id="dJdn5I" placeholder="ex: my.email@ddress.com">
+				</div>
+			</div>
+			<footer class="dialog-footer">
+				<button type="button" class="btn" data-toggle-trigger-off="#dialog_sG4aI">close</button>
+				<button type="button" class="cta" data-toggle-trigger-off="#dialog_sG4aI">fake send</button>
+			</footer>
+		</section>
+	</div>
+
+	<script src="https://rawgit.com/Twikito/easy-toggle-state/master/dist/easy-toggle-state.es6.min.js"></script>
+</body>
+</html>
