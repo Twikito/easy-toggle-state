@@ -261,6 +261,10 @@ a:focus,
 	text-decoration: underline;
 }
 
+[id] {
+	scroll-margin-top: 5rem;
+}
+
 hr {
 	height: 5px; margin: 0 -5vw 0;
 	border: none;
@@ -270,8 +274,27 @@ hr {
 section {
 	margin: 0 0 15%;
 }
-section section section {
+
+.mb-10 {
+	margin: 0 0 10%;
+}
+
+[data-template],
+.mb-5 {
 	margin: 0 0 5%;
+}
+
+dl {
+	margin: 0;
+}
+dt, dd {
+	margin: 1em 0;
+}
+dt {
+	font-weight: bold;
+}
+dt code[class*="language-"] {
+	color: inherit;
 }
 
 kbd {
@@ -293,10 +316,6 @@ footer {
 
 footer a {
 	color: inherit;
-}
-
-.m-b {
-	margin-bottom: 10%;
 }
 
 .small {
@@ -524,6 +543,18 @@ pre[class*="language-"],
 .github,
 .github + * {
 	vertical-align: middle;
+}
+
+.demo-page {
+	display: block; width: 16em; margin: 5% auto; padding: .25em;
+	background-color: rgba(0 0 0 / .1);
+}
+.demo-page:hover,
+.demo-page:focus {
+	background-color: var(--theme);
+}
+.demo-page img {
+	display: block; width: auto; max-width: 100%; margin: 0;
 }
 
 .gotodef {
