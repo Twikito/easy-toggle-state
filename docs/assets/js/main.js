@@ -168,8 +168,6 @@ fetch('filesize.json')
 					[...clone.querySelectorAll(".demo [data-toggle-trigger-off]")].forEach(element => {
 						element.addEventListener("click", e => {
 							dropdownTrigger.innerHTML = element.innerHTML;
-							console.log(dropdownTrigger);
-							console.log(element.innerHTML);
 						}, false);
 					});
 				}
