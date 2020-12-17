@@ -1,5 +1,6 @@
 html {
 	--primary-color: #a40239;
+	--grey-color: #ced6e0;
 	--main-bg: #f1f2f6;
 	--header-bg: rgb(32 63 88 / .95);
 	--text-color: #223;
@@ -11,6 +12,7 @@ html {
 
 .🌚 {
 	--primary-color: #c42259;
+	--grey-color: #000514;
 	--main-bg: #101524;
 	--header-bg: rgb(0 5 20 / .95);
 	--text-color: #f9cf87;
@@ -76,11 +78,8 @@ hr {
 	height: .25em;
 	margin: 4vw 0;
 	border: none;
-	background-color: #ced6e0;
+	background-color: var(--grey-color);
 	transition: background-color .15s ease-out;
-}
-.🌚 hr {
-	background-color: #000514;
 }
 
 h1, h2, .cta {
@@ -109,7 +108,7 @@ input {
 	width: 100%;
 	padding: .25em .5em;
 	box-sizing: border-box;
-	border: 1px solid #ced6e0;
+	border: 1px solid var(--grey-color);
 	background-color: white;
 	outline: none;
 	font: inherit;
@@ -117,7 +116,6 @@ input {
 	transition: border-color .15s ease-out;
 }
 .🌚 input {
-	border-color: #000514;
 	background-color: black;
 }
 input::placeholder {
@@ -247,7 +245,7 @@ input:focus {
 	padding: .175em .125em .125em;
 	overflow: hidden;
 	border-radius: 1em;
-	background-color: rgb(255 255 255 / .3);
+	background-color: rgb(255 255 255 / .5);
 	font: normal normal 1.25em / 1.25 sans-serif;
 	text-align: left;
 }
@@ -541,11 +539,8 @@ input:focus {
 	flex-flow: row nowrap;
 	justify-content: space-between;
 	align-items: center;
-	border-top: 1px solid #ced6e0;
+	border-top: 1px solid var(--grey-color);
 	text-align: right;
-}
-.🌚 .dialog-footer {
-	border-color: #000514;
 }
 
 
@@ -572,12 +567,9 @@ input:focus {
 .tab-panel {
 	display: none;
 	z-index: 1;
-	border: solid #ced6e0;
+	border: solid var(--grey-color);
 	border-width: 5px 0;
 	transition: border-color .15s ease-out;
-}
-.🌚 .tab-panel  {
-	border-color: #000514;
 }
 .tab-panel.is-active {
 	display: block;
@@ -630,7 +622,7 @@ input:focus {
 .aside-content {
 	margin: 1em 0;
 	padding: 1em;
-	background-color: #ced6e0;
+	background-color: var(--grey-color);
 	transition: background-color .15s ease-out;
 }
 .🌚 .aside-content {
@@ -720,7 +712,7 @@ html:not(.🌚) .footer a {
 	color: white;
 }
 .btn {
-	background-color: #ced6e0;
+	background-color: var(--grey-color);
 	color: inherit;
 }
 .🌚 .btn {
