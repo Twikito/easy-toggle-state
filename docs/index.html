@@ -660,16 +660,17 @@ document.addEventListener("DOMContentLoaded", handler);</code></pre>
 						<dd class="mb-10">
 							<pre><code>&lt;button data-toggle-class="class" data-toggle-group="name"&gt;…&lt;/button&gt;
 &lt;button data-toggle-class="class" data-toggle-group="name"&gt;…&lt;/button&gt;</code></pre>
-							<p>Used on at least two triggers, specify that they are a part of the same group, defined by a <code>name</code>. Only one trigger of a group can be active at a time. They will actually behave like an <a href="#accordion">accordion component</a>.</p>
+							<p>Specify that a trigger is a part of a group, defined by a <code>name</code>. Only one trigger of a group can be active at a time. Of course, it must be used on at least two triggers to create a group.</p>
+							<p>They will actually behave like an <a href="#accordion">accordion component</a>.</p>
 						</dd>
 
 						<dt id="data-toggle-radio-group">Attribute: <code>data-toggle-radio-group</code></dt>
 						<dd>
 							<pre><code>&lt;button data-toggle-class="class" data-toggle-radio-group="name"&gt;…&lt;/button&gt;
 &lt;button data-toggle-class="class" data-toggle-radio-group="name"&gt;…&lt;/button&gt;</code></pre>
-							<p>Used on at least two triggers, specify that they are a part of a radio group, defined by a <code>name</code>. Only one trigger of a radio group can be active at a time.</p>
+							<p>Specify that they are a part of a radio group, defined by a <code>name</code>. Only one trigger of a radio group can be active at a time. Of course, it must be used on at least two triggers to create a group.</p>
 							<p>Unlike a simple group as seen above, as soon as a trigger of a radio group has been activated, <strong>this radio group will always keep one trigger active</strong>. It will actually behave like <a href="#simple-radio">radio buttons</a> or <a href="#simple-tabs">tabs component</a>.</p>
-							<p>Note that a trigger of a radio grouped can’t have <code>data-toggle-outside</code> or <code>data-toggle-escape</code> behavior.</p>
+							<p>Note that a trigger of a radio grouped can’t have <code>data-toggle-outside</code><sup class="gotodef"><a href="#data-toggle-outside" title="Go to definition">[?]</a></sup> or <code>data-toggle-escape</code><sup class="gotodef"><a href="#data-toggle-escape" title="Go to definition">[?]</a></sup> behavior.</p>
 						</dd>
 					</dl>
 				</section>
@@ -696,8 +697,8 @@ document.addEventListener("DOMContentLoaded", handler);</code></pre>
 						<dt id="data-toggle-outside">Attribute: <code>data-toggle-outside</code></dt>
 						<dd class="mb-10">
 							<pre><code>&lt;button data-toggle-class="class" data-toggle-outside&gt;…&lt;/button&gt;</code></pre>
-							<p>Specify to toggle off the trigger when it is already active and when you click again outside of it. If you use the <code>data-toggle-event</code> attribute too on the trigger, the event used is the same.</p>
-							<p>Note that this attribute does not work on an element with <code>data-toggle-radio-group="group"</code>.</p>
+							<p>When a trigger is active, specify to toggle off this trigger when you click again outside of it. If you use the <code>data-toggle-event</code><sup class="gotodef"><a href="#data-toggle-event" title="Go to definition">[?]</a></sup> attribute too on the trigger, the event used is the same.</p>
+							<p>Note that this attribute does not work on an element with <code>data-toggle-radio-group</code><sup class="gotodef"><a href="#data-toggle-radio-group" title="Go to definition">[?]</a></sup>.</p>
 							<p>See an example with a <a href="#simple-dropdown">dropdown</a>.</p>
 						</dd>
 
@@ -709,8 +710,8 @@ document.addEventListener("DOMContentLoaded", handler);</code></pre>
 		data-toggle-outside-event="event"&gt;
 		…
 &lt;/button&gt;</code></pre>
-							<p>When using <code>data-toggle-outside</code> attribute, add this attribute to use a different event to toggle off outside of the trigger.</p>
-							<p>Note that this attribute only works when used in addition of <code>data-toggle-outside</code> attribute.</p>
+							<p>When using <code>data-toggle-outside</code><sup class="gotodef"><a href="#data-toggle-outside" title="Go to definition">[?]</a></sup> attribute, add this attribute to use a different event to toggle off outside of the trigger.</p>
+							<p>Note that this attribute only works when used in addition of <code>data-toggle-outside</code><sup class="gotodef"><a href="#data-toggle-outside" title="Go to definition">[?]</a></sup> attribute.</p>
 							<p>See an example with a <a href="#dblclick-tooltip">tooltip</a>.</p>
 						</dd>
 					</dl>
@@ -725,7 +726,7 @@ document.addEventListener("DOMContentLoaded", handler);</code></pre>
 						<dd class="mb-10">
 							<pre><code>&lt;button data-toggle-class="class" data-toggle-escape&gt;…&lt;/button&gt;</code></pre>
 							<p>Specify that you can press the <kbd>escape</kbd> key to toggle off the trigger when it is already active.</p>
-							<p>Note that this attribute does not work on an element with <code>data-toggle-radio-group="name"</code>.</p>
+							<p>Note that this attribute does not work on an element with <code>data-toggle-radio-group</code><sup class="gotodef"><a href="#data-toggle-radio-group" title="Go to definition">[?]</a></sup>.</p>
 							<p>See an example with a <a href="#collapsible-panel-with-escape">collapsible panel</a>.</p>
 						</dd>
 
@@ -734,7 +735,7 @@ document.addEventListener("DOMContentLoaded", handler);</code></pre>
 							<pre><code>&lt;button data-toggle-class="class" data-toggle-arrows data-toggle-group="name"&gt;…&lt;/button&gt;
 &lt;button data-toggle-class="class" data-toggle-arrows data-toggle-group="name"&gt;…&lt;/button&gt;</code></pre>
 							<p>Used with a group attribute, specify that as soon as a trigger is focused, you can navigate through the triggers of the same group with arrows <kbd title="arrow up">&uarr;</kbd> <kbd title="arrow right">&rarr;</kbd> <kbd title="arrow down">&darr;</kbd> <kbd title="arrow left">&larr;</kbd>, <kbd>home</kbd> and <kbd>end</kbd> keys.</p>
-							<p>Remember that this attribute must be used with <code>data-toggle-group</code> or <code>data-toggle-radio-group</code>.</p>
+							<p>Remember that this attribute must be used with <code>data-toggle-group</code><sup class="gotodef"><a href="#data-toggle-group" title="Go to definition">[?]</a></sup> or <code>data-toggle-radio-group</code><sup class="gotodef"><a href="#data-toggle-radio-group" title="Go to definition">[?]</a></sup>.</p>
 							<p>See an example with <a href="#radio-with-arrows">radio buttons</a>.</p>
 						</dd>
 					</dl>
@@ -748,8 +749,8 @@ document.addEventListener("DOMContentLoaded", handler);</code></pre>
 						<dt>Attribute: <code>data-toggle-modal</code></dt>
 						<dd>
 							<pre><code>&lt;button data-toggle-class="class" data-toggle-modal&gt;…&lt;/button&gt;</code></pre>
-							<p>Specify that the target is a modal, such as a <a href="#dialog">dialog</a> or a <a href="#lightbox">lightbox</a>. This way, when the target is active – open –, the focus is trapped inside this target until you close it. This means tabbing will only focus on focusable elements inside this target, letting anything outside be out of scope.</p>
-							<p>Be very careful when using this feature. A focus trap can be very annoying – and an accessibility fault – when used in a wrong way, so be sure your target is a modal component.</p>
+							<p>Specify that the target is a modal, such as a <a href="#dialog">dialog</a> or a <a href="#lightbox">lightbox</a>. This way, when the target is active (open), the focus is trapped inside this target until you close it. This means tabbing will only focus on focusable elements inside this target, leaving anything else outside be out of scope.</p>
+							<p>Be very careful when using this feature. A focus trap can be very annoying (and an accessibility fault) when used in a wrong way, so be sure your target is a modal component.</p>
 						</dd>
 					</dl>
 				</section>
@@ -762,12 +763,12 @@ document.addEventListener("DOMContentLoaded", handler);</code></pre>
 						<dt>Attribute: <code>data-toggle-trigger-off</code></dt>
 						<dd>
 							<pre><code>&lt;button data-toggle-class="class" data-toggle-target="#plop"&gt;…&lt;/button&gt;
+
 &lt;div id="plop"&gt;
 	&lt;button data-toggle-trigger-off="#plop"&gt;…&lt;/button&gt;
 &lt;/div&gt;</code></pre>
-							<p>Add this attribute on an element inside a target to enable it to toggle the related trigger back off. For example, a close button inside a <a href="#dialog">dialog</a> or a <a href="#lightbox">lightbox</a>.</p>
-							<p>You can usually leave this attribute without a value, but you may need to specify the related target element by setting the value to a <abbr title="Cascading StyleSheet">CSS</abbr> selector matching that target element.</p>
-							<p>For instance, when you have a target element inside another one, both related to different triggers, better specify which “trigger-off” elements are related to which target element to avoid conflicts.</p>
+							<p>This attribute is meant to be used on an element inside a target. By doing so, it enables this element to toggle the related trigger back off when it is active. For example, a close button inside a <a href="#dialog">dialog</a> or a <a href="#lightbox">lightbox</a>.</p>
+							<p>Fill this attribute with a <abbr title="Cascading StyleSheet">CSS</abbr> selector matching that target element.</p>
 							<p>Remember that this attribute must be used on an element <strong>placed inside a target element</strong>.</p>
 						</dd>
 					</dl>
