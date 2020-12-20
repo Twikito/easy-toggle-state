@@ -30,7 +30,7 @@
 	"scripts": {
 		"filesize-for-doc": "node tasks/generate-file-size.js",
 		"demos-for-doc": "node tasks/generate-demo-database.js",
-		"start-doc": "browser-sync start --server --files 'docs/**/*.*' --startPath '/docs'",
+		"doc": "browser-sync start --server --files 'docs/**/*.*' --startPath '/docs'",
 		"precommit": "lint-staged",
 		"lint": "eslint src",
 		"lint:fix": "eslint --fix src",
