@@ -15,7 +15,7 @@ of your navigation bar to toggle it at the same time.
 	data-toggle-escape
 	title="Navigation">
 
-	<svg width="1em" class="example-nav-trigger-icon" viewBox="0 0 100 100" role="img" focusable="false">
+	<svg width="1em" class="example-nav-trigger-icon" viewBox="0 0 100 100" role="img">
 		<title>Navigation icon</title>
 		<rect class="top-bar" x="0" y="15" width="100" height="12"/>
 		<rect class="mid-bar" x="0" y="44" width="100" height="12"/>
