@@ -13,7 +13,7 @@ let json = {};
 	// Get gzipped file size
 	const gzipSize = gzip.sync(fs.readFileSync(path.join('dist', file)));
 
-	// Keep only file type for json key, i.e. 'es6.min.js'
+	// Keep only file type for json key, i.e. 'es5.min.js'
 	json[file.substring(file.indexOf('.')+1)] = { 'default': stats.size, 'gzipped': gzipSize };
 });
 

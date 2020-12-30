@@ -42,7 +42,7 @@
 fetch('filesize.json')
 	.then(response => response.json())
 	.then(json => {
-		['es6.min.js', 'es6.js'].forEach(element => {
+		['min.js', 'js'].forEach(element => {
 			document.querySelector(`[data-file-size='${element}']`).innerHTML = Math.round(json[element].default/10)/100;
 			document.querySelector(`[data-file-size='${element}.gzip']`).innerHTML = Math.round(json[element].gzipped/10)/100;
 		});
@@ -119,7 +119,7 @@ fetch('filesize.json')
 				 * Go check other demos at https://twikito.github.io/easy-toggle-state/
 				 */
 			`,
-			"js_external" : "https://rawgit.com/Twikito/easy-toggle-state/master/dist/easy-toggle-state.es6.min.js",
+			"js_external" : "https://rawgit.com/Twikito/easy-toggle-state/master/dist/easy-toggle-state.min.js",
 			html: dedent(document.getElementById(event.target.dataset.demo).innerHTML)
 		};
 

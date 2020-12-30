@@ -24,8 +24,8 @@ const getBanner = isMin => {
 const getFileName = (version = "es5", isMin = false) => {
 	const base = "easy-toggle-state";
 	const ext = isMin ? "min.js" : "js";
-	if (version === "es6") {
-		return [base, "es6", ext].filter(Boolean).join(".");
+	if (version === "es5") {
+		return [base, "es5", ext].filter(Boolean).join(".");
 	}
 	return [base, ext].filter(Boolean).join(".");
 };

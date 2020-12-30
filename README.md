@@ -12,8 +12,8 @@ See some examples in [the documentation](https://twikito.github.io/easy-toggle-s
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/Twikito/easy-toggle-state?style=flat-square)](https://github.com/Twikito/easy-toggle-state/releases)
 [![npm](https://img.shields.io/npm/v/easy-toggle-state?style=flat-square)](https://www.npmjs.com/package/easy-toggle-state)
 [![Cdnjs](https://img.shields.io/cdnjs/v/easy-toggle-state?style=flat-square)](https://cdnjs.com/libraries/easy-toggle-state)
-[![npm bundle size](https://img.shields.io/bundlephobia/min/easy-toggle-state?style=flat-square)](https://github.com/Twikito/easy-toggle-state/blob/master/dist/easy-toggle-state.es6.min.js)
-[![npm bundle size](https://img.shields.io/bundlephobia/minzip/easy-toggle-state?style=flat-square)](https://github.com/Twikito/easy-toggle-state/blob/master/dist/easy-toggle-state.es6.min.js)
+[![npm bundle size](https://img.shields.io/bundlephobia/min/easy-toggle-state?style=flat-square)](https://github.com/Twikito/easy-toggle-state/blob/master/dist/easy-toggle-state.min.js)
+[![npm bundle size](https://img.shields.io/bundlephobia/minzip/easy-toggle-state?style=flat-square)](https://github.com/Twikito/easy-toggle-state/blob/master/dist/easy-toggle-state.min.js)
 
 [![David](https://img.shields.io/david/Twikito/easy-toggle-state?style=flat-square)](https://david-dm.org/Twikito/easy-toggle-state)
 [![David](https://img.shields.io/david/dev/Twikito/easy-toggle-state?style=flat-square)](https://david-dm.org/Twikito/easy-toggle-state?type=dev)
@@ -32,7 +32,7 @@ __Only focus on adjusting the rest with your CSS creativity__.
 
 Several quick start options are available:
 
-- [Direct download](https://rawgit.com/Twikito/easy-toggle-state/master/dist/easy-toggle-state.es6.js)
+- [Direct download](https://rawgit.com/Twikito/easy-toggle-state/master/dist/easy-toggle-state.min.js)
 - Choose another version: [ES5 or ES6](https://github.com/Twikito/easy-toggle-state/tree/master/dist)
 - [Link from cdnjs](https://cdnjs.com/libraries/easy-toggle-state)
 - Install with [npm](https://www.npmjs.com/package/easy-toggle-state): `npm install easy-toggle-state`
