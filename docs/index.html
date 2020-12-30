@@ -212,7 +212,7 @@
 						<li><a data-toggle-trigger-off="#navigation" href="#quickstart-locally">Locally</a></li>
 						<li><a data-toggle-trigger-off="#navigation" href="#quickstart-cdn">From CDN</a></li>
 						<li><a data-toggle-trigger-off="#navigation" href="#quickstart-npm">With NPM</a></li>
-						<li><a data-toggle-trigger-off="#navigation" href="#compatibility">About compatibility</a></li>
+						<li><a data-toggle-trigger-off="#navigation" href="#browser-support">Browser support</a></li>
 					</ul>
 				</li>
 				<li><a data-toggle-trigger-off="#navigation" href="#how-to-use">How to use</a>
@@ -451,12 +451,13 @@ const handler = () => {
 document.addEventListener("DOMContentLoaded", handler);</code></pre>
 				<p>Refer to the <a href="#api-esmodules">API using ES modules</a> section to learn more about what you can do.</p>
 			</section>
-			<section id="compatibility">
+			<section id="browser-support">
 				<h3>
-					<a href="#compatibility">About compatibility</a>
+					<a href="#browser-support">Browser support</a>
 				</h3>
-				<p>In addition to using <a href="//github.com/Twikito/easy-toggle-state/blob/master/dist/easy-toggle-state.min.js">ES5 version</a>, compatibility for Internet Explorer is provided by <a href="//polyfill.io/">polyfill.io</a> which supports back to <abbr title="Internet Explorer">IE</abbr> 7. It brings polyfills for <code class="language-js">Array.from</code>, <code class="language-js">Array.filter</code>, <code class="language-js">Element.closest</code> and more.</p>
-				<p>And before you ask, yes, you can <a href="//github.com/Financial-Times/polyfill-service#running-locally">run it locally</a>.</p>
+				<p><em>Easy Toggle State</em> library is written in <abbr title="ECMAScript 2016+">ES2016+</abbr>, so it supports browsers back to Edge&nbsp;14, Firefox&nbsp;43, Chrome&nbsp;47, Safari&nbsp;9 and Opera&nbsp;34. <a href="//kangax.github.io/compat-table/es6/" title="ECMAScript compatibility table">Learn more about <abbr title="ECMAScript">ES</abbr> compatibility</a>.</p>
+				<p>For more compatibility, you can use the <a href="//github.com/Twikito/easy-toggle-state/blob/master/dist/"><abbr title="ECMAScript 5">ES5</abbr> version</a>, making the library supports browsers back to <abbr title="Internet Explorer">IE</abbr>&nbsp;10, Edge all versions, Firefox&nbsp;4, Chrome&nbsp;13, Safari&nbsp;6 and Opera&nbsp;12.1.</p>
+				<p>If you need even more browser compatibility, consider using <a href="//polyfill.io/">polyfill.io</a> in addition of the <abbr title="ECMAScript 5">ES5</abbr> version. This will make the bundle supports back to <abbr title="Internet Explorer">IE</abbr> 8.</p>
 			</section>
 		</section>
 
