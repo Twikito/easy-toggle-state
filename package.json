@@ -57,7 +57,7 @@
 		"@babel/preset-env": "^7.12.11",
 		"browser-sync": "^2.26.13",
 		"cross-env": "^7.0.3",
-		"del-cli": "^3.0.0",
+		"del-cli": "^4.0.0",
 		"eslint": "^7.16.0",
 		"gzip-size": "^6.0.0",
 		"husky": "^4.3.6",
